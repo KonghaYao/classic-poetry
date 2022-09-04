@@ -1,14 +1,8 @@
-import {
-    Divider,
-    Layout,
-    Menu,
-    PageHeader,
-    Statistic,
-} from "@arco-design/web-react";
+import { Layout, Menu, PageHeader, Statistic } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { root } from "./global";
-import { Requester } from "./Requester";
+import { Requester } from "./components/Requester";
 
 const PoetryHeader: FC<{
     title: string;
@@ -20,6 +14,7 @@ const PoetryHeader: FC<{
             title={props.title}
             subTitle={props.subTitle}
             extra={
+                // TODO 勘误功能
                 <Statistic
                     title="字数"
                     value={props.textCount}
@@ -122,7 +117,7 @@ export const LunYu: FC = () => {
                                         }></ShowSinglePoetry>
                                 ) : (
                                     // TODO 404 页面
-                                    <div></div>
+                                    <div>404</div>
                                 );
                             })()
                         )}

@@ -4,6 +4,7 @@ import { Layout } from "@arco-design/web-react";
 import { Route, Routes } from "react-router-dom";
 import { FC } from "react";
 import { LunYu } from "./poetry/LunYu";
+import { Home } from "./Home/Home";
 const ShowPoetry: FC = () => {
     return <div></div>;
 };
@@ -21,6 +22,7 @@ function App() {
                     overflow: "hidden",
                 }}>
                 <Routes>
+                    <Route path="/" element={<Home></Home>}></Route>
                     <Route
                         path="/lunyu/:poetryId"
                         element={<LunYu></LunYu>}></Route>
