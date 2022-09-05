@@ -2,10 +2,8 @@ import { FunctionComponent } from "react";
 import { Menu, Space } from "@arco-design/web-react";
 import { FontChange } from "./FontChange";
 import { ThemeChange } from "./ThemeChange";
-const MenuItem = Menu.Item;
-export const TopMenu: FunctionComponent<{}> = (args) => {
-    const json: { name: string }[] = [{ name: "这是一个" }];
 
+export const TopMenu: FunctionComponent<{}> = (args) => {
     return (
         <Menu mode="horizontal">
             <Space size="large" align="center">

@@ -1,4 +1,4 @@
-import { PageHeader, Statistic } from "@arco-design/web-react";
+import { Divider, PageHeader, Statistic } from "@arco-design/web-react";
 import { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -13,17 +13,22 @@ export const PoetryHeader: FC<{
             title={props.title}
             subTitle={props.subTitle}
             backIcon
+            style={{
+                borderBottom: "2px solid var(--divide-red)",
+            }}
             onBack={() => {
                 nav(-1);
             }}
             extra={
                 // TODO 勘误功能
-                <Statistic
-                    title="全文"
-                    value={props.textCount}
-                    suffix="字"
-                    style={{ marginRight: 60 }}
-                />
+
+                <div>
+                    全文{" "}
+                    <span style={{ fontSize: "1.125rem" }}>
+                        {props.textCount}
+                    </span>{" "}
+                    字
+                </div>
             }
         />
     );

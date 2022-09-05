@@ -10,6 +10,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    --divide-red: #b9000f;
 }
 
 a {
@@ -54,4 +55,34 @@ body {
     border-radius: 10px; /* 滚动条样式 */
 
     background-color: var(--color-border); /* 滚动条颜色 */
+}
+
+/* 首页印章图像 */
+.Index-Seal {
+    color: white;
+    background-color: var(--divide-red);
+    font-size: 3rem;
+    font-weight: bold;
+    height: 5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    width: fit-content;
+    margin: 2rem auto;
+    position: relative;
+}
+.Index-Seal:before {
+    position: absolute;
+    content: "";
+    height: 90%;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid #c5c5c5;
+}
+
+/* 最大的内容长度 */
+.content-max {
+    max-width: 600px;
 }
