@@ -1,6 +1,7 @@
 import { DeepPartial } from "@arco-design/web-react/es/Form/store";
 import mitt, { Emitter } from "mitt";
 import { createPortal } from "react-dom";
+
 export const Setting = {
     text: {
         fontSize: 16,
@@ -16,6 +17,11 @@ export const Setting = {
         root: "https://unpkg.com/chinese-poetry/chinese-poetry/",
     },
 };
+const cache = localStorage.getItem("system-setting");
+
+if (cache) {
+    merge(Setting, JSON.parse(cache));
+}
 type SettingEvent = {
     /** 使用 change 方式深度覆盖对象 */
     change: DeepPartial<typeof Setting>;
@@ -31,6 +37,7 @@ export const SettingServer = mitt<SettingEvent>();
 SettingServer.on("change", (setting) => {
     // merge 方式
     merge(Setting, setting);
+    localStorage.setItem("system-setting", JSON.stringify(Setting));
 });
 
 export const useSetting = () => {
