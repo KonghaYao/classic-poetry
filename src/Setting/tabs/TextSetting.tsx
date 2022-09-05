@@ -6,6 +6,9 @@ import { FontChange } from "../../App/FontChange";
 export const TextSetting: FC<{}> = () => {
     return (
         <Form>
+            <Form.Item label="全局字体种类">
+                <FontChange />
+            </Form.Item>
             <Form.Item label="正文字体大小">
                 <InputNumber
                     mode="button"
@@ -18,8 +21,20 @@ export const TextSetting: FC<{}> = () => {
                     }
                 />
             </Form.Item>
-            <Form.Item label="字体种类">
-                <FontChange />
+            <Form.Item label="正文字体大小">
+                <InputNumber
+                    mode="button"
+                    defaultValue={Setting.text.letterSpacing}
+                    min={0}
+                    step={0.1}
+                    max={1}
+                    suffix="字"
+                    onChange={(i) =>
+                        SettingServer.emit("change", {
+                            text: { letterSpacing: i },
+                        })
+                    }
+                />
             </Form.Item>
         </Form>
     );

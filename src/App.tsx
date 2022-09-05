@@ -13,6 +13,9 @@ function App() {
     const fontSize = useMemo(() => {
         return setting.text.fontSize + "px";
     }, [setting]);
+    const letterSpacing = useMemo(() => {
+        return setting.text.letterSpacing + "em";
+    }, [setting]);
     return (
         <Layout className="App" style={{ height: "100vh" }}>
             <Layout.Header>
@@ -21,6 +24,7 @@ function App() {
             <Layout.Content
                 style={{
                     fontSize,
+                    letterSpacing,
                     display: "flex",
                     height: "100%",
                     width: "100%",
