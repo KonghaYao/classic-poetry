@@ -46,7 +46,7 @@ export const ShowSinglePoetry: FC<{
                 style={{
                     overflow: "auto",
                     flex: "1",
-                    padding: "4rem 1rem",
+                    padding: "2rem 1rem",
                 }}>
                 <Space split={<Divider />} direction="vertical">
                     {props.content.map((i, index) => {
@@ -58,8 +58,8 @@ export const ShowSinglePoetry: FC<{
                         );
                     })}
                 </Space>
+                {props.footer}
             </div>
-            {props.footer}
         </div>
     );
 };
