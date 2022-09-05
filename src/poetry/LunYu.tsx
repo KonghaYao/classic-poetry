@@ -1,60 +1,10 @@
-import { Layout, Menu, PageHeader, Statistic } from "@arco-design/web-react";
+import { Layout, Menu } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { root } from "./global";
 import { Requester } from "./components/Requester";
+import { ShowSinglePoetry } from "./components/ShowSinglePoetry";
 
-const PoetryHeader: FC<{
-    title: string;
-    subTitle?: string;
-    textCount: number;
-}> = (props) => {
-    return (
-        <PageHeader
-            title={props.title}
-            subTitle={props.subTitle}
-            extra={
-                // TODO 勘误功能
-                <Statistic
-                    title="字数"
-                    value={props.textCount}
-                    suffix="字"
-                    groupSeparator
-                    style={{ marginRight: 60 }}
-                />
-            }
-        />
-    );
-};
-const ShowSinglePoetry: FC<{
-    title: string;
-    subTitle?: string;
-    author?: string;
-    content: string[];
-}> = (props) => {
-    // 单独诗句排版
-    return (
-        <>
-            <PoetryHeader
-                title={props.title}
-                subTitle={props.subTitle}
-                textCount={props.content.reduce(
-                    (col, cur) => col + cur.length,
-                    0
-                )}></PoetryHeader>
-            <div
-                style={{
-                    display: "flex",
-                    overflow: "auto",
-                    flexDirection: "column",
-                }}>
-                {props.content.map((i) => {
-                    return <p>{i}</p>;
-                })}
-            </div>
-        </>
-    );
-};
 export const LunYu: FC = () => {
     let { poetryId } = useParams();
 
