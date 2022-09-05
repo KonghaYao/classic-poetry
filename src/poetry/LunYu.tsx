@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { root } from "./global";
 import { Requester } from "./components/Requester";
 import { ShowSinglePoetry } from "./components/ShowSinglePoetry";
+import { NotFound } from "./components/404";
 
 export const LunYu: FC = () => {
     let { poetryId } = useParams();
@@ -66,8 +67,7 @@ export const LunYu: FC = () => {
                                             poetry.paragraphs
                                         }></ShowSinglePoetry>
                                 ) : (
-                                    // TODO 404 页面
-                                    <div>404</div>
+                                    <NotFound></NotFound>
                                 );
                             })()
                         )}

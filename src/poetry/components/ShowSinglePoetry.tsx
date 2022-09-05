@@ -1,7 +1,7 @@
 import { Divider, Space, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { PoetryHeader } from "./PoetryHeader";
-
+import { TextPreProcess } from "../utils/TextPreProcess";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({
     index,
@@ -10,7 +10,7 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     return (
         <Space>
             <Tag>{index + 1}</Tag>
-            <span>{content}</span>
+            <span>{TextPreProcess(content)}</span>
         </Space>
     );
 };
@@ -26,6 +26,8 @@ export const ShowSinglePoetry: FC<{
         <div
             className="box-col"
             style={{
+                maxWidth: "600px",
+                margin: "auto",
                 overflow: "hidden",
                 height: "100%",
             }}>
@@ -49,6 +51,7 @@ export const ShowSinglePoetry: FC<{
                             <>
                                 {index !== 0 && <Divider />}
                                 <SingleRow
+                                    key={props.title + "-" + index}
                                     index={index}
                                     content={i}></SingleRow>
                             </>

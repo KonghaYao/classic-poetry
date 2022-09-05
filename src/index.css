@@ -44,3 +44,14 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+::-webkit-scrollbar {
+    width: 6px; /* 竖向滚动条宽度 */
+    height: 6px; /* 横向滚动条高度 */
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px; /* 滚动条样式 */
+
+    background-color: var(--color-border); /* 滚动条颜色 */
+}

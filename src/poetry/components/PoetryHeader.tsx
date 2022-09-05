@@ -19,10 +19,9 @@ export const PoetryHeader: FC<{
             extra={
                 // TODO 勘误功能
                 <Statistic
-                    title="字数"
+                    title="全文"
                     value={props.textCount}
                     suffix="字"
-                    groupSeparator
                     style={{ marginRight: 60 }}
                 />
             }

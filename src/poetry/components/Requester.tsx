@@ -2,12 +2,18 @@ import { Empty } from "@arco-design/web-react";
 import { IconClose, IconLoading } from "@arco-design/web-react/icon";
 import { useRequest } from "ahooks";
 
+/** 加载数据的一个组件，带有回馈信息 */
 export const Requester = function <T>(props: {
     url: string;
     element: (data: T) => JSX.Element;
+    getData?: (url: string) => Promise<T>;
 }) {
-    const { data, loading, error } = useRequest<T, any>(() =>
-        fetch(props.url).then((res) => res.json())
+    const JSONFetcher = (url: string) => fetch(url).then((res) => res.json());
+    const { data, loading, error } = useRequest<T, [string]>(
+        () => (props.getData || JSONFetcher)(props.url),
+        {
+            cacheKey: props.url,
+        }
     );
 
     return (
