@@ -3,6 +3,9 @@ import mitt, { Emitter } from "mitt";
 import { createPortal } from "react-dom";
 
 export const Setting = {
+    theme: {
+        base: "auto",
+    },
     text: {
         fontSize: 16,
         font: {
@@ -17,8 +20,9 @@ export const Setting = {
         root: "https://unpkg.com/chinese-poetry/chinese-poetry/",
     },
 };
-const cache = localStorage.getItem("system-setting");
 
+// 持久化的数据
+const cache = localStorage.getItem("system-setting");
 if (cache) {
     merge(Setting, JSON.parse(cache));
 }

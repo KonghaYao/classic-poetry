@@ -1,12 +1,13 @@
+import { SourceManager } from "./tabs/SourceManager";
 import { TextSetting } from "./tabs/TextSetting";
 
 export const SettingComponents = [
     {
-        title: "文本设置",
+        title: "主题设置",
         comp: TextSetting,
     },
     {
-        title: "资源管理设置",
-        comp: TextSetting,
+        title: "资源设置",
+        comp: SourceManager,
     },
 ];

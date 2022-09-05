@@ -1,9 +1,10 @@
-import { Form, InputNumber } from "@arco-design/web-react";
+import { Form, InputNumber, Radio } from "@arco-design/web-react";
 import { FC } from "react";
-import { Setting, SettingServer } from "..";
+import { Setting, SettingServer, useSetting } from "..";
 import { FontChange } from "../../App/FontChange";
 
 export const TextSetting: FC<{}> = () => {
+    const { setting, server } = useSetting();
     return (
         <Form>
             <Form.Item label="全局字体种类">
@@ -21,7 +22,7 @@ export const TextSetting: FC<{}> = () => {
                     }
                 />
             </Form.Item>
-            <Form.Item label="正文字体大小">
+            <Form.Item label="字间距">
                 <InputNumber
                     mode="button"
                     defaultValue={Setting.text.letterSpacing}
@@ -35,6 +36,17 @@ export const TextSetting: FC<{}> = () => {
                         })
                     }
                 />
+            </Form.Item>
+            <Form.Item label="主题">
+                <Radio.Group
+                    type="button"
+                    name="position"
+                    defaultValue={setting.theme.base}
+                    onChange={(label) => {
+                        server.emit("change", { theme: { base: label } });
+                    }}
+                    style={{ marginBottom: 40 }}
+                    options={["light", "dark", "auto"]}></Radio.Group>
             </Form.Item>
         </Form>
     );

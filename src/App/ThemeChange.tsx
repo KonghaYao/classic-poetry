@@ -1,28 +1,48 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 const useAutoTheme = () => {
+    const [theme, _setTheme] = useState(
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+    );
     const setTheme = (type: string) => {
         document.documentElement.style.colorScheme = type;
         document.body.setAttribute("arco-theme", type);
+        _setTheme(type);
     };
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
     darkThemeMq.addEventListener("change", (e) => {
-        if (e.matches) {
-            document.body.setAttribute("arco-theme", "dark");
-        } else {
-            document.body.removeAttribute("arco-theme");
-        }
+        e.matches
+            ? document.body.setAttribute("arco-theme", "dark")
+            : document.body.removeAttribute("arco-theme");
     });
-    darkThemeMq.matches && setTheme("dark");
     return {
+        theme,
         setTheme,
     };
 };
 import { Switch, Space } from "@arco-design/web-react";
 import { IconSun, IconMoon } from "@arco-design/web-react/icon";
+import { useSetting } from "../Setting";
 
 export const ThemeChange: FC<{}> = () => {
-    const { setTheme } = useAutoTheme();
+    const { setTheme, theme } = useAutoTheme();
+    const { setting, server } = useSetting();
+
+    useEffect(() => {
+        switch (setting.theme.base) {
+            case "light":
+                setTheme("light");
+                break;
+            case "dark":
+                setTheme("dark");
+                break;
+            default:
+                window.matchMedia("(prefers-color-scheme: dark)") &&
+                    setTheme("dark");
+        }
+    }, [setting]);
     return (
         <Space
             size="large"
@@ -32,11 +52,11 @@ export const ThemeChange: FC<{}> = () => {
             <Switch
                 checkedIcon={<IconSun />}
                 uncheckedIcon={<IconMoon />}
-                defaultChecked={
-                    !window.matchMedia("(prefers-color-scheme: dark)").matches
-                }
+                defaultChecked={theme === "light"}
                 onChange={(value) => {
-                    setTheme(value ? "light" : "dark");
+                    server.emit("change", {
+                        theme: { base: value ? "light" : "dark" },
+                    });
                 }}
             />
         </Space>
