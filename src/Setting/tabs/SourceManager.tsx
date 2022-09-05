@@ -1,6 +1,7 @@
 import { Button, Form, List } from "@arco-design/web-react";
 import { IconBook, IconDelete, IconRefresh } from "@arco-design/web-react/icon";
 import { FC, useState } from "react";
+import { AsyncButton } from "../../poetry/components/AsyncButton";
 import { BookStore } from "../../poetry/utils/BookStore";
 
 export const SourceManager: FC<{}> = () => {
@@ -11,7 +12,7 @@ export const SourceManager: FC<{}> = () => {
     return (
         <div>
             <List
-                style={{ width: 600 }}
+                style={{ width: "80%" }}
                 dataSource={keys}
                 render={(item, index) => (
                     <List.Item
@@ -19,18 +20,20 @@ export const SourceManager: FC<{}> = () => {
                         extra={
                             <div>
                                 {/* 添加处理状态 */}
-                                <Button
-                                    onClick={() => {
-                                        BookStore.store!.removeItem(item);
+                                <AsyncButton
+                                    asyncClick={() => {
+                                        return BookStore.store!.removeItem(
+                                            item
+                                        );
                                     }}>
                                     <IconDelete></IconDelete>
-                                </Button>
-                                <Button
-                                    onClick={() => {
-                                        BookStore.refresh(item);
+                                </AsyncButton>
+                                <AsyncButton
+                                    asyncClick={() => {
+                                        return BookStore.refresh(item);
                                     }}>
                                     <IconRefresh></IconRefresh>
-                                </Button>
+                                </AsyncButton>
                             </div>
                         }>
                         <List.Item.Meta
