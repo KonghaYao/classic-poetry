@@ -1,6 +1,7 @@
 import { Divider, Space, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { PoetryHeader } from "./PoetryHeader";
+import { PoetryFooter } from "./PoetryFooter";
 import { TextPreProcess } from "../utils/TextPreProcess";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({
@@ -22,6 +23,7 @@ export const ShowSinglePoetry: FC<{
     subTitle?: string;
     author?: string;
     content: string[];
+    footer?: JSX.Element;
 }> = (props) => {
     const textCount = props.content.reduce((col, cur) => {
         const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
@@ -57,6 +59,7 @@ export const ShowSinglePoetry: FC<{
                     })}
                 </Space>
             </div>
+            {props.footer}
         </div>
     );
 };
