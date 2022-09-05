@@ -32,21 +32,15 @@ export const SettingPage: FC<{}> = () => {
                 justifyContent: "center",
             }}>
             <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    filter: "blur(3px)",
-                }}></div>
-            <div
                 className="content-max"
                 style={{
                     width: "100%",
-                    backgroundColor: "var(--color-bg-1)",
+                    backdropFilter: "blur(8px)",
+                    border: "2px solid var(--color-border)",
                     padding: "1rem",
                     borderRadius: "8px",
+                    margin: "1rem",
+                    height: "40%",
                 }}>
                 <Tabs
                     type="capsule"

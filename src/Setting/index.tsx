@@ -4,6 +4,11 @@ import { createPortal } from "react-dom";
 export const Setting = {
     text: {
         fontSize: 16,
+        font: {
+            path: "",
+            name: "默认字体",
+            fontFamily: "Noto Serif SC",
+        },
     },
     poetry: {
         /** 所有 json 文件的来源地址 */

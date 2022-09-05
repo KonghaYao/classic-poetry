@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
-import { Menu, Space } from "@arco-design/web-react";
+import { Button, Menu, Space } from "@arco-design/web-react";
 import { FontChange } from "./FontChange";
 import { ThemeChange } from "./ThemeChange";
 import { useSetting } from "../Setting";
-import { IconAlignRight } from "@arco-design/web-react/icon";
+import { IconSettings } from "@arco-design/web-react/icon";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { init, server } = useSetting();
@@ -20,12 +20,12 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                 <FontChange />
                 <ThemeChange></ThemeChange>
                 {init()}
-                <div
+                <Button
                     onClick={() => {
                         server.emit("toggle", true);
                     }}>
-                    <IconAlignRight></IconAlignRight>
-                </div>
+                    <IconSettings />
+                </Button>
             </Space>
         </Menu>
     );
