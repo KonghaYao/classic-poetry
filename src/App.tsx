@@ -4,10 +4,12 @@ import { Layout } from "@arco-design/web-react";
 import { Route, Routes } from "react-router-dom";
 import { FC } from "react";
 import { LunYu } from "./poetry/LunYu/LunYu";
+import { IndexPage as LunYuIndex } from "./poetry/LunYu/IndexPage";
 import { Home } from "./Home/Home";
 const ShowPoetry: FC = () => {
     return <div></div>;
 };
+
 function App() {
     return (
         <Layout className="App" style={{ height: "100vh" }}>
@@ -23,6 +25,9 @@ function App() {
                 }}>
                 <Routes>
                     <Route path="/" element={<Home></Home>}></Route>
+                    <Route
+                        path="/lunyu"
+                        element={<LunYuIndex></LunYuIndex>}></Route>
                     <Route
                         path="/lunyu/:poetryId"
                         element={<LunYu></LunYu>}></Route>
