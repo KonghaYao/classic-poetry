@@ -35,3 +35,12 @@ body {
 .theme-switch .arco-switch-checked .arco-switch-dot {
     color: #fbb755;
 }
+
+.box-row {
+    display: flex;
+    flex-direction: row;
+}
+.box-col {
+    display: flex;
+    flex-direction: column;
+}
