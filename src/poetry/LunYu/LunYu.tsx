@@ -8,6 +8,7 @@ import { NotFound } from "../components/404";
 import { SideBar } from "./SideBar";
 import { PoetryFooter } from "../components/PoetryFooter";
 import { Setting } from "../../Setting";
+import { BookStore } from "../utils/BookStore";
 
 export type FetchData = {
     chapter: string;
@@ -18,7 +19,10 @@ export const LunYu: FC = () => {
     let { poetryId } = useParams()!;
 
     return Requester<FetchData>({
-        url: Setting.poetry.root + "lunyu/lunyu.json",
+        getData(path) {
+            return BookStore.getBook(path);
+        },
+        url: "lunyu/lunyu.json",
         element: (data) => {
             const poetryIndex = data.findIndex((i) => i.chapter === poetryId)!;
             const poetry = data[poetryIndex];

@@ -19,6 +19,7 @@ const useAutoTheme = () => {
     });
     return {
         theme,
+
         setTheme,
     };
 };
@@ -38,9 +39,6 @@ export const ThemeChange: FC<{}> = () => {
             case "dark":
                 setTheme("dark");
                 break;
-            default:
-                window.matchMedia("(prefers-color-scheme: dark)") &&
-                    setTheme("dark");
         }
     }, [setting]);
     return (
@@ -52,7 +50,7 @@ export const ThemeChange: FC<{}> = () => {
             <Switch
                 checkedIcon={<IconSun />}
                 uncheckedIcon={<IconMoon />}
-                defaultChecked={theme === "light"}
+                checked={theme === "light"}
                 onChange={(value) => {
                     server.emit("change", {
                         theme: { base: value ? "light" : "dark" },

@@ -4,10 +4,14 @@ import { NavLink } from "react-router-dom";
 import { Requester } from "../components/Requester";
 import { Setting } from "../../Setting";
 import { FetchData } from "./LunYu";
+import { BookStore } from "../utils/BookStore";
 
 export const IndexPage: FC = function () {
     return Requester<FetchData>({
-        url: Setting.poetry.root + "lunyu/lunyu.json",
+        getData(path) {
+            return BookStore.getBook(path);
+        },
+        url: "lunyu/lunyu.json",
         element: (data) => {
             return (
                 <div

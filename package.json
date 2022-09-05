@@ -11,6 +11,7 @@
   "dependencies": {
     "@arco-design/web-react": "^2.39.3",
     "ahooks": "^3.7.0",
+    "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.0",
     "pangu": "^4.0.7",
