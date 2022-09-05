@@ -1,6 +1,8 @@
-import { Divider, PageHeader, Statistic } from "@arco-design/web-react";
+import { Divider, PageHeader, Space, Statistic } from "@arco-design/web-react";
+import { IconUnorderedList } from "@arco-design/web-react/icon";
 import { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { sidebarServer } from "../global";
 
 export const PoetryHeader: FC<{
     title: string;
@@ -21,14 +23,21 @@ export const PoetryHeader: FC<{
             }}
             extra={
                 // TODO 勘误功能
-
-                <div>
-                    全文{" "}
-                    <span style={{ fontSize: "1.125rem" }}>
-                        {props.textCount}
-                    </span>{" "}
-                    字
-                </div>
+                <Space>
+                    <div>
+                        全文{" "}
+                        <span style={{ fontSize: "1.125rem" }}>
+                            {props.textCount}
+                        </span>{" "}
+                        字
+                    </div>
+                    <div
+                        onClick={() => {
+                            sidebarServer.emit("toggleVisible");
+                        }}>
+                        <IconUnorderedList />
+                    </div>
+                </Space>
             }
         />
     );

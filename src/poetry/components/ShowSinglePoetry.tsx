@@ -30,9 +30,8 @@ export const ShowSinglePoetry: FC<{
     // 单独诗句排版
     return (
         <div
-            className="box-col"
+            className="box-col content-max"
             style={{
-                maxWidth: "600px",
                 margin: "auto",
                 overflow: "hidden",
                 height: "100%",
