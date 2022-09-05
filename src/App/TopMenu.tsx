@@ -5,7 +5,11 @@ import { ThemeChange } from "./ThemeChange";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     return (
-        <Menu mode="horizontal">
+        <Menu
+            mode="horizontal"
+            style={{
+                borderBottom: "1px solid var(--divide-gold)",
+            }}>
             <Space size="large" align="center">
                 <div style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
                     中华诗词大典
