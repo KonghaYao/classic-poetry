@@ -25,10 +25,10 @@ export const PoetryHeader: FC<{
                 // TODO 勘误功能
                 <Space>
                     <div>
-                        全文{" "}
-                        <span style={{ fontSize: "1.125rem" }}>
+                        全文
+                        <span style={{ fontSize: "1.125em" }}>
                             {props.textCount}
-                        </span>{" "}
+                        </span>
                         字
                     </div>
                     <div

@@ -2,15 +2,17 @@ import { TopMenu } from "./App/TopMenu";
 import "./App.css";
 import { Layout } from "@arco-design/web-react";
 import { Route, Routes } from "react-router-dom";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { LunYu } from "./poetry/LunYu/LunYu";
 import { IndexPage as LunYuIndex } from "./poetry/LunYu/IndexPage";
 import { Home } from "./Home/Home";
-const ShowPoetry: FC = () => {
-    return <div></div>;
-};
+import { useSetting } from "./Setting";
 
 function App() {
+    const { setting } = useSetting();
+    const fontSize = useMemo(() => {
+        return setting.text.fontSize + "px";
+    }, [setting]);
     return (
         <Layout className="App" style={{ height: "100vh" }}>
             <Layout.Header>
@@ -18,6 +20,7 @@ function App() {
             </Layout.Header>
             <Layout.Content
                 style={{
+                    fontSize,
                     display: "flex",
                     height: "100%",
                     width: "100%",

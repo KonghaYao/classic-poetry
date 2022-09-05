@@ -1,13 +1,13 @@
 import { Layout } from "@arco-design/web-react";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { Setting } from "../global";
+
 import { Requester } from "../components/Requester";
 import { ShowSinglePoetry } from "../components/ShowSinglePoetry";
 import { NotFound } from "../components/404";
-import { IndexPage } from "./IndexPage";
 import { SideBar } from "./SideBar";
 import { PoetryFooter } from "../components/PoetryFooter";
+import { Setting } from "../../Setting";
 
 export type FetchData = {
     chapter: string;
@@ -18,7 +18,7 @@ export const LunYu: FC = () => {
     let { poetryId } = useParams()!;
 
     return Requester<FetchData>({
-        url: Setting.root + "lunyu/lunyu.json",
+        url: Setting.poetry.root + "lunyu/lunyu.json",
         element: (data) => {
             const poetryIndex = data.findIndex((i) => i.chapter === poetryId)!;
             const poetry = data[poetryIndex];

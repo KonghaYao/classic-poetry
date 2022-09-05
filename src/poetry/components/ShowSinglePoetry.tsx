@@ -11,9 +11,7 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     return (
         <Space>
             <Tag>{index + 1}</Tag>
-            <span style={{ fontSize: "1.025rem" }}>
-                {TextPreProcess(content)}
-            </span>
+            <span style={{ fontSize: "1em" }}>{TextPreProcess(content)}</span>
         </Space>
     );
 };

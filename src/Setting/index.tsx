@@ -1,0 +1,45 @@
+import { DeepPartial } from "@arco-design/web-react/es/Form/store";
+import mitt, { Emitter } from "mitt";
+import { createPortal } from "react-dom";
+export const Setting = {
+    text: {
+        fontSize: 16,
+    },
+    poetry: {
+        /** 所有 json 文件的来源地址 */
+        root: "https://unpkg.com/chinese-poetry/chinese-poetry/",
+    },
+};
+type SettingEvent = {
+    /** 使用 change 方式深度覆盖对象 */
+    change: DeepPartial<typeof Setting>;
+    /** 打开或者关闭设置面板 */
+    toggle: boolean | undefined;
+};
+
+import merge from "lodash-es/merge";
+import { SettingPage } from "./SettingPage";
+import { useState } from "react";
+/** 全局唯一的设置操作 */
+export const SettingServer = mitt<SettingEvent>();
+SettingServer.on("change", (setting) => {
+    // merge 方式
+    merge(Setting, setting);
+});
+
+export const useSetting = () => {
+    let page: React.ReactPortal;
+    const [setting, setNewSetting] = useState(Setting);
+    SettingServer.on("change", () => {
+        setNewSetting({ ...Setting });
+    });
+    return {
+        server: SettingServer,
+        init() {
+            if (page) return page;
+            page = createPortal(<SettingPage></SettingPage>, document.body);
+            return page;
+        },
+        setting,
+    };
+};

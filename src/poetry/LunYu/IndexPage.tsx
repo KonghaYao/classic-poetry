@@ -2,12 +2,12 @@ import { Divider, Grid, Space, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Requester } from "../components/Requester";
-import { Setting } from "../global";
+import { Setting } from "../../Setting";
 import { FetchData } from "./LunYu";
 
 export const IndexPage: FC = function () {
     return Requester<FetchData>({
-        url: Setting.root + "lunyu/lunyu.json",
+        url: Setting.poetry.root + "lunyu/lunyu.json",
         element: (data) => {
             return (
                 <div
