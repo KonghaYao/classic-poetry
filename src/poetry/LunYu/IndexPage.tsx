@@ -1,8 +1,7 @@
-import { Divider, Grid, Space, Tag } from "@arco-design/web-react";
+import { Grid, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Requester } from "../components/Requester";
-import { Setting } from "../../Setting";
 import { FetchData } from "./LunYu";
 import { BookStore } from "../utils/BookStore";
 

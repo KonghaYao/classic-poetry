@@ -17,6 +17,12 @@ export const BookStore = {
     async fetchData(path: string) {
         return fetch(Setting.poetry.root + path).then((res) => res.json());
     },
+    async refresh(path: string) {
+        const data = await this.fetchData(path);
+        this.store!.setItem(path, data); // 不进行等待
+        return data;
+    },
+
     /** path 为仓库下的地址 */
     async getBook<T>(path: string): Promise<T> {
         return this.ready
@@ -27,9 +33,7 @@ export const BookStore = {
                 if (res) {
                     return res;
                 } else {
-                    const data = await this.fetchData(path);
-                    this.store!.setItem(path, data); // 不进行等待
-                    return data;
+                    return this.refresh(path);
                 }
             });
     },
