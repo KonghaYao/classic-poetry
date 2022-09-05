@@ -10,7 +10,9 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     return (
         <Space>
             <Tag>{index + 1}</Tag>
-            <span>{TextPreProcess(content)}</span>
+            <span style={{ fontSize: "1.025rem" }}>
+                {TextPreProcess(content)}
+            </span>
         </Space>
     );
 };
@@ -21,6 +23,10 @@ export const ShowSinglePoetry: FC<{
     author?: string;
     content: string[];
 }> = (props) => {
+    const textCount = props.content.reduce((col, cur) => {
+        const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
+        return col + m.length;
+    }, 0);
     // 单独诗句排版
     return (
         <div
@@ -34,30 +40,23 @@ export const ShowSinglePoetry: FC<{
             <PoetryHeader
                 title={props.title}
                 subTitle={props.subTitle}
-                textCount={props.content.reduce(
-                    (col, cur) => col + cur.length,
-                    0
-                )}></PoetryHeader>
-            {/* TODO 中文字体排版规则 */}
+                textCount={textCount}></PoetryHeader>
             <div
                 style={{
                     overflow: "auto",
                     flex: "1",
                     padding: "4rem 1rem",
                 }}>
-                <div>
+                <Space split={<Divider />} direction="vertical">
                     {props.content.map((i, index) => {
                         return (
-                            <>
-                                {index !== 0 && <Divider />}
-                                <SingleRow
-                                    key={props.title + "-" + index}
-                                    index={index}
-                                    content={i}></SingleRow>
-                            </>
+                            <SingleRow
+                                key={props.title + "-" + index}
+                                index={index}
+                                content={i}></SingleRow>
                         );
                     })}
-                </div>
+                </Space>
             </div>
         </div>
     );

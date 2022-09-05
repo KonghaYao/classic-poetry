@@ -7,17 +7,14 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
     const json: { name: string }[] = [{ name: "这是一个" }];
 
     return (
-        <Menu
-            mode="horizontal"
-            defaultSelectedKeys={["0"]}
-            onClickSubMenu={(key) => {}}>
+        <Menu mode="horizontal">
             <Space size="large" align="center">
+                <div style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+                    中华诗词大典
+                </div>
                 <FontChange />
                 <ThemeChange></ThemeChange>
             </Space>
-            {json.map((item, index) => {
-                return <MenuItem key={index.toString()}>{item.name}</MenuItem>;
-            })}
         </Menu>
     );
 };

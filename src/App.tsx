@@ -3,7 +3,7 @@ import "./App.css";
 import { Layout } from "@arco-design/web-react";
 import { Route, Routes } from "react-router-dom";
 import { FC } from "react";
-import { LunYu } from "./poetry/LunYu";
+import { LunYu } from "./poetry/LunYu/LunYu";
 import { Home } from "./Home/Home";
 const ShowPoetry: FC = () => {
     return <div></div>;

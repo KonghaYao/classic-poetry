@@ -1,20 +1,20 @@
 import { Layout, Menu } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { root } from "./global";
-import { Requester } from "./components/Requester";
-import { ShowSinglePoetry } from "./components/ShowSinglePoetry";
-import { NotFound } from "./components/404";
+import { root } from "../global";
+import { Requester } from "../components/Requester";
+import { ShowSinglePoetry } from "../components/ShowSinglePoetry";
+import { NotFound } from "../components/404";
+import { IndexPage } from "./IndexPage";
 
+export type FetchData = {
+    chapter: string;
+    paragraphs: string[];
+}[];
 export const LunYu: FC = () => {
     let { poetryId } = useParams();
 
-    return Requester<
-        {
-            chapter: string;
-            paragraphs: string[];
-        }[]
-    >({
+    return Requester<FetchData>({
         url: root + "lunyu/lunyu.json",
         element: (data) => {
             return (
@@ -24,6 +24,7 @@ export const LunYu: FC = () => {
                             height: "100%",
                             overflow: "auto",
                         }}>
+                        {/* 侧边栏 */}
                         <Menu
                             defaultOpenKeys={[poetryId!]}
                             style={{
@@ -44,17 +45,7 @@ export const LunYu: FC = () => {
                     </Layout.Sider>
                     <Layout.Content>
                         {poetryId === "index" ? (
-                            <div>
-                                {data.map((i) => {
-                                    return (
-                                        <NavLink
-                                            key={"to-" + i.chapter}
-                                            to={`/lunyu/${i.chapter}`}>
-                                            {i.chapter}
-                                        </NavLink>
-                                    );
-                                })}
-                            </div>
+                            <IndexPage data={data}></IndexPage>
                         ) : (
                             (() => {
                                 const poetry = data.find(
