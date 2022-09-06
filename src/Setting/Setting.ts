@@ -1,5 +1,5 @@
 import { DeepPartial } from "@arco-design/web-react/es/Form/store";
-import merge from "lodash-es/merge";
+import merge from "lodash/merge";
 
 export const Setting = {
     theme: {

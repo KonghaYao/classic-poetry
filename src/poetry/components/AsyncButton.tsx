@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@arco-design/web-react";
-import { omit } from "lodash-es";
+import omit from "lodash/omit";
 import { FC, useState } from "react";
 
 export const AsyncButton: FC<

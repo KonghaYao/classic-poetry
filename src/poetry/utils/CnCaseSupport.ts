@@ -1,4 +1,4 @@
-import { memoize } from "lodash-es";
+import memoize from "lodash/memoize";
 import { Setting } from "../../Setting/Setting";
 
 export const CnCaseSupport = memoize(async () => {

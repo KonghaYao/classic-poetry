@@ -1,10 +1,10 @@
 import mitt, { Emitter } from "mitt";
 import { createPortal } from "react-dom";
 
-import merge from "lodash-es/merge";
-import { SettingPage } from "./SettingPage";
+import merge from "lodash/merge";
 import { useState } from "react";
 import { SettingEvent, Setting } from "./Setting";
+import { AsyncLoad } from "../poetry/components/AsyncComponent";
 /** 全局唯一的设置操作 */
 export const SettingServer = mitt<SettingEvent>();
 SettingServer.on("change", (setting) => {
@@ -23,7 +23,10 @@ export const useSetting = () => {
         server: SettingServer,
         init() {
             if (page) return page;
-            page = createPortal(<SettingPage></SettingPage>, document.body);
+            page = createPortal(
+                AsyncLoad(() => import("./SettingPage"), "SettingPage"),
+                document.body
+            );
             return page;
         },
         setting,
