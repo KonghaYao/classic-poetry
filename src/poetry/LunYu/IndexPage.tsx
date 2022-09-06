@@ -48,14 +48,16 @@ export const IndexPage: FC = function () {
                                     return (
                                         <Grid.Col
                                             span={4}
-                                            key={"to-" + i.chapter}>
-                                            <NavLink to={`/lunyu/${i.chapter}`}>
-                                                <Tag
-                                                    style={{
-                                                        fontSize: "1.125rem",
-                                                    }}>
-                                                    {i.chapter}
-                                                </Tag>
+                                            key={"to-" + i.chapter}
+                                            style={{
+                                                textAlign: "center",
+                                            }}>
+                                            <NavLink
+                                                to={`/lunyu/${i.chapter}`}
+                                                style={{
+                                                    fontSize: "1.125rem",
+                                                }}>
+                                                {i.chapter}
                                             </NavLink>
                                         </Grid.Col>
                                     );

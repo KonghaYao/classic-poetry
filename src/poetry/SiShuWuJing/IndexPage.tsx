@@ -11,6 +11,19 @@ export const ExtraLink = [
     },
 ];
 
+const SingleLink = (str: string, to?: string) => {
+    return (
+        <NavLink
+            key={"to-" + str}
+            to={to || `/sishuwujing/${str}`}
+            style={{
+                fontSize: "1.125rem",
+            }}>
+            {str}
+        </NavLink>
+    );
+};
+
 export const IndexPage: FC = function () {
     return Requester<FetchData>({
         ...requestFragment,
@@ -44,34 +57,18 @@ export const IndexPage: FC = function () {
                                 display: "block",
                                 overflow: "auto",
                             }}>
-                            <Space wrap style={{ fontSize: "1.5rem" }}>
-                                {data.map((i) => {
-                                    return (
-                                        <NavLink
-                                            key={"to-" + i.chapter}
-                                            to={`/sishuwujing/${i.chapter}`}>
-                                            <Tag
-                                                style={{
-                                                    fontSize: "1.125rem",
-                                                }}>
-                                                {i.chapter}
-                                            </Tag>
-                                        </NavLink>
-                                    );
-                                })}
+                            <Space
+                                wrap
+                                style={{
+                                    fontSize: "1.5rem",
+                                    textAlign: "center",
+                                }}
+                                split="|">
                                 {ExtraLink.map((i) => {
-                                    return (
-                                        <NavLink
-                                            to={i.to}
-                                            key={"to-" + i.title}>
-                                            <Tag
-                                                style={{
-                                                    fontSize: "1.125rem",
-                                                }}>
-                                                {i.title}
-                                            </Tag>
-                                        </NavLink>
-                                    );
+                                    return SingleLink(i.title, i.to);
+                                })}
+                                {data.map((i) => {
+                                    return SingleLink(i.chapter);
                                 })}
                             </Space>
                         </div>

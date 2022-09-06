@@ -55,19 +55,20 @@ export const IndexPage: FC = function () {
                                                     i.section,
                                                     i.title,
                                                 ].join("-")
-                                            }>
+                                            }
+                                            style={{
+                                                textAlign: "center",
+                                            }}>
                                             <NavLink
                                                 to={`/shijing/${[
                                                     i.chapter,
                                                     i.section,
                                                     i.title,
-                                                ].join("-")}`}>
-                                                <Tag
-                                                    style={{
-                                                        fontSize: "1.125rem",
-                                                    }}>
-                                                    {i.title}
-                                                </Tag>
+                                                ].join("-")}`}
+                                                style={{
+                                                    fontSize: "1.125rem",
+                                                }}>
+                                                {i.title}
                                             </NavLink>
                                         </Grid.Col>
                                     );
