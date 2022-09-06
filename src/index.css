@@ -16,10 +16,11 @@
     --divide-green: #415b55;
 }
 body {
+    --shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-
 body[arco-theme="dark"] {
     --color-text-1: #c9a276;
+    --shadow: 0 0 20px rgba(201, 162, 118, 0.25);
 }
 @media (prefers-color-scheme: dark) {
     body {

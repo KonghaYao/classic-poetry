@@ -10,29 +10,32 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
     const { init, server } = useSetting();
     const nav = useNavigate();
     return (
-        <Menu
-            mode="horizontal"
-            collapse={false}
+        <nav
+            className="box-row"
             style={{
-                borderBottom: "1px solid var(--divide-gold)",
+                padding: "1rem 2rem",
+                boxShadow: "var(--shadow)",
             }}>
-            <Space size="large" align="center">
-                <div
-                    style={{ fontSize: "1.25rem", fontWeight: "bold" }}
-                    onClick={() => nav("/")}>
-                    中华诗词大典
-                </div>
-                <div style={{ flex: "1" }}></div>
-                <FontChange />
+            <div
+                style={{ fontSize: "1.25rem", fontWeight: "bold" }}
+                onClick={() => nav("/")}>
+                中华诗词大典
+            </div>
+            <div style={{ flex: "1" }}></div>
+            <Space size="small" align="center">
                 <ThemeChange></ThemeChange>
                 {init()}
-                <Button
+                <div
                     onClick={() => {
                         server.emit("toggle", true);
                     }}>
-                    <IconSettings />
-                </Button>
+                    <IconSettings
+                        style={{
+                            fontSize: "1.125rem",
+                        }}
+                    />
+                </div>
             </Space>
-        </Menu>
+        </nav>
     );
 };
