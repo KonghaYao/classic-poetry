@@ -45,17 +45,21 @@ export const ShiJing: FC = () => {
                             prev={
                                 poetryIndex !== 0 && {
                                     text: data[poetryIndex - 1].title,
-                                    to: `/shijing/${
-                                        data[poetryIndex - 1].title
-                                    }`,
+                                    to: `/shijing/${[
+                                        data[poetryIndex - 1].chapter,
+                                        data[poetryIndex - 1].section,
+                                        data[poetryIndex - 1].title,
+                                    ].join("-")}`,
                                 }
                             }
                             next={
                                 poetryIndex !== data.length - 1 && {
                                     text: data[poetryIndex + 1].title,
-                                    to: `/shijing/${
-                                        data[poetryIndex + 1].title
-                                    }`,
+                                    to: `/shijing/${[
+                                        data[poetryIndex - 1].chapter,
+                                        data[poetryIndex - 1].section,
+                                        data[poetryIndex - 1].title,
+                                    ].join("-")}`,
                                 }
                             }></PoetryFooter>
                     }></ShowSinglePoetry>

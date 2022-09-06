@@ -12,14 +12,14 @@ export const Home: FC = () => {
             name: "诗经",
             to: "/shijing",
         },
-        { name: "四书五经", to: "/shijing" },
+        { name: "四书五经", to: "/sishuwujing" },
     ];
     return (
-        <section className="home-page box-row">
+        <section className="home-page box-row noise">
             <nav className="book-list box-row">
                 {data.map((i) => {
                     return (
-                        <div className="book-item box-row">
+                        <div className="book-item box-row" key={i.to}>
                             <div className="void-circle"></div>
 
                             <NavLink to={i.to}>{i.name}</NavLink>
@@ -28,7 +28,7 @@ export const Home: FC = () => {
                 })}
             </nav>
 
-            <header className="book-header">中华诗词大典</header>
+            <header className="book-header noise">中华诗词大典</header>
         </section>
     );
 };

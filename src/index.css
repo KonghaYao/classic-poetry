@@ -22,6 +22,19 @@ body[arco-theme="dark"] {
     --color-text-1: #c9a276;
     --shadow: 0 0 20px rgba(201, 162, 118, 0.25);
 }
+.noise {
+    position: relative;
+}
+.noise::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://lin-ting-yu.github.io/Zuma/image/noise.png");
+    position: absolute;
+    z-index: 0;
+    opacity: 0.1;
+}
 @media (prefers-color-scheme: dark) {
     body {
         color: var(--color-text-1);
