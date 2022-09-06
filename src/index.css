@@ -42,7 +42,13 @@ body[arco-theme="dark"] {
         color: var(--color-text-1);
     }
 }
-
+.absolute-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
 a {
     font-weight: 500;
     color: #5f9378;

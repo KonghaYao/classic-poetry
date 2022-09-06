@@ -24,6 +24,9 @@ export const SettingPage: FC<{}> = () => {
             style={{
                 display: visible ? "flex" : "none",
             }}>
+            <div
+                className="absolute-bg"
+                onClick={() => SettingServer.emit("toggle", false)}></div>
             <div className="content-max setting-card box-col">
                 <Tabs
                     type="capsule"

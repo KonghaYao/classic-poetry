@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Button, Menu, Space } from "@arco-design/web-react";
+import { Avatar, Button, Menu, Space, Tooltip } from "@arco-design/web-react";
 import { FontChange } from "./FontChange";
 import { ThemeChange } from "./ThemeChange";
 import { useSetting } from "../Setting";
@@ -17,12 +17,22 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                 boxShadow: "var(--shadow)",
             }}>
             <div
-                style={{ fontSize: "1.25rem", fontWeight: "bold" }}
+                style={{
+                    fontSize: "1.25rem",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                }}
                 onClick={() => nav("/")}>
                 中华诗词大典
             </div>
             <div style={{ flex: "1" }}></div>
-            <Space size="small" align="center">
+            <nav
+                className="box-row"
+                style={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "9rem",
+                }}>
                 <ThemeChange></ThemeChange>
                 {init()}
                 <div
@@ -31,11 +41,20 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                     }}>
                     <IconSettings
                         style={{
-                            fontSize: "1.125rem",
+                            fontSize: "1.3rem",
                         }}
                     />
                 </div>
-            </Space>
+                <Tooltip content="这个是辛苦劳累的作者">
+                    <a
+                        href="https://github.com/KonghaYao/classic-poetry"
+                        target="_blank">
+                        <Avatar size={32}>
+                            <img alt="avatar" src="/avatar.png" />
+                        </Avatar>
+                    </a>
+                </Tooltip>
+            </nav>
         </nav>
     );
 };
