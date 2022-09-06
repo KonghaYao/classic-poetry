@@ -1,6 +1,7 @@
 import { Empty } from "@arco-design/web-react";
-import { IconClose, IconLoading } from "@arco-design/web-react/icon";
+import { IconClose } from "@arco-design/web-react/icon";
 import { useRequest } from "ahooks";
+import { Loading } from "./Loading";
 
 /** 加载数据的一个组件，带有回馈信息 */
 export const Requester = function <T>(props: {
@@ -18,27 +19,7 @@ export const Requester = function <T>(props: {
 
     return (
         <>
-            {loading && (
-                <Empty
-                    icon={
-                        <div
-                            style={{
-                                background: "#f2994b",
-                                display: "inline-flex",
-                                borderRadius: "50%",
-                                width: 50,
-                                height: 50,
-                                fontSize: 30,
-                                alignItems: "center",
-                                color: "white",
-                                justifyContent: "center",
-                            }}>
-                            <IconLoading />
-                        </div>
-                    }
-                    description="加载数据中"
-                />
-            )}
+            {loading && <Loading></Loading>}
             {error && (
                 <Empty
                     icon={
