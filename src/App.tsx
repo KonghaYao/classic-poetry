@@ -7,6 +7,8 @@ import { LunYu } from "./poetry/LunYu/LunYu";
 import { IndexPage as LunYuIndex } from "./poetry/LunYu/IndexPage";
 import { Home } from "./Home/Home";
 import { useSetting } from "./Setting";
+import { SiShuWuJing } from "./poetry/SiShuWuJing/SiShuWuJing";
+import { IndexPage as SiShuWuJingIndex } from "./poetry/SiShuWuJing/IndexPage";
 
 function App() {
     const { setting } = useSetting();
@@ -38,6 +40,12 @@ function App() {
                     <Route
                         path="/lunyu/:poetryId"
                         element={<LunYu></LunYu>}></Route>
+                    <Route
+                        path="/sishuwujing"
+                        element={<SiShuWuJingIndex></SiShuWuJingIndex>}></Route>
+                    <Route
+                        path="/sishuwujing/:poetryId"
+                        element={<SiShuWuJing></SiShuWuJing>}></Route>
                 </Routes>
             </Layout.Content>
             <Layout.Footer>Footer</Layout.Footer>

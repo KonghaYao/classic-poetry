@@ -7,22 +7,28 @@ import { ShowSinglePoetry } from "../components/ShowSinglePoetry";
 import { NotFound } from "../components/404";
 import { SideBar } from "./SideBar";
 import { PoetryFooter } from "../components/PoetryFooter";
-import { Setting } from "../../SettingEvent";
 import { BookStore } from "../utils/BookStore";
 
 export type FetchData = {
     chapter: string;
     paragraphs: string[];
 }[];
-
-export const LunYu: FC = () => {
+/** 统一请求地址 */
+export const requestFragment = {
+    async getData(path: string) {
+        const pre = "sishuwujing/";
+        const data = ["daxue.json", "zhongyong.json", "mengzi.json"].map((i) =>
+            BookStore.getBook(pre + i)
+        );
+        return (await Promise.all<FetchData>(data as any)).flat(); // 这里 data 直接 any 即可
+    },
+    url: "",
+};
+export const SiShuWuJing: FC = () => {
     let { poetryId } = useParams()!;
 
     return Requester<FetchData>({
-        getData(path) {
-            return BookStore.getBook(path);
-        },
-        url: "lunyu/lunyu.json",
+        ...requestFragment,
         element: (data) => {
             const poetryIndex = data.findIndex((i) => i.chapter === poetryId)!;
             const poetry = data[poetryIndex];
@@ -35,7 +41,7 @@ export const LunYu: FC = () => {
                             prev={
                                 poetryIndex !== 0 && {
                                     text: data[poetryIndex - 1].chapter,
-                                    to: `/lunyu/${
+                                    to: `/sishuwujing/${
                                         data[poetryIndex - 1].chapter
                                     }`,
                                 }
@@ -43,7 +49,7 @@ export const LunYu: FC = () => {
                             next={
                                 poetryIndex !== data.length - 1 && {
                                     text: data[poetryIndex + 1].chapter,
-                                    to: `/lunyu/${
+                                    to: `/sishuwujing/${
                                         data[poetryIndex + 1].chapter
                                     }`,
                                 }

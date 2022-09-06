@@ -1,5 +1,5 @@
 import localforage from "localforage";
-import { Setting } from "../../Setting";
+import { Setting } from "../../Setting/Setting";
 localforage.setDriver(localforage.LOCALSTORAGE);
 export const BookStore = {
     version: "",
