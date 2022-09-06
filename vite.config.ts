@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { vitePluginForArco } from "@arco-plugins/vite-react";
 import { visualizer } from "rollup-plugin-visualizer";
+// vite.config.ts
 const { ANALYZE } = process.env;
 
 const cdnRoot = "https://cdn.skypack.dev";
@@ -16,6 +17,7 @@ export default defineConfig(({ mode }) => ({
         vitePluginForArco({
             style: "css",
         }),
+
         ANALYZE === "1"
             ? visualizer({ open: true, filename: "visualizer/stat.html" })
             : false,

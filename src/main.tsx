@@ -3,6 +3,7 @@ import { HashRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 
+// 为了 CDN 加载，使用过时的写法，但是没 BUG
 render(
     <HashRouter>
         <App />
