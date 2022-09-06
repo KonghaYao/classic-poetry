@@ -22,6 +22,8 @@ body[arco-theme="dark"] {
     --color-text-1: #c9a276;
     --shadow: 0 0 20px rgba(201, 162, 118, 0.25);
 }
+
+/* 背景噪声图 */
 .noise {
     position: relative;
 }
@@ -43,11 +45,12 @@ body[arco-theme="dark"] {
 
 a {
     font-weight: 500;
-    color: #646cff;
+    color: #5f9378;
     text-decoration: inherit;
+    transition: color 0.3s;
 }
 a:hover {
-    color: #535bf2;
+    color: #7fa893;
 }
 
 body {
