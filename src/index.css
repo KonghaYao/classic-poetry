@@ -59,6 +59,9 @@ body {
     background-color: var(--color-border); /* 滚动条颜色 */
 }
 
+::-webkit-scrollbar-corner {
+    background: transparent; /* 右下角重合处的样式*/
+}
 /* 首页印章图像 */
 .Index-Seal {
     color: white;
