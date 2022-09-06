@@ -26,7 +26,19 @@ function App() {
                     height: "100%",
                     width: "100%",
                     overflow: "hidden",
+                    position: "relative",
                 }}>
+                {/* 噪声背景图 */}
+                <div
+                    className="noise"
+                    style={{
+                        position: "absolute",
+                        top: "0",
+                        left: "0",
+                        height: "100%",
+                        width: "100%",
+                        zIndex: "-1",
+                    }}></div>
                 {BookRouter()}
             </Layout.Content>
             {/* <Layout.Footer>Footer</Layout.Footer> */}

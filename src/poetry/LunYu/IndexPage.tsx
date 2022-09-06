@@ -14,7 +14,7 @@ export const IndexPage: FC = function () {
         element: (data) => {
             return (
                 <div
-                    className="box-col"
+                    className="box-col noise"
                     style={{
                         alignItems: "center",
                         width: "100%",

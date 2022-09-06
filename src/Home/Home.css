@@ -33,7 +33,7 @@ body[arco-theme="dark"] {
 
 .book-item:hover {
     transform: translateY(-20px);
-    margin: 0.125rem 0.25rem;
+    margin: 0.5rem;
     opacity: 0.9;
 }
 
@@ -42,19 +42,22 @@ body[arco-theme="dark"] {
     transition: all 0.3s;
     align-items: center;
     height: 50%;
-    margin: 0.125rem;
+    margin: 0.3rem;
     background-color: var(--book-card);
     color: var(--book-bg);
     writing-mode: vertical-lr;
     font-size: 1.5rem;
 }
 
-.book-header {
+.book-header-wrapper {
+    height: fit-content;
+    background-color: var(--book-card);
     margin: 4rem 4rem;
-    flex: none;
+}
+
+.book-header {
     font-size: 3rem;
     padding: 2rem 0.7rem;
-    background-color: var(--book-card);
     writing-mode: vertical-lr;
     position: relative;
 }

@@ -28,7 +28,9 @@ export const Home: FC = () => {
                 })}
             </nav>
 
-            <header className="book-header noise">中华诗词大典</header>
+            <header className="noise book-header-wrapper">
+                <div className="book-header">中华诗词大典</div>
+            </header>
         </section>
     );
 };
