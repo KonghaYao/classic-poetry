@@ -1,12 +1,34 @@
+import { Card, Grid } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-
+import "./Home.css";
 export const Home: FC = () => {
+    const data = [
+        {
+            name: "论语",
+            to: "/lunyu",
+        },
+        {
+            name: "诗经",
+            to: "/shijing",
+        },
+        { name: "四书五经", to: "/shijing" },
+    ];
     return (
-        <div>
-            <NavLink to={`/lunyu`}>论语</NavLink>
-            <NavLink to={`/sishuwujing`}>四书五经</NavLink>
-            <NavLink to={`/shijing`}>诗经</NavLink>
-        </div>
+        <section className="home-page box-row">
+            <nav className="book-list box-row">
+                {data.map((i) => {
+                    return (
+                        <div className="book-item box-row">
+                            <div className="void-circle"></div>
+
+                            <NavLink to={i.to}>{i.name}</NavLink>
+                        </div>
+                    );
+                })}
+            </nav>
+
+            <header className="book-header">中华诗词大典</header>
+        </section>
     );
 };

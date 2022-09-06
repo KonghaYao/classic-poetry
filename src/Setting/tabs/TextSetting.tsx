@@ -1,16 +1,32 @@
-import { Form, InputNumber, Radio } from "@arco-design/web-react";
+import { Form, InputNumber, Radio, Tooltip } from "@arco-design/web-react";
 import { FC } from "react";
 import { SettingServer, useSetting } from "..";
 import { Setting } from "../Setting";
 import { FontChange } from "../../App/FontChange";
 import { CnCaseSupport } from "../../poetry/utils/CnCaseSupport";
+import { IconExclamationCircle } from "@arco-design/web-react/icon";
 
+const Hint: FC<{
+    message: string;
+}> = ({ message }) => {
+    return (
+        <Tooltip content={message}>
+            <span
+                style={{
+                    margin: "2rem",
+                }}>
+                <IconExclamationCircle />
+            </span>
+        </Tooltip>
+    );
+};
 export const TextSetting: FC<{}> = () => {
     const { setting, server } = useSetting();
     return (
         <Form>
             <Form.Item label="全局字体种类">
                 <FontChange />
+                <Hint message="请稍等几秒钟加载字体"></Hint>
             </Form.Item>
             <Form.Item label="正文字体大小">
                 <InputNumber
@@ -47,13 +63,11 @@ export const TextSetting: FC<{}> = () => {
                     onChange={(label) => {
                         server.emit("change", { theme: { base: label } });
                     }}
-                    style={{ marginBottom: 40 }}
                     options={["light", "dark", "auto"]}></Radio.Group>
             </Form.Item>
             <Form.Item label="中文繁简体转换">
                 <Radio.Group
                     type="button"
-                    name="position"
                     defaultValue={setting.theme.cnCase}
                     onChange={(label) => {
                         CnCaseSupport().then(() => {
@@ -61,8 +75,8 @@ export const TextSetting: FC<{}> = () => {
                         }); // 直接开始加载数据
                         server.emit("change", { theme: { cnCase: label } });
                     }}
-                    style={{ marginBottom: 40 }}
                     options={["默认", "简体", "繁体"]}></Radio.Group>
+                <Hint message="为保证阅读的流畅度，可以将古文中的简繁体进行切换"></Hint>
             </Form.Item>
         </Form>
     );

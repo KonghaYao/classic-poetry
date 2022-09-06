@@ -11,8 +11,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    --divide-red: #b9000f;
-    --divide-gold: #b5a664;
+    --divide-red: #a42a28;
+    --divide-gold: #c9a276;
+    --divide-green: #415b55;
+}
+body {
+}
+
+body[arco-theme="dark"] {
+    --color-text-1: #c9a276;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        color: var(--color-text-1);
+    }
 }
 
 a {

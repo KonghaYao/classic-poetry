@@ -29,7 +29,7 @@ function App() {
                 }}>
                 {BookRouter()}
             </Layout.Content>
-            <Layout.Footer>Footer</Layout.Footer>
+            {/* <Layout.Footer>Footer</Layout.Footer> */}
         </Layout>
     );
 }
