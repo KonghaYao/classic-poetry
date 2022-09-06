@@ -32,8 +32,18 @@ export const SideBar: FC<{ poetryId: string; data: FetchData }> = ({
             {data.map((i, index) => {
                 return (
                     //  诗经中确实有重名的篇章，所以采用这种 key
-                    <Menu.Item key={"side-" + index + i.title}>
-                        <NavLink to={`/shijing/${i.title}`}>{i.title}</NavLink>
+                    <Menu.Item
+                        key={
+                            "side-" + [i.chapter, i.section, i.title].join("-")
+                        }>
+                        <NavLink
+                            to={`/shijing/${[
+                                i.chapter,
+                                i.section,
+                                i.title,
+                            ].join("-")}`}>
+                            {i.title}
+                        </NavLink>
                     </Menu.Item>
                 );
             })}

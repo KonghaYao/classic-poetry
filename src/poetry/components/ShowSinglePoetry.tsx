@@ -48,7 +48,10 @@ export const ShowSinglePoetry: FC<{
                     padding: "2rem 1rem",
                     alignItems: "center",
                 }}>
-                <Space split={<Divider />} direction="vertical">
+                <Space
+                    split={<Divider />}
+                    style={{ flex: "1" }}
+                    direction="vertical">
                     {props.content.map((i, index) => {
                         return (
                             <SingleRow
@@ -58,6 +61,7 @@ export const ShowSinglePoetry: FC<{
                         );
                     })}
                 </Space>
+
                 {props.footer}
             </div>
         </div>

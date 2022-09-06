@@ -44,12 +44,24 @@ export const IndexPage: FC = function () {
                             <Grid.Row
                                 style={{ fontSize: "1.5rem" }}
                                 justify="start">
-                                {data.map((i) => {
+                                {data.map((i, index) => {
                                     return (
                                         <Grid.Col
                                             span={4}
-                                            key={"to-" + i.title}>
-                                            <NavLink to={`/shijing/${i.title}`}>
+                                            key={
+                                                "to-" +
+                                                [
+                                                    i.chapter,
+                                                    i.section,
+                                                    i.title,
+                                                ].join("-")
+                                            }>
+                                            <NavLink
+                                                to={`/shijing/${[
+                                                    i.chapter,
+                                                    i.section,
+                                                    i.title,
+                                                ].join("-")}`}>
                                                 <Tag
                                                     style={{
                                                         fontSize: "1.125rem",

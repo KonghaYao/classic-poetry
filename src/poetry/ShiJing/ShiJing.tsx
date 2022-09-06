@@ -19,19 +19,26 @@ export type FetchData = {
 
 export const ShiJing: FC = () => {
     let { poetryId } = useParams()!;
-
+    const [Chapter, Section, Title] = poetryId!.split("-");
     return Requester<FetchData>({
         getData(path) {
             return BookStore.getBook(path);
         },
         url: "shijing/shijing.json",
         element: (data) => {
-            const poetryIndex = data.findIndex((i) => i.title === poetryId)!;
+            // 诗经的篇章名称重合，故采用这种方式
+            const poetryIndex = data.findIndex((i) => {
+                return (
+                    i.chapter === Chapter &&
+                    i.section === Section &&
+                    i.title === Title
+                );
+            });
             const poetry = data[poetryIndex];
             const Content = poetry ? (
                 <ShowSinglePoetry
                     title={poetry.title}
-                    subTitle={poetry.title + " | " + poetry.section}
+                    subTitle={poetry.chapter + " | " + poetry.section}
                     content={poetry.content}
                     footer={
                         <PoetryFooter
