@@ -10,7 +10,7 @@ export const AsyncButton: FC<
     const [loading, setLoading] = useState(false);
     return (
         <Button
-            {...omit(props, ["loading", "async", "onClick"])}
+            {...omit(props, ["loading", "asyncClick", "onClick"])}
             loading={loading}
             onClick={() => {
                 setLoading(true);

@@ -4,7 +4,7 @@ import { FontChange } from "./FontChange";
 import { ThemeChange } from "./ThemeChange";
 import { useSetting } from "../Setting";
 import { IconSettings } from "@arco-design/web-react/icon";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { init, server } = useSetting();

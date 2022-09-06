@@ -12,7 +12,6 @@ export const SourceManager: FC<{}> = () => {
     return (
         <div>
             <List
-                style={{ width: "80%" }}
                 dataSource={keys}
                 render={(item, index) => (
                     <List.Item

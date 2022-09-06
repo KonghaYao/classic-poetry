@@ -4,7 +4,7 @@ import { useMount, useUnmount } from "ahooks";
 import { IconClose } from "@arco-design/web-react/icon";
 import { SettingServer } from "./index";
 import { SettingComponents } from "./SettingComponents";
-
+import "./Setting.css";
 export const SettingPage: FC<{}> = () => {
     const [visible, setVisible] = useState(false);
 
@@ -20,31 +20,19 @@ export const SettingPage: FC<{}> = () => {
 
     return (
         <div
+            className="setting-screen"
             style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                zIndex: "1000",
                 display: visible ? "flex" : "none",
-                alignItems: "center",
-                justifyContent: "center",
             }}>
-            <div
-                className="content-max"
-                style={{
-                    width: "100%",
-                    backdropFilter: "blur(8px)",
-                    border: "2px solid var(--color-border)",
-                    padding: "1rem",
-                    borderRadius: "8px",
-                    margin: "1rem",
-                    height: "40%",
-                }}>
+            <div className="content-max setting-card box-col">
                 <Tabs
                     type="capsule"
+                    className="setting-content box-col"
                     lazyload
+                    style={{
+                        height: "100%",
+                        overflow: "hidden",
+                    }}
                     extra={
                         <Button
                             type="secondary"
@@ -56,8 +44,16 @@ export const SettingPage: FC<{}> = () => {
                     }>
                     {SettingComponents.map((i) => {
                         return (
-                            <Tabs.TabPane key={i.title} title={i.title}>
-                                <i.comp></i.comp>
+                            <Tabs.TabPane
+                                className="box-col setting-content"
+                                key={i.title}
+                                title={i.title}>
+                                <div
+                                    style={{
+                                        margin: "1.5rem ",
+                                    }}>
+                                    <i.comp></i.comp>
+                                </div>
                             </Tabs.TabPane>
                         );
                     })}
