@@ -2,7 +2,7 @@ import mitt, { Emitter } from "mitt";
 import { createPortal } from "react-dom";
 
 import merge from "lodash/merge";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { SettingEvent, Setting } from "./Setting";
 import { AsyncLoad } from "../poetry/components/AsyncComponent";
 /** 全局唯一的设置操作 */
@@ -12,9 +12,15 @@ SettingServer.on("change", (setting) => {
     merge(Setting, setting);
     localStorage.setItem("system-setting", JSON.stringify(Setting));
 });
-
+const AsyncLoadSetting = AsyncLoad(async () => {
+    const { SettingPage } = await import("./SettingPage");
+    return {
+        default: () => createPortal(<SettingPage></SettingPage>, document.body),
+    };
+});
+// import { SettingPage } from "./SettingPage";
 export const useSetting = () => {
-    let page: React.ReactPortal;
+    let page: JSX.Element;
     const [setting, setNewSetting] = useState(Setting);
     SettingServer.on("change", () => {
         setNewSetting({ ...Setting });
@@ -23,11 +29,10 @@ export const useSetting = () => {
         server: SettingServer,
         init() {
             if (page) return page;
-            page = createPortal(
-                AsyncLoad(() => import("./SettingPage"), "SettingPage"),
-                document.body
-            );
-            return page;
+
+            page = AsyncLoadSetting;
+
+            return AsyncLoadSetting;
         },
         setting,
     };
