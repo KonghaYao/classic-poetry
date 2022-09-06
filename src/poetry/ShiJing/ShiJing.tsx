@@ -34,6 +34,8 @@ export const ShiJing: FC = () => {
                     i.title === Title
                 );
             });
+            if (poetryIndex === -1)
+                console.warn("在寻找诗篇的过程中发生了一个错误");
             const poetry = data[poetryIndex];
             const Content = poetry ? (
                 <ShowSinglePoetry
@@ -56,9 +58,9 @@ export const ShiJing: FC = () => {
                                 poetryIndex !== data.length - 1 && {
                                     text: data[poetryIndex + 1].title,
                                     to: `/shijing/${[
-                                        data[poetryIndex - 1].chapter,
-                                        data[poetryIndex - 1].section,
-                                        data[poetryIndex - 1].title,
+                                        data[poetryIndex + 1].chapter,
+                                        data[poetryIndex + 1].section,
+                                        data[poetryIndex + 1].title,
                                     ].join("-")}`,
                                 }
                             }></PoetryFooter>
