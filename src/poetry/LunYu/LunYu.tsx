@@ -7,7 +7,6 @@ import { ShowSinglePoetry } from "../components/ShowSinglePoetry";
 import { NotFound } from "../components/404";
 import { SideBar } from "./SideBar";
 import { PoetryFooter } from "../components/PoetryFooter";
-import { Setting } from "../../SettingEvent";
 import { BookStore } from "../utils/BookStore";
 
 export type FetchData = {

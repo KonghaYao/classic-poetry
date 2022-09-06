@@ -1,4 +1,4 @@
-import { Grid, Tag } from "@arco-design/web-react";
+import { Grid, Space, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Requester } from "../components/Requester";
@@ -39,45 +39,41 @@ export const IndexPage: FC = function () {
                                 justifyContent: "center",
                                 borderTop: "3px solid var(--divide-red)",
                                 borderBottom: "3px solid var(--divide-red)",
-                                margin: "2rem 0 ",
+                                margin: "1rem 0 ",
+                                padding: "1rem 0 ",
+                                display: "block",
+                                overflow: "auto",
                             }}>
-                            <Grid.Row
-                                style={{ fontSize: "1.5rem" }}
-                                justify="start">
+                            <Space wrap style={{ fontSize: "1.5rem" }}>
                                 {data.map((i) => {
                                     return (
-                                        <Grid.Col
-                                            span={4}
-                                            key={"to-" + i.chapter}>
-                                            <NavLink
-                                                to={`/sishuwujing/${i.chapter}`}>
-                                                <Tag
-                                                    style={{
-                                                        fontSize: "1.125rem",
-                                                    }}>
-                                                    {i.chapter}
-                                                </Tag>
-                                            </NavLink>
-                                        </Grid.Col>
+                                        <NavLink
+                                            key={"to-" + i.chapter}
+                                            to={`/sishuwujing/${i.chapter}`}>
+                                            <Tag
+                                                style={{
+                                                    fontSize: "1.125rem",
+                                                }}>
+                                                {i.chapter}
+                                            </Tag>
+                                        </NavLink>
                                     );
                                 })}
                                 {ExtraLink.map((i) => {
                                     return (
-                                        <Grid.Col
-                                            span={4}
+                                        <NavLink
+                                            to={i.to}
                                             key={"to-" + i.title}>
-                                            <NavLink to={i.to}>
-                                                <Tag
-                                                    style={{
-                                                        fontSize: "1.125rem",
-                                                    }}>
-                                                    {i.title}
-                                                </Tag>
-                                            </NavLink>
-                                        </Grid.Col>
+                                            <Tag
+                                                style={{
+                                                    fontSize: "1.125rem",
+                                                }}>
+                                                {i.title}
+                                            </Tag>
+                                        </NavLink>
                                     );
                                 })}
-                            </Grid.Row>
+                            </Space>
                         </div>
                     </div>
                 </div>

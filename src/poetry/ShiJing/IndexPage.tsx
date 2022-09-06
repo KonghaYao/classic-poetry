@@ -2,7 +2,7 @@ import { Grid, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Requester } from "../components/Requester";
-import { FetchData } from "./LunYu";
+import type { FetchData } from "./ShiJing";
 import { BookStore } from "../utils/BookStore";
 
 export const IndexPage: FC = function () {
@@ -10,7 +10,7 @@ export const IndexPage: FC = function () {
         getData(path) {
             return BookStore.getBook(path);
         },
-        url: "lunyu/lunyu.json",
+        url: "shijing/shijing.json",
         element: (data) => {
             return (
                 <div
@@ -27,7 +27,7 @@ export const IndexPage: FC = function () {
                             flex: "1",
                         }}>
                         <div>
-                            <div className="Index-Seal">论语</div>
+                            <div className="Index-Seal">诗经</div>
                         </div>
                         <div
                             className="box-col"
@@ -48,13 +48,13 @@ export const IndexPage: FC = function () {
                                     return (
                                         <Grid.Col
                                             span={4}
-                                            key={"to-" + i.chapter}>
-                                            <NavLink to={`/lunyu/${i.chapter}`}>
+                                            key={"to-" + i.title}>
+                                            <NavLink to={`/shijing/${i.title}`}>
                                                 <Tag
                                                     style={{
                                                         fontSize: "1.125rem",
                                                     }}>
-                                                    {i.chapter}
+                                                    {i.title}
                                                 </Tag>
                                             </NavLink>
                                         </Grid.Col>

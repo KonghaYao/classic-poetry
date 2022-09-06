@@ -41,10 +41,12 @@ export const ShowSinglePoetry: FC<{
                 subTitle={props.subTitle}
                 textCount={textCount}></PoetryHeader>
             <div
+                className="box-col"
                 style={{
                     overflow: "auto",
                     flex: "1",
                     padding: "2rem 1rem",
+                    alignItems: "center",
                 }}>
                 <Space split={<Divider />} direction="vertical">
                     {props.content.map((i, index) => {

@@ -7,59 +7,47 @@ import { ShowSinglePoetry } from "../components/ShowSinglePoetry";
 import { NotFound } from "../components/404";
 import { SideBar } from "./SideBar";
 import { PoetryFooter } from "../components/PoetryFooter";
+
 import { BookStore } from "../utils/BookStore";
 
 export type FetchData = {
     chapter: string;
-    paragraphs: string[];
+    title: string;
+    section: string;
+    content: string[];
 }[];
-/** 统一请求地址 */
-export const requestFragment = {
-    async getData(path: string) {
-        const pre = "sishuwujing/";
-        const data = ["daxue.json", "zhongyong.json"].map((i) =>
-            BookStore.getBook<FetchData>(pre + i)
-        );
-        // fixed: 修复孟子的名称问题
-        data.push(
-            BookStore.getBook<FetchData>(pre + "mengzi.json").then((i) => {
-                return i.map((data) => ({
-                    ...data,
-                    chapter: "孟子 " + data.chapter,
-                }));
-            })
-        );
-        return (await Promise.all(data)).flat(); // 这里 data 直接 any 即可
-    },
-    url: "",
-};
-export const SiShuWuJing: FC = () => {
+
+export const ShiJing: FC = () => {
     let { poetryId } = useParams()!;
 
     return Requester<FetchData>({
-        ...requestFragment,
+        getData(path) {
+            return BookStore.getBook(path);
+        },
+        url: "shijing/shijing.json",
         element: (data) => {
-            const poetryIndex = data.findIndex((i) => i.chapter === poetryId)!;
+            const poetryIndex = data.findIndex((i) => i.title === poetryId)!;
             const poetry = data[poetryIndex];
             const Content = poetry ? (
                 <ShowSinglePoetry
-                    title={poetry.chapter}
-                    content={poetry.paragraphs}
+                    title={poetry.title}
+                    subTitle={poetry.title + " | " + poetry.section}
+                    content={poetry.content}
                     footer={
                         <PoetryFooter
                             prev={
                                 poetryIndex !== 0 && {
-                                    text: data[poetryIndex - 1].chapter,
-                                    to: `/sishuwujing/${
-                                        data[poetryIndex - 1].chapter
+                                    text: data[poetryIndex - 1].title,
+                                    to: `/shijing/${
+                                        data[poetryIndex - 1].title
                                     }`,
                                 }
                             }
                             next={
                                 poetryIndex !== data.length - 1 && {
-                                    text: data[poetryIndex + 1].chapter,
-                                    to: `/sishuwujing/${
-                                        data[poetryIndex + 1].chapter
+                                    text: data[poetryIndex + 1].title,
+                                    to: `/shijing/${
+                                        data[poetryIndex + 1].title
                                     }`,
                                 }
                             }></PoetryFooter>

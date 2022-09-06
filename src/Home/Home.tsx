@@ -6,6 +6,7 @@ export const Home: FC = () => {
         <div>
             <NavLink to={`/lunyu`}>论语</NavLink>
             <NavLink to={`/sishuwujing`}>四书五经</NavLink>
+            <NavLink to={`/shijing`}>诗经</NavLink>
         </div>
     );
 };
