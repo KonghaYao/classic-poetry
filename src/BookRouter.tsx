@@ -10,8 +10,10 @@ import { HuaJianJi } from "./poetry/HuaJianJi/HuaJianJi";
 import { IndexPage as HuaJianJiIndex } from "./poetry/HuaJianJi/IndexPage";
 import { NanTang } from "./poetry/NanTang/NanTang";
 import { IndexPage as NanTangIndex } from "./poetry/NanTang/IndexPage";
-import { IndexPage as NaLanXingDeIndex } from "./poetry/NaLanXingDe/IndexPage";
-import { NaLanXingDe } from "./poetry/NaLanXingDe/NaLanXingDe";
+import {
+    NaLanXingDe,
+    NaLanXingDeIndex,
+} from "./poetry/NaLanXingDe/NaLanXingDe";
 
 export function BookRouter() {
     return (

@@ -4,9 +4,10 @@ import { useRequest } from "ahooks";
 import { Loading } from "./Loading";
 
 /** 加载数据的一个组件，带有回馈信息 */
-export const Requester = function <T>(props: {
+export const Requester = function <T, E = T>(props: {
     url: string;
-    element: (data: T) => JSX.Element;
+    element: (data: E) => JSX.Element;
+    adapter?: (data: T) => E;
     getData?: (url: string) => Promise<T>;
 }) {
     const JSONFetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -41,7 +42,11 @@ export const Requester = function <T>(props: {
                     description="数据加载错误了"
                 />
             )}
-            {!error && !loading && props.element(data!)}
+            {!error &&
+                !loading &&
+                props.element(
+                    props.adapter ? props.adapter(data!) : (data! as E)
+                )}
         </>
     );
 };
