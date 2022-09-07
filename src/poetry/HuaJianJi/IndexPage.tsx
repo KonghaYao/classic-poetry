@@ -1,32 +1,12 @@
-import { Grid, Space, Tag } from "@arco-design/web-react";
+import { Grid, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { Requester } from "../components/Requester";
-import { FetchData, requestFragment } from "./SiShuWuJing";
+import { FetchData, getData, Tagger } from "./HuaJianJi";
 
-export const ExtraLink = [
-    {
-        title: "论语",
-        to: "/lunyu",
-    },
-];
-
-const SingleLink = (str: string, to?: string) => {
-    return (
-        <NavLink
-            key={"to-" + str}
-            to={to || `/sishuwujing/${str}`}
-            style={{
-                fontSize: "1.125rem",
-            }}>
-            {str}
-        </NavLink>
-    );
-};
-// TODO 四书五经还有扩展
 export const IndexPage: FC = function () {
     return Requester<FetchData>({
-        ...requestFragment,
+        ...getData,
         element: (data) => {
             return (
                 <div
@@ -43,7 +23,7 @@ export const IndexPage: FC = function () {
                             flex: "1",
                         }}>
                         <div>
-                            <div className="Index-Seal">四书五经</div>
+                            <div className="Index-Seal">五代 | 花间集</div>
                         </div>
                         <div
                             className="box-col"
@@ -57,20 +37,30 @@ export const IndexPage: FC = function () {
                                 display: "block",
                                 overflow: "auto",
                             }}>
-                            <Space
-                                wrap
-                                style={{
-                                    fontSize: "1.5rem",
-                                    textAlign: "center",
-                                }}
-                                split="|">
-                                {ExtraLink.map((i) => {
-                                    return SingleLink(i.title, i.to);
+                            <Grid.Row
+                                style={{ fontSize: "1.5rem" }}
+                                justify="start">
+                                {data.map((i, index) => {
+                                    return (
+                                        <Grid.Col
+                                            span={12}
+                                            key={"to-" + Tagger.gen(i)}
+                                            style={{
+                                                textAlign: "center",
+                                            }}>
+                                            <NavLink
+                                                to={`/huajianji/${Tagger.gen(
+                                                    i
+                                                )}`}
+                                                style={{
+                                                    fontSize: "1.125rem",
+                                                }}>
+                                                {i.title}
+                                            </NavLink>
+                                        </Grid.Col>
+                                    );
                                 })}
-                                {data.map((i) => {
-                                    return SingleLink(i.chapter);
-                                })}
-                            </Space>
+                            </Grid.Row>
                         </div>
                     </div>
                 </div>

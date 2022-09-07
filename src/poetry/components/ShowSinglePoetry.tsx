@@ -16,12 +16,34 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     );
 };
 
+const NotsShower: FC<{ notes: string[] }> = ({ notes }) => {
+    return (
+        <>
+            <Divider></Divider>
+            <div>
+                {notes.map((i) => {
+                    return (
+                        <div
+                            key={i}
+                            style={{
+                                fontSize: "0.75em",
+                            }}>
+                            {i}
+                        </div>
+                    );
+                })}
+            </div>
+        </>
+    );
+};
+
 export const ShowSinglePoetry: FC<{
     title: string;
     subTitle?: string;
     author?: string;
     content: string[];
     footer?: JSX.Element;
+    notes?: string[];
 }> = (props) => {
     const textCount = props.content.reduce((col, cur) => {
         const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
@@ -65,7 +87,7 @@ export const ShowSinglePoetry: FC<{
                         );
                     })}
                 </Space>
-
+                {props.notes && <NotsShower notes={props.notes}></NotsShower>}
                 {props.footer}
             </div>
         </div>

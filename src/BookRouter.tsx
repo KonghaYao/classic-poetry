@@ -6,6 +6,8 @@ import { IndexPage as ShiJingIndex } from "./poetry/ShiJing/IndexPage";
 import { LunYu } from "./poetry/LunYu/LunYu";
 import { ShiJing } from "./poetry/ShiJing/ShiJing";
 import { SiShuWuJing } from "./poetry/SiShuWuJing/SiShuWuJing";
+import { HuaJianJi } from "./poetry/HuaJianJi/HuaJianJi";
+import { IndexPage as HuaJianJiIndex } from "./poetry/HuaJianJi/IndexPage";
 
 export function BookRouter() {
     return (
@@ -28,6 +30,13 @@ export function BookRouter() {
             <Route
                 path="/shijing/:poetryId"
                 element={<ShiJing></ShiJing>}></Route>
+            {/* 五代 花间集 */}
+            <Route
+                path="/huajianji"
+                element={<HuaJianJiIndex></HuaJianJiIndex>}></Route>
+            <Route
+                path="/huajianji/:poetryId"
+                element={<HuaJianJi></HuaJianJi>}></Route>
         </Routes>
     );
 }

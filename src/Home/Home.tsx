@@ -13,7 +13,8 @@ export const Home: FC = () => {
             to: "/shijing",
         },
         { name: "四书五经", to: "/sishuwujing" },
-    ];
+        { name: "花间集", to: "/huajianji" },
+    ].reverse();
     return (
         <section className="home-page box-row noise">
             <nav className="book-list box-row">
