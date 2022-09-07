@@ -62,20 +62,20 @@ const info = {
             }),
         }));
         // 弟子規
-        const dizigui = BookStore.getBook<{
+
+        // 朱子家訓
+        const zhuzijiaxun = BookStore.getBook<{
             title: string;
             author: string;
-            content: {
-                chapter: string;
-                paragraphs: string[];
-            }[];
-        }>("/mengxue/dizigui.json").then((i) => ({
+            paragraphs: string[];
+        }>("/mengxue/zhuzijiaxun.json").then((i) => ({
             ...i,
-            content: i.content.flatMap((item) => {
-                return [item.chapter, ...item.paragraphs];
-            }),
+            content: i.paragraphs,
         }));
-        return Promise.all([...data, qianziwen, baijiaxing, dizigui]); // 这里 data 直接 any 即可
+
+        // 千家詩
+
+        return Promise.all([...data, qianziwen, baijiaxing, zhuzijiaxun]); // 这里 data 直接 any 即可
     },
 };
 

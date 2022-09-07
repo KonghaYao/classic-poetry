@@ -1,4 +1,3 @@
-import { Card, Grid } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import "./Home.css";
@@ -17,6 +16,8 @@ export const Home: FC = () => {
         { name: "南唐二主词", to: "/nantang" },
         { name: "纳兰性德诗集", to: "/nalanxingde" },
         { name: "蒙学", to: "/mengxue" },
+        { name: "幼学琼林", to: "/youxueqionglin" },
+        { name: "弟子规", to: "/dizigui" },
     ].reverse();
     return (
         <section className="home-page box-row noise">

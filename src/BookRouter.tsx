@@ -13,6 +13,11 @@ import {
     NaLanXingDeIndex,
 } from "./poetry/NaLanXingDe/NaLanXingDe";
 import { MengXue, MengXueIndex } from "./poetry/MengXue";
+import {
+    YouXueQiongLin,
+    YouXueQiongLinIndex,
+} from "./poetry/MengXue/YouXueQiongLin";
+import { DiZiGui, DiZiGuiIndex } from "./poetry/MengXue/DiZiGui";
 
 export function BookRouter() {
     return (
@@ -43,6 +48,14 @@ export function BookRouter() {
             {/* 蒙学 */}
             <Route path="/mengxue" element={<MengXueIndex />}></Route>
             <Route path="/mengxue/:poetryId" element={<MengXue />}></Route>
+            <Route
+                path="/youxueqionglin"
+                element={<YouXueQiongLinIndex />}></Route>
+            <Route
+                path="/youxueqionglin/:poetryId"
+                element={<YouXueQiongLin />}></Route>
+            <Route path="/dizigui" element={<DiZiGuiIndex />}></Route>
+            <Route path="/dizigui/:poetryId" element={<DiZiGui />}></Route>
         </Routes>
     );
 }
