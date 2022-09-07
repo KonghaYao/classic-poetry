@@ -12,49 +12,37 @@ import {
     NaLanXingDe,
     NaLanXingDeIndex,
 } from "./poetry/NaLanXingDe/NaLanXingDe";
+import { MengXue, MengXueIndex } from "./poetry/MengXue";
 
 export function BookRouter() {
     return (
         <Routes>
-            <Route path="/" element={<Home></Home>}></Route>
+            <Route path="/" element={<Home />}></Route>
             {/* 论语 */}
-            <Route path="/lunyu" element={<LunYuIndex></LunYuIndex>}></Route>
-            <Route path="/lunyu/:poetryId" element={<LunYu></LunYu>}></Route>
+            <Route path="/lunyu" element={<LunYuIndex />}></Route>
+            <Route path="/lunyu/:poetryId" element={<LunYu />}></Route>
             {/* 四书五经 */}
-            <Route
-                path="/sishuwujing"
-                element={<SiShuWuJingIndex></SiShuWuJingIndex>}></Route>
+            <Route path="/sishuwujing" element={<SiShuWuJingIndex />}></Route>
             <Route
                 path="/sishuwujing/:poetryId"
-                element={<SiShuWuJing></SiShuWuJing>}></Route>
+                element={<SiShuWuJing />}></Route>
             {/* 诗经 */}
-            <Route
-                path="/shijing"
-                element={<ShiJingIndex></ShiJingIndex>}></Route>
-            <Route
-                path="/shijing/:poetryId"
-                element={<ShiJing></ShiJing>}></Route>
+            <Route path="/shijing" element={<ShiJingIndex />}></Route>
+            <Route path="/shijing/:poetryId" element={<ShiJing />}></Route>
             {/* 五代 花间集 */}
-            <Route
-                path="/huajianji"
-                element={<HuaJianJiIndex></HuaJianJiIndex>}></Route>
-            <Route
-                path="/huajianji/:poetryId"
-                element={<HuaJianJi></HuaJianJi>}></Route>
+            <Route path="/huajianji" element={<HuaJianJiIndex />}></Route>
+            <Route path="/huajianji/:poetryId" element={<HuaJianJi />}></Route>
             {/* 五代 花间集 */}
-            <Route
-                path="/nantang"
-                element={<NanTangIndex></NanTangIndex>}></Route>
-            <Route
-                path="/nantang/:poetryId"
-                element={<NanTang></NanTang>}></Route>
+            <Route path="/nantang" element={<NanTangIndex />}></Route>
+            <Route path="/nantang/:poetryId" element={<NanTang />}></Route>
             {/* 纳兰性德诗集 */}
-            <Route
-                path="/nalanxingde"
-                element={<NaLanXingDeIndex></NaLanXingDeIndex>}></Route>
+            <Route path="/nalanxingde" element={<NaLanXingDeIndex />}></Route>
             <Route
                 path="/nalanxingde/:poetryId"
-                element={<NaLanXingDe></NaLanXingDe>}></Route>
+                element={<NaLanXingDe />}></Route>
+            {/* 蒙学 */}
+            <Route path="/mengxue" element={<MengXueIndex />}></Route>
+            <Route path="/mengxue/:poetryId" element={<MengXue />}></Route>
         </Routes>
     );
 }

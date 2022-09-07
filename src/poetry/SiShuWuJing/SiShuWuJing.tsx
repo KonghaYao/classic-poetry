@@ -19,7 +19,14 @@ const info = {
             BookStore.getBook<FetchData>(pre + i)
         );
         // fixed: 修复孟子的名称问题
-        data.push(BookStore.getBook<FetchData>(pre + "mengzi.json"));
+        data.push(
+            BookStore.getBook<FetchData>(pre + "mengzi.json").then((res) => {
+                return res.map((i) => {
+                    i.chapter = "孟子-" + i.chapter;
+                    return i;
+                });
+            })
+        );
         return Promise.all(data).then((res) => res.flat()); // 这里 data 直接 any 即可
     },
 };

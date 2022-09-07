@@ -16,6 +16,7 @@ export const Home: FC = () => {
         { name: "花间集", to: "/huajianji" },
         { name: "南唐二主词", to: "/nantang" },
         { name: "纳兰性德诗集", to: "/nalanxingde" },
+        { name: "蒙学", to: "/mengxue" },
     ].reverse();
     return (
         <section className="home-page box-row noise">
