@@ -18,6 +18,7 @@ import {
     YouXueQiongLinIndex,
 } from "./poetry/MengXue/YouXueQiongLin";
 import { DiZiGui, DiZiGuiIndex } from "./poetry/MengXue/DiZiGui";
+import { QianJiaShi, QianJiaShiIndex } from "./poetry/MengXue/QianJiaShi";
 
 export function BookRouter() {
     return (
@@ -56,6 +57,10 @@ export function BookRouter() {
                 element={<YouXueQiongLin />}></Route>
             <Route path="/dizigui" element={<DiZiGuiIndex />}></Route>
             <Route path="/dizigui/:poetryId" element={<DiZiGui />}></Route>
+            <Route path="/qianjiashi" element={<QianJiaShiIndex />}></Route>
+            <Route
+                path="/qianjiashi/:poetryId"
+                element={<QianJiaShi />}></Route>
         </Routes>
     );
 }

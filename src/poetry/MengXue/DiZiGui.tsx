@@ -27,14 +27,9 @@ const info = {
         };
     },
     getData(): Promise<SingleData[]> {
-        return BookStore.getBook<{
-            title: string;
-            author: string;
-            content: {
-                chapter: string;
-                paragraphs: string[];
-            }[];
-        }>("/mengxue/dizigui.json").then((i) => i.content);
+        return BookStore.getBook<FetchData>("/mengxue/dizigui.json").then(
+            (i) => i.content
+        );
     },
 };
 export const DiZiGui: FC = () => {

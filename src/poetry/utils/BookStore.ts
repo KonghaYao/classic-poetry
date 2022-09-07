@@ -59,7 +59,10 @@ async function getVersion() {
     let bookStoreVersion = localStorage.getItem("book-store-version");
     if (!bookStoreVersion) {
         const { versions } = await fetch(
-            "https://data.jsdelivr.com/v1/package/npm/chinese-poetry"
+            "https://data.jsdelivr.com/v1/package/npm/chinese-poetry",
+            {
+                cache: "force-cache",
+            }
         ).then((res) => res.json());
         bookStoreVersion = versions[0];
     }

@@ -18,6 +18,7 @@ export const Home: FC = () => {
         { name: "蒙学", to: "/mengxue" },
         { name: "幼学琼林", to: "/youxueqionglin" },
         { name: "弟子规", to: "/dizigui" },
+        { name: "千家诗", to: "/qianjiashi" },
     ].reverse();
     return (
         <section className="home-page box-row noise">
