@@ -10,6 +10,8 @@ import { HuaJianJi } from "./poetry/HuaJianJi/HuaJianJi";
 import { IndexPage as HuaJianJiIndex } from "./poetry/HuaJianJi/IndexPage";
 import { NanTang } from "./poetry/NanTang/NanTang";
 import { IndexPage as NanTangIndex } from "./poetry/NanTang/IndexPage";
+import { IndexPage as NaLanXingDeIndex } from "./poetry/NaLanXingDe/IndexPage";
+import { NaLanXingDe } from "./poetry/NaLanXingDe/NaLanXingDe";
 
 export function BookRouter() {
     return (
@@ -46,6 +48,13 @@ export function BookRouter() {
             <Route
                 path="/nantang/:poetryId"
                 element={<NanTang></NanTang>}></Route>
+            {/* 纳兰性德诗集 */}
+            <Route
+                path="/nalanxingde"
+                element={<NaLanXingDeIndex></NaLanXingDeIndex>}></Route>
+            <Route
+                path="/nalanxingde/:poetryId"
+                element={<NaLanXingDe></NaLanXingDe>}></Route>
         </Routes>
     );
 }

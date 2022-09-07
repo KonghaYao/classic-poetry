@@ -14,17 +14,19 @@ export const BookStore = {
         return true;
     }),
     /** 不要直接使用，使用 getBook 直接获取 */
-    async fetchData(path: string) {
-        return fetch(Setting.poetry.root + path).then((res) => res.json());
+    async fetchData(path: string, fullPath = false) {
+        return fetch(fullPath ? path : Setting.poetry.root + path).then((res) =>
+            res.json()
+        );
     },
-    async refresh(path: string) {
-        const data = await this.fetchData(path);
+    async refresh(path: string, fullPath = false) {
+        const data = await this.fetchData(path, fullPath);
         this.store!.setItem(path, data); // 不进行等待
         return data;
     },
 
     /** path 为仓库下的地址 */
-    async getBook<T>(path: string): Promise<T> {
+    async getBook<T>(path: string, fullPath = false): Promise<T> {
         return this.ready
             .then(() => {
                 return this.store!.getItem<Object>(path);
@@ -33,7 +35,7 @@ export const BookStore = {
                 if (res) {
                     return res;
                 } else {
-                    return this.refresh(path);
+                    return this.refresh(path, fullPath);
                 }
             });
     },

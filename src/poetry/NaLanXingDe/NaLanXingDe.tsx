@@ -12,38 +12,29 @@ import { BookStore } from "../utils/BookStore";
 type SingleData = {
     title: string;
     author: string;
-    notes: string[];
-    paragraphs: string[];
+    para: string[];
 };
 export type FetchData = SingleData[];
+
 export const Tagger = {
     gen(i: SingleData) {
-        return [i.title, i.author, i.paragraphs[0].slice(0, 3)].join("-");
+        return i.title;
     },
-    parse(i: string) {
-        const [title, author, paragraphs] = i.split("-");
-        return {
-            title,
-            author,
-            paragraphs: new RegExp("^" + paragraphs),
-        };
-    },
+
     match(i: any, tag: string) {
-        const { title, author, paragraphs } = this.parse(tag);
-        return (
-            i.title === title &&
-            i.author === author &&
-            paragraphs.test(i.paragraphs[0])
-        );
+        return i.title === tag;
     },
 };
 export const getData = {
     async getData(): Promise<FetchData> {
-        return BookStore.getBook("/wudai/nantang/poetrys.json");
+        return BookStore.getBook(
+            "https://cdn.jsdelivr.net/gh/chinese-poetry/chinese-poetry/nalanxingde/纳兰性德诗集.json",
+            true
+        );
     },
     url: "",
 };
-export const NanTang: FC = () => {
+export const NaLanXingDe: FC = () => {
     let { poetryId } = useParams()!;
     return Requester<FetchData>({
         ...getData,
@@ -58,15 +49,14 @@ export const NanTang: FC = () => {
             const Content = poetry ? (
                 <ShowSinglePoetry
                     title={poetry.title}
-                    subTitle={"五代 | " + poetry.author}
-                    content={poetry.paragraphs}
-                    notes={poetry.notes}
+                    subTitle={poetry.author}
+                    content={poetry.para}
                     footer={
                         <PoetryFooter
                             prev={
                                 poetryIndex !== 0 && {
                                     text: data[poetryIndex - 1].title,
-                                    to: `/nantang/${Tagger.gen(
+                                    to: `/nalanxingde/${Tagger.gen(
                                         data[poetryIndex - 1]
                                     )}`,
                                 }
@@ -74,7 +64,7 @@ export const NanTang: FC = () => {
                             next={
                                 poetryIndex !== data.length - 1 && {
                                     text: data[poetryIndex + 1].title,
-                                    to: `/nantang/${Tagger.gen(
+                                    to: `/nalanxingde/${Tagger.gen(
                                         data[poetryIndex + 1]
                                     )}`,
                                 }
