@@ -1,4 +1,10 @@
-import { Form, InputNumber, Radio, Tooltip } from "@arco-design/web-react";
+import {
+    Form,
+    InputNumber,
+    Radio,
+    Select,
+    Tooltip,
+} from "@arco-design/web-react";
 import { FC } from "react";
 import { SettingServer, useSetting } from "..";
 import { Setting } from "../Setting";
@@ -27,6 +33,25 @@ export const TextSetting: FC<{}> = () => {
             <Form.Item label="全局字体种类">
                 <FontChange />
                 <Hint message="请稍等几秒钟加载字体"></Hint>
+            </Form.Item>
+            <Form.Item label="字重">
+                <Select
+                    defaultValue={setting.text.fontWeight}
+                    onChange={(i) =>
+                        SettingServer.emit("change", {
+                            text: { fontWeight: i },
+                        })
+                    }>
+                    {[...Array(9).keys()].map((i) => {
+                        return (
+                            <Select.Option
+                                key={"font-weight-" + i}
+                                value={(i + 1 * 100).toString()}>
+                                {(i + 1) * 100}
+                            </Select.Option>
+                        );
+                    })}
+                </Select>
             </Form.Item>
             <Form.Item label="正文字体大小">
                 <InputNumber

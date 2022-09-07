@@ -1,7 +1,8 @@
 import { Divider, Space, Tag } from "@arco-design/web-react";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { PoetryHeader } from "./PoetryHeader";
 import { TextPreProcess } from "../utils/TextPreProcess";
+import { useSetting } from "../../Setting";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({
     index,
@@ -26,6 +27,8 @@ export const ShowSinglePoetry: FC<{
         const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
         return col + m.length;
     }, 0);
+    const { setting } = useSetting();
+    const fontWeight = useMemo(() => setting.text.fontWeight, [setting]);
     // 单独诗句排版
     return (
         <div
@@ -35,6 +38,7 @@ export const ShowSinglePoetry: FC<{
                 overflow: "hidden",
                 height: "100%",
                 fontFamily: "var(--book-font-family)",
+                fontWeight,
             }}>
             <PoetryHeader
                 title={props.title}

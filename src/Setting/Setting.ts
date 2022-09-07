@@ -13,6 +13,7 @@ export const Setting = {
             name: "汇文明朝体",
             path: "build\\汇文明朝体",
         },
+        fontWeight: "400",
         letterSpacing: 0.2, // 字间距，单位为 em
     },
     poetry: {
