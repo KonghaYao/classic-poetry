@@ -1,12 +1,18 @@
 import { Grid } from "@arco-design/web-react";
 import { NavLink } from "react-router-dom";
 import { BookConverter, BookFetch } from "./BookFetch";
-import { Tagger } from "./CommonBook";
+import { wrapAdapter } from "./Tagger";
 
-export function IndexPageOrigin<T>({ getData, adapter }: BookConverter<T>) {
+export function IndexPageOrigin<T>({
+    getData,
+    adapter,
+    title,
+    root,
+}: BookConverter<T> & { title: string; root: string }) {
     return (
         <BookFetch
-            {...{ getData, adapter }}
+            getData={getData}
+            adapter={wrapAdapter(adapter)}
             element={(data) => {
                 return (
                     <div
@@ -23,7 +29,7 @@ export function IndexPageOrigin<T>({ getData, adapter }: BookConverter<T>) {
                                 flex: "1",
                             }}>
                             <div>
-                                <div className="Index-Seal">纳兰性德诗集</div>
+                                <div className="Index-Seal">{title}</div>
                             </div>
                             <div
                                 className="box-col"
@@ -44,14 +50,12 @@ export function IndexPageOrigin<T>({ getData, adapter }: BookConverter<T>) {
                                         return (
                                             <Grid.Col
                                                 span={12}
-                                                key={"to-" + Tagger.gen(i)}
+                                                key={"to-" + i.tag}
                                                 style={{
                                                     textAlign: "center",
                                                 }}>
                                                 <NavLink
-                                                    to={`/nalanxingde/${Tagger.gen(
-                                                        i
-                                                    )}`}
+                                                    to={`${root}/${i.tag}`}
                                                     style={{
                                                         fontSize: "1.125rem",
                                                     }}>

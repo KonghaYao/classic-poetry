@@ -1,14 +1,18 @@
 import { Menu } from "@arco-design/web-react";
 import { FC, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { sidebarServer } from "../global";
+import { NavLink, useParams } from "react-router-dom";
+import { sidebarServer } from "../../global";
 import { useUnmount } from "ahooks";
-import { FetchData } from "./ShiJing";
-
-export const SideBar: FC<{ poetryId: string; data: FetchData }> = ({
-    poetryId,
+import { InnerObjectType } from "./CommonBook";
+import { Tagger } from "./Tagger";
+export function SideBarInner({
     data,
-}) => {
+    root,
+}: {
+    data: InnerObjectType[];
+    root: string;
+}) {
+    let { poetryId } = useParams()!;
     const [showMenu, setMenu] = useState(true);
     const handlerVisibleChange = (visible: boolean | undefined) => {
         typeof visible === "boolean" ? setMenu(visible) : setMenu(!showMenu);
@@ -19,34 +23,26 @@ export const SideBar: FC<{ poetryId: string; data: FetchData }> = ({
     });
     return (
         <Menu
-            defaultSelectedKeys={[poetryId]}
+            defaultSelectedKeys={[poetryId!]}
+            ellipsis
             style={{
-                width: "fit-content",
+                width: "10rem",
                 display: showMenu ? "flex" : "none",
                 margin: "0",
                 overflow: "auto",
             }}>
             <Menu.Item key="side-index">
-                <NavLink to={`/shijing`}>索引</NavLink>
+                <NavLink to={root}>索引</NavLink>
             </Menu.Item>
-            {data.map((i, index) => {
+            {data.map((i) => {
+                const tag = Tagger.gen(i);
                 return (
                     //  诗经中确实有重名的篇章，所以采用这种 key
-                    <Menu.Item
-                        key={
-                            "side-" + [i.chapter, i.section, i.title].join("-")
-                        }>
-                        <NavLink
-                            to={`/shijing/${[
-                                i.chapter,
-                                i.section,
-                                i.title,
-                            ].join("-")}`}>
-                            {i.title}
-                        </NavLink>
+                    <Menu.Item key={"side-" + tag} defaultValue={tag}>
+                        <NavLink to={`${root}/${tag}`}>{i.title}</NavLink>
                     </Menu.Item>
                 );
             })}
         </Menu>
     );
-};
+}

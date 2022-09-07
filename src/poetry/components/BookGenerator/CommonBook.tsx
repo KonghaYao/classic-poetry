@@ -4,20 +4,12 @@ import { useParams } from "react-router-dom";
 import { PageInfo, ShowSinglePoetry } from "../ShowSinglePoetry";
 import { NotFound } from "../404";
 import { PoetryFooter } from "../PoetryFooter";
-import { SideBarInner } from "../SideBarInner";
+import { SideBarInner } from "./SideBarInner";
 import { BookConverter, BookFetch } from "./BookFetch";
-export type InnerObjectType = Omit<PageInfo, "footer">;
-export const Tagger: TaggerType<InnerObjectType> = {
-    gen(i) {
-        return [i.title, i.subTitle, i.author, i.content[0].slice(0, 3)].join(
-            "-"
-        );
-    },
-    match(i, tag) {
-        return this.gen(i) === tag;
-    },
-};
+import { Tagger, wrapAdapter } from "./Tagger";
 
+export type ObjectProvider = Omit<PageInfo, "footer">;
+export type InnerObjectType = ObjectProvider & { tag: string };
 export function CommonBook<T>({
     root,
     getData,
@@ -29,7 +21,8 @@ export function CommonBook<T>({
 
     return (
         <BookFetch
-            {...{ getData, adapter }}
+            getData={getData}
+            adapter={wrapAdapter(adapter)}
             element={(data) => {
                 const poetryIndex = data.findIndex((i) => {
                     return Tagger.match(i, poetryId!);
@@ -50,9 +43,7 @@ export function CommonBook<T>({
                                         text: data[poetryIndex - 1].title,
                                         to:
                                             root +
-                                            `/${Tagger.gen(
-                                                data[poetryIndex - 1]
-                                            )}`,
+                                            `/${data[poetryIndex - 1].tag}`,
                                     }
                                 }
                                 next={
@@ -60,9 +51,7 @@ export function CommonBook<T>({
                                         text: data[poetryIndex + 1].title,
                                         to:
                                             root +
-                                            `/${Tagger.gen(
-                                                data[poetryIndex + 1]
-                                            )}`,
+                                            `/${data[poetryIndex + 1].tag}`,
                                     }
                                 }></PoetryFooter>
                         }></ShowSinglePoetry>
@@ -80,10 +69,8 @@ export function CommonBook<T>({
                             }}>
                             {/* 侧边栏 */}
                             <SideBarInner
-                                poetryId={poetryId!}
                                 data={data}
-                                root={root}
-                                Tagger={Tagger}></SideBarInner>
+                                root={root}></SideBarInner>
                         </Layout.Sider>
                     </Layout>
                 );
