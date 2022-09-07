@@ -1,7 +1,6 @@
 import { Divider, Space, Tag } from "@arco-design/web-react";
 import { FC } from "react";
 import { PoetryHeader } from "./PoetryHeader";
-import { PoetryFooter } from "./PoetryFooter";
 import { TextPreProcess } from "../utils/TextPreProcess";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({
@@ -35,6 +34,7 @@ export const ShowSinglePoetry: FC<{
                 margin: "auto",
                 overflow: "hidden",
                 height: "100%",
+                fontFamily: "var(--book-font-family)",
             }}>
             <PoetryHeader
                 title={props.title}

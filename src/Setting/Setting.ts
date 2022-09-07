@@ -7,11 +7,11 @@ export const Setting = {
         cnCase: "默认", // 中英文简繁体
     },
     text: {
-        fontSize: 16,
+        fontSize: 18,
         font: {
-            path: "",
-            name: "默认字体",
-            fontFamily: "Noto Serif SC",
+            fontFamily: "Huiwen-mincho",
+            name: "汇文明朝体",
+            path: "build\\汇文明朝体",
         },
         letterSpacing: 0.2, // 字间距，单位为 em
     },

@@ -26,7 +26,10 @@ export const FontChange: FunctionComponent<{}> = () => {
     const usingFont = useMemo(() => setting.text.font, [setting]);
     useEffect(() => {
         // 触发全局样式改动
-        document.body.style.fontFamily = `"${setting.text.font.fontFamily}", "Noto Serif SC"`;
+        document.body.style.setProperty(
+            "--book-font-family",
+            `"${setting.text.font.fontFamily}", "Noto Serif SC"`
+        );
     }, [setting]); //
 
     const pathToURL = (path: string) => {
