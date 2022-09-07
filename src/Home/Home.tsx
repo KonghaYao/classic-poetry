@@ -14,6 +14,7 @@ export const Home: FC = () => {
         },
         { name: "四书五经", to: "/sishuwujing" },
         { name: "花间集", to: "/huajianji" },
+        { name: "南唐二主词", to: "/nantang" },
     ].reverse();
     return (
         <section className="home-page box-row noise">
