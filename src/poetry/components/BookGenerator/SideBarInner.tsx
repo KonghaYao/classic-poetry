@@ -5,13 +5,12 @@ import { sidebarServer } from "../../global";
 import { useUnmount } from "ahooks";
 import { InnerObjectType } from "./CommonBook";
 import { Tagger } from "./Tagger";
-export function SideBarInner({
-    data,
-    root,
-}: {
+export type SideBarProps = {
     data: InnerObjectType[];
     root: string;
-}) {
+    ExtraLink?: JSX.Element | JSX.Element[];
+};
+export function SideBarInner({ data, root, ExtraLink }: SideBarProps) {
     let { poetryId } = useParams()!;
     const [showMenu, setMenu] = useState(true);
     const handlerVisibleChange = (visible: boolean | undefined) => {
@@ -43,6 +42,7 @@ export function SideBarInner({
                     </Menu.Item>
                 );
             })}
+            {ExtraLink}
         </Menu>
     );
 }

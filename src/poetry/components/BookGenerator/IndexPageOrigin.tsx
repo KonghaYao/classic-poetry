@@ -8,7 +8,12 @@ export function IndexPageOrigin<T>({
     adapter,
     title,
     root,
-}: BookConverter<T> & { title: string; root: string }) {
+    ExtraLink,
+}: BookConverter<T> & {
+    title: string;
+    root: string;
+    ExtraLink?: JSX.Element | JSX.Element[];
+}) {
     return (
         <BookFetch
             getData={getData}
@@ -64,6 +69,7 @@ export function IndexPageOrigin<T>({
                                             </Grid.Col>
                                         );
                                     })}
+                                    {ExtraLink}
                                 </Grid.Row>
                             </div>
                         </div>

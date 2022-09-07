@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
-import { IndexPage as SiShuWuJingIndex } from "./poetry/SiShuWuJing/IndexPage";
 import { LunYu, LunYuIndex } from "./poetry/LunYu/LunYu";
 import { ShiJing, ShiJingIndex } from "./poetry/ShiJing/ShiJing";
-import { SiShuWuJing } from "./poetry/SiShuWuJing/SiShuWuJing";
+import {
+    SiShuWuJing,
+    SiShuWuJingIndex,
+} from "./poetry/SiShuWuJing/SiShuWuJing";
 import { HuaJianJi, HuaJianJiIndex } from "./poetry/HuaJianJi/HuaJianJi";
 import { NanTang, NanTangIndex } from "./poetry/NanTang/NanTang";
 import {

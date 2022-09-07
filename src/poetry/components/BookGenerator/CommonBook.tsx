@@ -4,19 +4,21 @@ import { useParams } from "react-router-dom";
 import { PageInfo, ShowSinglePoetry } from "../ShowSinglePoetry";
 import { NotFound } from "../404";
 import { PoetryFooter } from "../PoetryFooter";
-import { SideBarInner } from "./SideBarInner";
+import { SideBarInner, SideBarProps } from "./SideBarInner";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { Tagger, wrapAdapter } from "./Tagger";
 
 export type ObjectProvider = Omit<PageInfo, "footer">;
 export type InnerObjectType = ObjectProvider & { tag: string };
-export function CommonBook<T>({
-    root,
-    getData,
-    adapter,
-}: {
-    root: string;
-} & BookConverter<T>) {
+
+/** 读书页面的模板 */
+export function CommonBook<T>(
+    props: {
+        root: string;
+    } & BookConverter<T> &
+        Omit<SideBarProps, "data">
+) {
+    const { root, getData, adapter } = props;
     let { poetryId } = useParams()!;
 
     return (
@@ -68,9 +70,7 @@ export function CommonBook<T>({
                                 overflow: "auto",
                             }}>
                             {/* 侧边栏 */}
-                            <SideBarInner
-                                data={data}
-                                root={root}></SideBarInner>
+                            <SideBarInner {...props} data={data}></SideBarInner>
                         </Layout.Sider>
                     </Layout>
                 );

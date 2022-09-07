@@ -1,86 +1,69 @@
-import { Layout } from "@arco-design/web-react";
 import { FC } from "react";
-import { useParams } from "react-router-dom";
-
-import { Requester } from "../components/Requester";
-import { ShowSinglePoetry } from "../components/ShowSinglePoetry";
-import { NotFound } from "../components/404";
-import { SideBar } from "./SideBar";
-import { PoetryFooter } from "../components/PoetryFooter";
 import { BookStore } from "../utils/BookStore";
+import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
+import { Grid, Menu } from "@arco-design/web-react";
+import { NavLink } from "react-router-dom";
 
-export type FetchData = {
-    chapter: string;
-    paragraphs: string[];
-}[];
-/** 统一请求地址 */
-export const requestFragment = {
-    async getData(path: string) {
+type SingleData = { chapter: string; paragraphs: string[] };
+export type FetchData = SingleData[];
+
+const info = {
+    title: "四书五经",
+    root: "/sishuwujing",
+    adapter(i: SingleData) {
+        return { title: i.chapter, content: i.paragraphs };
+    },
+    async getData() {
         const pre = "sishuwujing/";
         const data = ["daxue.json", "zhongyong.json"].map((i) =>
             BookStore.getBook<FetchData>(pre + i)
         );
         // fixed: 修复孟子的名称问题
-        data.push(
-            BookStore.getBook<FetchData>(pre + "mengzi.json").then((i) => {
-                return i.map((data) => ({
-                    ...data,
-                    chapter: "孟子 " + data.chapter,
-                }));
-            })
-        );
-        return (await Promise.all(data)).flat(); // 这里 data 直接 any 即可
+        data.push(BookStore.getBook<FetchData>(pre + "mengzi.json"));
+        return Promise.all(data).then((res) => res.flat()); // 这里 data 直接 any 即可
     },
-    url: "",
 };
+const ExtraLink = [
+    {
+        title: "论语",
+        to: "/lunyu",
+    },
+];
 export const SiShuWuJing: FC = () => {
-    let { poetryId } = useParams()!;
+    return (
+        <CommonBook
+            ExtraLink={ExtraLink.map((i) => {
+                return (
+                    <Menu.Item key={i.title}>
+                        <NavLink to={i.to}>{i.title}</NavLink>
+                    </Menu.Item>
+                );
+            })}
+            {...info}></CommonBook>
+    );
+};
 
-    return Requester<FetchData>({
-        ...requestFragment,
-        element: (data) => {
-            const poetryIndex = data.findIndex((i) => i.chapter === poetryId)!;
-            const poetry = data[poetryIndex];
-            const Content = poetry ? (
-                <ShowSinglePoetry
-                    title={poetry.chapter}
-                    content={poetry.paragraphs}
-                    footer={
-                        <PoetryFooter
-                            prev={
-                                poetryIndex !== 0 && {
-                                    text: data[poetryIndex - 1].chapter,
-                                    to: `/sishuwujing/${
-                                        data[poetryIndex - 1].chapter
-                                    }`,
-                                }
-                            }
-                            next={
-                                poetryIndex !== data.length - 1 && {
-                                    text: data[poetryIndex + 1].chapter,
-                                    to: `/sishuwujing/${
-                                        data[poetryIndex + 1].chapter
-                                    }`,
-                                }
-                            }></PoetryFooter>
-                    }></ShowSinglePoetry>
-            ) : (
-                <NotFound></NotFound>
-            );
-            return (
-                <Layout>
-                    <Layout.Content>{Content}</Layout.Content>
-                    <Layout.Sider
+export const SiShuWuJingIndex: FC = () => {
+    return (
+        <IndexPageOrigin
+            {...info}
+            ExtraLink={ExtraLink.map((i) => {
+                return (
+                    <Grid.Col
+                        span={12}
+                        key={i.to}
                         style={{
-                            width: "fit-content",
-                            height: "100%",
-                            overflow: "auto",
+                            textAlign: "center",
                         }}>
-                        {/* 侧边栏 */}
-                        <SideBar poetryId={poetryId!} data={data}></SideBar>
-                    </Layout.Sider>
-                </Layout>
-            );
-        },
-    });
+                        <NavLink
+                            to={i.to}
+                            style={{
+                                fontSize: "1.125rem",
+                            }}>
+                            {i.title}
+                        </NavLink>
+                    </Grid.Col>
+                );
+            })}></IndexPageOrigin>
+    );
 };
