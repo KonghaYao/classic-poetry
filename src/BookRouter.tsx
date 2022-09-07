@@ -19,6 +19,11 @@ import {
 } from "./poetry/MengXue/YouXueQiongLin";
 import { DiZiGui, DiZiGuiIndex } from "./poetry/MengXue/DiZiGui";
 import { QianJiaShi, QianJiaShiIndex } from "./poetry/MengXue/QianJiaShi";
+import { GuWenGuanZhi, GuWenGuanZhiIndex } from "./poetry/MengXue/GuWenGuanZhi";
+import {
+    TangShiSanBaiShou,
+    TangShiSanBaiShouIndex,
+} from "./poetry/MengXue/TangShiSanBaiShou";
 
 export function BookRouter() {
     return (
@@ -61,6 +66,16 @@ export function BookRouter() {
             <Route
                 path="/qianjiashi/:poetryId"
                 element={<QianJiaShi />}></Route>
+            <Route path="/guwenguanzhi" element={<GuWenGuanZhiIndex />}></Route>
+            <Route
+                path="/guwenguanzhi/:poetryId"
+                element={<GuWenGuanZhi />}></Route>
+            <Route
+                path="/tangshisanbaishou"
+                element={<TangShiSanBaiShouIndex />}></Route>
+            <Route
+                path="/tangshisanbaishou/:poetryId"
+                element={<TangShiSanBaiShou />}></Route>
         </Routes>
     );
 }

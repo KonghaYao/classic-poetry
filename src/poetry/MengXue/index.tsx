@@ -61,7 +61,6 @@ const info = {
                 return `${i.surname} 来源于 ${i.place}`;
             }),
         }));
-        // 弟子規
 
         // 朱子家訓
         const zhuzijiaxun = BookStore.getBook<{
@@ -72,10 +71,59 @@ const info = {
             ...i,
             content: i.paragraphs,
         }));
+        const shenglvqimeng = BookStore.getBook<{
+            title: string;
+            author: string;
+            content: {
+                title: string;
+                content: { chapter: string; paragraphs: string[] }[];
+            }[];
+        }>("/mengxue/shenglvqimeng.json").then((i) => {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.title,
+                    content: ii.content.flatMap((item) => [
+                        item.chapter,
+                        ...item.paragraphs,
+                    ]),
+                };
+            });
+        });
+        // 文字蒙求
+        const wenzimengqiu = BookStore.getBook<{
+            title: string;
+            author: string;
+            content: { title: string; paragraphs: string[] }[];
+        }>("/mengxue/wenzimengqiu.json").then((i) => {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.title,
+                    content: ii.paragraphs,
+                };
+            });
+        });
+        const zengguangxianwen = BookStore.getBook<{
+            title: string;
+            author: string;
+            content: { chapter: string; paragraphs: string[] }[];
+        }>("/mengxue/zengguangxianwen.json").then((i) => {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.chapter,
+                    content: ii.paragraphs,
+                };
+            });
+        });
 
-        // 千家詩
-
-        return Promise.all([...data, qianziwen, baijiaxing, zhuzijiaxun]); // 这里 data 直接 any 即可
+        return Promise.all([
+            ...data,
+            qianziwen,
+            baijiaxing,
+            zhuzijiaxun,
+            shenglvqimeng,
+            wenzimengqiu,
+            zengguangxianwen,
+        ]).then((res) => res.flat()); // 这里 data 直接 any 即可
     },
 };
 
