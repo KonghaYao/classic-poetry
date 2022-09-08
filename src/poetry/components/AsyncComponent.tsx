@@ -5,7 +5,8 @@ export function AsyncLoad<T extends ComponentType<any>, K extends string>(
     /** 如果不是 default 导出，那么可以使用这个变量改写 */
     key?: K,
     /** TODO 暂时不知道怎么获取 props 类型 */
-    props?: any
+    props?: any,
+    fallback?: JSX.Element
 ) {
     /** @ts-ignore */
     key = key || "default";
@@ -14,7 +15,8 @@ export function AsyncLoad<T extends ComponentType<any>, K extends string>(
         return { default: module[key!] };
     });
     return (
-        <Suspense fallback={<Loading></Loading>}>
+        <Suspense
+            fallback={fallback !== undefined ? fallback : <Loading></Loading>}>
             <AsyncLoadComponent {...props} />
         </Suspense>
     );

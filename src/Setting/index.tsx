@@ -12,12 +12,18 @@ SettingServer.on("change", (setting) => {
     merge(Setting, setting);
     localStorage.setItem("system-setting", JSON.stringify(Setting));
 });
-const AsyncLoadSetting = AsyncLoad(async () => {
-    const { SettingPage } = await import("./SettingPage");
-    return {
-        default: () => createPortal(<SettingPage></SettingPage>, document.body),
-    };
-});
+const AsyncLoadSetting = AsyncLoad(
+    async () => {
+        const { SettingPage } = await import("./SettingPage");
+        return {
+            default: () =>
+                createPortal(<SettingPage></SettingPage>, document.body),
+        };
+    },
+    "default",
+    {},
+    null
+);
 // import { SettingPage } from "./SettingPage";
 export const useSetting = () => {
     let page: JSX.Element;

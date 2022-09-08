@@ -29,14 +29,13 @@ export const Home: FC = () => {
     return (
         <section className="home-page box-row noise">
             <nav className="book-list box-row">
-                {data.map((i) => {
+                {data.map((i, index) => {
                     return (
                         <NavLink
                             className="book-item box-row"
-                            to={"link-" + i.to}>
-                            <div className="book-link" key={i.to}>
-                                {i.name}
-                            </div>
+                            to={i.to}
+                            key={i.to}>
+                            <div className="book-link">{i.name}</div>
                         </NavLink>
                     );
                 })}
