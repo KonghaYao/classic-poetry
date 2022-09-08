@@ -1,0 +1,17 @@
+.poetry-text {
+    color: var(--book-text-color);
+    transition: filter 0.3s;
+}
+.poetry-text:hover {
+    filter: brightness(0.5);
+}
+body[arco-theme="dark"] .poetry-text:hover {
+    filter: brightness(1.4);
+}
+.poetry-index {
+    user-select: none;
+    padding: 0.4rem;
+    text-align: center;
+    background-color: var(--color-bg-4);
+    border-radius: 4px;
+}

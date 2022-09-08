@@ -33,6 +33,10 @@ body[arco-theme="dark"] {
     background-color: var(--book-bg);
 }
 
+.home-page:hover .book-item {
+    opacity: 0.7;
+}
+
 .book-item:hover {
     transform: translateY(-20px);
     margin: 0.5rem;
@@ -40,8 +44,8 @@ body[arco-theme="dark"] {
 }
 
 .book-item {
-    opacity: 0.7;
-    transition: all 0.3s;
+    opacity: 0;
+    transition: all 0.5s;
     align-items: center;
     height: 50%;
     margin: 0.3rem;

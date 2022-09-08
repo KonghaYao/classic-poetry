@@ -3,15 +3,18 @@ import { FC, useMemo } from "react";
 import { PoetryHeader } from "./PoetryHeader";
 import { TextPreProcess } from "../utils/TextPreProcess";
 import { useSetting } from "../../Setting";
+import "./ShowSinglePoetry.css";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({
     index,
     content,
 }) => {
     return (
-        <Space>
-            <Tag>{index + 1}</Tag>
-            <span style={{ fontSize: "1em" }}>{TextPreProcess(content)}</span>
+        <Space align="center" size="large" className="single-content">
+            <span className="poetry-index">{index + 1}</span>
+            <span className="poetry-text" style={{ fontSize: "1em" }}>
+                {TextPreProcess(content)}
+            </span>
         </Space>
     );
 };
@@ -66,8 +69,8 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
                 title={props.title}
                 subTitle={props.subTitle}
                 textCount={textCount}></PoetryHeader>
-            <div
-                className="box-col"
+            <main
+                className="box-col poetry-content"
                 style={{
                     overflow: "auto",
                     flex: "1",
@@ -89,7 +92,7 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
                 </Space>
                 {props.notes && <NotsShower notes={props.notes}></NotsShower>}
                 {props.footer}
-            </div>
+            </main>
         </div>
     );
 };
