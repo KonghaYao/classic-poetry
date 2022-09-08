@@ -1,5 +1,7 @@
 import localforage from "localforage";
 import { Setting } from "../../Setting/Setting";
+
+let count = -1;
 localforage.setDriver(localforage.LOCALSTORAGE);
 export const BookStore = {
     version: "",
@@ -13,11 +15,18 @@ export const BookStore = {
         });
         return true;
     }),
+
+    pickRoot(root: string | string[]) {
+        if (typeof root === "string") return root;
+        count++;
+        console.log(count);
+        return root[count % root.length];
+    },
     /** 不要直接使用，使用 getBook 直接获取 */
     async fetchData(path: string, fullPath = false) {
-        return fetch(fullPath ? path : Setting.poetry.root + path).then((res) =>
-            res.json()
-        );
+        return fetch(
+            fullPath ? path : this.pickRoot(Setting.poetry.root) + path
+        ).then((res) => res.json());
     },
     async refresh(path: string, fullPath = false) {
         const data = await this.fetchData(path, fullPath);
