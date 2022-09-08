@@ -20,7 +20,7 @@ export const Setting = {
         /** 所有 json 文件的来源地址 */
         root: [
             "https://unpkg.com/chinese-poetry/chinese-poetry/",
-            "https://cdn.jsdelivr.net/npm/chinese-poetry/chinese-poetry/",
+            // "https://cdn.skypackk.dev/chinese-poetry/chinese-poetry/",
         ],
     },
 };

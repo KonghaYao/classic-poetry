@@ -44,8 +44,8 @@ export type PageInfo = {
     subTitle?: string;
     author?: string;
     content: string[];
-    footer?: JSX.Element;
     notes?: string[];
+    footer?: JSX.Element;
 };
 export const ShowSinglePoetry: FC<PageInfo> = (props) => {
     const textCount = props.content.reduce((col, cur) => {

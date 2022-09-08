@@ -12,7 +12,7 @@ const info = {
     title: "曹操诗集",
     root: "/caocaoshiji",
     adapter(i: SingleData) {
-        return { ...i, content: i.paragraphs };
+        return { ...i, content: i.paragraphs, author: "曹操" };
     },
     async getData(): Promise<FetchData> {
         return BookStore.getBook("caocaoshiji/caocao.json");
