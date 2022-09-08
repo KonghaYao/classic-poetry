@@ -28,9 +28,9 @@ export const Home: FC = () => {
                 {data.map((i) => {
                     return (
                         <div className="book-item box-row" key={i.to}>
-                            <div className="void-circle"></div>
-
-                            <NavLink to={i.to}>{i.name}</NavLink>
+                            <NavLink className="book-link" to={i.to}>
+                                {i.name}
+                            </NavLink>
                         </div>
                     );
                 })}
