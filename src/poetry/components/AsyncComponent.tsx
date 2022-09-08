@@ -6,7 +6,7 @@ export function AsyncLoad<T extends ComponentType<any>, K extends string>(
     key?: K,
     /** TODO 暂时不知道怎么获取 props 类型 */
     props?: any,
-    fallback?: JSX.Element
+    fallback?: JSX.Element | null
 ) {
     /** @ts-ignore */
     key = key || "default";
