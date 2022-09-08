@@ -2,7 +2,7 @@ import { Input, Menu } from "@arco-design/web-react";
 import { FC, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { sidebarServer } from "../../global";
-import { useUnmount } from "ahooks";
+import { useUnmount, useUpdateEffect } from "ahooks";
 import { InnerObjectType } from "./CommonBook";
 import { Tagger } from "./Tagger";
 export type SideBarProps = {
@@ -11,6 +11,7 @@ export type SideBarProps = {
     ExtraLink?: JSX.Element | JSX.Element[];
 };
 import type FUSE from "fuse.js";
+import { debounce } from "lodash";
 function useSearch<T>(init: () => { data: T[]; options: any }) {
     const [Index, setIndex] = useState<FUSE<T> | undefined>();
 
@@ -53,7 +54,8 @@ export function SideBarInner({ data, root, ExtraLink }: SideBarProps) {
         };
     });
 
-    useEffect(() => {
+    // 只有当 data 被第二次更新时才会重构
+    useUpdateEffect(() => {
         rebuild();
     }, [data]);
 
@@ -73,34 +75,42 @@ export function SideBarInner({ data, root, ExtraLink }: SideBarProps) {
         }
     };
     return (
-        <Menu
-            defaultSelectedKeys={[poetryId!]}
-            ellipsis
+        <div
+            className="box-col"
             style={{
-                width: "10rem",
                 display: showMenu ? "flex" : "none",
-                margin: "0",
-                overflow: "auto",
             }}>
             <Input.Search
-                searchButton
                 placeholder="搜索导航"
-                onSearch={(i) => searchInfo(i)}
+                onChange={debounce((i) => searchInfo(i), 500)}
+                style={{
+                    width: "10rem",
+                }}
             />
-
-            <Menu.Item key="side-index">
-                <NavLink to={root}>索引</NavLink>
-            </Menu.Item>
-            {Nav.map((i) => {
-                const tag = Tagger.gen(i);
-                return (
-                    //  诗经中确实有重名的篇章，所以采用这种 key
-                    <Menu.Item key={"side-" + tag} defaultValue={tag}>
-                        <NavLink to={`${root}/${tag}`}>{i.title}</NavLink>
-                    </Menu.Item>
-                );
-            })}
-            {ExtraLink}
-        </Menu>
+            <Menu
+                defaultSelectedKeys={[poetryId!]}
+                ellipsis
+                style={{
+                    width: "10rem",
+                    contentVisibility: "auto",
+                    margin: "0",
+                    flex: "1",
+                    overflow: "scroll",
+                }}>
+                <Menu.Item key="side-index">
+                    <NavLink to={root}>索引</NavLink>
+                </Menu.Item>
+                {Nav.map((i) => {
+                    const tag = Tagger.gen(i);
+                    return (
+                        //  诗经中确实有重名的篇章，所以采用这种 key
+                        <Menu.Item key={"side-" + tag} defaultValue={tag}>
+                            <NavLink to={`${root}/${tag}`}>{i.title}</NavLink>
+                        </Menu.Item>
+                    );
+                })}
+                {ExtraLink}
+            </Menu>
+        </div>
     );
 }

@@ -2,16 +2,30 @@
     color: var(--book-text-color);
     transition: filter 0.3s;
 }
-.poetry-text:hover {
+.single-content:hover .poetry-text {
     filter: brightness(0.5);
 }
-body[arco-theme="dark"] .poetry-text:hover {
+body[arco-theme="dark"] .single-content:hover .poetry-text {
     filter: brightness(1.4);
 }
+.poetry-content {
+    content-visibility: auto;
+}
+.poetry-wrapper .poetry-content::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+.poetry-wrapper:hover .poetry-content::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+}
+
 .poetry-index {
     user-select: none;
     padding: 0.4rem;
     text-align: center;
     background-color: var(--color-bg-4);
     border-radius: 4px;
+    margin: 0 1rem;
+}
+.single-content {
+    align-items: center;
 }

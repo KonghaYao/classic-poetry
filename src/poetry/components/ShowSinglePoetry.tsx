@@ -10,12 +10,12 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     content,
 }) => {
     return (
-        <Space align="center" size="large" className="single-content">
+        <nav className="single-content box-row">
             <span className="poetry-index">{index + 1}</span>
-            <span className="poetry-text" style={{ fontSize: "1em" }}>
+            <div className="poetry-text" style={{ fontSize: "1em" }}>
                 {TextPreProcess(content)}
-            </span>
-        </Space>
+            </div>
+        </nav>
     );
 };
 
@@ -57,7 +57,7 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
     // 单独诗句排版
     return (
         <div
-            className="box-col content-max"
+            className="box-col content-max poetry-wrapper"
             style={{
                 margin: "auto",
                 overflow: "hidden",

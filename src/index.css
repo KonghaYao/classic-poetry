@@ -94,7 +94,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px; /* 滚动条样式 */
-
     background-color: var(--color-border); /* 滚动条颜色 */
 }
 
