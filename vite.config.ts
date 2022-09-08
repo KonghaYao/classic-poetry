@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => ({
             "react-dom": "https://cdn.skypack.dev/react-dom",
             "react-router-dom": "https://cdn.skypack.dev/react-router-dom",
             cnchar: cdnRoot + "/cnchar",
+            "fuse.js": cdnRoot + "/fuse.js",
             "cnchar-trad": cdnRoot + "/cnchar-trad",
             pangu: cdnRoot + "/pangu",
             localforage: cdnRoot + "/localforage",

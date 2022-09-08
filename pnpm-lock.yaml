@@ -11,6 +11,7 @@ specifiers:
   cnchar: ^3.2.2
   cnchar-trad: ^3.2.2
   cross-env: ^7.0.3
+  fuse.js: ^6.6.2
   less: ^4.1.3
   localforage: ^1.10.0
   lodash: ^4.17.21
@@ -22,14 +23,13 @@ specifiers:
   rollup-plugin-visualizer: ^5.8.1
   typescript: ^4.6.4
   vite: ^3.0.7
-  vite-plugin-chunk-split: ^0.2.7
-  vite-plugin-external: ^1.2.4
 
 dependencies:
   '@arco-design/web-react': 2.39.3_63dfw6rfgd64rl77ptfma4cvt4
   ahooks: 3.7.0_react@18.2.0
   cnchar: 3.2.2
   cnchar-trad: 3.2.2
+  fuse.js: 6.6.2
   localforage: 1.10.0
   lodash: 4.17.21
   mitt: 3.0.0
@@ -49,8 +49,6 @@ devDependencies:
   rollup-plugin-visualizer: 5.8.1
   typescript: 4.8.2
   vite: 3.0.9_less@4.1.3
-  vite-plugin-chunk-split: 0.2.7_vite@3.0.9
-  vite-plugin-external: 1.2.4
 
 packages:
 
@@ -924,15 +922,6 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /fs-extra/10.1.0:
-    resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
-    engines: {node: '>=12'}
-    dependencies:
-      graceful-fs: 4.2.10
-      jsonfile: 6.1.0
-      universalify: 2.0.0
-    dev: true
-
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -944,6 +933,11 @@ packages:
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
     dev: true
+
+  /fuse.js/6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -964,6 +958,7 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     requiresBuild: true
     dev: true
+    optional: true
 
   /has-flag/3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
@@ -1060,14 +1055,6 @@ packages:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
     hasBin: true
-    dev: true
-
-  /jsonfile/6.1.0:
-    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
-    dependencies:
-      universalify: 2.0.0
-    optionalDependencies:
-      graceful-fs: 4.2.10
     dev: true
 
   /less/4.1.3:
@@ -1501,11 +1488,6 @@ packages:
     hasBin: true
     dev: true
 
-  /universalify/2.0.0:
-    resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
-    engines: {node: '>= 10.0.0'}
-    dev: true
-
   /update-browserslist-db/1.0.7_browserslist@4.21.3:
     resolution: {integrity: sha512-iN/XYesmZ2RmmWAiI4Z5rq0YqSiv0brj9Ce9CfhNE4xIW2h+MFxcgkxIzZ+ShkFPUkjU3gQ+3oypadD3RAMtrg==}
     hasBin: true
@@ -1547,20 +1529,6 @@ packages:
       react: 18.2.0
       tslib: 2.4.0
     dev: false
-
-  /vite-plugin-chunk-split/0.2.7_vite@3.0.9:
-    resolution: {integrity: sha512-LZa5iQ5rtY1T3+dBRlqMm+g7u5j3e6Hydvt5GFxx4dXKl6j34hvFmH/H+1v1iwf9sh/B84285buSBPC9lXx8+g==}
-    peerDependencies:
-      vite: '>=2.0.0'
-    dependencies:
-      vite: 3.0.9_less@4.1.3
-    dev: true
-
-  /vite-plugin-external/1.2.4:
-    resolution: {integrity: sha512-O+JEC58BbGNYkEa1f8gvpgwINCy+EOE0UgnhOPPZZAhxSJL8xegFo+TIexlOPB0mVUrgMdjwzbKbWr005iHmKQ==}
-    dependencies:
-      fs-extra: 10.1.0
-    dev: true
 
   /vite/3.0.9_less@4.1.3:
     resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==}
