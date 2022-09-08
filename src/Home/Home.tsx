@@ -27,11 +27,11 @@ export const Home: FC = () => {
             <nav className="book-list box-row">
                 {data.map((i) => {
                     return (
-                        <div className="book-item box-row" key={i.to}>
-                            <NavLink className="book-link" to={i.to}>
+                        <NavLink className="book-item box-row" to={i.to}>
+                            <div className="book-link" key={i.to}>
                                 {i.name}
-                            </NavLink>
-                        </div>
+                            </div>{" "}
+                        </NavLink>
                     );
                 })}
             </nav>
