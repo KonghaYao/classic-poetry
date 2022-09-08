@@ -58,6 +58,7 @@ export function IndexPageOrigin<T>({
                                                 key={"to-" + i.tag}
                                                 style={{
                                                     textAlign: "center",
+                                                    contentVisibility: "auto",
                                                 }}>
                                                 <NavLink
                                                     to={`${root}/${i.tag}`}

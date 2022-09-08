@@ -21,16 +21,22 @@ export const Home: FC = () => {
         { name: "千家诗", to: "/qianjiashi" },
         { name: "古文观止", to: "/guwenguanzhi" },
         { name: "唐诗三百首", to: "/tangshisanbaishou" },
+        // TODO 元曲的个数太大了，所以暂时不采用
+        // { name: "元曲", to: "/yuanqu" },
+        { name: "曹操诗集", to: "/caocaoshiji" },
+        { name: "楚辞", to: "/chuci" },
     ].reverse();
     return (
         <section className="home-page box-row noise">
             <nav className="book-list box-row">
                 {data.map((i) => {
                     return (
-                        <NavLink className="book-item box-row" to={i.to}>
+                        <NavLink
+                            className="book-item box-row"
+                            to={"link-" + i.to}>
                             <div className="book-link" key={i.to}>
                                 {i.name}
-                            </div>{" "}
+                            </div>
                         </NavLink>
                     );
                 })}

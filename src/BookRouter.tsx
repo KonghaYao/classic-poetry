@@ -24,6 +24,9 @@ import {
     TangShiSanBaiShou,
     TangShiSanBaiShouIndex,
 } from "./poetry/MengXue/TangShiSanBaiShou";
+import { CaoCaoShiJi, CaoCaoShiJiIndex } from "./poetry/_other/caocaoshiji";
+import { ChuCi, ChuCiIndex } from "./poetry/_other/ChuCi";
+import { YuanQu, YuanQuIndex } from "./poetry/_other/YuanQu";
 
 export function BookRouter() {
     return (
@@ -66,16 +69,29 @@ export function BookRouter() {
             <Route
                 path="/qianjiashi/:poetryId"
                 element={<QianJiaShi />}></Route>
+            {/* 古文观止 */}
             <Route path="/guwenguanzhi" element={<GuWenGuanZhiIndex />}></Route>
             <Route
                 path="/guwenguanzhi/:poetryId"
                 element={<GuWenGuanZhi />}></Route>
+            {/* 唐诗三百首 */}
             <Route
                 path="/tangshisanbaishou"
                 element={<TangShiSanBaiShouIndex />}></Route>
             <Route
                 path="/tangshisanbaishou/:poetryId"
                 element={<TangShiSanBaiShou />}></Route>
+            {/* 曹操诗集 */}
+            <Route path="/caocaoshiji" element={<CaoCaoShiJiIndex />}></Route>
+            <Route
+                path="/caocaoshiji/:poetryId"
+                element={<CaoCaoShiJi />}></Route>
+            {/* 楚辞 */}
+            <Route path="/chuci" element={<ChuCiIndex />}></Route>
+            <Route path="/chuci/:poetryId" element={<ChuCi />}></Route>
+            {/* 元曲 */}
+            <Route path="/yuanqu" element={<YuanQuIndex />}></Route>
+            <Route path="/yuanqu/:poetryId" element={<YuanQu />}></Route>
         </Routes>
     );
 }

@@ -2,9 +2,10 @@ import { TaggerType, InnerObjectType, ObjectProvider } from "./CommonBook";
 
 export const Tagger: TaggerType<InnerObjectType> = {
     gen(i) {
-        return [i.title, i.subTitle, i.author, i.content[0].slice(0, 3)].join(
-            "-"
-        );
+        const firstPara = i.content[0];
+        return [i.title, i.subTitle, i.author, (firstPara || "").slice(0, 7)]
+            .join("-")
+            .replace("/", "-");
     },
     match(i, tag) {
         return this.gen(i) === tag;
