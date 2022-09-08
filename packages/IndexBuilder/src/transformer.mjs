@@ -56,7 +56,7 @@ export const nalanxingde = {
         return {
             title: i.title,
             author: i.author,
-            content: i.paragraphs,
+            content: i.para,
         };
     },
 };
@@ -101,6 +101,7 @@ import fse from "fs-extra";
 export const huajianji = {
     base: fse
         .readdirSync("./node_modules/chinese-poetry/wudai/huajianji")
+        .filter((i) => i.startsWith("huajianji"))
         .map((i) => {
             return "wudai/huajianji/" + i;
         }),
