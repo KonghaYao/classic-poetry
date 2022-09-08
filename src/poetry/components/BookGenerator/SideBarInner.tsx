@@ -11,7 +11,7 @@ export type SideBarProps = {
     ExtraLink?: JSX.Element | JSX.Element[];
 };
 import type FUSE from "fuse.js";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 function useSearch<T>(init: () => { data: T[]; options: any }) {
     const [Index, setIndex] = useState<FUSE<T> | undefined>();
 
@@ -103,8 +103,10 @@ export function SideBarInner({ data, root, ExtraLink }: SideBarProps) {
                 {Nav.map((i) => {
                     const tag = Tagger.gen(i);
                     return (
-                        //  诗经中确实有重名的篇章，所以采用这种 key
-                        <Menu.Item key={"side-" + tag} defaultValue={tag}>
+                        <Menu.Item
+                            className="long-list-item"
+                            key={"side-" + tag}
+                            defaultValue={tag}>
                             <NavLink to={`${root}/${tag}`}>{i.title}</NavLink>
                         </Menu.Item>
                     );

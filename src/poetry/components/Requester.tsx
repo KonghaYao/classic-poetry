@@ -45,7 +45,7 @@ export const Requester = function <T, E = T>(props: {
             {!error &&
                 !loading &&
                 props.element(
-                    props.adapter ? props.adapter(data!) : (data! as E)
+                    props.adapter ? props.adapter(data!) : (data! as any as E)
                 )}
         </>
     );

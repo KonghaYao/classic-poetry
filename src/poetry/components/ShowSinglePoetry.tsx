@@ -10,7 +10,7 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     content,
 }) => {
     return (
-        <nav className="single-content box-row">
+        <nav className="single-content box-row long-list-item">
             <span className="poetry-index">{index + 1}</span>
             <div className="poetry-text" style={{ fontSize: "1em" }}>
                 {TextPreProcess(content)}

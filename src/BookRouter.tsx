@@ -24,7 +24,7 @@ import {
     TangShiSanBaiShou,
     TangShiSanBaiShouIndex,
 } from "./poetry/MengXue/TangShiSanBaiShou";
-import { CaoCaoShiJi, CaoCaoShiJiIndex } from "./poetry/_other/caocaoshiji";
+import { CaoCaoShiJi, CaoCaoShiJiIndex } from "./poetry/_other/CaoCaoShiJi";
 import { ChuCi, ChuCiIndex } from "./poetry/_other/ChuCi";
 import { YuanQu, YuanQuIndex } from "./poetry/_other/YuanQu";
 

@@ -56,9 +56,9 @@ export function IndexPageOrigin<T>({
                                             <Grid.Col
                                                 span={12}
                                                 key={"to-" + i.tag}
+                                                className="long-list-item"
                                                 style={{
                                                     textAlign: "center",
-                                                    contentVisibility: "auto",
                                                 }}>
                                                 <NavLink
                                                     to={`${root}/${i.tag}`}
