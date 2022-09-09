@@ -87,23 +87,13 @@ body {
     flex-direction: column;
 }
 
+
 ::-webkit-scrollbar {
-    width: 6px; /* 竖向滚动条宽度 */
-    height: 6px; /* 横向滚动条高度 */
-}
-.no-scroll ::-webkit-scrollbar {
     width: 0;
     height: 0;
     background-color: transparent;
 }
-::-webkit-scrollbar-thumb {
-    border-radius: 10px; /* 滚动条样式 */
-    background-color: var(--color-border); /* 滚动条颜色 */
-}
 
-::-webkit-scrollbar-corner {
-    background: transparent; /* 右下角重合处的样式*/
-}
 /* 首页印章图像 */
 .Index-Seal {
     color: white;
