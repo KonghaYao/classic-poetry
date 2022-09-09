@@ -3,7 +3,7 @@
  * {
  *      tag: string, // 这个 json 对象的唯一值 * 这个属性将由系统统一生成
  *      title: string, // 标题
- *      content: string[] // 具体诗句列表 * 全文搜索将会视为一行
+ *      content: string[] // 具体诗句列表 * 全文搜索将会转化为字符串
  *      belongTo: string // 具体的 JSON 文件路径
  *      subTitle?: string,
  *      author?: string, // 作者
@@ -132,6 +132,45 @@ export const nantang = {
             // 舍弃 rhythmic 被包含在 title 中
             content: i.paragraphs,
             notes: i.notes,
+        };
+    },
+};
+
+export const tang = {
+    base: fse
+        .readdirSync("./node_modules/chinese-poetry/json")
+        .filter((i) => i.startsWith("poet.tang"))
+        .map((i) => {
+            return "json/" + i;
+        }),
+    rebase(path) {
+        return path.replace("json/", "tang");
+    },
+    name: "全唐诗",
+    transform(i) {
+        return {
+            title: i.title,
+            author: i.author,
+            content: i.paragraphs,
+        };
+    },
+};
+export const song = {
+    base: fse
+        .readdirSync("./node_modules/chinese-poetry/json")
+        .filter((i) => i.startsWith("poet.song"))
+        .map((i) => {
+            return "json/" + i;
+        }),
+    rebase(path) {
+        return path.replace("json/", "song");
+    },
+    name: "全宋词",
+    transform(i) {
+        return {
+            title: i.title,
+            author: i.author,
+            content: i.paragraphs,
         };
     },
 };

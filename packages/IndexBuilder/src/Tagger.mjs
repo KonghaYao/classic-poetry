@@ -9,7 +9,8 @@ export const Tagger = {
             firstPara.slice(0, 2) + lastPara.slice(0, 2),
         ]
             .join("-")
-            .replace("/", "-");
+            .replace("/", "-")
+            .replace(" ", "_");
     },
     match(i, tag) {
         return this.gen(i) === tag;

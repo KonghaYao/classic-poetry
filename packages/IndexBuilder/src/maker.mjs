@@ -1,3 +1,7 @@
+/**
+ *
+ * 转化原始仓库中的 json 为规范的 json 写法
+ */
 import {
     caocaoshiji,
     chuci,
@@ -8,6 +12,8 @@ import {
     sishuwujing,
     huajianji,
     nantang,
+    tang,
+    song,
 } from "./transformer.mjs";
 import fse from "fs-extra";
 import { Tagger } from "./Tagger.mjs";
@@ -38,6 +44,8 @@ const processSingle = async (template, base) => {
     huajianji,
     nalanxingde,
     nantang,
+    tang,
+    song,
 ].map(async (template) => {
     try {
         let originData = [];
