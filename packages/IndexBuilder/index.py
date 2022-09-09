@@ -20,6 +20,6 @@ for path in dirs:
     file =open('./json/'+path,encoding='utf-8').read()
 
     print('读取文件完毕',path)
-    index.update_documents(json.loads(file))
+    index.add_documents(json.loads(file))
     print('上传完毕',path)
     

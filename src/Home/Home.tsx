@@ -21,6 +21,7 @@ export const Home: FC = () => {
         { name: "千家诗", to: "/qianjiashi" },
         { name: "古文观止", to: "/guwenguanzhi" },
         { name: "唐诗三百首", to: "/tangshisanbaishou" },
+        { name: "全唐诗集", to: "/tang" },
         // TODO 元曲的个数太大了，所以暂时不采用
         // { name: "元曲", to: "/yuanqu" },
         { name: "曹操诗集", to: "/caocaoshiji" },

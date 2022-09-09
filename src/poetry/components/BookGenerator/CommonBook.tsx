@@ -24,6 +24,7 @@ export function CommonBook<T>(
     return (
         <BookFetch
             getData={getData}
+            root={root}
             adapter={wrapAdapter(adapter)}
             element={(data) => {
                 const poetryIndex = data.findIndex((i) => {
