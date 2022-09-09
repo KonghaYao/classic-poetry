@@ -28,6 +28,7 @@ import { CaoCaoShiJi, CaoCaoShiJiIndex } from "./poetry/_other/CaoCaoShiJi";
 import { ChuCi, ChuCiIndex } from "./poetry/_other/ChuCi";
 import { YuanQu, YuanQuIndex } from "./poetry/_other/YuanQu";
 import { TangRouter } from "./poetry/Tang/Tang";
+import { SongRouter } from "./poetry/Song/Song";
 
 export function BookRouter() {
     return (
@@ -94,6 +95,7 @@ export function BookRouter() {
             <Route path="/yuanqu" element={<YuanQuIndex />}></Route>
             <Route path="/yuanqu/:poetryId" element={<YuanQu />}></Route>
             {TangRouter()}
+            {SongRouter()}
         </Routes>
     );
 }

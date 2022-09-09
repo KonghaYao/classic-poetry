@@ -14,26 +14,26 @@ type SingleData = {
 export type FetchData = SingleData[];
 
 const info = {
-    title: "唐诗",
-    root: "/tang/", // 这个字段在下面会被加工
+    title: "宋词",
+    root: "/song/", // 这个字段在下面会被加工
     adapter(i: SingleData) {
         return { ...i, content: i.paragraphs };
     },
     async getData(root: string): Promise<FetchData> {
-        const index = parseInt(root.replace(/^\/tang\/(.*)/, "$1"));
+        const index = parseInt(root.replace(/^\/song\/(.*)/, "$1"));
         if (Number.isNaN(index)) {
             console.log(root);
             throw new Error("解析错误");
         }
-        return BookStore.getBook("json/poet.tang." + index + ".json");
+        return BookStore.getBook("json/poet.song." + index + ".json");
     },
 };
 
-const Tang: FC = () => {
+const Song: FC = () => {
     const { index } = useParams();
     return <CommonBook {...info} root={info.root + index!}></CommonBook>;
 };
-const TangIndex: FC = () => {
+const SongIndex: FC = () => {
     const { index } = useParams();
     return (
         <IndexPageOrigin
@@ -46,12 +46,12 @@ const TangIndex: FC = () => {
             root={info.root + index!}></IndexPageOrigin>
     );
 };
-export const TangRouter = (): React.ReactElement => {
+export const SongRouter = (): React.ReactElement => {
     return (
         <>
-            <Route path="/tang" element={<AllIndex />}></Route>
-            <Route path="/tang/:index" element={<TangIndex />}></Route>
-            <Route path="/tang/:index/:poetryId" element={<Tang />}></Route>
+            <Route path="/song" element={<AllIndex />}></Route>
+            <Route path="/song/:index" element={<SongIndex />}></Route>
+            <Route path="/song/:index/:poetryId" element={<Song />}></Route>
         </>
     );
 };
