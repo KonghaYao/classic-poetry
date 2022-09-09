@@ -5,7 +5,7 @@ import { ThemeChange } from "./ThemeChange";
 import { useSetting } from "../Setting";
 import { IconSettings } from "@arco-design/web-react/icon";
 import { useNavigate } from "react-router-dom";
-import { SearchBox } from "../Search";
+import { SearchBox } from "../Search/SearchBox";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { init, server } = useSetting();
