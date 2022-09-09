@@ -2,19 +2,7 @@
  *
  * 转化原始仓库中的 json 为规范的 json 写法
  */
-import {
-    caocaoshiji,
-    chuci,
-    yuanqu,
-    nalanxingde,
-    lunyu,
-    shijing,
-    sishuwujing,
-    huajianji,
-    nantang,
-    tang,
-    song,
-} from "./transformer.mjs";
+import AllData from "./transformer.mjs";
 import fse from "fs-extra";
 import { Tagger } from "./Tagger.mjs";
 const root = "./node_modules/chinese-poetry/";
@@ -33,20 +21,8 @@ const processSingle = async (template, base) => {
         return [prewrap(template.transform(data), base)];
     }
 };
-[
-    caocaoshiji,
-    chuci,
-    yuanqu,
-    nalanxingde,
-    lunyu,
-    shijing,
-    sishuwujing,
-    huajianji,
-    nalanxingde,
-    nantang,
-    tang,
-    song,
-].map(async (template) => {
+fse.emptyDirSync("./dist");
+AllData.map(async (template) => {
     try {
         let originData = [];
         if (typeof template.base === "string") {
