@@ -57,7 +57,7 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
     // 单独诗句排版
     return (
         <div
-            className="box-col content-max poetry-wrapper"
+            className="box-col content-max poetry-wrapper no-scroll"
             style={{
                 margin: "auto",
                 overflow: "hidden",
@@ -70,7 +70,7 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
                 subTitle={props.subTitle}
                 textCount={textCount}></PoetryHeader>
             <main
-                className="box-col poetry-content"
+                className="box-col poetry-content "
                 style={{
                     overflow: "auto",
                     flex: "1",

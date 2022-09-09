@@ -70,9 +70,14 @@ body[arco-theme="dark"] {
     border-top: 4px solid black;
     border-bottom: 2px solid black;
 }
-.book-item .book-link {
+.book-item:hover .book-link {
     margin-top: 2rem;
     color: #000 !important;
+}
+.book-item .book-link {
+    margin-top: 2rem;
+    transition: color 0.3s;
+    color: #333 !important;
 }
 .book-header-wrapper {
     height: fit-content;

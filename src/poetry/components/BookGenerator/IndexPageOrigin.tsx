@@ -26,7 +26,7 @@ export const IndexPage: FC<{
                     <div className="Index-Seal">{title}</div>
                 </div>
                 <div
-                    className="box-col"
+                    className="box-col no-scroll"
                     style={{
                         flex: "1",
                         justifyContent: "center",

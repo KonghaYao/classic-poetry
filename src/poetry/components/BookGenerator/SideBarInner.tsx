@@ -76,8 +76,9 @@ export function SideBarInner({ data, root, ExtraLink }: SideBarProps) {
     };
     return (
         <div
-            className="box-col"
+            className="box-col "
             style={{
+                height: "100%",
                 display: showMenu ? "flex" : "none",
             }}>
             <Input.Search
@@ -88,6 +89,7 @@ export function SideBarInner({ data, root, ExtraLink }: SideBarProps) {
                 }}
             />
             <Menu
+                className="no-scroll"
                 defaultSelectedKeys={[poetryId!]}
                 ellipsis
                 style={{
