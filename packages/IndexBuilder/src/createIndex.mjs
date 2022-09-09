@@ -1,3 +1,6 @@
+/**
+ * 这个文件是将 dist 目录下的 json 准备成 分割后的 json 并放置在 json 文件夹下
+ */
 import fse from "fs-extra";
 const PreProcess = (i) => {
     i.content = i.content.join("\n");
