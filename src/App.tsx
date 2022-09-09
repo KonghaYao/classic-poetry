@@ -15,7 +15,10 @@ function App() {
     }, [setting]);
     return (
         <Layout className="App" style={{ height: "100vh" }}>
-            <Layout.Header>
+            <Layout.Header
+                style={{
+                    zIndex: 10,
+                }}>
                 <TopMenu></TopMenu>
             </Layout.Header>
             <Layout.Content

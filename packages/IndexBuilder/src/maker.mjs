@@ -26,7 +26,7 @@ AllData.map(async (template) => {
     try {
         let originData = [];
         if (typeof template.base === "string") {
-            const data = await processSingle(template);
+            const data = await processSingle(template, template.base);
 
             originData.push(...data);
         } else {

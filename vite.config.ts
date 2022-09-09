@@ -23,15 +23,24 @@ export default defineConfig(({ mode }) => ({
             : false,
     ],
     resolve: {
-        alias: mode === "production" && {
-            react: "https://cdn.skypack.dev/react",
-            "react-dom": "https://cdn.skypack.dev/react-dom",
-            "react-router-dom": "https://cdn.skypack.dev/react-router-dom",
-            cnchar: cdnRoot + "/cnchar",
-            "fuse.js": cdnRoot + "/fuse.js",
-            "cnchar-trad": cdnRoot + "/cnchar-trad",
-            pangu: cdnRoot + "/pangu",
-            localforage: cdnRoot + "/localforage",
-        },
+        alias: Object.assign(
+            {
+                "@meilisearch/instant-meilisearch":
+                    "https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/dist/instant-meilisearch.umd.min.js",
+            },
+            mode === "production"
+                ? {
+                      react: "https://cdn.skypack.dev/react",
+                      "react-dom": "https://cdn.skypack.dev/react-dom",
+                      "react-router-dom":
+                          "https://cdn.skypack.dev/react-router-dom",
+                      cnchar: cdnRoot + "/cnchar",
+                      "fuse.js": cdnRoot + "/fuse.js",
+                      "cnchar-trad": cdnRoot + "/cnchar-trad",
+                      pangu: cdnRoot + "/pangu",
+                      localforage: cdnRoot + "/localforage",
+                  }
+                : {}
+        ),
     },
 }));

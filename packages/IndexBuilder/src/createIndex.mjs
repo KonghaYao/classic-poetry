@@ -6,6 +6,8 @@ const temp = new Set();
 /** 预先检查对象是否有误 */
 const Checker = (i) => {
     try {
+        if (!("tag" in i)) throw new Error("tag 字段缺失");
+        if (!("belongTo" in i)) throw new Error("belongTo 字段缺失");
         if (i.content.some((i) => typeof i !== "string"))
             throw new Error("content has item not string");
     } catch (e) {
@@ -16,7 +18,12 @@ const Checker = (i) => {
 
 const PreProcess = (i) => {
     Checker(i);
-    i.content = i.content.join("\n");
+
+    /**
+     * * 削减 content 大小，保证能用
+     * */
+    // i.content = i.content.join(" ").slice(0, 10);
+    delete i.content;
     delete i.notes;
     i.id = i.tag;
     delete i.tag;
@@ -54,10 +61,10 @@ Promise.all(
 
     const needChunk = true;
     if (needChunk) {
-        chunk(info, 1000, (json, index) =>
-            fse.writeJSON("./json/" + index + ".json", json)
+        chunk(info, 10000, (json, index) =>
+            fse.outputJSON("./json/" + index + ".json", json)
         );
     } else {
-        fse.writeJSON("./json/default.json", info);
+        fse.outputJSON("./json/default.json", info);
     }
 });

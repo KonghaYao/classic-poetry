@@ -127,3 +127,10 @@ body {
 .long-list-item{
     content-visibility: auto;
 }
+
+.one-row{
+    overflow: hidden;
+    white-space: nowrap; 
+
+  text-overflow:ellipsis;
+}

@@ -5,6 +5,7 @@ import { ThemeChange } from "./ThemeChange";
 import { useSetting } from "../Setting";
 import { IconSettings } from "@arco-design/web-react/icon";
 import { useNavigate } from "react-router-dom";
+import { SearchBox } from "../Search";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { init, server } = useSetting();
@@ -26,6 +27,7 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                 中华诗词大典
             </div>
             <div style={{ flex: "1" }}></div>
+            <SearchBox></SearchBox>
             <nav
                 className="box-row"
                 style={{

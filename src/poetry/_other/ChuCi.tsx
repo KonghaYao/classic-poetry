@@ -14,7 +14,8 @@ const info = {
     title: "楚辞",
     root: "/chuci",
     adapter(i: SingleData) {
-        return i;
+        // 这里不需要使用 tag、belongTo，系统自动生成
+        return { ...i, subTitle: i.section };
     },
     async getData(): Promise<FetchData> {
         return BookStore.getBook(

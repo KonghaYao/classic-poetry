@@ -15,7 +15,7 @@ async function getData(): Promise<FetchData> {
 }
 const adapter = (i: SingleData) => {
     /** @ts-ignore */
-    i.subTitle = i.section;
+    i.subTitle = i.chapter + " " + i.section;
     return i;
 };
 

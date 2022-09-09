@@ -6,8 +6,9 @@
     "scripts": {
         "build": "node ./src/maker.mjs",
         "build:index": "node ./src/createIndex.mjs",
-        "open": "docker run  -p 7700:7700 -e MEILI_MASTER_KEY='MASTER_KEY' -v ./meili_data:/meili_data getmeili/meilisearch:v0.28 --name=meili",
-        "output": "docker cp cranky_thompson:/meili_data ./meili_data"
+        "open": "docker run --name=meili -p 7700:7700 -e MEILI_MASTER_KEY=KongHaYaoForChinesePoetry -v ./meili_data:/meili_data getmeili/meilisearch:v0.28 ",
+        "output": "docker cp meili:/meili_data ./meili_data",
+        "upload": "python index.py"
     },
     "keywords": [],
     "author": "",
