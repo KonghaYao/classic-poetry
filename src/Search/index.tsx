@@ -1,3 +1,4 @@
+import { Trigger } from "@arco-design/web-react";
 import { FC, lazy, Suspense, useRef } from "react";
 import {
     InstantSearch,
@@ -119,51 +120,60 @@ export const _SearchBox: FC = () => {
         <>
             <InstantSearch indexName="poetry" searchClient={searchClient}>
                 <nav style={{ position: "relative", margin: "0 0.5rem" }}>
-                    <SSearchBox />
-                    <nav
-                        style={{
-                            position: "absolute",
-                            top: "120%",
-                            left: "50%",
-                            width: "20rem",
-                            transform: "translateX(-50%)",
-                            maxHeight: "50vh",
-                            overflow: "scroll",
-                        }}>
-                        <Hits
-                            className="one-row"
-                            hitComponent={({ hit }) => (
-                                <nav
-                                    key={hit.id as string}
-                                    className="box-col one-row"
-                                    onClick={() => jumpTo(hit as any)}>
-                                    <header
-                                        className="box-row"
-                                        style={{ whiteSpace: "nowrap" }}>
-                                        <Highlight
-                                            attribute="title"
-                                            hit={hit}
-                                        />
-                                        <div style={{ flex: "1" }}></div>
-                                        <Highlight
-                                            attribute="author"
-                                            hit={hit}></Highlight>
-                                    </header>
+                    <Trigger
+                        popup={() => (
+                            <nav
+                                style={{
+                                    position: "absolute",
+                                    top: "120%",
+                                    left: "50%",
+                                    width: "20rem",
+                                    transform: "translateX(-50%)",
+                                    maxHeight: "50vh",
+                                    overflow: "scroll",
+                                }}>
+                                <Hits
+                                    className="one-row"
+                                    hitComponent={({ hit }) => (
+                                        <nav
+                                            key={hit.id as string}
+                                            className="box-col one-row"
+                                            onClick={() => jumpTo(hit as any)}>
+                                            <header
+                                                className="box-row"
+                                                style={{
+                                                    whiteSpace: "nowrap",
+                                                }}>
+                                                <Highlight
+                                                    attribute="title"
+                                                    hit={hit}
+                                                />
+                                                <div
+                                                    style={{ flex: "1" }}></div>
+                                                <Highlight
+                                                    attribute="author"
+                                                    hit={hit}></Highlight>
+                                            </header>
 
-                                    <main
-                                        className="one-row"
-                                        style={{
-                                            fontSize: "0.7rem",
-                                        }}>
-                                        <Highlight
-                                            attribute="content"
-                                            hit={hit}
-                                        />
-                                    </main>
-                                </nav>
-                            )}
-                        />
-                    </nav>
+                                            <main
+                                                className="one-row"
+                                                style={{
+                                                    fontSize: "0.7rem",
+                                                }}>
+                                                <Highlight
+                                                    attribute="content"
+                                                    hit={hit}
+                                                />
+                                            </main>
+                                        </nav>
+                                    )}
+                                />
+                            </nav>
+                        )}
+                        trigger={["hover", "focus"]}
+                        blurToHide={false}>
+                        <SSearchBox />
+                    </Trigger>
                 </nav>
             </InstantSearch>
         </>
