@@ -64,6 +64,7 @@ export type PageInfo = {
     content: string[];
     notes?: string[];
     footer?: JSX.Element;
+    root: string;
 };
 
 export const ShowSinglePoetry: FC<PageInfo> = (props) => {
@@ -107,6 +108,7 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
             }}>
             <PoetryHeader
                 title={props.title}
+                root={props.root}
                 subTitle={props.subTitle}
                 textCount={textCount}></PoetryHeader>
             <main

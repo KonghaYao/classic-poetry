@@ -36,6 +36,7 @@ export function CommonBook<T>(
 
                 const Content = poetry ? (
                     <ShowSinglePoetry
+                        root={props.root}
                         title={poetry.title}
                         subTitle={poetry.author}
                         content={poetry.content}

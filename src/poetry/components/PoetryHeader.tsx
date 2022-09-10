@@ -8,6 +8,7 @@ export const PoetryHeader: FC<{
     title: string;
     subTitle?: string;
     textCount: number;
+    root: string;
 }> = (props) => {
     const nav = useNavigate();
     return (
@@ -19,7 +20,7 @@ export const PoetryHeader: FC<{
                 borderBottom: "2px solid var(--divide-red)",
             }}
             onBack={() => {
-                nav(-1);
+                nav(props.root);
             }}
             extra={
                 // TODO 勘误功能
