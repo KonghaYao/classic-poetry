@@ -19,7 +19,12 @@ export const HistoryController = () => {
 
 export const HistoryPanel = () => {
     return (
-        <section className="panel">
+        <section
+            className="panel"
+            style={{
+                margin: "1rem",
+                padding: "1rem",
+            }}>
             <div>浏览记录</div>
             <List
                 style={{
@@ -35,7 +40,7 @@ export const HistoryPanel = () => {
                             type="secondary"
                             long
                             onClick={() => {
-                                location.href = item.data;
+                                location.href = item.path;
                             }}>
                             {item.name}
                         </Button>

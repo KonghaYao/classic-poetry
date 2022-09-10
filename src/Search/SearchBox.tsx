@@ -1,18 +1,9 @@
 import { lazy, Suspense } from "react";
 import {} from "react-dom";
+import { RestTime } from "../poetry/utils/RestTime";
 import { useLink } from "./useLink";
 import { useUMD } from "./useUMD";
 
-const RestTime = () =>
-    new Promise((res) => {
-        if ("requestIdleCallback" in window) {
-            requestIdleCallback(() => {
-                res(null);
-            });
-        } else {
-            setTimeout(() => res(null), 5000);
-        }
-    });
 /** 这个是异步加载外壳，用于在闲暇时段加载搜索模块 */
 export const SearchBox = () => {
     const Loader = lazy(async () => {

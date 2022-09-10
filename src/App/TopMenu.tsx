@@ -34,19 +34,16 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                     alignItems: "center",
                     justifyContent: "space-between",
                     width: "9rem",
+                    fontSize: "1.3rem",
                 }}>
                 <ThemeChange></ThemeChange>
                 {init()}
-                <div
+
+                <IconSettings
                     onClick={() => {
                         server.emit("toggle", true);
-                    }}>
-                    <IconSettings
-                        style={{
-                            fontSize: "1.3rem",
-                        }}
-                    />
-                </div>
+                    }}
+                />
                 <HistoryController></HistoryController>
                 <Tooltip content="这个是辛苦劳累的作者">
                     <a

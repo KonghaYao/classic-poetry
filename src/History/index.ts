@@ -1,6 +1,6 @@
 type HistoryRecord = {
     time: string;
-    data: string;
+    path: string;
     endTime: string;
     name: string;
 };
@@ -22,13 +22,20 @@ class HistoryCache {
             name,
             time: this.timeTag(),
             endTime: this.timeTag(),
-            data: location.href,
+            path: location.href,
         };
-        if (!this.cache[0] || cache.data !== this.cache[0].data) {
-            this.cache.unshift(cache);
-            this.writeBack();
-            console.log("记录路由", cache.data);
+
+        if (this.cache[0]) {
+            const path = cache.path.split("?")[0];
+            const _path = this.cache[0].path.split("?")[0];
+            if (path === _path) {
+                this.cache[0].path = location.href;
+                return;
+            }
         }
+        this.cache.unshift(cache);
+        this.writeBack();
+        console.log("记录路由", cache.path);
     }
     clear(start: number | "*", end?: number) {
         start === "*" ? (this.cache = []) : this.cache.splice(start, end);

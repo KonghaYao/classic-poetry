@@ -5,13 +5,25 @@ import { TextPreProcess } from "../../utils/TextPreProcess";
 import { useSetting } from "../../../Setting";
 import "./ShowSinglePoetry.css";
 import { History } from "../../../History";
+import { useSearchParams } from "react-router-dom";
+import { useMount } from "ahooks";
+import { RestTime } from "../../utils/RestTime";
 /** 每一行诗句的排版 */
-const SingleRow: FC<{ index: number; content: string }> = ({
+const SingleRow: FC<{ index: number; content: string; name: string }> = ({
     index,
     content,
+    name,
 }) => {
+    let [searchParams, setSearchParams] = useSearchParams();
+
     return (
-        <nav className="single-content box-row long-list-item">
+        <nav
+            className="single-content box-row long-list-item"
+            onClick={() => {
+                searchParams.set("position", index.toString());
+                setSearchParams(searchParams);
+                History.add(name);
+            }}>
             <span className="poetry-index">{index + 1}</span>
             <div className="poetry-text" style={{ fontSize: "1em" }}>
                 {TextPreProcess(content)}
@@ -20,6 +32,7 @@ const SingleRow: FC<{ index: number; content: string }> = ({
     );
 };
 
+/** 显示脚注的组件 */
 const NotsShower: FC<{ notes: string[] }> = ({ notes }) => {
     return (
         <>
@@ -48,14 +61,35 @@ export type PageInfo = {
     notes?: string[];
     footer?: JSX.Element;
 };
+
 export const ShowSinglePoetry: FC<PageInfo> = (props) => {
-    History.add(props.title);
     const textCount = props.content.reduce((col, cur) => {
         const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
         return col + m.length;
     }, 0);
     const { setting } = useSetting();
     const fontWeight = useMemo(() => setting.text.fontWeight, [setting]);
+    // 历史记录的操作
+    History.add(props.title);
+    const [searchParams] = useSearchParams();
+    const toPosition = () => {
+        const pos = searchParams.get("position");
+        if (typeof pos === "string") {
+            setTimeout(() => {
+                const els = document.getElementsByClassName("single-content")!;
+                const el = els[parseInt(pos)];
+                console.log("Logger 历史自动复原");
+                el.scrollIntoView({
+                    block: "start",
+                    inline: "start",
+                });
+            }, 1000);
+        }
+    };
+    useMount(async () => {
+        await RestTime();
+        toPosition();
+    });
     // 单独诗句排版
     return (
         <div
@@ -86,6 +120,7 @@ export const ShowSinglePoetry: FC<PageInfo> = (props) => {
                     {props.content.map((i, index) => {
                         return (
                             <SingleRow
+                                name={props.title}
                                 key={props.title + "-" + index}
                                 index={index}
                                 content={i}></SingleRow>
