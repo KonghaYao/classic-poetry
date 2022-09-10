@@ -24,6 +24,7 @@ specifiers:
   mitt: ^3.0.0
   pangu: ^4.0.7
   react: ^18.2.0
+  react-animated-router: ^1.2.4
   react-dom: ^18.2.0
   react-instantsearch-hooks-web: ^6.32.1
   react-router-dom: '6'
@@ -47,6 +48,7 @@ dependencies:
   mitt: 3.0.0
   pangu: 4.0.7
   react: 18.2.0
+  react-animated-router: 1.2.4_pdeu3dfzzgjca4svub36rwt3bm
   react-dom: 18.2.0_react@18.2.0
   react-instantsearch-hooks-web: 6.32.1_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
@@ -1560,6 +1562,22 @@ packages:
   /qs/6.9.7:
     resolution: {integrity: sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==}
     engines: {node: '>=0.6'}
+    dev: false
+
+  /react-animated-router/1.2.4_pdeu3dfzzgjca4svub36rwt3bm:
+    resolution: {integrity: sha512-PMjH+G+8GdhfKxkmvPucyXzGjwWAJ7xhWwe5y8RLvmPgaNbXyVX5amfJ4tigDujDkxEcmNW1wZc31WrHxeS93w==}
+    engines: {node: '>=10.13.0', tiger-new: 7.3.3}
+    peerDependencies:
+      '@babel/runtime': '>7.0.0'
+      prop-types: '>15.5.0'
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-router: '>=6.0.0'
+      react-transition-group: '>=2.0.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /react-clientside-effect/1.2.6_react@18.2.0:

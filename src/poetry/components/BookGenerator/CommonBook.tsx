@@ -1,7 +1,7 @@
 import { Layout } from "@arco-design/web-react";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { PageInfo, ShowSinglePoetry } from "../ShowSinglePoetry";
+import { PageInfo, ShowSinglePoetry } from "./ShowSinglePoetry";
 import { NotFound } from "../404";
 import { PoetryFooter } from "../PoetryFooter";
 import { SideBarInner, SideBarProps } from "./SideBarInner";
@@ -62,7 +62,11 @@ export function CommonBook<T>(
                     <NotFound></NotFound>
                 );
                 return (
-                    <Layout>
+                    <Layout
+                        className="box"
+                        style={{
+                            overflow: "scroll",
+                        }}>
                         <Layout.Content>{Content}</Layout.Content>
                         <Layout.Sider
                             style={{

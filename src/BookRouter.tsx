@@ -20,7 +20,7 @@ import { SongRouter } from "./poetry/Song/Song";
 
 export function BookRouter() {
     return (
-        <Routes>
+        <>
             <Route path="/" element={<Home />}></Route>
 
             {/* 诗集均为同步导入，因为太小了 */}
@@ -42,6 +42,6 @@ export function BookRouter() {
             {YuanQuRouter()}
             {TangRouter()}
             {SongRouter()}
-        </Routes>
+        </>
     );
 }

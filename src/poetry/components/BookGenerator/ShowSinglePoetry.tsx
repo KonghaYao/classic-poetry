@@ -1,8 +1,8 @@
 import { Divider, Space, Tag } from "@arco-design/web-react";
 import { FC, useMemo } from "react";
-import { PoetryHeader } from "./PoetryHeader";
-import { TextPreProcess } from "../utils/TextPreProcess";
-import { useSetting } from "../../Setting";
+import { PoetryHeader } from "../PoetryHeader";
+import { TextPreProcess } from "../../utils/TextPreProcess";
+import { useSetting } from "../../../Setting";
 import "./ShowSinglePoetry.css";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({

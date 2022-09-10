@@ -44,6 +44,10 @@ body[arco-theme="dark"] {
         color: var(--color-text-1);
     }
 }
+.box{
+    height: 100%;
+    width: 100%;
+}
 .absolute-bg {
     position: absolute;
     top: 0;

@@ -4,19 +4,8 @@ import { Layout } from "@arco-design/web-react";
 import React, { FC, useMemo } from "react";
 import { useSetting } from "./Setting";
 import { BookRouter } from "./BookRouter";
-import { SwitchTransition, CSSTransition } from "react-transition-group";
-const SwitchAnimation: FC<{ children?: React.ReactNode }> = (props) => {
-    return (
-        <SwitchTransition mode="out-in">
-            <CSSTransition
-                timeout={2000}
-                classNames="fade"
-                key={location.pathname}>
-                {props.children}
-            </CSSTransition>
-        </SwitchTransition>
-    );
-};
+import { AnimatedRoutes, useAnimatedRoutes } from "react-animated-router";
+
 function App() {
     const { setting } = useSetting();
     const fontSize = useMemo(() => {
@@ -26,14 +15,14 @@ function App() {
         return setting.text.letterSpacing + "em";
     }, [setting]);
     return (
-        <Layout className="App" style={{ height: "100vh" }}>
-            <Layout.Header
+        <section className="App box-col" style={{ height: "100vh" }}>
+            <header
                 style={{
                     zIndex: 10,
                 }}>
                 <TopMenu></TopMenu>
-            </Layout.Header>
-            <Layout.Content
+            </header>
+            <main
                 style={{
                     fontSize,
                     letterSpacing,
@@ -54,10 +43,12 @@ function App() {
                         width: "100%",
                         zIndex: "-1",
                     }}></div>
-                <SwitchAnimation>{BookRouter()}</SwitchAnimation>
-            </Layout.Content>
+                <AnimatedRoutes className="box box-col" appear>
+                    {BookRouter()}
+                </AnimatedRoutes>
+            </main>
             {/* <Layout.Footer>Footer</Layout.Footer> */}
-        </Layout>
+        </section>
     );
 }
 
