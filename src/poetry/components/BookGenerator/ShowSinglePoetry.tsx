@@ -8,6 +8,7 @@ import { History } from "../../../History";
 import { useSearchParams } from "react-router-dom";
 import { useMount } from "ahooks";
 import { RestTime } from "../../utils/RestTime";
+import { debounce, throttle } from "lodash";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string; name: string }> = ({
     index,
@@ -15,15 +16,18 @@ const SingleRow: FC<{ index: number; content: string; name: string }> = ({
     name,
 }) => {
     let [searchParams, setSearchParams] = useSearchParams();
-
+    const RecordMe = () => {
+        searchParams.set("position", index.toString());
+        setSearchParams(searchParams);
+        History.add(name);
+    };
     return (
         <nav
             className="single-content box-row long-list-item"
-            onClick={() => {
-                searchParams.set("position", index.toString());
-                setSearchParams(searchParams);
-                History.add(name);
-            }}>
+            onPointerDown={RecordMe}
+            onPointerMove={debounce(() => {
+                RecordMe();
+            }, 500)}>
             <span className="poetry-index">{index + 1}</span>
             <div className="poetry-text" style={{ fontSize: "1em" }}>
                 {TextPreProcess(content)}
