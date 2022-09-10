@@ -1,14 +1,14 @@
 import { Empty } from "@arco-design/web-react";
-import { IconLoading } from "@arco-design/web-react/icon";
+import { IconClose } from "@arco-design/web-react/icon";
+import { FC } from "react";
 
-export const Loading = () => {
+export const ErrorMessage: FC<{ message?: string }> = (props) => {
     return (
         <Empty
-            className="box"
             icon={
                 <div
                     style={{
-                        background: "#f2994b",
+                        background: "var(--red-6)",
                         display: "inline-flex",
                         borderRadius: "50%",
                         width: 50,
@@ -18,10 +18,10 @@ export const Loading = () => {
                         color: "white",
                         justifyContent: "center",
                     }}>
-                    <IconLoading />
+                    <IconClose />
                 </div>
             }
-            description="加载数据中"
+            description={props.message || "数据加载错误了"}
         />
     );
 };

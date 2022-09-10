@@ -1,6 +1,5 @@
-import { Empty } from "@arco-design/web-react";
-import { IconClose } from "@arco-design/web-react/icon";
 import { useRequest } from "ahooks";
+import { ErrorMessage } from "./ErrorMessage";
 import { Loading } from "./Loading";
 
 /** 加载数据的一个组件，带有回馈信息 */
@@ -21,27 +20,7 @@ export const Requester = function <T, E = T>(props: {
     return (
         <>
             {loading && <Loading></Loading>}
-            {error && (
-                <Empty
-                    icon={
-                        <div
-                            style={{
-                                background: "var(--red-6)",
-                                display: "inline-flex",
-                                borderRadius: "50%",
-                                width: 50,
-                                height: 50,
-                                fontSize: 30,
-                                alignItems: "center",
-                                color: "white",
-                                justifyContent: "center",
-                            }}>
-                            <IconClose />
-                        </div>
-                    }
-                    description="数据加载错误了"
-                />
-            )}
+            {error && <ErrorMessage></ErrorMessage>}
             {!error &&
                 !loading &&
                 props.element(
