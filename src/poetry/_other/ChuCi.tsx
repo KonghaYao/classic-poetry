@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
+import { Route } from "react-router-dom";
 type SingleData = {
     title: string;
     section: string;
@@ -31,3 +32,9 @@ export const ChuCi: FC = () => {
 export const ChuCiIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const ChuCiRouter = () => (
+    <>
+        <Route path="/chuci" element={<ChuCiIndex />}></Route>
+        <Route path="/chuci/:poetryId" element={<ChuCi />}></Route>
+    </>
+);

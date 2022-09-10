@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
+import { Route } from "react-router-dom";
 type SingleData = {
     title: string;
     paragraphs: string[];
@@ -25,3 +26,9 @@ export const CaoCaoShiJi: FC = () => {
 export const CaoCaoShiJiIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const CaoCaoShiJiRouter = () => (
+    <>
+        <Route path="/caocaoshiji" element={<CaoCaoShiJiIndex />}></Route>
+        <Route path="/caocaoshiji/:poetryId" element={<CaoCaoShiJi />}></Route>
+    </>
+);

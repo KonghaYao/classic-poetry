@@ -1,10 +1,22 @@
 import { TopMenu } from "./App/TopMenu";
 import "./App.css";
 import { Layout } from "@arco-design/web-react";
-import { useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { useSetting } from "./Setting";
 import { BookRouter } from "./BookRouter";
-
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+const SwitchAnimation: FC<{ children?: React.ReactNode }> = (props) => {
+    return (
+        <SwitchTransition mode="out-in">
+            <CSSTransition
+                timeout={2000}
+                classNames="fade"
+                key={location.pathname}>
+                {props.children}
+            </CSSTransition>
+        </SwitchTransition>
+    );
+};
 function App() {
     const { setting } = useSetting();
     const fontSize = useMemo(() => {
@@ -42,7 +54,7 @@ function App() {
                         width: "100%",
                         zIndex: "-1",
                     }}></div>
-                {BookRouter()}
+                <SwitchAnimation>{BookRouter()}</SwitchAnimation>
             </Layout.Content>
             {/* <Layout.Footer>Footer</Layout.Footer> */}
         </Layout>

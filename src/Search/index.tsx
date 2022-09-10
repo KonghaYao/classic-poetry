@@ -1,6 +1,6 @@
 import { Trigger } from "@arco-design/web-react";
-import { FC } from "react";
-// TODO 这个库太大了
+import { FC, useRef, useState } from "react";
+// fixed: 整个区块的样式被异步加载了
 import {
     InstantSearch,
     SearchBox as SSearchBox,
@@ -12,15 +12,14 @@ import { useNavigate } from "react-router-dom";
 const _SearchBox: FC = () => {
     // TODO 搜索次数太多了
     const searchClient = (globalThis as any).instantMeiliSearch(
-        "http://localhost:7700",
-        "KongHaYaoForChinesePoetry",
+        __Search_Origin__,
+        __Search_Key__,
         {
-            paginationTotalHits: 10, // default: 200.
-            placeholderSearch: false, // default: true.
-            primaryKey: "id", // default: undefined
+            paginationTotalHits: 10,
+            placeholderSearch: false,
+            primaryKey: "id",
         }
     );
-
     return (
         <>
             <InstantSearch indexName="poetry" searchClient={searchClient}>
@@ -29,6 +28,7 @@ const _SearchBox: FC = () => {
                         popup={() => <Panel></Panel>}
                         trigger={["hover", "focus"]}
                         blurToHide={false}>
+                        {/* 官方组件没有 debounce ，所以需要自己重写代码 */}
                         <SSearchBox />
                     </Trigger>
                 </nav>

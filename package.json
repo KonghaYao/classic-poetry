@@ -24,9 +24,9 @@
         "pangu": "^4.0.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-instantsearch-dom": "^6.32.1",
         "react-instantsearch-hooks-web": "^6.32.1",
         "react-router-dom": "6",
+        "react-transition-group": "^4.4.5",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
@@ -35,6 +35,7 @@
         "@types/react": "^18.0.17",
         "@types/react-dom": "^18.0.6",
         "@types/react-instantsearch-dom": "^6.12.3",
+        "@types/react-transition-group": "^4.4.5",
         "@vitejs/plugin-react": "^2.0.1",
         "autoprefixer": "^10.4.8",
         "cross-env": "^7.0.3",

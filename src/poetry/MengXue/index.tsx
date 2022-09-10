@@ -5,6 +5,7 @@ import {
     IndexPageOrigin,
     ObjectProvider,
 } from "../components/BookGenerator";
+import { Route } from "react-router-dom";
 
 export type FetchData = ObjectProvider[];
 
@@ -134,3 +135,9 @@ export const MengXue: FC = () => {
 export const MengXueIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const MengXueRouter = () => (
+    <>
+        <Route path="/mengxue" element={<MengXueIndex />}></Route>
+        <Route path="/mengxue/:poetryId" element={<MengXue />}></Route>
+    </>
+);

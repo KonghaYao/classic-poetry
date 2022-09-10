@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
+import { Route } from "react-router-dom";
 type SingleData = {
     author: string;
     dynasty: string;
@@ -28,3 +29,9 @@ export const YuanQu: FC = () => {
 export const YuanQuIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const YuanQuRouter = () => (
+    <>
+        <Route path="/yuanqu" element={<YuanQuIndex />}></Route>
+        <Route path="/yuanqu/:poetryId" element={<YuanQu />}></Route>
+    </>
+);

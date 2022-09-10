@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator/index";
+import { Route } from "react-router-dom";
 type SingleData = {
     chapter: string;
     title: string;
@@ -25,10 +26,16 @@ const info = {
     adapter,
     getData,
 };
-export const ShiJing: FC = () => {
+const ShiJing: FC = () => {
     return <CommonBook {...info}></CommonBook>;
 };
 
-export const ShiJingIndex: FC = () => {
+const ShiJingIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const ShiJingRouter = () => (
+    <>
+        <Route path="/shijing" element={<ShiJingIndex />}></Route>
+        <Route path="/shijing/:poetryId" element={<ShiJing />}></Route>
+    </>
+);

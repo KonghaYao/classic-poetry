@@ -8,6 +8,7 @@ specifiers:
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
   '@types/react-instantsearch-dom': ^6.12.3
+  '@types/react-transition-group': ^4.4.5
   '@vitejs/plugin-react': ^2.0.1
   ahooks: ^3.7.0
   autoprefixer: ^10.4.8
@@ -24,9 +25,9 @@ specifiers:
   pangu: ^4.0.7
   react: ^18.2.0
   react-dom: ^18.2.0
-  react-instantsearch-dom: ^6.32.1
   react-instantsearch-hooks-web: ^6.32.1
   react-router-dom: '6'
+  react-transition-group: ^4.4.5
   rollup-plugin-visualizer: ^5.8.1
   typescript: ^4.6.4
   uuid: ^9.0.0
@@ -47,9 +48,9 @@ dependencies:
   pangu: 4.0.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-instantsearch-dom: 6.32.1_biqbaboplfbrettd7655fr4n2y
   react-instantsearch-hooks-web: 6.32.1_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
+  react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
   uuid: 9.0.0
 
 devDependencies:
@@ -58,6 +59,7 @@ devDependencies:
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
   '@types/react-instantsearch-dom': 6.12.3
+  '@types/react-transition-group': 4.4.5
   '@vitejs/plugin-react': 2.0.1_vite@3.0.9
   autoprefixer: 10.4.8
   cross-env: 7.0.3
@@ -591,6 +593,12 @@ packages:
     dependencies:
       '@types/react': 18.0.18
       '@types/react-instantsearch-core': 6.26.2
+    dev: true
+
+  /@types/react-transition-group/4.4.5:
+    resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
+    dependencies:
+      '@types/react': 18.0.18
     dev: true
 
   /@types/react/18.0.18:
@@ -1573,10 +1581,6 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-fast-compare/3.2.0:
-    resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
-    dev: false
-
   /react-focus-lock/2.9.1_7v64pk2mkrohwh22gx7lrz5ive:
     resolution: {integrity: sha512-pSWOQrUmiKLkffPO6BpMXN7SNKXMsuOakl652IBuALAu1esk+IcpJyM+ALcYzPTTFz1rD0R54aB9A4HuP5t1Wg==}
     peerDependencies:
@@ -1594,36 +1598,6 @@ packages:
       react-clientside-effect: 1.2.6_react@18.2.0
       use-callback-ref: 1.3.0_7v64pk2mkrohwh22gx7lrz5ive
       use-sidecar: 1.1.2_7v64pk2mkrohwh22gx7lrz5ive
-    dev: false
-
-  /react-instantsearch-core/6.32.1_react@18.2.0:
-    resolution: {integrity: sha512-R8VivvJmFemsW6Urp5KGiqjVZ8XkgYNm8qt6t9WVHXOoo7B8Txi/7yOMNRwT8PWNWBMpYlYMEWZ9PClMuX0Zsg==}
-    peerDependencies:
-      algoliasearch: '>= 3.1 < 5'
-      react: '>= 16.3.0 < 19'
-    dependencies:
-      '@babel/runtime': 7.18.9
-      algoliasearch-helper: 3.11.0
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-fast-compare: 3.2.0
-    dev: false
-
-  /react-instantsearch-dom/6.32.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-oditYXY6zNbAY6txhGBLOPaEie95Eii+nCEgysuoo4fnOQDUxuHXMruiTkYJlfJJ5HAKBJyTdjtKoGeuJL6G1w==}
-    peerDependencies:
-      algoliasearch: '>= 3.1 < 5'
-      react: '>= 16.3.0 < 19'
-      react-dom: '>= 16.3.0 < 19'
-    dependencies:
-      '@babel/runtime': 7.18.9
-      algoliasearch-helper: 3.11.0
-      classnames: 2.3.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-fast-compare: 3.2.0
-      react-instantsearch-core: 6.32.1_react@18.2.0
     dev: false
 
   /react-instantsearch-hooks-web/6.32.1_biqbaboplfbrettd7655fr4n2y:

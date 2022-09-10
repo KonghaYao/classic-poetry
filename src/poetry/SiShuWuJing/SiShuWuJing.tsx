@@ -2,7 +2,7 @@ import { FC } from "react";
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
 import { Grid, Menu } from "@arco-design/web-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 
 type SingleData = { chapter: string; paragraphs: string[] };
 export type FetchData = SingleData[];
@@ -28,7 +28,7 @@ const ExtraLink = [
         to: "/lunyu",
     },
 ];
-export const SiShuWuJing: FC = () => {
+const SiShuWuJing: FC = () => {
     return (
         <CommonBook
             ExtraLink={ExtraLink.map((i) => {
@@ -42,7 +42,7 @@ export const SiShuWuJing: FC = () => {
     );
 };
 
-export const SiShuWuJingIndex: FC = () => {
+const SiShuWuJingIndex: FC = () => {
     return (
         <IndexPageOrigin
             {...info}
@@ -66,3 +66,9 @@ export const SiShuWuJingIndex: FC = () => {
             })}></IndexPageOrigin>
     );
 };
+export const SiShuWuJingRouter = () => (
+    <>
+        <Route path="/sishuwujing" element={<SiShuWuJingIndex />}></Route>
+        <Route path="/sishuwujing/:poetryId" element={<SiShuWuJing />}></Route>
+    </>
+);

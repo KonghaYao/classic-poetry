@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator/index";
+import { Route } from "react-router-dom";
 type SingleData = {
     title: string;
     author: string;
@@ -22,10 +23,16 @@ const info = {
         );
     },
 };
-export const NaLanXingDe: FC = () => {
+const NaLanXingDe: FC = () => {
     return <CommonBook {...info}></CommonBook>;
 };
 
-export const NaLanXingDeIndex: FC = () => {
+const NaLanXingDeIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const NaLanXingDeRouter = () => (
+    <>
+        <Route path="/nalanxingde" element={<NaLanXingDeIndex />}></Route>
+        <Route path="/nalanxingde/:poetryId" element={<NaLanXingDe />}></Route>
+    </>
+);

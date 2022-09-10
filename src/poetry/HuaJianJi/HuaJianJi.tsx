@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
+import { Route } from "react-router-dom";
 type SingleData = {
     rhythmic: string;
     title: string;
@@ -28,10 +29,16 @@ const info = {
         return Promise.all(all).then((res) => res.flat() as FetchData);
     },
 };
-export const HuaJianJi: FC = () => {
+const HuaJianJi: FC = () => {
     return <CommonBook {...info}></CommonBook>;
 };
 
-export const HuaJianJiIndex: FC = () => {
+const HuaJianJiIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const HuaJianJiRouter = () => (
+    <>
+        <Route path="/huajianji" element={<HuaJianJiIndex />}></Route>
+        <Route path="/huajianji/:poetryId" element={<HuaJianJi />}></Route>
+    </>
+);

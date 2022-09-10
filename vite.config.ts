@@ -22,6 +22,10 @@ export default defineConfig(({ mode }) => ({
             ? visualizer({ open: true, filename: "visualizer/stat.html" })
             : false,
     ],
+    define: {
+        __Search_Origin__: JSON.stringify("http://localhost:7700"),
+        __Search_Key__: JSON.stringify("KongHaYaoForChinesePoetry"),
+    },
     resolve: {
         alias: Object.assign(
             {

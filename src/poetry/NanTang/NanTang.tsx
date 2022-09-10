@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator";
+import { Route } from "react-router-dom";
 type SingleData = {
     title: string;
     author: string;
@@ -30,3 +31,9 @@ export const NanTang: FC = () => {
 export const NanTangIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const NanTangRouter = () => (
+    <>
+        <Route path="/nantang" element={<NanTangIndex />}></Route>
+        <Route path="/nantang/:poetryId" element={<NanTang />}></Route>
+    </>
+);

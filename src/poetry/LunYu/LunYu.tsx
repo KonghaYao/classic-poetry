@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { BookStore } from "../utils/BookStore";
 import { CommonBook, IndexPageOrigin } from "../components/BookGenerator/index";
+import { Route } from "react-router-dom";
 type SingleData = {
     chapter: string;
     paragraphs: string[];
@@ -18,10 +19,16 @@ const info = {
         return BookStore.getBook("lunyu/lunyu.json");
     },
 };
-export const LunYu: FC = () => {
+const LunYu: FC = () => {
     return <CommonBook {...info}></CommonBook>;
 };
 
-export const LunYuIndex: FC = () => {
+const LunYuIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const LunYuRouter = () => (
+    <>
+        <Route path="/lunyu" element={<LunYuIndex />}></Route>
+        <Route path="/lunyu/:poetryId" element={<LunYu />}></Route>
+    </>
+);

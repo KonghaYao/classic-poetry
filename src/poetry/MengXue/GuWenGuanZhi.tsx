@@ -6,6 +6,7 @@ import {
     IndexPageOrigin,
     ObjectProvider,
 } from "../components/BookGenerator/index";
+import { Route } from "react-router-dom";
 type SingleData = {
     chapter: string;
     source: string;
@@ -44,3 +45,11 @@ export const GuWenGuanZhi: FC = () => {
 export const GuWenGuanZhiIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const GuWenGuanZhiRouter = () => (
+    <>
+        <Route path="/guwenguanzhi" element={<GuWenGuanZhiIndex />}></Route>
+        <Route
+            path="/guwenguanzhi/:poetryId"
+            element={<GuWenGuanZhi />}></Route>
+    </>
+);

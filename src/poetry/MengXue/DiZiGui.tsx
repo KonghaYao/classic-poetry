@@ -6,6 +6,7 @@ import {
     IndexPageOrigin,
     ObjectProvider,
 } from "../components/BookGenerator/index";
+import { Route } from "react-router-dom";
 type SingleData = {
     chapter: string;
     paragraphs: string[];
@@ -32,10 +33,16 @@ const info = {
         );
     },
 };
-export const DiZiGui: FC = () => {
+const DiZiGui: FC = () => {
     return <CommonBook {...info}></CommonBook>;
 };
 
-export const DiZiGuiIndex: FC = () => {
+const DiZiGuiIndex: FC = () => {
     return <IndexPageOrigin {...info}></IndexPageOrigin>;
 };
+export const DiZiGuiRouter = () => (
+    <>
+        <Route path="/dizigui" element={<DiZiGuiIndex />}></Route>
+        <Route path="/dizigui/:poetryId" element={<DiZiGui />}></Route>
+    </>
+);
