@@ -21,8 +21,6 @@ import { SongRouter } from "./poetry/Song/Song";
 export function BookRouter() {
     return (
         <>
-            <Route path="/" element={<Home />}></Route>
-
             {/* 诗集均为同步导入，因为太小了 */}
             {/* 论语*/ LunYuRouter()}
             {/* 四书五经*/ SiShuWuJingRouter()}

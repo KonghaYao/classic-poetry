@@ -1,11 +1,11 @@
-import { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { Avatar, Button, Menu, Space, Tooltip } from "@arco-design/web-react";
-import { FontChange } from "./FontChange";
 import { ThemeChange } from "./ThemeChange";
 import { useSetting } from "../Setting";
 import { IconSettings } from "@arco-design/web-react/icon";
 import { useNavigate } from "react-router-dom";
 import { SearchBox } from "../Search/SearchBox";
+import { HistoryController } from "../History/Pannel";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { init, server } = useSetting();
@@ -47,6 +47,7 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                         }}
                     />
                 </div>
+                <HistoryController></HistoryController>
                 <Tooltip content="这个是辛苦劳累的作者">
                     <a
                         href="https://github.com/KonghaYao/classic-poetry"

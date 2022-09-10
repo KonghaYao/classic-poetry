@@ -1,13 +1,16 @@
 import { TopMenu } from "./App/TopMenu";
 import "./App.css";
-import { Layout } from "@arco-design/web-react";
 import React, { FC, useMemo } from "react";
 import { useSetting } from "./Setting";
 import { BookRouter } from "./BookRouter";
 import { AnimatedRoutes, useAnimatedRoutes } from "react-animated-router";
+import { Route } from "react-router-dom";
+import { Home } from "./Home/Home";
+import { useHistory } from "./History";
 
 function App() {
     const { setting } = useSetting();
+    useHistory();
     const fontSize = useMemo(() => {
         return setting.text.fontSize + "px";
     }, [setting]);
@@ -23,28 +26,19 @@ function App() {
                 <TopMenu></TopMenu>
             </header>
             <main
+                className="box-row box"
                 style={{
                     fontSize,
                     letterSpacing,
-                    display: "flex",
-                    height: "100%",
-                    width: "100%",
                     overflow: "hidden",
                     position: "relative",
                 }}>
                 {/* 噪声背景图 */}
-                <div
-                    className="noise"
-                    style={{
-                        position: "absolute",
-                        top: "0",
-                        left: "0",
-                        height: "100%",
-                        width: "100%",
-                        zIndex: "-1",
-                    }}></div>
+                <div className="noise-bg noise "></div>
                 <AnimatedRoutes className="box box-col" appear>
+                    <Route path="/" element={<Home />}></Route>
                     {BookRouter()}
+                    <Route path="*" element={<Home />} />
                 </AnimatedRoutes>
             </main>
             {/* <Layout.Footer>Footer</Layout.Footer> */}

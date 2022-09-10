@@ -4,6 +4,7 @@ import { PoetryHeader } from "../PoetryHeader";
 import { TextPreProcess } from "../../utils/TextPreProcess";
 import { useSetting } from "../../../Setting";
 import "./ShowSinglePoetry.css";
+import { History } from "../../../History";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string }> = ({
     index,
@@ -48,6 +49,7 @@ export type PageInfo = {
     footer?: JSX.Element;
 };
 export const ShowSinglePoetry: FC<PageInfo> = (props) => {
+    History.add(props.title);
     const textCount = props.content.reduce((col, cur) => {
         const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
         return col + m.length;

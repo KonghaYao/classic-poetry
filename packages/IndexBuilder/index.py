@@ -15,10 +15,17 @@ import os, sys
  
 dirs = os.listdir( './json' )
 print("共",len(dirs))
+index.update_filterable_attributes([
+    'belongTo',
+])
+index.update_ranking_rules([
+    'author',
+    'title',
+    'content',
+])
 # 输出所有文件和文件夹
 for path in dirs:
     file =open('./json/'+path,encoding='utf-8')
 
     print('读取文件完毕',path)
     index.add_documents(json.load(file),'id')
-    
