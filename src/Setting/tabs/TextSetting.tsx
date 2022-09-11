@@ -83,6 +83,16 @@ export const TextSetting: FC<{}> = () => {
                     options={["默认", "简体", "繁体"]}></Radio.Group>
                 <Hint message="为保证阅读的流畅度，可以将古文中的简繁体进行切换"></Hint>
             </Form.Item>
+            <Form.Item label="文本排列">
+                <Radio.Group
+                    type="button"
+                    defaultValue={setting.theme.cnList}
+                    onChange={(label) => {
+                        server.emit("change", { theme: { cnList: label } });
+                    }}
+                    options={["竖排", "横排"]}></Radio.Group>
+                <Hint message="古文竖排的效果好"></Hint>
+            </Form.Item>
         </Form>
     );
 };

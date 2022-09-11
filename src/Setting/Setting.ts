@@ -13,13 +13,14 @@ export const SettingServer = mitt<SettingEvent>();
 SettingServer.on("change", (setting) => {
     // merge 方式
     merge(Setting, setting);
-    console.log(Setting);
+    // console.log(Setting);
     localStorage.setItem("system-setting", JSON.stringify(Setting));
 });
 export const Setting = {
     theme: {
         base: "auto",
         cnCase: "默认", // 中英文简繁体
+        cnList: "横排",
     },
     text: {
         fontSize: 18,

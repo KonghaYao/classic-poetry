@@ -21,7 +21,7 @@ const SingleBar: FC<{
                 flex: "1",
                 flexDirection: props.reverse ? "row-reverse" : "row",
                 border: "1px solid var(--color-border)",
-                margin: "2rem 1rem",
+                margin: "1rem 0.5rem",
                 cursor: "pointer",
                 padding: "1rem",
                 borderRadius: "8px",

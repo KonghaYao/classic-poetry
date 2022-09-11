@@ -89,9 +89,21 @@ body {
 
 
 ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+}
+.no-scroll ::-webkit-scrollbar {
     width: 0;
     height: 0;
     background-color: transparent;
+}
+::-webkit-scrollbar-corner{
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--color-text-1);
 }
 
 /* 首页印章图像 */

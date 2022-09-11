@@ -1,6 +1,7 @@
 .poetry-text {
     color: var(--book-text-color);
     transition: filter 0.3s;
+    text-indent: 2em;
 }
 .single-content:hover .poetry-text {
     filter: brightness(0.5);
@@ -16,6 +17,7 @@ body[arco-theme="dark"] .single-content:hover .poetry-text {
     background-color: var(--color-bg-4);
     border-radius: 4px;
     margin: 0 1rem;
+    writing-mode: horizontal-tb;
 }
 .single-content {
     align-items: center;

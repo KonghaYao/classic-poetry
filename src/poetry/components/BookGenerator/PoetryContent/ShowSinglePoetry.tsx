@@ -17,6 +17,8 @@ const SingleRow: FC<{ index: number; content: string; name: string }> = ({
     content,
     name,
 }) => {
+    const { setting } = useSetting();
+    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
     let [searchParams, setSearchParams] = useSearchParams();
     const RecordMe = () => {
         searchParams.set("position", index.toString());
@@ -25,7 +27,9 @@ const SingleRow: FC<{ index: number; content: string; name: string }> = ({
     };
     return (
         <nav
-            className="single-content box-row long-list-item"
+            className={`single-content box-row ${
+                direction ? "" : "long-list-item"
+            }`}
             onPointerDown={RecordMe}
             onPointerMove={debounce(() => {
                 RecordMe();
@@ -69,6 +73,7 @@ export type PageInfo = {
 
 export const ShowSinglePoetry: FC = () => {
     const { setting } = useSetting();
+    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
     const fontWeight = useMemo(() => setting.text.fontWeight, [setting]);
     return (
         <BookContext.Consumer>
@@ -76,10 +81,13 @@ export const ShowSinglePoetry: FC = () => {
                 const { matched } = info!;
                 return (
                     <div
-                        className="box-col content-max poetry-wrapper no-scroll"
+                        className={`box-col content-max poetry-wrapper ${
+                            direction ? "" : "no-scroll"
+                        }`}
                         style={{
                             margin: "auto",
-                            overflow: "hidden",
+                            overflowY: "hidden",
+                            overflowX: "visible",
                             height: "100%",
                             fontFamily: "var(--book-font-family)",
                             fontWeight,
@@ -89,17 +97,21 @@ export const ShowSinglePoetry: FC = () => {
                         <main
                             className="box-col poetry-content "
                             style={{
-                                overflow: "auto",
                                 flex: "1",
-                                padding: "2rem 1rem",
+                                padding: "1rem 1rem",
                                 alignItems: "center",
+
+                                overflow: "scroll",
+                                writingMode: direction
+                                    ? "vertical-rl"
+                                    : "horizontal-tb",
                             }}>
                             <PoetryContent {...info!}></PoetryContent>
                             {matched.notes && (
                                 <NotsShower notes={matched.notes}></NotsShower>
                             )}
-                            <PoetryFooter></PoetryFooter>
                         </main>
+                        <PoetryFooter></PoetryFooter>
                     </div>
                 );
             }}
@@ -129,9 +141,22 @@ export const PoetryContent: FC<BookContextType> = (props) => {
         await RestTime();
         toPosition();
     });
+
+    const { setting } = useSetting();
+    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
     // 单独诗句排版
     return (
-        <Space split={<Divider />} style={{ flex: "1" }} direction="vertical">
+        <Space
+            split={
+                <Divider
+                    type={direction ? "vertical" : "horizontal"}
+                    style={{ height: direction ? "100%" : "1em" }}
+                />
+            }
+            style={{
+                flex: "1",
+            }}
+            direction="vertical">
             {matched.content.map((i, index) => {
                 return (
                     <SingleRow
