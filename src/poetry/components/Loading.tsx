@@ -5,21 +5,27 @@ import { useNavigate } from "react-router-dom";
 export const Loading = () => {
     const nav = useNavigate();
     return (
-        <Result
-            status="404"
-            subTitle="没有发现文章哦"
+        <Empty
             className="box-col"
-            icon={<IconLoading fontSize={30} />}
             style={{ height: "100%", justifyContent: "center" }}
-            extra={
-                <Space>
-                    <Button onClick={() => nav(-1)} type="secondary">
-                        上一页
-                    </Button>
-                    <Button onClick={() => nav("/")} type="secondary">
-                        首页
-                    </Button>
+            icon={
+                <IconLoading
+                    spin
+                    color="var(--divide-gold)"
+                    fontSize={30}></IconLoading>
+            }
+            description={
+                <Space direction="vertical">
+                    <div>加载数据中，请稍等</div>
+                    <Space>
+                        <Button onClick={() => nav(-1)} type="secondary">
+                            上一页
+                        </Button>
+                        <Button onClick={() => nav("/")} type="secondary">
+                            首页
+                        </Button>
+                    </Space>
                 </Space>
-            }></Result>
+            }></Empty>
     );
 };

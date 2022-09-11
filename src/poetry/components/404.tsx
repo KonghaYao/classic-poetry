@@ -1,23 +1,24 @@
-import { Button, Result, Space } from "@arco-design/web-react";
+import { Button, Empty, Result, Space } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
 
 export const NotFound = () => {
     const nav = useNavigate();
     return (
-        <Result
-            status="404"
-            subTitle="没有发现文章哦"
+        <Empty
             className="box-col"
             style={{ height: "100%", justifyContent: "center" }}
-            extra={
-                <Space>
-                    <Button onClick={() => nav(-1)} type="secondary">
-                        上一页
-                    </Button>
-                    <Button onClick={() => nav("/")} type="secondary">
-                        首页
-                    </Button>
+            description={
+                <Space direction="vertical">
+                    <div>没有发现文章哦</div>
+                    <Space>
+                        <Button onClick={() => nav(-1)} type="secondary">
+                            上一页
+                        </Button>
+                        <Button onClick={() => nav("/")} type="secondary">
+                            首页
+                        </Button>
+                    </Space>
                 </Space>
-            }></Result>
+            }></Empty>
     );
 };

@@ -8,7 +8,7 @@ import { History } from "../../../../History";
 import { useSearchParams } from "react-router-dom";
 import { useMount } from "ahooks";
 import { RestTime } from "../../../utils/RestTime";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { BookContext, BookContextType } from "../BookContext";
 import { PoetryFooter } from "./PoetryFooter";
 /** 每一行诗句的排版 */

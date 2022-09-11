@@ -1,6 +1,5 @@
-import { Button, Modal, Tabs } from "@arco-design/web-react";
-import { FC, useState } from "react";
-import { useMount, useUnmount } from "ahooks";
+import { Button, Tabs } from "@arco-design/web-react";
+import { FC } from "react";
 import { IconClose } from "@arco-design/web-react/icon";
 import { SettingComponents } from "./SettingComponents";
 import "./Setting.css";

@@ -60,9 +60,7 @@ export function CommonBook<T>(
                                     overflow: "auto",
                                 }}>
                                 {/* 侧边栏 */}
-                                <SideBarWrapper
-                                    {...props}
-                                    data={data}></SideBarWrapper>
+                                <SideBarWrapper {...props}></SideBarWrapper>
                             </Layout.Sider>
                         </Layout>
                     </BookContext.Provider>
