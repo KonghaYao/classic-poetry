@@ -1,26 +1,23 @@
-import { Empty } from "@arco-design/web-react";
-import { IconClose } from "@arco-design/web-react/icon";
+import { Button, Result, Space } from "@arco-design/web-react";
+import { useNavigate } from "react-router-dom";
 
 export const NotFound = () => {
+    const nav = useNavigate();
     return (
-        <Empty
-            icon={
-                <div
-                    style={{
-                        background: "var(--red-6)",
-                        display: "inline-flex",
-                        borderRadius: "50%",
-                        width: 50,
-                        height: 50,
-                        fontSize: 30,
-                        alignItems: "center",
-                        color: "white",
-                        justifyContent: "center",
-                    }}>
-                    <IconClose />
-                </div>
-            }
-            description="404 没有发现文章"
-        />
+        <Result
+            status="404"
+            subTitle="没有发现文章哦"
+            className="box-col"
+            style={{ height: "100%", justifyContent: "center" }}
+            extra={
+                <Space>
+                    <Button onClick={() => nav(-1)} type="secondary">
+                        上一页
+                    </Button>
+                    <Button onClick={() => nav("/")} type="secondary">
+                        首页
+                    </Button>
+                </Space>
+            }></Result>
     );
 };

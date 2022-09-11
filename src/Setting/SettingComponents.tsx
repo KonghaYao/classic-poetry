@@ -1,5 +1,5 @@
 import { IconSettings } from "@arco-design/web-react/icon";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useSetting } from ".";
 import { SettingServer } from "./Setting";
 import { HistoryManager } from "./tabs/History";

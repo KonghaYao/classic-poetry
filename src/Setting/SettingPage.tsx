@@ -1,4 +1,4 @@
-import { Button, Tabs } from "@arco-design/web-react";
+import { Button, Modal, Tabs } from "@arco-design/web-react";
 import { FC, useState } from "react";
 import { useMount, useUnmount } from "ahooks";
 import { IconClose } from "@arco-design/web-react/icon";
@@ -6,27 +6,8 @@ import { SettingComponents } from "./SettingComponents";
 import "./Setting.css";
 import { SettingServer } from "./Setting";
 export const SettingPage: FC<{}> = () => {
-    const [visible, setVisible] = useState(false);
-
-    const changeVisible = (vis: boolean | undefined) => {
-        typeof vis === "boolean" ? setVisible(vis) : setVisible(!visible);
-    };
-    useMount(() => {
-        SettingServer.on("toggle", changeVisible);
-    });
-    useUnmount(() => {
-        SettingServer.off("toggle", changeVisible);
-    });
-
     return (
-        <div
-            className="setting-screen"
-            style={{
-                display: visible ? "flex" : "none",
-            }}>
-            <div
-                className="absolute-bg"
-                onClick={() => SettingServer.emit("toggle", false)}></div>
+        <div className="setting-screen">
             <div className="content-max setting-card box-col">
                 <Tabs
                     type="capsule"

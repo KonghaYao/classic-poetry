@@ -1,27 +1,25 @@
-import { Empty } from "@arco-design/web-react";
+import { Button, Empty, Result, Space } from "@arco-design/web-react";
 import { IconLoading } from "@arco-design/web-react/icon";
+import { useNavigate } from "react-router-dom";
 
 export const Loading = () => {
+    const nav = useNavigate();
     return (
-        <Empty
-            className="box"
-            icon={
-                <div
-                    style={{
-                        background: "#f2994b",
-                        display: "inline-flex",
-                        borderRadius: "50%",
-                        width: 50,
-                        height: 50,
-                        fontSize: 30,
-                        alignItems: "center",
-                        color: "white",
-                        justifyContent: "center",
-                    }}>
-                    <IconLoading />
-                </div>
-            }
-            description="加载数据中"
-        />
+        <Result
+            status="404"
+            subTitle="没有发现文章哦"
+            className="box-col"
+            icon={<IconLoading fontSize={30} />}
+            style={{ height: "100%", justifyContent: "center" }}
+            extra={
+                <Space>
+                    <Button onClick={() => nav(-1)} type="secondary">
+                        上一页
+                    </Button>
+                    <Button onClick={() => nav("/")} type="secondary">
+                        首页
+                    </Button>
+                </Space>
+            }></Result>
     );
 };

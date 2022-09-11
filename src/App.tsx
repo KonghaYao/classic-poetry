@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
+import { NotFound } from "./poetry/components/404";
 
 function App() {
     const { setting } = useSetting();
@@ -44,7 +45,7 @@ function App() {
                 <AnimatedRoutes className="box box-col" appear>
                     <Route path="/" element={<Home />}></Route>
                     {BookRouter()}
-                    <Route path="*" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
                 </AnimatedRoutes>
             </main>
             {/* <Layout.Footer>Footer</Layout.Footer> */}
