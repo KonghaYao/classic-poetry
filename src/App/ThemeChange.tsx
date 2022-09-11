@@ -11,12 +11,7 @@ const useAutoTheme = () => {
         document.body.setAttribute("arco-theme", type);
         _setTheme(type);
     };
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    darkThemeMq.addEventListener("change", (e) => {
-        e.matches
-            ? document.body.setAttribute("arco-theme", "dark")
-            : document.body.removeAttribute("arco-theme");
-    });
+
     return {
         theme,
 
