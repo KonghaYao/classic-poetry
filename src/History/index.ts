@@ -19,8 +19,10 @@ class HistoryCache {
         console.log("开始记录你的历史");
     }
     checkState() {
-        this.cache[0].endTime = this.timeTag();
-        this.writeBack();
+        if (this.cache[0]) {
+            this.cache[0].endTime = this.timeTag();
+            this.writeBack();
+        }
     }
     add(name: string) {
         if (!Setting.poetry.history.enable) return false;

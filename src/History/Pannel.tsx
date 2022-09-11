@@ -6,7 +6,6 @@ export const HistoryController = () => {
     return (
         <Trigger
             popup={() => <HistoryPanel />}
-            alignPoint
             position="bl"
             popupAlign={{
                 bottom: 8,

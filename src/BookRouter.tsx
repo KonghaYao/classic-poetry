@@ -1,5 +1,3 @@
-import { Route, Routes } from "react-router-dom";
-import { Home } from "./Home/Home";
 import { LunYuRouter } from "./poetry/LunYu/LunYu";
 import { ShiJingRouter } from "./poetry/ShiJing/ShiJing";
 import { SiShuWuJingRouter } from "./poetry/SiShuWuJing/SiShuWuJing";
@@ -21,25 +19,25 @@ import { SongRouter } from "./poetry/Song/Song";
 export function BookRouter() {
     return (
         <>
-            {/* 诗集均为同步导入，因为太小了 */}
-            {/* 论语*/ LunYuRouter()}
-            {/* 四书五经*/ SiShuWuJingRouter()}
-            {ShiJingRouter()}
-            {HuaJianJiRouter()}
-
-            {NanTangRouter()}
-            {NaLanXingDeRouter()}
-            {MengXueRouter()}
-            {YouXueQiongLinRouter()}
-            {DiZiGuiRouter()}
-            {QianJiaShiRouter()}
-            {GuWenGuanZhiRouter()}
-            {TangShiSanBaiShouRouter()}
-            {CaoCaoShiJiRouter()}
-            {ChuCiRouter()}
-            {YuanQuRouter()}
-            {TangRouter()}
-            {SongRouter()}
+            {[
+                LunYuRouter,
+                SiShuWuJingRouter,
+                ShiJingRouter,
+                HuaJianJiRouter,
+                NanTangRouter,
+                NaLanXingDeRouter,
+                MengXueRouter,
+                YouXueQiongLinRouter,
+                DiZiGuiRouter,
+                QianJiaShiRouter,
+                GuWenGuanZhiRouter,
+                TangShiSanBaiShouRouter,
+                CaoCaoShiJiRouter,
+                ChuCiRouter,
+                YuanQuRouter,
+                TangRouter,
+                SongRouter,
+            ].map((i) => i())}
         </>
     );
 }

@@ -10,7 +10,7 @@ export const TextSetting: FC<{}> = () => {
     const { setting, server } = useSetting();
     return (
         <Form>
-            <Form.Item label="全局字体种类">
+            <Form.Item label="字体种类">
                 <FontChange />
                 <Hint message="请稍等几秒钟加载字体"></Hint>
             </Form.Item>
@@ -33,7 +33,7 @@ export const TextSetting: FC<{}> = () => {
                     })}
                 </Select>
             </Form.Item>
-            <Form.Item label="正文字体大小">
+            <Form.Item label="字体大小">
                 <InputNumber
                     mode="button"
                     defaultValue={Setting.text.fontSize}
@@ -70,7 +70,7 @@ export const TextSetting: FC<{}> = () => {
                     }}
                     options={["light", "dark", "auto"]}></Radio.Group>
             </Form.Item>
-            <Form.Item label="中文繁简体转换">
+            <Form.Item label="繁简转换">
                 <Radio.Group
                     type="button"
                     defaultValue={setting.theme.cnCase}
