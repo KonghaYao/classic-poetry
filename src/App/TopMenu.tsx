@@ -1,13 +1,17 @@
-import React, { FunctionComponent, Suspense, useState } from "react";
-import { Avatar, Tooltip } from "@arco-design/web-react";
+import { FunctionComponent } from "react";
+import { Space } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
 import { SearchBox } from "../Search/SearchBox";
 import { useSlot } from "../Server";
+import { useUnmount } from "ahooks";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
-    const { slots } = useSlot({ position: "header-right" });
+    const { slots, destroy } = useSlot({ position: "header-right" });
 
     const nav = useNavigate();
+    useUnmount(() => {
+        destroy();
+    });
     return (
         <nav
             className="box-row"
@@ -26,28 +30,16 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
             </div>
             <div style={{ flex: "1" }}></div>
             <SearchBox></SearchBox>
-            <nav
-                className="box-row"
+            <Space
+                align="center"
+                size="medium"
                 style={{
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    width: "9rem",
                     fontSize: "1.3rem",
                 }}>
-                {slots.map((Temp) => (
-                    <Temp key={(Temp as any).id} />
-                ))}
-
-                <Tooltip content="这个是辛苦劳累的作者">
-                    <a
-                        href="https://github.com/KonghaYao/classic-poetry"
-                        target="_blank">
-                        <Avatar size={32}>
-                            <img alt="avatar" src="/avatar.png" />
-                        </Avatar>
-                    </a>
-                </Tooltip>
-            </nav>
+                {slots.map((Temp) => {
+                    return <Temp key={(Temp as any).id} />;
+                })}
+            </Space>
         </nav>
     );
 };

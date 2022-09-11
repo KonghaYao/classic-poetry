@@ -1,10 +1,10 @@
 import { useServer } from "..";
-import { ThemeChange } from "../../App/ThemeChange";
+import { HistoryController } from "../../History/Pannel";
 
 export const applyHistoryRun = () => {
     useServer().register({
         id: "history-run",
         position: "header-right",
-        component: ThemeChange,
+        component: HistoryController,
     });
 };
