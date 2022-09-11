@@ -1,12 +1,13 @@
 import { Layout } from "@arco-design/web-react";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { PageInfo, ShowSinglePoetry } from "./ShowSinglePoetry";
+import { PageInfo, ShowSinglePoetry } from "./PoetryContent/ShowSinglePoetry";
 import { NotFound } from "../404";
-import { PoetryFooter } from "../PoetryFooter";
-import { SideBarInner, SideBarProps } from "./SideBarInner";
+import { PoetryFooter } from "./PoetryContent/PoetryFooter";
+import { SideBarWrapper, SideBarProps } from "./SideBar/SideBarInner";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { Tagger, wrapAdapter } from "./Tagger";
+import { BookContext } from "./BookContext";
 
 export type ObjectProvider = Omit<PageInfo, "footer">;
 export type InnerObjectType = ObjectProvider & { tag: string };
@@ -35,50 +36,36 @@ export function CommonBook<T>(
                 const poetry = data[poetryIndex];
 
                 const Content = poetry ? (
-                    <ShowSinglePoetry
-                        root={props.root}
-                        title={poetry.title}
-                        subTitle={poetry.author}
-                        content={poetry.content}
-                        footer={
-                            <PoetryFooter
-                                prev={
-                                    poetryIndex !== 0 && {
-                                        text: data[poetryIndex - 1].title,
-                                        to:
-                                            root +
-                                            `/${data[poetryIndex - 1].tag}`,
-                                    }
-                                }
-                                next={
-                                    poetryIndex !== data.length - 1 && {
-                                        text: data[poetryIndex + 1].title,
-                                        to:
-                                            root +
-                                            `/${data[poetryIndex + 1].tag}`,
-                                    }
-                                }></PoetryFooter>
-                        }></ShowSinglePoetry>
+                    <ShowSinglePoetry></ShowSinglePoetry>
                 ) : (
                     <NotFound></NotFound>
                 );
                 return (
-                    <Layout
-                        className="box"
-                        style={{
-                            overflow: "scroll",
+                    <BookContext.Provider
+                        value={{
+                            books: data,
+                            matched: poetry,
+                            root,
                         }}>
-                        <Layout.Content>{Content}</Layout.Content>
-                        <Layout.Sider
+                        <Layout
+                            className="box"
                             style={{
-                                width: "fit-content",
-                                height: "100%",
-                                overflow: "auto",
+                                overflow: "scroll",
                             }}>
-                            {/* 侧边栏 */}
-                            <SideBarInner {...props} data={data}></SideBarInner>
-                        </Layout.Sider>
-                    </Layout>
+                            <Layout.Content>{Content}</Layout.Content>
+                            <Layout.Sider
+                                style={{
+                                    width: "fit-content",
+                                    height: "100%",
+                                    overflow: "auto",
+                                }}>
+                                {/* 侧边栏 */}
+                                <SideBarWrapper
+                                    {...props}
+                                    data={data}></SideBarWrapper>
+                            </Layout.Sider>
+                        </Layout>
+                    </BookContext.Provider>
                 );
             }}></BookFetch>
     );
