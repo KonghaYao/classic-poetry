@@ -36,6 +36,9 @@ export const Setting = {
             "https://unpkg.com/chinese-poetry/chinese-poetry/",
             // "https://cdn.skypackk.dev/chinese-poetry/chinese-poetry/",
         ],
+        history: {
+            enable: true,
+        },
     },
 };
 // 持久化的数据

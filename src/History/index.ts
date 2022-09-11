@@ -40,6 +40,7 @@ class HistoryCache {
     clear(start: number | "*", end?: number) {
         start === "*" ? (this.cache = []) : this.cache.splice(start, end);
         this.writeBack();
+        clearInterval(this.interval);
     }
     private writeBack() {
         localStorage.setItem("__History_Cache__", JSON.stringify(this.cache));

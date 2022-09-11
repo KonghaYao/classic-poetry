@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import { FC, useState } from "react";
 import { Setting, SettingServer } from "./Setting";
 import { AsyncLoad } from "../poetry/components/AsyncComponent";
-import { IconSettings } from "@arco-design/web-react/icon";
 
 const AsyncLoadSetting = AsyncLoad(
     async () => {
@@ -17,7 +16,6 @@ const AsyncLoadSetting = AsyncLoad(
     {},
     null
 );
-
 
 // import { SettingPage } from "./SettingPage";
 export const useSetting = () => {

@@ -1,31 +1,11 @@
-import {
-    Form,
-    InputNumber,
-    Radio,
-    Select,
-    Tooltip,
-} from "@arco-design/web-react";
+import { Form, InputNumber, Radio, Select } from "@arco-design/web-react";
 import { FC } from "react";
 import { useSetting } from "..";
 import { Setting } from "../Setting";
 import { FontChange } from "../../App/FontChange";
 import { CnCaseSupport } from "../../poetry/utils/CnCaseSupport";
-import { IconExclamationCircle } from "@arco-design/web-react/icon";
+import { Hint } from "./Hint";
 
-const Hint: FC<{
-    message: string;
-}> = ({ message }) => {
-    return (
-        <Tooltip content={message}>
-            <span
-                style={{
-                    margin: "2rem",
-                }}>
-                <IconExclamationCircle />
-            </span>
-        </Tooltip>
-    );
-};
 export const TextSetting: FC<{}> = () => {
     const { setting, server } = useSetting();
     return (

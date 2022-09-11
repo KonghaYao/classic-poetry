@@ -3,12 +3,13 @@ import { Space } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
 import { SearchBox } from "../Search/SearchBox";
 import { useSlot } from "../Server";
-import { useUnmount } from "ahooks";
+import { useMount, useUnmount } from "ahooks";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { slots, destroy } = useSlot({ position: "header-right" });
 
     const nav = useNavigate();
+
     useUnmount(() => {
         destroy();
     });

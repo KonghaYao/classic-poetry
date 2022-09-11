@@ -6,12 +6,12 @@ import { BookRouter } from "./BookRouter";
 import { AnimatedRoutes } from "react-animated-router";
 import { Route } from "react-router-dom";
 import { Home } from "./Home/Home";
-import { useHistory } from "./History";
 import { useMount } from "ahooks";
+import { registerHeaderPlugin } from "./App/HeaderPlugin";
 
 function App() {
     const { setting } = useSetting();
-    useHistory();
+
     const fontSize = useMemo(() => {
         return setting.text.fontSize + "px";
     }, [setting]);
@@ -20,7 +20,7 @@ function App() {
     }, [setting]);
 
     useMount(async () => {
-        await import("./Server/defaultTheme");
+        registerHeaderPlugin();
     });
 
     return (
