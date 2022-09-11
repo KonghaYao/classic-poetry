@@ -2,9 +2,9 @@ import { Button, Tabs } from "@arco-design/web-react";
 import { FC, useState } from "react";
 import { useMount, useUnmount } from "ahooks";
 import { IconClose } from "@arco-design/web-react/icon";
-import { SettingServer } from "./index";
 import { SettingComponents } from "./SettingComponents";
 import "./Setting.css";
+import { SettingServer } from "./Setting";
 export const SettingPage: FC<{}> = () => {
     const [visible, setVisible] = useState(false);
 

@@ -1,12 +1,13 @@
 import { TopMenu } from "./App/TopMenu";
 import "./App.css";
-import React, { FC, useMemo } from "react";
+import { useMemo } from "react";
 import { useSetting } from "./Setting";
 import { BookRouter } from "./BookRouter";
-import { AnimatedRoutes, useAnimatedRoutes } from "react-animated-router";
+import { AnimatedRoutes } from "react-animated-router";
 import { Route } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { useHistory } from "./History";
+import { useMount } from "ahooks";
 
 function App() {
     const { setting } = useSetting();
@@ -17,6 +18,11 @@ function App() {
     const letterSpacing = useMemo(() => {
         return setting.text.letterSpacing + "em";
     }, [setting]);
+
+    useMount(async () => {
+        await import("./Server/defaultTheme");
+    });
+
     return (
         <section className="App box-col" style={{ height: "100vh" }}>
             <header

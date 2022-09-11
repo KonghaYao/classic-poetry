@@ -1,17 +1,10 @@
-import mitt, { Emitter } from "mitt";
 import { createPortal } from "react-dom";
 
-import merge from "lodash/merge";
-import { Suspense, useState } from "react";
-import { SettingEvent, Setting } from "./Setting";
+import { FC, useState } from "react";
+import { Setting, SettingServer } from "./Setting";
 import { AsyncLoad } from "../poetry/components/AsyncComponent";
-/** 全局唯一的设置操作 */
-export const SettingServer = mitt<SettingEvent>();
-SettingServer.on("change", (setting) => {
-    // merge 方式
-    merge(Setting, setting);
-    localStorage.setItem("system-setting", JSON.stringify(Setting));
-});
+import { IconSettings } from "@arco-design/web-react/icon";
+
 const AsyncLoadSetting = AsyncLoad(
     async () => {
         const { SettingPage } = await import("./SettingPage");
@@ -24,6 +17,8 @@ const AsyncLoadSetting = AsyncLoad(
     {},
     null
 );
+
+
 // import { SettingPage } from "./SettingPage";
 export const useSetting = () => {
     let page: JSX.Element;
@@ -35,9 +30,7 @@ export const useSetting = () => {
         server: SettingServer,
         init() {
             if (page) return page;
-
             page = AsyncLoadSetting;
-
             return AsyncLoadSetting;
         },
         setting,

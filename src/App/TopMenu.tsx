@@ -1,14 +1,12 @@
-import React, { FunctionComponent, useState } from "react";
-import { Avatar, Button, Menu, Space, Tooltip } from "@arco-design/web-react";
-import { ThemeChange } from "./ThemeChange";
-import { useSetting } from "../Setting";
-import { IconSettings } from "@arco-design/web-react/icon";
+import React, { FunctionComponent, Suspense, useState } from "react";
+import { Avatar, Tooltip } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
 import { SearchBox } from "../Search/SearchBox";
-import { HistoryController } from "../History/Pannel";
+import { useSlot } from "../Server";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
-    const { init, server } = useSetting();
+    const { slots } = useSlot({ position: "header-right" });
+
     const nav = useNavigate();
     return (
         <nav
@@ -36,15 +34,10 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                     width: "9rem",
                     fontSize: "1.3rem",
                 }}>
-                <ThemeChange></ThemeChange>
-                {init()}
+                {slots.map((Temp) => (
+                    <Temp key={(Temp as any).id} />
+                ))}
 
-                <IconSettings
-                    onClick={() => {
-                        server.emit("toggle", true);
-                    }}
-                />
-                <HistoryController></HistoryController>
                 <Tooltip content="这个是辛苦劳累的作者">
                     <a
                         href="https://github.com/KonghaYao/classic-poetry"

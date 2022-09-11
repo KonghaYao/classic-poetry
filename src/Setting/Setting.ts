@@ -1,6 +1,20 @@
 import { DeepPartial } from "@arco-design/web-react/es/Form/store";
 import merge from "lodash/merge";
+import mitt from "mitt";
+export type SettingEvent = {
+    /** 使用 change 方式深度覆盖对象 */
+    change: DeepPartial<typeof Setting>;
+    /** 打开或者关闭设置面板 */
+    toggle: boolean | undefined;
+};
 
+/** 全局唯一的设置操作 */
+export const SettingServer = mitt<SettingEvent>();
+SettingServer.on("change", (setting) => {
+    // merge 方式
+    merge(Setting, setting);
+    localStorage.setItem("system-setting", JSON.stringify(Setting));
+});
 export const Setting = {
     theme: {
         base: "auto",
@@ -29,9 +43,3 @@ const cache = localStorage.getItem("system-setting");
 if (cache) {
     merge(Setting, JSON.parse(cache));
 }
-export type SettingEvent = {
-    /** 使用 change 方式深度覆盖对象 */
-    change: DeepPartial<typeof Setting>;
-    /** 打开或者关闭设置面板 */
-    toggle: boolean | undefined;
-};

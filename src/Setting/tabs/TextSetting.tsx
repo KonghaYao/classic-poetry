@@ -6,7 +6,7 @@ import {
     Tooltip,
 } from "@arco-design/web-react";
 import { FC } from "react";
-import { SettingServer, useSetting } from "..";
+import { useSetting } from "..";
 import { Setting } from "../Setting";
 import { FontChange } from "../../App/FontChange";
 import { CnCaseSupport } from "../../poetry/utils/CnCaseSupport";
@@ -38,7 +38,7 @@ export const TextSetting: FC<{}> = () => {
                 <Select
                     defaultValue={setting.text.fontWeight}
                     onChange={(i) =>
-                        SettingServer.emit("change", {
+                        server.emit("change", {
                             text: { fontWeight: i },
                         })
                     }>
@@ -61,7 +61,7 @@ export const TextSetting: FC<{}> = () => {
                     max={50}
                     suffix="px"
                     onChange={(i) =>
-                        SettingServer.emit("change", { text: { fontSize: i } })
+                        server.emit("change", { text: { fontSize: i } })
                     }
                 />
             </Form.Item>
@@ -74,7 +74,7 @@ export const TextSetting: FC<{}> = () => {
                     max={1}
                     suffix="字"
                     onChange={(i) =>
-                        SettingServer.emit("change", {
+                        server.emit("change", {
                             text: { letterSpacing: i },
                         })
                     }
