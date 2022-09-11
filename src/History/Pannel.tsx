@@ -25,7 +25,7 @@ export const HistoryPanel = () => {
                 margin: "1rem",
                 padding: "1rem",
             }}>
-            <div>浏览记录</div>
+            <div>阅读记录</div>
             <List
                 style={{
                     minWidth: "15em",

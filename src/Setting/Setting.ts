@@ -13,6 +13,7 @@ export const SettingServer = mitt<SettingEvent>();
 SettingServer.on("change", (setting) => {
     // merge 方式
     merge(Setting, setting);
+    console.log(Setting);
     localStorage.setItem("system-setting", JSON.stringify(Setting));
 });
 export const Setting = {

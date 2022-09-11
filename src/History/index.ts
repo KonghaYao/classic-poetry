@@ -1,3 +1,5 @@
+import { Setting } from "../Setting/Setting";
+
 type HistoryRecord = {
     time: string;
     path: string;
@@ -8,8 +10,11 @@ class HistoryCache {
     cache: HistoryRecord[] = JSON.parse(
         localStorage.getItem("__History_Cache__") || "[]"
     );
-    private interval;
+    private interval: number = 0;
     constructor() {
+        this.restart();
+    }
+    restart() {
         this.interval = setInterval(() => this.checkState(), 15 * 1000);
         console.log("开始记录你的历史");
     }
@@ -18,6 +23,7 @@ class HistoryCache {
         this.writeBack();
     }
     add(name: string) {
+        if (!Setting.poetry.history.enable) return false;
         const cache = {
             name,
             time: this.timeTag(),
@@ -37,8 +43,8 @@ class HistoryCache {
         this.writeBack();
         console.log("记录路由", cache.path);
     }
-    clear(start: number | "*", end?: number) {
-        start === "*" ? (this.cache = []) : this.cache.splice(start, end);
+    clear(start: number | "*", num: number = 1) {
+        start === "*" ? (this.cache = []) : this.cache.splice(start, num);
         this.writeBack();
         clearInterval(this.interval);
     }
