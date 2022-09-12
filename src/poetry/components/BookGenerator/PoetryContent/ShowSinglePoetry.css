@@ -1,13 +1,6 @@
 .poetry-text {
     color: var(--book-text-color);
-    transition: filter 0.3s;
     text-indent: 2em;
-}
-.single-content:hover .poetry-text {
-    filter: brightness(0.5);
-}
-body[arco-theme="dark"] .single-content:hover .poetry-text {
-    filter: brightness(1.4);
 }
 
 .poetry-index {
@@ -21,4 +14,48 @@ body[arco-theme="dark"] .single-content:hover .poetry-text {
 }
 .single-content {
     align-items: center;
+}
+
+.poetry-wrapper {
+    margin: auto;
+    overflow-y: hidden;
+    overflow-x: visible;
+    height: 100%;
+    font-family: var(--book-font-family);
+}
+
+.poetry-content {
+    flex: 1;
+    padding: 1rem 1rem;
+    overflow: scroll;
+}
+
+.poetry-vertical .poetry-content {
+    writing-mode: vertical-rl;
+}
+.poetry-vertical.box-row {
+    flex-direction: row-reverse;
+}
+.poetry-header {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 2px solid var(--divide-red);
+    margin: 1em 0;
+}
+.poetry-vertical .poetry-header {
+    writing-mode: vertical-rl;
+    padding: 1em;
+
+    border-left: 2px solid var(--divide-red);
+    border-bottom: 0;
+}
+.poetry-header .btn {
+    margin: 1em;
+}
+.poetry-vertical .poetry-header .btn {
+    transform-origin: 50% 50%;
+    transform: rotate(90deg);
+}
+.poetry-header .title {
+    font-size: 1.5em;
 }

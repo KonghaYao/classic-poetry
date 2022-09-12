@@ -9,9 +9,11 @@ import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
 import { NotFound } from "./poetry/components/404";
+import { useFontChange } from "./App/FontChange";
 
 function App() {
     const { setting } = useSetting();
+    const { slot: FontSlot } = useFontChange();
 
     const fontSize = useMemo(() => {
         return setting.text.fontSize + "px";
@@ -49,6 +51,7 @@ function App() {
                 </AnimatedRoutes>
             </main>
             {/* <Layout.Footer>Footer</Layout.Footer> */}
+            <FontSlot></FontSlot>
         </section>
     );
 }

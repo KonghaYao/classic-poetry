@@ -10,7 +10,6 @@ import { useMount } from "ahooks";
 import { RestTime } from "../../../utils/RestTime";
 import debounce from "lodash/debounce";
 import { BookContext, BookContextType } from "../BookContext";
-import { PoetryFooter } from "./PoetryFooter";
 /** 每一行诗句的排版 */
 const SingleRow: FC<{ index: number; content: string; name: string }> = ({
     index,
@@ -26,7 +25,7 @@ const SingleRow: FC<{ index: number; content: string; name: string }> = ({
         History.add(name);
     };
     return (
-        <nav
+        <li
             className={`single-content box-row ${
                 direction ? "" : "long-list-item"
             }`}
@@ -34,11 +33,11 @@ const SingleRow: FC<{ index: number; content: string; name: string }> = ({
             onPointerMove={debounce(() => {
                 RecordMe();
             }, 500)}>
-            <span className="poetry-index">{index + 1}</span>
+            {/* <span className="poetry-index">{index + 1}</span> */}
             <div className="poetry-text" style={{ fontSize: "1em" }}>
                 {TextPreProcess(content)}
             </div>
-        </nav>
+        </li>
     );
 };
 
@@ -46,7 +45,6 @@ const SingleRow: FC<{ index: number; content: string; name: string }> = ({
 const NotsShower: FC<{ notes: string[] }> = ({ notes }) => {
     return (
         <>
-            <Divider></Divider>
             <div>
                 {notes.map((i) => {
                     return (
@@ -81,37 +79,26 @@ export const ShowSinglePoetry: FC = () => {
                 const { matched } = info!;
                 return (
                     <div
-                        className={`box-col content-max poetry-wrapper ${
-                            direction ? "" : "no-scroll"
+                        className={`poetry-wrapper ${
+                            direction
+                                ? "box-row poetry-vertical"
+                                : "box-col content-max no-scroll"
                         }`}
                         style={{
-                            margin: "auto",
-                            overflowY: "hidden",
-                            overflowX: "visible",
-                            height: "100%",
-                            fontFamily: "var(--book-font-family)",
                             fontWeight,
                         }}>
                         <PoetryHeader></PoetryHeader>
 
                         <main
-                            className="box-col poetry-content "
-                            style={{
-                                flex: "1",
-                                padding: "1rem 1rem",
-                                alignItems: "center",
-
-                                overflow: "scroll",
-                                writingMode: direction
-                                    ? "vertical-rl"
-                                    : "horizontal-tb",
-                            }}>
+                            className={`poetry-content ${
+                                direction ? "box-row" : "box-col"
+                            }`}>
                             <PoetryContent {...info!}></PoetryContent>
                             {matched.notes && (
                                 <NotsShower notes={matched.notes}></NotsShower>
                             )}
                         </main>
-                        <PoetryFooter></PoetryFooter>
+                        {/* <PoetryFooter></PoetryFooter> */}
                     </div>
                 );
             }}
@@ -146,26 +133,26 @@ export const PoetryContent: FC<BookContextType> = (props) => {
     const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
     // 单独诗句排版
     return (
-        <Space
-            split={
-                <Divider
-                    type={direction ? "vertical" : "horizontal"}
-                    style={{ height: direction ? "100%" : "1em" }}
-                />
-            }
+        <ul
             style={{
                 flex: "1",
-            }}
-            direction="vertical">
+            }}>
             {matched.content.map((i, index) => {
                 return (
-                    <SingleRow
-                        name={matched.title}
-                        key={matched.title + "-" + index}
-                        index={index}
-                        content={i}></SingleRow>
+                    <>
+                        <SingleRow
+                            name={matched.title}
+                            key={matched.title + "-" + index}
+                            index={index}
+                            content={i}></SingleRow>
+
+                        <Divider
+                            type={direction ? "vertical" : "horizontal"}
+                            style={{ height: direction ? "100%" : "" }}
+                        />
+                    </>
                 );
             })}
-        </Space>
+        </ul>
     );
 };

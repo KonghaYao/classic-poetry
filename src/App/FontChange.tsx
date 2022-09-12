@@ -1,6 +1,6 @@
 import { Select, Space } from "@arco-design/web-react";
 import { useRequest, useMount } from "ahooks";
-import { FunctionComponent, useEffect, useMemo, useState } from "react";
+import { FC, FunctionComponent, useEffect, useMemo, useState } from "react";
 import { useSetting } from "../Setting";
 const Option = Select.Option;
 const defaultFont = {
@@ -9,12 +9,15 @@ const defaultFont = {
     fontFamily: "Noto Serif SC",
 };
 type FontMessage = { name: string; path: string; fontFamily: string };
-export const FontChange: FunctionComponent<{}> = () => {
-    const { setting, server } = useSetting();
+
+/** 这个组件必须要在主程序中执行 */
+export const useFontChange = () => {
+    const { setting } = useSetting();
     const { loading, data, error } = useRequest<FontMessage[], any>(
         async () => {
             return fetch(
-                "https://fastly.jsdelivr.net/gh/KonghaYao/chinese-free-web-font-storage/assets/index.json"
+                "https://fastly.jsdelivr.net/gh/KonghaYao/chinese-free-web-font-storage/assets/index.json",
+                { cache: "force-cache" }
             ).then((res) => res.json());
         },
         {
@@ -31,16 +34,32 @@ export const FontChange: FunctionComponent<{}> = () => {
             `"${setting.text.font.fontFamily}", "Noto Serif SC"`
         );
     }, [setting]); //
-
     const pathToURL = (path: string) => {
         return `https://fastly.jsdelivr.net/gh/KonghaYao/chinese-free-web-font-storage/${path}/result.css`;
     };
-
-    return (
-        <Space size="large">
+    const slot: FC = () => (
+        <>
             {usingFont.path && (
                 <link rel="stylesheet" href={pathToURL(usingFont.path)} />
             )}
+        </>
+    );
+    return {
+        usingFont,
+        loading,
+        data,
+        error,
+        slot,
+    };
+};
+
+// TODO 第一次不进行渲染问题
+export const FontChange: FunctionComponent<{}> = () => {
+    const { setting, server } = useSetting();
+    const { usingFont, loading, error, data } = useFontChange();
+
+    return (
+        <Space size="large">
             <Select
                 value={setting.text.font.name}
                 loading={loading}

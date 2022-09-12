@@ -153,3 +153,10 @@ body {
 
     background-color: var(--color-bg-1);
 }
+.flex-1{
+    flex:1
+}
+
+li{
+    list-style-type: disc;
+}
