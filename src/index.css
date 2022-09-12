@@ -15,7 +15,7 @@
     --divide-green: #415b55;
 }
 body {
-    --book-text-color:#777;
+    --book-text-color:#333;
     --shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 body[arco-theme="dark"] {
@@ -86,7 +86,11 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+.box-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 ::-webkit-scrollbar {
     width: 6px;

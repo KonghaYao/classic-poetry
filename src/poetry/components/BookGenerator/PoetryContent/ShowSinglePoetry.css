@@ -1,17 +1,15 @@
 .poetry-text {
     color: var(--book-text-color);
-    text-indent: 2em;
 }
 
 .poetry-index {
-    user-select: none;
-    padding: 0.4rem;
+    /* user-select: none; */
+    margin: 1rem;
+    text-decoration: underline;
     text-align: center;
-    background-color: var(--color-bg-4);
-    border-radius: 4px;
-    margin: 0 1rem;
     writing-mode: horizontal-tb;
 }
+
 .single-content {
     align-items: center;
 }
@@ -23,11 +21,17 @@
     height: 100%;
     font-family: var(--book-font-family);
 }
+.poetry-wrapper.poetry-vertical {
+    max-height: 80%;
+}
 
 .poetry-content {
     flex: 1;
-    padding: 1rem 1rem;
+    /* 这里有 1 rem 间隔是因为文本首部内凹 2em
+    导致的视觉问题 */
+
     overflow: scroll;
+    position: relative;
 }
 
 .poetry-vertical .poetry-content {
@@ -40,22 +44,24 @@
     display: flex;
     align-items: baseline;
     border-bottom: 2px solid var(--divide-red);
-    margin: 1em 0;
+    margin: 0;
+    padding: 0.5em;
 }
 .poetry-vertical .poetry-header {
     writing-mode: vertical-rl;
-    padding: 1em;
 
     border-left: 2px solid var(--divide-red);
     border-bottom: 0;
 }
-.poetry-header .btn {
-    margin: 1em;
-}
+
 .poetry-vertical .poetry-header .btn {
     transform-origin: 50% 50%;
     transform: rotate(90deg);
 }
 .poetry-header .title {
     font-size: 1.5em;
+}
+.poetry-header .subtitle {
+    font-size: 1em;
+    padding: 1em;
 }

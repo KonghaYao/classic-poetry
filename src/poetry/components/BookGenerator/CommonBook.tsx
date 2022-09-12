@@ -52,7 +52,9 @@ export function CommonBook<T>(
                             style={{
                                 overflow: "scroll",
                             }}>
-                            <Layout.Content>{Content}</Layout.Content>
+                            <Layout.Content className="box-center">
+                                {Content}
+                            </Layout.Content>
                             <Layout.Sider
                                 style={{
                                     width: "fit-content",

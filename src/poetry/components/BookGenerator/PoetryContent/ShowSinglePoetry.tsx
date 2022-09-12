@@ -1,66 +1,15 @@
 import { Divider, Space } from "@arco-design/web-react";
 import { FC, useMemo } from "react";
 import { PoetryHeader } from "./PoetryHeader";
-import { TextPreProcess } from "../../../utils/TextPreProcess";
 import { useSetting } from "../../../../Setting";
 import "./ShowSinglePoetry.css";
 import { History } from "../../../../History";
 import { useSearchParams } from "react-router-dom";
 import { useMount } from "ahooks";
 import { RestTime } from "../../../utils/RestTime";
-import debounce from "lodash/debounce";
 import { BookContext, BookContextType } from "../BookContext";
-/** 每一行诗句的排版 */
-const SingleRow: FC<{ index: number; content: string; name: string }> = ({
-    index,
-    content,
-    name,
-}) => {
-    const { setting } = useSetting();
-    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
-    let [searchParams, setSearchParams] = useSearchParams();
-    const RecordMe = () => {
-        searchParams.set("position", index.toString());
-        setSearchParams(searchParams);
-        History.add(name);
-    };
-    return (
-        <li
-            className={`single-content box-row ${
-                direction ? "" : "long-list-item"
-            }`}
-            onPointerDown={RecordMe}
-            onPointerMove={debounce(() => {
-                RecordMe();
-            }, 500)}>
-            {/* <span className="poetry-index">{index + 1}</span> */}
-            <div className="poetry-text" style={{ fontSize: "1em" }}>
-                {TextPreProcess(content)}
-            </div>
-        </li>
-    );
-};
-
-/** 显示脚注的组件 */
-const NotsShower: FC<{ notes: string[] }> = ({ notes }) => {
-    return (
-        <>
-            <div>
-                {notes.map((i) => {
-                    return (
-                        <div
-                            key={i}
-                            style={{
-                                fontSize: "0.75em",
-                            }}>
-                            {i}
-                        </div>
-                    );
-                })}
-            </div>
-        </>
-    );
-};
+import { NotsShower } from "./NotsShower";
+import { SingleRow } from "./SingleRow";
 export type PageInfo = {
     title: string;
     subTitle?: string;
@@ -133,10 +82,14 @@ export const PoetryContent: FC<BookContextType> = (props) => {
     const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
     // 单独诗句排版
     return (
-        <ul
+        <main
             style={{
                 flex: "1",
             }}>
+            <nav
+                style={{
+                    margin: "1rem",
+                }}></nav>
             {matched.content.map((i, index) => {
                 return (
                     <>
@@ -147,12 +100,13 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                             content={i}></SingleRow>
 
                         <Divider
+                            key={"divide-" + index}
                             type={direction ? "vertical" : "horizontal"}
                             style={{ height: direction ? "100%" : "" }}
                         />
                     </>
                 );
             })}
-        </ul>
+        </main>
     );
 };

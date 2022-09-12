@@ -4,7 +4,6 @@ import React, { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { sidebarServer } from "../SideBar/server";
 import { BookContext } from "../BookContext";
-import { useSetting } from "../../../../Setting";
 
 const PageHeader: FC<{
     title: string;
