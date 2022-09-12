@@ -35,7 +35,7 @@ export const Setting = {
     poetry: {
         /** 所有 json 文件的来源地址 */
         root: [
-            "https://unpkg.com/chinese-poetry/chinese-poetry/",
+            "https://unpkg.com/chinese-poetry@1.4.1/chinese-poetry",
             // "https://cdn.skypackk.dev/chinese-poetry/chinese-poetry/",
         ],
         history: {

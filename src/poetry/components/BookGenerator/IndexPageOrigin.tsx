@@ -10,7 +10,7 @@ export const IndexPage: FC<{
 }> = ({ title, children }) => {
     return (
         <div
-            className="box-col"
+            className="box-col no-scroll"
             style={{
                 alignItems: "center",
                 width: "100%",
