@@ -30,8 +30,8 @@ export const Home: FC = () => {
     ].reverse();
     const nav = useNavigate();
     return (
-        <section className="home-page  noise">
-            <main className="book-list box-col">
+        <section className="home-page  noise no-scroll">
+            <main className="book-list box-col ">
                 <div className="book-item-wrapper box-row">
                     {data.map((i) => {
                         return (

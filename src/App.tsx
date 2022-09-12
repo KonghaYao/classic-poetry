@@ -27,7 +27,7 @@ function App() {
     });
 
     return (
-        <section className="App box-col" style={{ height: "100vh" }}>
+        <section className="App box-col " style={{ height: "100vh" }}>
             <header
                 style={{
                     zIndex: 10,

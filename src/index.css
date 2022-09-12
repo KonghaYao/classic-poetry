@@ -95,15 +95,13 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    background-color: transparent;
-    pointer-events: all;
-}
-.no-scroll ::-webkit-scrollbar {
     width: 0;
     height: 0;
     background-color: transparent;
+}
+.has-scroll ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 ::-webkit-scrollbar-corner{
     background-color: transparent;

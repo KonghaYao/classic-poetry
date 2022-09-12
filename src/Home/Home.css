@@ -45,7 +45,7 @@ body[arco-theme="dark"] {
     justify-content: center;
 }
 /* 在 screen 类型 小于 240px 或 大于360px 小于 700px 加载 */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1050px) {
     .book-item-wrapper {
         padding: 0 40vw;
         /* 保证能够左右有适当空间 */

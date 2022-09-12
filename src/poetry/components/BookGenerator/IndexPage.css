@@ -8,8 +8,14 @@
     justify-content: center;
     border-top: 3px solid var(--divide-red);
     border-bottom: 3px solid var(--divide-red);
-    margin: 2rem 0;
-    padding: 2rem 0;
+    margin: 1rem 0;
+    padding: 1rem 0;
     display: block;
     overflow: auto;
+}
+@media screen and (max-width: 1000px) {
+    .index-page .link-list {
+        margin: 2rem 0;
+        padding: 2rem 0;
+    }
 }
