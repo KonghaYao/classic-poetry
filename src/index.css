@@ -34,6 +34,8 @@ body[arco-theme="dark"] {
     position: absolute;
     z-index: 0;
     opacity: 0.1;
+    pointer-events: none;
+    touch-action: none;
 }
 @media (prefers-color-scheme: dark) {
     body {
@@ -93,9 +95,10 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 10px;
+    height: 10px;
     background-color: transparent;
+    pointer-events: all;
 }
 .no-scroll ::-webkit-scrollbar {
     width: 0;
@@ -108,6 +111,8 @@ body {
 
 ::-webkit-scrollbar-thumb{
     background-color: var(--color-text-1);
+    pointer-events: all;
+    z-index: 100;
 }
 
 /* 首页印章图像 */
@@ -147,8 +152,7 @@ body {
 .one-row{
     overflow: hidden;
     white-space: nowrap; 
-
-  text-overflow:ellipsis;
+    text-overflow:ellipsis;
 }
 
 
@@ -159,8 +163,4 @@ body {
 }
 .flex-1{
     flex:1
-}
-
-li{
-    list-style-type: disc;
 }

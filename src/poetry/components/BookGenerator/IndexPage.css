@@ -1,0 +1,15 @@
+.index-page {
+    align-items: "center";
+    height: 100%;
+    width: 100%;
+}
+.index-page .link-list {
+    flex: 1;
+    justify-content: center;
+    border-top: 3px solid var(--divide-red);
+    border-bottom: 3px solid var(--divide-red);
+    margin: 2rem 0;
+    padding: 2rem 0;
+    display: block;
+    overflow: auto;
+}

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Home.css";
 export const Home: FC = () => {
     const data = [
@@ -28,20 +28,25 @@ export const Home: FC = () => {
         { name: "曹操诗集", to: "/caocaoshiji" },
         { name: "纳兰性德诗集", to: "/nalanxingde" },
     ].reverse();
+    const nav = useNavigate();
     return (
-        <section className="home-page box-row noise">
-            <nav className="book-list box-row">
-                {data.map((i, index) => {
-                    return (
-                        <NavLink
-                            className="book-item box-row"
-                            to={i.to}
-                            key={i.to}>
-                            <div className="book-link">{i.name}</div>
-                        </NavLink>
-                    );
-                })}
-            </nav>
+        <section className="home-page  noise">
+            <main className="book-list box-col">
+                <div className="book-item-wrapper box-row">
+                    {data.map((i) => {
+                        return (
+                            <div
+                                className="book-item box-row"
+                                key={i.to}
+                                onPointerDown={() => {
+                                    nav(i.to);
+                                }}>
+                                <div className="book-link">{i.name}</div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </main>
 
             <header className="noise book-header-wrapper">
                 <div className="book-header">中华诗词大典</div>

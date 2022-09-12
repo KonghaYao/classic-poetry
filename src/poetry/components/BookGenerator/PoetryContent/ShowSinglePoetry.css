@@ -20,6 +20,7 @@
     overflow-x: visible;
     height: 100%;
     font-family: var(--book-font-family);
+    width: 100%;
 }
 .poetry-wrapper.poetry-vertical {
     max-height: 80%;
@@ -27,9 +28,6 @@
 
 .poetry-content {
     flex: 1;
-    /* 这里有 1 rem 间隔是因为文本首部内凹 2em
-    导致的视觉问题 */
-
     overflow: scroll;
     position: relative;
 }
@@ -44,12 +42,13 @@
     display: flex;
     align-items: baseline;
     border-bottom: 2px solid var(--divide-red);
-    margin: 0;
+    margin: 1rem 0 0 0;
     padding: 0.5em;
 }
 .poetry-vertical .poetry-header {
     writing-mode: vertical-rl;
 
+    margin: 0 1rem 0 0;
     border-left: 2px solid var(--divide-red);
     border-bottom: 0;
 }

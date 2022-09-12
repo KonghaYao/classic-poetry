@@ -9,7 +9,7 @@ import { BookContext, BookContextType } from "../BookContext";
 import { SearchBar } from "./SearchBar";
 const SideBar: FC<BookContextType & SideBarProps> = (info) => {
     const { books, matched, root, ExtraLink } = info;
-    const [showMenu, setMenu] = useState(true);
+    const [showMenu, setMenu] = useState(false);
     const [Nav, setNav] = useState<InnerObjectType[]>(books);
     const handlerVisibleChange = (visible: boolean | undefined) => {
         typeof visible === "boolean" ? setMenu(visible) : setMenu(!showMenu);

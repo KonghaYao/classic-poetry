@@ -3,19 +3,13 @@ import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { wrapAdapter } from "./Tagger";
-
+import "./IndexPage.css";
 export const IndexPage: FC<{
     title: string;
     children?: React.ReactNode;
 }> = ({ title, children }) => {
     return (
-        <div
-            className="box-col no-scroll"
-            style={{
-                alignItems: "center",
-                width: "100%",
-                height: "100%",
-            }}>
+        <div className="box-col no-scroll index-page">
             <div
                 className="box-col content-max"
                 style={{
@@ -25,20 +19,7 @@ export const IndexPage: FC<{
                 <div>
                     <div className="Index-Seal">{title}</div>
                 </div>
-                <div
-                    className="box-col no-scroll"
-                    style={{
-                        flex: "1",
-                        justifyContent: "center",
-                        borderTop: "3px solid var(--divide-red)",
-                        borderBottom: "3px solid var(--divide-red)",
-                        margin: "1rem 0 ",
-                        padding: "1rem 0 ",
-                        display: "block",
-                        overflow: "auto",
-                    }}>
-                    {children}
-                </div>
+                <div className="box-col no-scroll link-list">{children}</div>
             </div>
         </div>
     );

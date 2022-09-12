@@ -14,28 +14,43 @@ body[arco-theme="dark"] {
     height: 100%;
     width: 100%;
     background-color: var(--book-bg);
-    position: relative;
 }
-.home-page > nav {
-    flex: 1;
-}
+
 .book-list {
     margin: auto;
-    justify-content: center;
-    width: 100%;
+    pointer-events: none;
+    height: 100%;
+    max-width: 100%;
     flex: 1;
+    justify-content: center;
+    user-select: none;
+    overflow-x: scroll;
     opacity: 0;
+
+    z-index: 1;
+    touch-action: pan-x;
     transition: opacity 0.5s;
-    align-items: center;
 }
 
 .book-item:hover {
     transform: translateY(-20px);
-    margin: 0.5rem;
+    margin: auto 0.5rem;
     opacity: 1;
 }
 .home-page:hover .book-list {
     opacity: 1;
+    pointer-events: all;
+}
+.book-item-wrapper {
+    justify-content: center;
+}
+/* 在 screen 类型 小于 240px 或 大于360px 小于 700px 加载 */
+@media screen and (max-width: 700px) {
+    .book-item-wrapper {
+        padding: 0 40vw;
+        /* 保证能够左右有适当空间 */
+        width: fit-content;
+    }
 }
 
 .book-item {
@@ -49,13 +64,14 @@ body[arco-theme="dark"] {
     position: relative;
     writing-mode: vertical-lr;
     font-size: 1.5rem;
+    cursor: pointer;
+    flex: none;
 }
 
 .book-item::after,
 .book-item::before {
     content: "";
     position: absolute;
-
     left: 0;
     width: 100%;
     height: 4px;

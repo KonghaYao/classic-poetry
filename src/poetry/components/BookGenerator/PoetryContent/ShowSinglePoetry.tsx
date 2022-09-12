@@ -43,10 +43,11 @@ export const ShowSinglePoetry: FC = () => {
                                 direction ? "box-row" : "box-col"
                             }`}>
                             <PoetryContent {...info!}></PoetryContent>
-                            {matched.notes && (
-                                <NotsShower notes={matched.notes}></NotsShower>
-                            )}
                         </main>
+                        {/* TODO 展示下一页操作 */}
+                        {/* {matched.notes && (
+                                <NotsShower notes={matched.notes}></NotsShower>
+                            )} */}
                         {/* <PoetryFooter></PoetryFooter> */}
                     </div>
                 );
