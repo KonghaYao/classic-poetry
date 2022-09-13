@@ -13,5 +13,6 @@
 .setting-content {
     height: 60vh;
     width: 90vw;
+    max-width: 700px;
     overflow: scroll;
 }
