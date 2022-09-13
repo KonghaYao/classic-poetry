@@ -12,12 +12,12 @@ export const SettingComponents = [
         comp: TextSetting,
     },
     {
-        title: "资源设置",
-        comp: SourceManager,
-    },
-    {
         title: "历史记录",
         comp: HistoryManager,
+    },
+    {
+        title: "资源设置",
+        comp: SourceManager,
     },
 ];
 /** 在顶栏的控制按钮 */

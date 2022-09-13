@@ -19,25 +19,23 @@ import { SongRouter } from "./poetry/Song/Song";
 export function BookRouter() {
     return (
         <>
-            {[
-                LunYuRouter,
-                SiShuWuJingRouter,
-                ShiJingRouter,
-                HuaJianJiRouter,
-                NanTangRouter,
-                NaLanXingDeRouter,
-                MengXueRouter,
-                YouXueQiongLinRouter,
-                DiZiGuiRouter,
-                QianJiaShiRouter,
-                GuWenGuanZhiRouter,
-                TangShiSanBaiShouRouter,
-                CaoCaoShiJiRouter,
-                ChuCiRouter,
-                YuanQuRouter,
-                TangRouter,
-                SongRouter,
-            ].map((i) => i())}
+            {LunYuRouter()}
+            {SiShuWuJingRouter()}
+            {ShiJingRouter()}
+            {HuaJianJiRouter()}
+            {NanTangRouter()}
+            {NaLanXingDeRouter()}
+            {MengXueRouter()}
+            {YouXueQiongLinRouter()}
+            {DiZiGuiRouter()}
+            {QianJiaShiRouter()}
+            {GuWenGuanZhiRouter()}
+            {TangShiSanBaiShouRouter()}
+            {CaoCaoShiJiRouter()}
+            {ChuCiRouter()}
+            {YuanQuRouter()}
+            {TangRouter()}
+            {SongRouter()}
         </>
     );
 }

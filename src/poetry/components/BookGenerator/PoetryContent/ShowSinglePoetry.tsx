@@ -26,7 +26,6 @@ export const ShowSinglePoetry: FC = () => {
     return (
         <BookContext.Consumer>
             {(info) => {
-                const { matched } = info!;
                 return (
                     <div
                         className={`poetry-wrapper ${

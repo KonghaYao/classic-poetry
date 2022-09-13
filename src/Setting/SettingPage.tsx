@@ -31,12 +31,7 @@ export const SettingPage: FC<{}> = () => {
                                 className="box-col setting-content"
                                 key={i.title}
                                 title={i.title}>
-                                <div
-                                    style={{
-                                        margin: "1.5rem ",
-                                    }}>
-                                    <i.comp></i.comp>
-                                </div>
+                                <i.comp></i.comp>
                             </Tabs.TabPane>
                         );
                     })}

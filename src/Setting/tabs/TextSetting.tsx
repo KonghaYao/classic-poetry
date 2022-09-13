@@ -9,7 +9,7 @@ import { Hint } from "./Hint";
 export const TextSetting: FC<{}> = () => {
     const { setting, server } = useSetting();
     return (
-        <Form>
+        <Form layout="vertical">
             <Form.Item label="字体种类">
                 <FontChange />
                 <Hint message="请稍等几秒钟加载字体"></Hint>

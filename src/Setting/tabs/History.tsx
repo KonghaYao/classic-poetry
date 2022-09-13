@@ -8,7 +8,7 @@ export const HistoryManager: FC<{}> = () => {
     const { setting, server } = useSetting();
     const [size, setSize] = useState(History.cache.length);
     return (
-        <Form>
+        <Form layout="vertical">
             <Form.Item label="跟踪阅读记录">
                 <Switch
                     defaultChecked={setting.poetry.history.enable}

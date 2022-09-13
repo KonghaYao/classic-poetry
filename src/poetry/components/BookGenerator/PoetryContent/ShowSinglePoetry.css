@@ -15,13 +15,14 @@
 }
 
 .poetry-wrapper {
-    margin: auto;
-    overflow-y: hidden;
-    overflow-x: visible;
+    padding: 1rem !important;
+    box-sizing: border-box;
+    overflow: hidden;
     height: 100%;
     font-family: var(--book-font-family);
     width: 100%;
 }
+
 .poetry-wrapper.poetry-vertical {
     max-height: 80%;
 }

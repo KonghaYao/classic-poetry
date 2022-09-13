@@ -1,5 +1,3 @@
-import { Typography } from "@arco-design/web-react";
-import { IconArrowLeft, IconArrowRight } from "@arco-design/web-react/icon";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { BookContext } from "../BookContext";
@@ -20,15 +18,9 @@ const SingleBar: FC<{
             style={{
                 flexDirection: props.reverse ? "row-reverse" : "row",
             }}>
-            <main className="box-row">
-                <span
-                    style={{
-                        fontSize: "1.1em",
-                    }}></span>
-                {props.data.title}
-            </main>
+            <header className="box-row">{props.data.title}</header>
             <div style={{ flex: "1" }}> </div>
-            <span className="subtitle">{props.subTitle}</span>
+            <nav className="subtitle">{props.subTitle}</nav>
         </NavLink>
     );
 };
@@ -56,22 +48,12 @@ export const PoetryFooter = () => {
                                 root={root}
                                 data={prev}
                                 subTitle="上一章节"
-                                reverse
-                                icon={
-                                    <IconArrowLeft
-                                        style={{ fontSize: "1.5rem" }}
-                                    />
-                                }></SingleBar>
+                                reverse></SingleBar>
 
                             <SingleBar
                                 root={root}
                                 data={next}
-                                subTitle="下一章节"
-                                icon={
-                                    <IconArrowRight
-                                        style={{ fontSize: "1.5rem" }}
-                                    />
-                                }></SingleBar>
+                                subTitle="下一章节"></SingleBar>
                         </div>
                     </>
                 );

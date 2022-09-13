@@ -23,7 +23,10 @@ export const FloatWindow: FC = () => {
             footer={null}
             title={null}
             autoFocus={false}
-            closable={false}>
+            closable={false}
+            style={{
+                width: "fit-content",
+            }}>
             <SettingPage></SettingPage>
         </Modal>
     );
