@@ -4,7 +4,7 @@ import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { BookContext } from "../BookContext";
 import { InnerObjectType } from "../CommonBook";
-
+import "./footer.css";
 const SingleBar: FC<{
     data: InnerObjectType | false;
     subTitle: string;
@@ -16,30 +16,19 @@ const SingleBar: FC<{
     return (
         <NavLink
             to={props.root + `/${props.data.tag}`}
-            className="box-row"
+            className="box-row router"
             style={{
-                flex: "1",
                 flexDirection: props.reverse ? "row-reverse" : "row",
-                border: "1px solid var(--color-border)",
-                margin: "1rem 0.5rem",
-                cursor: "pointer",
-                padding: "1rem",
-                borderRadius: "8px",
-                alignItems: "center",
             }}>
-            <div className="box-col">
-                <Typography.Text type="secondary">
-                    {props.subTitle}
-                </Typography.Text>
-                <div
+            <main className="box-row">
+                <span
                     style={{
-                        fontSize: "1.4rem",
-                    }}>
-                    {props.data.title}
-                </div>
-            </div>
+                        fontSize: "1.1em",
+                    }}></span>
+                {props.data.title}
+            </main>
             <div style={{ flex: "1" }}> </div>
-            <div>{props.icon}</div>
+            <span className="subtitle">{props.subTitle}</span>
         </NavLink>
     );
 };
@@ -53,30 +42,38 @@ export const PoetryFooter = () => {
                 const prev = books[index - 1] || false;
                 const next = books[index + 1] || false;
                 return (
-                    <div
-                        className="box-row"
-                        style={{
-                            width: "100%",
-                        }}>
-                        {/*  TODO 改样式为古籍样式较好 */}
-                        <SingleBar
-                            root={root}
-                            data={prev}
-                            subTitle="上一章节"
-                            reverse
-                            icon={
-                                <IconArrowLeft style={{ fontSize: "1.5rem" }} />
-                            }></SingleBar>
-                        <SingleBar
-                            root={root}
-                            data={next}
-                            subTitle="下一章节"
-                            icon={
-                                <IconArrowRight
-                                    style={{ fontSize: "1.5rem" }}
-                                />
-                            }></SingleBar>
-                    </div>
+                    <>
+                        {matched.author && (
+                            <div className="author-name">
+                                {matched.author}
+                                <span>文</span>
+                            </div>
+                        )}
+
+                        <div className="box-row poetry-router">
+                            {/*  TODO 改样式为古籍样式较好 */}
+                            <SingleBar
+                                root={root}
+                                data={prev}
+                                subTitle="上一章节"
+                                reverse
+                                icon={
+                                    <IconArrowLeft
+                                        style={{ fontSize: "1.5rem" }}
+                                    />
+                                }></SingleBar>
+
+                            <SingleBar
+                                root={root}
+                                data={next}
+                                subTitle="下一章节"
+                                icon={
+                                    <IconArrowRight
+                                        style={{ fontSize: "1.5rem" }}
+                                    />
+                                }></SingleBar>
+                        </div>
+                    </>
                 );
             }}
         </BookContext.Consumer>

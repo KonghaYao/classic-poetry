@@ -10,6 +10,7 @@ import { RestTime } from "../../../utils/RestTime";
 import { BookContext, BookContextType } from "../BookContext";
 import { NotsShower } from "./NotsShower";
 import { SingleRow } from "./SingleRow";
+import { PoetryFooter } from "./PoetryFooter";
 export type PageInfo = {
     title: string;
     subTitle?: string;
@@ -38,17 +39,14 @@ export const ShowSinglePoetry: FC = () => {
                         }}>
                         <PoetryHeader></PoetryHeader>
 
-                        <main
-                            className={`poetry-content ${
-                                direction ? "box-row" : "box-col"
-                            }`}>
+                        <main className={`poetry-content box-col`}>
                             <PoetryContent {...info!}></PoetryContent>
-                        </main>
-                        {/* TODO 展示下一页操作 */}
-                        {/* {matched.notes && (
+                            {/* TODO Notes 暂时不适配 */}
+                            {/* {matched.notes && (
                                 <NotsShower notes={matched.notes}></NotsShower>
                             )} */}
-                        {/* <PoetryFooter></PoetryFooter> */}
+                            <PoetryFooter></PoetryFooter>
+                        </main>
                     </div>
                 );
             }}
@@ -100,10 +98,9 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                             index={index}
                             content={i}></SingleRow>
 
-                        <Divider
+                        <hr
                             key={"divide-" + index}
-                            type={direction ? "vertical" : "horizontal"}
-                            style={{ height: direction ? "100%" : "" }}
+                            className={direction ? "ver" : "hor"}
                         />
                     </>
                 );

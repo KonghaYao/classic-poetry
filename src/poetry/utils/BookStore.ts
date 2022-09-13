@@ -22,7 +22,7 @@ export const BookStore = {
     /** 不要直接使用，使用 getBook 直接获取 */
     async fetchData(path: string, fullPath = false) {
         return fetch(
-            fullPath ? path : this.pickRoot(Setting.poetry.root) + path,
+            fullPath ? path : this.pickRoot(Setting.poetry.root) + "/" + path,
             { cache: "force-cache" }
         ).then((res) => res.json());
     },

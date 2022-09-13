@@ -1,0 +1,41 @@
+.poetry-router {
+    width: 100%;
+    height: fit-content;
+    border-top: 1px solid var(--color-border);
+    margin-top: 2em;
+}
+.poetry-vertical .poetry-router {
+    height: 100%;
+    width: fit-content;
+    border-top: 0;
+    margin-top: 0;
+    border-right: 1px solid var(--color-border);
+    margin-right: 2em;
+}
+
+.poetry-router .router {
+    flex: 1;
+    cursor: pointer;
+    padding: 1rem;
+    align-items: center;
+}
+.poetry-router .box-row {
+    align-items: center;
+}
+.poetry-router .subtitle {
+    color: var(--color-text-2);
+    font-size: 0.8em;
+}
+
+.author-name {
+    font-size: 1.5em;
+    text-align: right;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+.author-name span {
+    margin: 1rem;
+    background-color: var(--divide-red);
+    color: white;
+    border-radius: 4px;
+}
