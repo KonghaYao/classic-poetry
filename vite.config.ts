@@ -4,47 +4,10 @@ import { vitePluginForArco } from "@arco-plugins/vite-react";
 import { visualizer } from "rollup-plugin-visualizer";
 // vite.config.ts
 const { ANALYZE } = process.env;
-export class SplitVendorChunkCache {
-    cache;
-    constructor() {
-        this.cache = new Map();
-    }
-    reset() {
-        this.cache = new Map();
-    }
-}
-function staticImportedByEntry(id, getModuleInfo, cache, importStack = []) {
-    if (cache.has(id)) {
-        return !!cache.get(id);
-    }
-    if (importStack.includes(id)) {
-        cache.set(id, false);
-        return false;
-    }
-    const mod = getModuleInfo(id);
-    if (!mod) {
-        cache.set(id, false);
-        return false;
-    }
-    if (mod.isEntry) {
-        cache.set(id, true);
-        return true;
-    }
-    const someImporterIs = mod.importers.some((importer) =>
-        staticImportedByEntry(
-            importer,
-            getModuleInfo,
-            cache,
-            importStack.concat(id)
-        )
-    );
-    cache.set(id, someImporterIs);
-    return someImporterIs;
-}
-const cache = new SplitVendorChunkCache();
 const cdnRoot = "https://cdn.skypack.dev";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+    // TODO chunk 碎片问题
     base: "./",
     plugins: [
         react({
@@ -83,25 +46,5 @@ export default defineConfig(({ mode }) => ({
                   }
                 : {}
         ),
-    },
-    build: {
-        // rollupOptions: {
-        //     manualChunks(id, { getModuleInfo }) {
-        //         const cssLangs = `\\.(css|less|sass|scss|styl|stylus|pcss|postcss)($|\\?)`;
-        //         const cssLangRE = new RegExp(cssLangs);
-        //         const isCSSRequest = (request: string): boolean =>
-        //             cssLangRE.test(request);
-        //         // 分vendor包
-        //         if (
-        //             id.includes("node_modules") &&
-        //             !isCSSRequest(id) &&
-        //             staticImportedByEntry(id, getModuleInfo, cache.cache)
-        //         ) {
-        //             return "vendor";
-        //         } else if (id.includes("poetry")) {
-        //             return "manifest";
-        //         }
-        //     },
-        // },
     },
 }));
