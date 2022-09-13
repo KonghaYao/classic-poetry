@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { LunYuRouter } from "./poetry/LunYu/LunYu";
 import { ShiJingRouter } from "./poetry/ShiJing/ShiJing";
 import { SiShuWuJingRouter } from "./poetry/SiShuWuJing/SiShuWuJing";
@@ -15,6 +16,10 @@ import { ChuCiRouter } from "./poetry/_other/ChuCi";
 import { YuanQuRouter } from "./poetry/_other/YuanQu";
 import { TangRouter } from "./poetry/Tang/Tang";
 import { SongRouter } from "./poetry/Song/Song";
+=======
+import { Route } from "react-router-dom";
+import { AsyncLoad, AsyncRouter } from "./poetry/components/AsyncComponent";
+>>>>>>> 5786068 (feat: 实现异步分包策略)
 
 export function BookRouter() {
     return (

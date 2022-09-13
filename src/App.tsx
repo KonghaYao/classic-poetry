@@ -8,9 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
-import { NotFound } from "./poetry/components/404";
-import { useFontChange } from "./App/FontChange";
-import { Contribute } from "./Contribute";
+import { useFontChange } from "./App/useFontChange";
 import { AsyncLoad } from "./poetry/components/AsyncComponent";
 
 function App() {
@@ -25,7 +23,7 @@ function App() {
     }, [setting]);
 
     useMount(async () => {
-        registerHeaderPlugin();
+        await registerHeaderPlugin();
     });
 
     return (
