@@ -1,7 +1,7 @@
 import { Setting } from "../Setting/Setting";
 
-/** 顶栏的插件注册 ，*/
-export const registerHeaderPlugin = () => {
+/** 顶栏的异步插件注册 ，*/
+export const registerHeaderPlugin = async () => {
     const all = [
         async () =>
             import("../Server/plugins/author").then(
@@ -20,8 +20,7 @@ export const registerHeaderPlugin = () => {
             import("../Server/plugins/theme-change").then(
                 ({ applyThemeChange }) => applyThemeChange
             ),
-    ].map((i) => {
-        return i && i();
-    });
-    return Promise.all(all);
+    ].map((i) => i());
+    const module = await Promise.all(all);
+    return module.reverse().forEach((plugin) => plugin && plugin());
 };

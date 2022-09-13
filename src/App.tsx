@@ -10,6 +10,7 @@ import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
 import { useFontChange } from "./App/useFontChange";
 import { AsyncLoad } from "./poetry/components/AsyncComponent";
+import { NotFound } from "./poetry/components/404";
 
 function App() {
     const { setting } = useSetting();
@@ -54,7 +55,7 @@ function App() {
                             () => import("./Contribute/index"),
                             "Contribute"
                         )}></Route>
-                    <Route path="*" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
             {/* <Layout.Footer>Footer</Layout.Footer> */}

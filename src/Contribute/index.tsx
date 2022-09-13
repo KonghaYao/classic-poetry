@@ -83,8 +83,12 @@ export const Contribute: FC = () => {
                             </header>
                             <div className="name">{i.name}</div>
                             <div className="description box-col ">
-                                {i.description.map((words) => {
-                                    return <div>{words}</div>;
+                                {i.description.map((words, index) => {
+                                    return (
+                                        <div key={"words-" + index}>
+                                            {words}
+                                        </div>
+                                    );
                                 })}
                             </div>
                             <a className="link" target="_blank" href={i.link}>
