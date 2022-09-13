@@ -20,7 +20,7 @@ export const SearchBox = () => {
         return { default: () => <div></div> } || import("./index");
     });
     return (
-        <Suspense fallback={<Loading></Loading>}>
+        <Suspense>
             <Loader></Loader>
         </Suspense>
     );

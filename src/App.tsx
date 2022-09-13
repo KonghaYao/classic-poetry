@@ -9,8 +9,8 @@ import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
 import { useFontChange } from "./App/useFontChange";
-import { AsyncLoad } from "./poetry/components/AsyncComponent";
 import { NotFound } from "./poetry/components/404";
+import { Contribute } from "./Contribute";
 
 function App() {
     const { setting } = useSetting();
@@ -51,10 +51,7 @@ function App() {
                     {BookRouter()}
                     <Route
                         path="/contribute"
-                        element={AsyncLoad(
-                            () => import("./Contribute/index"),
-                            "Contribute"
-                        )}></Route>
+                        element={<Contribute></Contribute>}></Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

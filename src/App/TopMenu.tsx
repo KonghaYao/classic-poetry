@@ -1,9 +1,8 @@
 import { FunctionComponent } from "react";
 import { Space } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
-import { SearchBox } from "../Search/SearchBox";
 import { useSlot } from "../Server";
-import { useMount, useUnmount } from "ahooks";
+import { useUnmount } from "ahooks";
 
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { slots, destroy } = useSlot({ position: "header-right" });
@@ -30,7 +29,6 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
                 中华诗词大典
             </div>
             <div style={{ flex: "1" }}></div>
-            <SearchBox></SearchBox>
             <Space
                 align="center"
                 size="medium"
