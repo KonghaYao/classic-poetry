@@ -10,6 +10,8 @@ import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
 import { NotFound } from "./poetry/components/404";
 import { useFontChange } from "./App/FontChange";
+import { Contribute } from "./Contribute";
+import { AsyncLoad } from "./poetry/components/AsyncComponent";
 
 function App() {
     const { setting } = useSetting();
@@ -47,6 +49,12 @@ function App() {
                 <AnimatedRoutes className="box box-col" appear>
                     <Route path="/" element={<Home />}></Route>
                     {BookRouter()}
+                    <Route
+                        path="/contribute"
+                        element={AsyncLoad(
+                            () => import("./Contribute/index"),
+                            "Contribute"
+                        )}></Route>
                     <Route path="*" element={<NotFound />} />
                 </AnimatedRoutes>
             </main>

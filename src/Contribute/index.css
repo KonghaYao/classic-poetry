@@ -1,0 +1,55 @@
+.contribute-one {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    transition: flex 0.3s;
+}
+.contribute-one:hover {
+    flex: 2;
+}
+
+.contribute-one .absolute-bg img {
+    min-height: 100%;
+    /* min-width: 100%; */
+    filter: brightness(0.9) blur(0);
+    transition: filter 0.3s;
+}
+.contribute-one:hover .absolute-bg img {
+    min-height: 100%;
+    /* min-width: 100%; */
+    filter: blur(4px);
+}
+.contribute-one .content {
+    align-items: center;
+    z-index: 1;
+}
+.contribute-one .name {
+    white-space: nowrap;
+    font-size: 4rem;
+    writing-mode: vertical-rl;
+}
+.contribute-one .description {
+    border-top: 2px solid var(--divide-red);
+    border-bottom: 2px solid var(--divide-red);
+    margin: 0 1rem;
+
+    backdrop-filter: blur(40px) brightness(0.8);
+    color: #ccc;
+    opacity: 0;
+    flex: 1;
+    text-align: center;
+    padding: 1rem 0 0 0;
+    transition: opacity 0.3s;
+}
+.contribute-one:hover .description {
+    opacity: 1;
+}
+.contribute-one header {
+    margin: 1rem 0;
+}
+.contribute-one .link {
+    background-color: var(--divide-red);
+    color: white;
+    margin: 0 1rem;
+}
