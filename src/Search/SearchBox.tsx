@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import {} from "react-dom";
+import { Loading } from "../poetry/components/Loading";
 import { RestTime } from "../poetry/utils/RestTime";
 import { useLink } from "./useLink";
 import { useUMD } from "./useUMD";
@@ -19,7 +20,7 @@ export const SearchBox = () => {
         return { default: () => <div></div> } || import("./index");
     });
     return (
-        <Suspense>
+        <Suspense fallback={<Loading></Loading>}>
             <Loader></Loader>
         </Suspense>
     );

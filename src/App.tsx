@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useSetting } from "./Setting";
 import { BookRouter } from "./BookRouter";
 import { AnimatedRoutes } from "react-animated-router";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
@@ -46,7 +46,8 @@ function App() {
                 }}>
                 {/* 噪声背景图 */}
                 <div className="noise-bg noise "></div>
-                <AnimatedRoutes className="box box-col" appear>
+                {/* Animate Routes 插件导致页面加载失败 */}
+                <Routes>
                     <Route path="/" element={<Home />}></Route>
                     {BookRouter()}
                     <Route
@@ -55,8 +56,8 @@ function App() {
                             () => import("./Contribute/index"),
                             "Contribute"
                         )}></Route>
-                    <Route path="*" element={<NotFound />} />
-                </AnimatedRoutes>
+                    <Route path="*" element={<Home />} />
+                </Routes>
             </main>
             {/* <Layout.Footer>Footer</Layout.Footer> */}
             <FontSlot></FontSlot>
