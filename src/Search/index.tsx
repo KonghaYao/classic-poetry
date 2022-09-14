@@ -1,3 +1,4 @@
+import debounce from "lodash/debounce";
 import { FC, useRef, useState } from "react";
 // fixed: 整个区块的样式被异步加载了
 import {
@@ -6,17 +7,28 @@ import {
     SearchBox as SSearchBox,
     Highlight,
     Hits,
+    useSearchBox,
 } from "react-instantsearch-hooks-web";
-import { useNavigate } from "react-router-dom";
+import {
+    useLocation,
+    useNavigate,
+    createSearchParams,
+    useSearchParams,
+} from "react-router-dom";
+import { SearchBoxInner } from "./SearchBox";
+import { StaticToPath } from "./StaticToPath";
 
 const _SearchBox: FC = () => {
-    // TODO 搜索次数太多了
+    let location = useLocation();
+    const searchParams = createSearchParams(location.search);
     const searchClient = (globalThis as any).instantMeiliSearch(
         __Search_Origin__,
         __Search_Key__,
         {
             placeholderSearch: false,
+            finitePagination: true,
             primaryKey: "id",
+            limitPerRequest: 30,
         }
     );
     return (
@@ -29,7 +41,15 @@ const _SearchBox: FC = () => {
                             showMore={true}
                         /> */}
                 <div className="box box-col">
-                    <SSearchBox />
+                    <SearchBoxInner
+                        defaultValue={searchParams.get("q") || ""}
+                        queryHook={debounce((text, search) => {
+                            if (text) {
+                                search(text);
+                            }
+                        }, 500)}
+                    />
+
                     <div className="box flex-1" style={{ overflow: "scroll" }}>
                         <PPanel></PPanel>
                     </div>
@@ -40,84 +60,10 @@ const _SearchBox: FC = () => {
     );
 };
 export default _SearchBox;
-const Transformer: [
-    RegExp | string,
-    string | ((...args: string[]) => string)
-][] = [
-    ...Object.entries({
-        "caocaoshiji/caocao.json": "/caocaoshiji",
-        "chuci/chuci.json": "/chuci",
-        "yuanqu/yuanqu.json": "/yuanqu",
-        "nalanxingde/纳兰性德诗集.json": "/nalanxingde",
-        "lunyu/lunyu.json": "/lunyu",
-        "shijing/shijing.json": "/shijing",
-        ...[
-            "sanzijing-traditional",
-            "sanzijing-new",
-            "qianziwen",
-            "baijiaxing",
-            "zhuzijiaxun",
-            "shenglvqimeng",
-            "wenzimengqiu",
-            "zengguangxianwen",
-        ].reduce((col, cur) => {
-            col[`mengxue/${cur}.json`] = "/mengxue";
-            return col;
-        }, {} as { [key: string]: string }),
-
-        ...[
-            "guwenguanzhi",
-            "dizigui",
-            "qianjiashi",
-            "tangshisanbaishou",
-            "youxueqionglin",
-        ].reduce((col, cur) => {
-            col[`mengxue/${cur}.json`] = cur;
-            return col;
-        }, {} as { [key: string]: string }),
-    }),
-    [/sishuwujing\/.*/, "/sishuwujing"],
-    [/wudai\/huajianji.*/, "/huajianji"],
-    [/wudai\/nantang.*/, "/nantang"],
-    [
-        /json\/poet.tang.(\d+).json/,
-        (_, num: string) => {
-            return "/tang/" + num;
-        },
-    ],
-    [
-        /json\/poet.song.(\d+).json/,
-        (_, num: string) => {
-            return "/song/" + num;
-        },
-    ],
-];
 const PPanel = () => {
     const nav = useNavigate();
-
     const jumpTo = (hit: { belongTo: string; id: string }) => {
-        const tag = Transformer.some(([reg, process]) => {
-            if (typeof reg === "string") {
-                if (reg === hit.belongTo) {
-                    nav(process + "/" + hit.id);
-                    return true;
-                }
-            } else {
-                if (typeof process === "string") {
-                    if (reg.test(hit.belongTo)) {
-                        nav(process + "/" + hit.id);
-                        return true;
-                    }
-                } else {
-                    const result = hit.belongTo.match(reg);
-                    if (result) {
-                        nav(process(...(result as any)) + "/" + hit.id);
-                        return true;
-                    }
-                }
-            }
-        });
-        if (!tag) throw new Error("没有找到路径");
+        nav(StaticToPath(hit));
     };
     return (
         <Hits
