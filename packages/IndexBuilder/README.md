@@ -6,9 +6,9 @@
 
 ```sh
 pnpm build # 规范化文件
-pnpm build:index # 建立索引 json 文件
+pnpm build:index # 建立索引 csv 文件
 pnpm open # 打开 meilisearch 容器 需要 docker 支持和预先 pull meilisearch
-pnpm upload # 上传索引 json 文件
+pnpm upload # 上传索引 csv 文件
 
 # 古诗词
 ```

@@ -29,7 +29,17 @@ const PreProcess = (i) => {
     delete i.tag;
     return i;
 };
-
+const jsonToCSV = (json) => {
+    const book = XLSX.utils.book_new();
+    const sheet = XLSX.utils.json_to_sheet(json);
+    XLSX.utils.book_append_sheet(book, sheet, "default");
+    return XLSX.write(book, {
+        bookType: "csv",
+        type: "buffer",
+        sheet: "default",
+    });
+};
+import XLSX from "xlsx";
 Promise.all(
     fse.readdirSync("./dist").map((i) => fse.readJSON("./dist/" + i))
 ).then((data) => {
@@ -57,14 +67,14 @@ Promise.all(
         }
     };
     console.log(info.length);
-    fse.emptyDirSync("./json");
+    fse.emptyDirSync("./csv");
 
     const needChunk = true;
     if (needChunk) {
-        chunk(info, 10000, (json, index) =>
-            fse.outputJSON("./json/" + index + ".json", json)
-        );
+        chunk(info, 5000, (json, index) => {
+            fse.outputFile("./csv/" + index + ".csv", jsonToCSV(json));
+        });
     } else {
-        fse.outputJSON("./json/default.json", info);
+        fse.outputJSON("./json/default.json", jsonToCSV(info));
     }
 });
