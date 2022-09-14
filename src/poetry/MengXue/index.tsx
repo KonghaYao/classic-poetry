@@ -72,6 +72,7 @@ const info = {
             ...i,
             content: i.paragraphs,
         }));
+        // 声律启蒙
         const shenglvqimeng = BookStore.getBook<{
             title: string;
             author: string;
@@ -103,6 +104,7 @@ const info = {
                 };
             });
         });
+        //增廣賢文
         const zengguangxianwen = BookStore.getBook<{
             title: string;
             author: string;

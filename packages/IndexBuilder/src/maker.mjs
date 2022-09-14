@@ -14,12 +14,18 @@ const prewrap = (data, base) => {
 };
 
 const processSingle = async (template, base) => {
-    const data = await fse.readJson(root + (base || template.base));
-    if (data instanceof Array) {
-        return data.map((i) => prewrap(template.transform(i), base));
-    } else {
-        return [prewrap(template.transform(data), base)];
+    let data = await fse.readJson(root + (base || template.base));
+    if (!Array.isArray(data)) {
+        data = [data];
     }
+    return data.flatMap((i) => {
+        const done = template.transform(i);
+        if (Array.isArray(done)) {
+            return done.map((ii) => prewrap(ii, base));
+        } else {
+            return [prewrap(done, base)];
+        }
+    });
 };
 fse.emptyDirSync("./dist");
 AllData.map(async (template) => {

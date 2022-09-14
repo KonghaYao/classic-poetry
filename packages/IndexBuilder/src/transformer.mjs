@@ -145,9 +145,7 @@ export default [
             .map((i) => {
                 return "json/" + i;
             }),
-        rebase(path) {
-            return path.replace("json/", "tang");
-        },
+
         name: "全唐诗",
         transform(i) {
             return {
@@ -164,9 +162,7 @@ export default [
             .map((i) => {
                 return "json/" + i;
             }),
-        rebase(path) {
-            return path.replace("json/", "song");
-        },
+
         name: "全宋词",
         transform(i) {
             return {
@@ -174,6 +170,95 @@ export default [
                 author: i.author,
                 content: i.paragraphs,
             };
+        },
+    },
+    {
+        base: [
+            "mengxue/sanzijing-traditional.json",
+            "mengxue/sanzijing-new.json",
+        ],
+        name: "三字经",
+        transform(i) {
+            return {
+                author: i.author,
+                title: i.tags + i.title,
+                content: i.paragraphs,
+            };
+        },
+    },
+    {
+        base: ["mengxue/qianziwen.json"],
+        name: "千字文",
+        transform(i) {
+            return {
+                author: i.author,
+                title: i.title,
+                content: i.paragraphs,
+            };
+        },
+    },
+    {
+        base: ["mengxue/baijiaxing.json"],
+        name: "百家姓",
+        transform(i) {
+            return {
+                title: i.title,
+                author: i.author,
+                content: i.paragraphs,
+                notes: i.origin.map((i) => {
+                    return `${i.surname} 来源于 ${i.place}`;
+                }),
+            };
+        },
+    },
+    {
+        base: ["mengxue/zhuzijiaxun.json"],
+        name: "朱子家訓",
+        transform(i) {
+            return {
+                title: i.title,
+                author: i.author,
+                content: i.paragraphs,
+            };
+        },
+    },
+    {
+        base: ["mengxue/shenglvqimeng.json"],
+        name: "声律启蒙",
+        transform(i) {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.title,
+                    content: ii.content.flatMap((item) => [
+                        item.chapter,
+                        ...item.paragraphs,
+                    ]),
+                };
+            });
+        },
+    },
+    {
+        base: ["mengxue/wenzimengqiu.json"],
+        name: "文字蒙求",
+        transform(i) {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.title,
+                    content: ii.paragraphs,
+                };
+            });
+        },
+    },
+    {
+        base: ["mengxue/zengguangxianwen.json"],
+        name: "增廣賢文",
+        transform(i) {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.chapter,
+                    content: ii.paragraphs,
+                };
+            });
         },
     },
 ];
