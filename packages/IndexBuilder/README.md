@@ -4,11 +4,22 @@
 
 蒙学未完成
 
+## 从原始仓库构建数据
+
 ```sh
+pnpm install
 pnpm build # 规范化文件
 pnpm build:index # 建立索引 csv 文件
-pnpm open # 打开 meilisearch 容器 需要 docker 支持和预先 pull meilisearch
-pnpm upload # 上传索引 csv 文件
+```
 
-# 古诗词
+## 创建 .env 文件
+
+```txt
+MEILI_MASTER_KEY=PASSWORD
+```
+
+## 启动 docker 自动部署
+
+```
+docker-compose up -d
 ```

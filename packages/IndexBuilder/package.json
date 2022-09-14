@@ -6,8 +6,7 @@
     "scripts": {
         "build": "node ./src/maker.mjs",
         "build:index": "node ./src/createIndex.mjs",
-        "open": "docker-compose up -d",
-        "upload": "python index.py"
+        "open": "docker-compose up -d"
     },
     "keywords": [],
     "author": "",
