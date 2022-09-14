@@ -256,8 +256,93 @@ export default [
             return i.content.map((ii) => {
                 return {
                     title: i.title + "-" + ii.chapter,
+                    author: i.author,
                     content: ii.paragraphs,
                 };
+            });
+        },
+    },
+    {
+        base: ["mengxue/dizigui.json"],
+        name: "弟子规",
+        transform(i) {
+            return i.content.map((ii) => {
+                return {
+                    title: i.title + "-" + ii.chapter,
+                    author: i.author,
+                    content: ii.paragraphs,
+                };
+            });
+        },
+    },
+
+    {
+        base: ["mengxue/guwenguanzhi.json"],
+        name: "古文观止",
+        transform(i) {
+            return i.content.flatMap((ii) => {
+                return ii.content.map((iii) => {
+                    return {
+                        title: i.title + "-" + ii.title + "-" + iii.chapter,
+                        author: iii.author,
+                        content: iii.paragraphs,
+                    };
+                });
+            });
+        },
+    },
+    {
+        base: ["mengxue/youxueqionglin.json"],
+        name: "幼学琼林",
+        transform(i) {
+            return i.content.flatMap((ii) => {
+                return ii.content.map((iii) => {
+                    return {
+                        title: i.title + "-" + ii.title + "-" + iii.chapter,
+                        author: i.author,
+                        content: iii.paragraphs,
+                    };
+                });
+            });
+        },
+    },
+    {
+        base: ["mengxue/qianjiashi.json"],
+        name: "千家诗",
+        transform(total) {
+            return total.content.flatMap((ii) => {
+                return ii.content.map((i) => {
+                    return {
+                        title: total.title + "-" + i.chapter,
+                        author: i.author,
+                        content: i.paragraphs
+                            .map((i) => {
+                                if (typeof i === "string") return i;
+                                return [i.subchapter, i.subchapter];
+                            })
+                            .flat(),
+                    };
+                });
+            });
+        },
+    },
+    {
+        base: ["mengxue/tangshisanbaishou.json"],
+        name: "唐诗三百首",
+        transform(total) {
+            return total.content.flatMap((ii) => {
+                return ii.content.map((i) => {
+                    return {
+                        title: total.title + "-" + i.chapter,
+                        author: i.author,
+                        content: i.paragraphs
+                            .map((i) => {
+                                if (typeof i === "string") return i;
+                                return [i.subchapter, i.subchapter];
+                            })
+                            .flat(),
+                    };
+                });
             });
         },
     },

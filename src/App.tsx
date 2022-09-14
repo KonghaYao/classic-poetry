@@ -11,6 +11,7 @@ import { registerHeaderPlugin } from "./App/HeaderPlugin";
 import { useFontChange } from "./App/useFontChange";
 import { NotFound } from "./poetry/components/404";
 import { Contribute } from "./Contribute";
+import { SearchPage } from "./Search/SearchPage";
 
 function App() {
     const { setting } = useSetting();
@@ -48,6 +49,7 @@ function App() {
                 {/* Animate Routes 插件导致页面加载失败 */}
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
+                    <Route path="/search" element={<SearchPage />}></Route>
                     {BookRouter()}
                     <Route
                         path="/contribute"

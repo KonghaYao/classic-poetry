@@ -23,8 +23,12 @@ export default defineConfig(({ mode }) => ({
             : false,
     ],
     define: {
-        __Search_Origin__: JSON.stringify("http://localhost:7700"),
-        __Search_Key__: JSON.stringify("KongHaYaoForChinesePoetry"),
+        __Search_Origin__: JSON.stringify(
+            "https://meilisearch-konghayao.cloud.okteto.net/"
+        ),
+        __Search_Key__: JSON.stringify(
+            "619f9717b59cbe35aa5883cb739f3133cff98ff439ddf8b2ed3cecf87004ec3c"
+        ),
     },
     resolve: {
         alias: Object.assign(
