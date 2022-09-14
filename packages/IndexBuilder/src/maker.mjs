@@ -7,9 +7,10 @@ import fse from "fs-extra";
 import { Tagger } from "./Tagger.mjs";
 const root = "./node_modules/chinese-poetry/";
 
-const prewrap = (data, base) => {
+const prewrap = (data, template) => {
     data.tag = Tagger.gen(data);
-    data.belongTo = base;
+    data.belongTo = template.base;
+    data.belongToName = template.name;
     return data;
 };
 
@@ -20,10 +21,11 @@ const processSingle = async (template, base) => {
     }
     return data.flatMap((i) => {
         const done = template.transform(i);
+
         if (Array.isArray(done)) {
-            return done.map((ii) => prewrap(ii, base));
+            return done.map((ii) => prewrap(ii, template));
         } else {
-            return [prewrap(done, base)];
+            return [prewrap(done, template)];
         }
     });
 };

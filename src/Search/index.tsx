@@ -1,7 +1,7 @@
-import { Trigger } from "@arco-design/web-react";
 import { FC, useRef, useState } from "react";
 // fixed: 整个区块的样式被异步加载了
 import {
+    Pagination,
     InstantSearch,
     SearchBox as SSearchBox,
     Highlight,
@@ -15,7 +15,6 @@ const _SearchBox: FC = () => {
         __Search_Origin__,
         __Search_Key__,
         {
-            paginationTotalHits: 10,
             placeholderSearch: false,
             primaryKey: "id",
         }
@@ -23,15 +22,19 @@ const _SearchBox: FC = () => {
     return (
         <>
             <InstantSearch indexName="poetry" searchClient={searchClient}>
-                <nav style={{ position: "relative", margin: "0 0.5rem" }}>
-                    <Trigger
-                        popup={() => <Panel></Panel>}
-                        trigger={["hover", "focus"]}
-                        blurToHide={false}>
-                        {/* 官方组件没有 debounce ，所以需要自己重写代码 */}
-                        <SSearchBox />
-                    </Trigger>
-                </nav>
+                {/* <RefinementList
+                            attribute="author"
+                            searchable={true}
+                            searchablePlaceholder="Search brands"
+                            showMore={true}
+                        /> */}
+                <div className="box box-col">
+                    <SSearchBox />
+                    <div className="box flex-1" style={{ overflow: "scroll" }}>
+                        <PPanel></PPanel>
+                    </div>
+                    <Pagination className="Pagination" />
+                </div>
             </InstantSearch>
         </>
     );
@@ -48,6 +51,30 @@ const Transformer: [
         "nalanxingde/纳兰性德诗集.json": "/nalanxingde",
         "lunyu/lunyu.json": "/lunyu",
         "shijing/shijing.json": "/shijing",
+        ...[
+            "sanzijing-traditional",
+            "sanzijing-new",
+            "qianziwen",
+            "baijiaxing",
+            "zhuzijiaxun",
+            "shenglvqimeng",
+            "wenzimengqiu",
+            "zengguangxianwen",
+        ].reduce((col, cur) => {
+            col[`mengxue/${cur}.json`] = "/mengxue";
+            return col;
+        }, {} as { [key: string]: string }),
+
+        ...[
+            "guwenguanzhi",
+            "dizigui",
+            "qianjiashi",
+            "tangshisanbaishou",
+            "youxueqionglin",
+        ].reduce((col, cur) => {
+            col[`mengxue/${cur}.json`] = cur;
+            return col;
+        }, {} as { [key: string]: string }),
     }),
     [/sishuwujing\/.*/, "/sishuwujing"],
     [/wudai\/huajianji.*/, "/huajianji"],
@@ -55,17 +82,17 @@ const Transformer: [
     [
         /json\/poet.tang.(\d+).json/,
         (_, num: string) => {
-            return "tang/" + num;
+            return "/tang/" + num;
         },
     ],
     [
         /json\/poet.song.(\d+).json/,
         (_, num: string) => {
-            return "song/" + num;
+            return "/song/" + num;
         },
     ],
 ];
-const Panel = () => {
+const PPanel = () => {
     const nav = useNavigate();
 
     const jumpTo = (hit: { belongTo: string; id: string }) => {
@@ -93,38 +120,31 @@ const Panel = () => {
         if (!tag) throw new Error("没有找到路径");
     };
     return (
-        <nav
-            style={{
-                position: "absolute",
-                top: "120%",
-                left: "50%",
-                width: "20rem",
-                transform: "translateX(-50%)",
-                maxHeight: "50vh",
-                overflow: "scroll",
-            }}>
-            <Hits
-                className="one-row"
-                hitComponent={({ hit }) => (
-                    <div
+        <Hits
+            hitComponent={({ hit }) => (
+                <div
+                    style={{
+                        width: "30em",
+                    }}
+                    key={hit.id as string}
+                    className="box-col one-row"
+                    onClick={() => jumpTo(hit as any)}>
+                    <header
+                        className="box-row"
                         style={{
-                            width: "100%",
-                        }}
-                        key={hit.id as string}
-                        className="box-col one-row"
-                        onClick={() => jumpTo(hit as any)}>
-                        <header
-                            className="box-row"
-                            style={{
-                                justifyContent: "space-between",
-                                whiteSpace: "nowrap",
-                            }}>
-                            <Highlight attribute="title" hit={hit} />
-                            <Highlight attribute="author" hit={hit}></Highlight>
-                        </header>
-                    </div>
-                )}
-            />
-        </nav>
+                            justifyContent: "space-between",
+                            whiteSpace: "nowrap",
+                        }}>
+                        <Highlight
+                            attribute="title"
+                            className="one-row"
+                            style={{ maxWidth: "80%" }}
+                            hit={hit}
+                        />
+                        <Highlight attribute="author" hit={hit}></Highlight>
+                    </header>
+                </div>
+            )}
+        />
     );
 };
