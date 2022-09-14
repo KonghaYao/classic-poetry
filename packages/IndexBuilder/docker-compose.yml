@@ -8,7 +8,7 @@ services:
         ports:
             - "7700:7700"
         environment:
-            - MEILI_MASTER_KEY=KongHaYaoForChinesePoetry
+            - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
         container_name: meili_chinese_poetry
         expose:
             - "7700"
@@ -22,3 +22,5 @@ services:
             - ./csv:/csv
             - ./scripts:/scripts
         tty: true
+        environment:
+            - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
