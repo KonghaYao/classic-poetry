@@ -1,6 +1,6 @@
 import { IconClose, IconLoading } from "@arco-design/web-react/icon";
-import { useMount, useUpdateEffect } from "ahooks";
-import React, { useEffect, useRef, useState } from "react";
+import { useMount } from "ahooks";
+import React, { useRef, useState } from "react";
 import { useSearchBox, UseSearchBoxProps } from "react-instantsearch-hooks-web";
 import {
     IconProps,

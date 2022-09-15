@@ -11,7 +11,8 @@ dirs = os.listdir( '../csv' )
 print("共",len(dirs))
 index.update_filterable_attributes([
     'belongToName',
-    "author"
+    "author",
+    
 ])
 index.update_ranking_rules([
     'author',

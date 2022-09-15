@@ -162,7 +162,9 @@ body {
 .flex-1{
     flex:1
 }
-
+.none{
+    display: none;
+}
 hr{
   
     border:0

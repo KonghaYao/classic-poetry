@@ -1,22 +1,22 @@
+import { Button, Space, Trigger } from "@arco-design/web-react";
+import { IconPlus } from "@arco-design/web-react/icon";
 import debounce from "lodash/debounce";
 import { FC, useRef, useState } from "react";
 // fixed: 整个区块的样式被异步加载了
 import {
     Pagination,
     InstantSearch,
-    SearchBox as SSearchBox,
     Highlight,
     Hits,
-    useSearchBox,
+    RefinementList,
+    useConnector,
+    SortBy,
+    CurrentRefinements,
 } from "react-instantsearch-hooks-web";
-import {
-    useLocation,
-    useNavigate,
-    createSearchParams,
-    useSearchParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, createSearchParams } from "react-router-dom";
 import { SearchBoxInner } from "./SearchBox";
 import { StaticToPath } from "./StaticToPath";
+import { Stats } from "./Stats";
 
 const _SearchBox: FC = () => {
     let location = useLocation();
@@ -34,13 +34,9 @@ const _SearchBox: FC = () => {
     return (
         <>
             <InstantSearch indexName="poetry" searchClient={searchClient}>
-                {/* <RefinementList
-                            attribute="author"
-                            searchable={true}
-                            searchablePlaceholder="Search brands"
-                            showMore={true}
-                        /> */}
-                <div className="box box-col">
+                <main
+                    className="box box-col content-max"
+                    style={{ margin: "1rem auto", width: "100%" }}>
                     <SearchBoxInner
                         defaultValue={searchParams.get("q") || ""}
                         queryHook={debounce((text, search) => {
@@ -49,12 +45,44 @@ const _SearchBox: FC = () => {
                             }
                         }, 500)}
                     />
+                    <Stats></Stats>
+                    <Space
+                        align="center"
+                        className="box-row"
+                        style={{ margin: "0.125rem 0" }}>
+                        <Trigger
+                            unmountOnExit={false}
+                            popup={() => (
+                                <RefinementList
+                                    attribute="belongToName"
+                                    searchable={false}
+                                    showMore={false}
+                                    limit={20}
+                                />
+                            )}>
+                            <Button>
+                                <IconPlus></IconPlus>
+                            </Button>
+                        </Trigger>
+                        <CurrentRefinements
+                            classNames={{
+                                label: "none",
+                            }}
+                            includedAttributes={[
+                                "belongToName",
+                            ]}></CurrentRefinements>
+                    </Space>
 
-                    <div className="box flex-1" style={{ overflow: "scroll" }}>
+                    <div
+                        className="box flex-1"
+                        style={{ overflow: "scroll", borderRadius: "8px" }}>
                         <PPanel></PPanel>
                     </div>
-                    <Pagination className="Pagination" />
-                </div>
+                    <Pagination
+                        className="Pagination"
+                        style={{ margin: "1rem 0" }}
+                    />
+                </main>
             </InstantSearch>
         </>
     );
@@ -69,11 +97,8 @@ const PPanel = () => {
         <Hits
             hitComponent={({ hit }) => (
                 <div
-                    style={{
-                        width: "30em",
-                    }}
                     key={hit.id as string}
-                    className="box-col one-row"
+                    className="box box-col one-row"
                     onClick={() => jumpTo(hit as any)}>
                     <header
                         className="box-row"
@@ -84,10 +109,17 @@ const PPanel = () => {
                         <Highlight
                             attribute="title"
                             className="one-row"
-                            style={{ maxWidth: "80%" }}
+                            style={{ maxWidth: "20rem" }}
                             hit={hit}
                         />
-                        <Highlight attribute="author" hit={hit}></Highlight>
+
+                        <div>
+                            <Highlight attribute="author" hit={hit}></Highlight>
+                            |
+                            <Highlight
+                                attribute="belongToName"
+                                hit={hit}></Highlight>
+                        </div>
                     </header>
                 </div>
             )}

@@ -20,6 +20,10 @@ export const registerHeaderPlugin = async () => {
             import("../Server/plugins/theme-change").then(
                 ({ applyThemeChange }) => applyThemeChange
             ),
+        async () =>
+            import("../Server/plugins/search").then(
+                ({ applySearchButton }) => applySearchButton
+            ),
     ].map((i) => i());
     const module = await Promise.all(all);
     return module.reverse().forEach((plugin) => plugin && plugin());

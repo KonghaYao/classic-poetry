@@ -1,9 +1,8 @@
 import { FC } from "react";
 import { lazy, Suspense } from "react";
-import {} from "react-dom";
 import { RestTime } from "../poetry/utils/RestTime";
 import { useUMD } from "./useUMD";
-
+import "./search.less";
 /** 这个是异步加载外壳，用于在闲暇时段加载搜索模块 */
 export const SearchBox = () => {
     const Loader = lazy(async () => {
@@ -24,7 +23,7 @@ export const SearchBox = () => {
 
 export const SearchPage: FC = () => {
     return (
-        <div>
+        <div className="box">
             <SearchBox></SearchBox>
             <link
                 href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.4.5/themes/satellite.css"
