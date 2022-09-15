@@ -1,13 +1,10 @@
 import { IconSearch } from "@arco-design/web-react/icon";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useServer } from "..";
 
 const component = () => {
-    return (
-        <NavLink to="/search">
-            <IconSearch></IconSearch>
-        </NavLink>
-    );
+    const nav = useNavigate();
+    return <IconSearch onClick={() => nav("/search")}></IconSearch>;
 };
 export const applySearchButton = () => {
     useServer().register({

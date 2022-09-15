@@ -34,9 +34,7 @@ const _SearchBox: FC = () => {
     return (
         <>
             <InstantSearch indexName="poetry" searchClient={searchClient}>
-                <main
-                    className="box box-col content-max"
-                    style={{ margin: "1rem auto", width: "100%" }}>
+                <main className=" search-content box box-col content-max">
                     <SearchBoxInner
                         defaultValue={searchParams.get("q") || ""}
                         queryHook={debounce((text, search) => {
@@ -53,12 +51,14 @@ const _SearchBox: FC = () => {
                         <Trigger
                             unmountOnExit={false}
                             popup={() => (
-                                <RefinementList
-                                    attribute="belongToName"
-                                    searchable={false}
-                                    showMore={false}
-                                    limit={20}
-                                />
+                                <div className="refine-panel">
+                                    <RefinementList
+                                        attribute="belongToName"
+                                        searchable={false}
+                                        showMore={false}
+                                        limit={20}
+                                    />
+                                </div>
                             )}>
                             <Button>
                                 <IconPlus></IconPlus>
@@ -74,13 +74,13 @@ const _SearchBox: FC = () => {
                     </Space>
 
                     <div
-                        className="box flex-1"
+                        className="flex-1"
                         style={{ overflow: "scroll", borderRadius: "8px" }}>
                         <PPanel></PPanel>
                     </div>
                     <Pagination
                         className="Pagination"
-                        style={{ margin: "1rem 0" }}
+                        style={{ margin: "1rem 0 0 0" }}
                     />
                 </main>
             </InstantSearch>

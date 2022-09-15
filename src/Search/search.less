@@ -1,3 +1,25 @@
+.search-page {
+    background-color: var(--book-bg);
+
+    height: 100%;
+}
+main.search-content {
+    background-color: var(--color-bg-1);
+    border: 2px solid var(--book-border);
+    border-radius: 12px;
+
+    padding: 1rem;
+    width: 100%;
+    max-height: 80vh;
+}
+.refine-panel {
+    padding: 0.5rem;
+    background-color: var(--color-bg-2);
+    border-radius: 12px;
+    max-height: 50vh;
+    overflow: scroll;
+}
+
 .ais-SearchBox-form,
 .ais-Hits-item,
 .ais-InfiniteHits-item,
@@ -22,7 +44,7 @@
 .ais-GeoSearch-input,
 .ais-CurrentRefinements-item {
     transition: background-color 0.3s;
-    background-color: var(--color-bg-1) !important;
+    background-color: var(--color-bg-2) !important;
     color: var(--color-text-1) !important;
 }
 .ais-ToggleRefinement-count,
@@ -56,10 +78,13 @@
     }
 }
 
-.ais-Hits-item:hover {
+.ais-Hits-item {
     cursor: pointer;
+    body[arco-theme="dark"] &:hover {
+        background-color: var(--color-bg-4) !important;
+    }
     &:hover {
-        background-color: var(--color-bg-3) !important;
+        background-color: #efefef !important;
     }
 }
 .ais-Highlight-highlighted,

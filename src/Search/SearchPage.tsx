@@ -26,7 +26,9 @@ export const SearchBox = () => {
 
 export const SearchPage: FC = () => {
     return (
-        <div className="box">
+        <div
+            className="box-col search-page noise flex-1"
+            style={{ justifyContent: "center", alignItems: "center" }}>
             <SearchBox></SearchBox>
             <link
                 href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.4.5/themes/satellite.css"

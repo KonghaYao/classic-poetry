@@ -17,12 +17,12 @@ export const registerHeaderPlugin = async () => {
                 ({ applySystemController }) => applySystemController
             ),
         async () =>
-            import("../Server/plugins/theme-change").then(
-                ({ applyThemeChange }) => applyThemeChange
-            ),
-        async () =>
             import("../Server/plugins/search").then(
                 ({ applySearchButton }) => applySearchButton
+            ),
+        async () =>
+            import("../Server/plugins/theme-change").then(
+                ({ applyThemeChange }) => applyThemeChange
             ),
     ].map((i) => i());
     const module = await Promise.all(all);
