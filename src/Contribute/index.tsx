@@ -12,13 +12,13 @@ const data = [
             "其他提供的字体可在 Web Font 字库中查看，感谢字体支持。",
         ],
         link: "https://chinese-font.netlify.app/#/home",
-        bg: "https://images.unsplash.com/photo-1589895009255-67c7cb06de4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+        bg: "https://images.unsplash.com/photo-1589895009255-67c7cb06de4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=60",
     },
     {
         name: "江夏尧",
         avatar: "/avatar.png",
         link: "https://github.com/KonghaYao/classic-poetry",
-        bg: "https://images.unsplash.com/photo-1604844252839-f9c364adacdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+        bg: "https://images.unsplash.com/photo-1604844252839-f9c364adacdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=60",
         description: [
             "辛苦的《中华诗词大典》工程师。",
             "他规范化了中文诗歌仓库的数据，",
@@ -37,7 +37,7 @@ const data = [
             "这个仓库是《中华诗词大典》的数据来源。",
         ],
         link: "https://github.com/chinese-poetry/chinese-poetry",
-        bg: "https://images.unsplash.com/photo-1603258745801-42037f02831c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        bg: "https://images.unsplash.com/photo-1603258745801-42037f02831c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=60",
     },
 
     {
@@ -58,7 +58,7 @@ const data = [
                 chenwei wang
             </a>,
         ],
-        bg: "https://images.unsplash.com/photo-1643375081193-9225f9f1e859?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        bg: "https://images.unsplash.com/photo-1643375081193-9225f9f1e859?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=60",
         link: "https://unsplash.com/",
     },
 ];

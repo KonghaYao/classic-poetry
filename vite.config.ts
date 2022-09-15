@@ -12,12 +12,11 @@ const productionPlugin = [
         enforce: "pre",
         transformIndexHtml(code) {
             const content = [
-                "https://unpkg.com/react@18/umd/react.production.min.js",
+                "https://unpkg.com/react@18.2.0/umd/react.production.min.js",
 
-                "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",
+                "https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js",
 
-                "https://unpkg.com/react-router-dom@6.4.0/dist/umd/react-router-dom.production.min.js",
-                "https://unpkg.com/localforage@1.10.0/dist/localforage.js",
+                "https://unpkg.com/localforage@1.10.0/dist/localforage.min.js",
             ];
             return code.replace(
                 "<!-- GlobalScripts -->",
@@ -32,8 +31,9 @@ const productionPlugin = [
     externalGlobals({
         react: "React",
         "react-dom": "ReactDOM",
-        "react-router-dom": "ReactRouterDOM",
         localforage: "localforage",
+        // 非首页载入, 需要异步控制
+        "react-instantsearch-hooks-web": "ReactInstantSearchHooksDOM",
     }),
 ];
 
