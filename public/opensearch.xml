@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                      xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>中华诗词大典</ShortName>
+  <Description>搜索诗词</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" method="get" template="https://chinese-poetry.netlify.app#/search?q={searchTerms}"/>
+  <moz:SearchForm>https://chinese-poetry.netlify.app/#/search</moz:SearchForm>
+</OpenSearchDescription>
