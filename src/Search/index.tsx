@@ -91,7 +91,10 @@ export default _SearchBox;
 const PPanel = () => {
     const nav = useNavigate();
     const jumpTo = (hit: { belongTo: string; id: string }) => {
-        nav(StaticToPath(hit));
+        console.log(hit);
+        const pos = StaticToPath(hit);
+        console.log(pos);
+        nav(pos);
     };
     return (
         <Hits

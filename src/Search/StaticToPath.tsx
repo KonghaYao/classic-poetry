@@ -51,7 +51,7 @@ const Transformer: [
     ],
 ];
 export const StaticToPath = (hit: { belongTo: string; id: string }): string => {
-    const tag = Transformer.some(([reg, process]) => {
+    for (const [reg, process] of Transformer) {
         if (typeof reg === "string") {
             if (reg === hit.belongTo) {
                 return process + "/" + hit.id;
@@ -68,7 +68,6 @@ export const StaticToPath = (hit: { belongTo: string; id: string }): string => {
                 }
             }
         }
-    });
-    if (!tag) throw new Error("没有找到路径");
-    return "/";
+    }
+    throw new Error("没有找到路径");
 };
