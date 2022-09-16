@@ -38,7 +38,8 @@ export const Home: FC = () => {
                             <div
                                 className="book-item box-row"
                                 key={i.to}
-                                onPointerDown={() => {
+                                // onclick 能够防止点击之后立即跳转的情况
+                                onClick={() => {
                                     nav(i.to);
                                 }}>
                                 <div className="book-link">{i.name}</div>
