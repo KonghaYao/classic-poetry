@@ -78,7 +78,6 @@ export const TextSetting: FC<{}> = () => {
                         CnCaseSupport().then(() => {
                             server.emit("change", { theme: { cnCase: label } });
                         }); // 直接开始加载数据
-                        server.emit("change", { theme: { cnCase: label } });
                     }}
                     options={["默认", "简体", "繁体"]}></Radio.Group>
                 <Hint message="为保证阅读的流畅度，可以将古文中的简繁体进行切换"></Hint>

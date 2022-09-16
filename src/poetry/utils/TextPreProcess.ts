@@ -17,12 +17,12 @@ const plugins: (TextPreProcessPlugin | false | undefined)[] = [
         }),
     (s) => {
         let cnchar: any = window.cnchar;
-        if (!window.cnchar) return s; // 避免全局变量没有的惨状
+        if (!cnchar) return s; // 避免全局变量没有的惨状
         switch (Setting.theme.cnCase) {
             case "简体":
-                return cnchar.convert.tradToSimple(s);
+                return cnchar?.convert?.tradToSimple(s) || s;
             case "繁体":
-                return cnchar.convert.simpleToTrad(s);
+                return cnchar?.convert?.simpleToTrad(s) || s;
             default:
                 return s;
         }
