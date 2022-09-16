@@ -27,7 +27,7 @@ export const SearchBox = () => {
 export const SearchPage: FC = () => {
     return (
         <div
-            className="box-col search-page noise flex-1"
+            className="box-row search-page noise flex-1"
             style={{ justifyContent: "center", alignItems: "center" }}>
             <SearchBox></SearchBox>
             <link

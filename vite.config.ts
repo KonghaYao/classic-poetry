@@ -18,6 +18,7 @@ const productionPlugin = [
 
                 "https://unpkg.com/localforage@1.10.0/dist/localforage.min.js",
             ];
+            console.log("执行 UMD 替换");
             return code.replace(
                 "<!-- GlobalScripts -->",
                 content
@@ -38,44 +39,47 @@ const productionPlugin = [
 ];
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-    // TODO chunk 碎片问题
-    base: "./",
-    plugins: [
-        react({
-            // 配合 CDN 操作。。。。
-            jsxRuntime: "classic",
-        }),
-        vitePluginForArco({
-            style: "css",
-        }),
+export default defineConfig(({ mode }) => {
+    console.log(mode);
+    return {
+        // TODO chunk 碎片问题
+        base: "./",
+        plugins: [
+            react({
+                // 配合 CDN 操作。。。。
+                jsxRuntime: "classic",
+            }),
+            vitePluginForArco({
+                style: "css",
+            }),
 
-        ANALYZE === "1"
-            ? visualizer({ open: true, filename: "visualizer/stat.html" })
-            : false,
-        ...((mode === "production" && productionPlugin) || []),
-    ],
-    define: {
-        __Search_Origin__: JSON.stringify(
-            "https://meilisearch-konghayao.cloud.okteto.net/"
-        ),
-        __Search_Key__: JSON.stringify(
-            "619f9717b59cbe35aa5883cb739f3133cff98ff439ddf8b2ed3cecf87004ec3c"
-        ),
-    },
-    resolve: {
-        alias: Object.assign(
-            {
-                "@meilisearch/instant-meilisearch":
-                    "https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/dist/instant-meilisearch.umd.min.js",
-            },
-            mode === "production" && {
-                cnchar: cdnRoot + "/cnchar",
-                "fuse.js": cdnRoot + "/fuse.js",
-                "cnchar-trad": cdnRoot + "/cnchar-trad",
-                pangu: cdnRoot + "/pangu",
-            }
-        ),
-    },
-    build: {},
-}));
+            ANALYZE === "1"
+                ? visualizer({ open: true, filename: "visualizer/stat.html" })
+                : false,
+            ...(mode === "production" ? productionPlugin : []),
+        ],
+        define: {
+            __Search_Origin__: JSON.stringify(
+                "https://meilisearch-konghayao.cloud.okteto.net/"
+            ),
+            __Search_Key__: JSON.stringify(
+                "619f9717b59cbe35aa5883cb739f3133cff98ff439ddf8b2ed3cecf87004ec3c"
+            ),
+        },
+        resolve: {
+            alias: Object.assign(
+                {
+                    "@meilisearch/instant-meilisearch":
+                        "https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/dist/instant-meilisearch.umd.min.js",
+                },
+                mode === "production" && {
+                    cnchar: cdnRoot + "/cnchar",
+                    "fuse.js": cdnRoot + "/fuse.js",
+                    "cnchar-trad": cdnRoot + "/cnchar-trad",
+                    pangu: cdnRoot + "/pangu",
+                }
+            ),
+        },
+        build: {},
+    };
+});
