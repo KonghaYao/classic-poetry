@@ -3,7 +3,7 @@ import { Space } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
 import { useSlot } from "../Server";
 import { useUnmount } from "ahooks";
-
+import "./TopMenu.css";
 export const TopMenu: FunctionComponent<{}> = (args) => {
     const { slots, destroy } = useSlot({ position: "header-right" });
 
@@ -13,19 +13,8 @@ export const TopMenu: FunctionComponent<{}> = (args) => {
         destroy();
     });
     return (
-        <nav
-            className="box-row"
-            style={{
-                padding: "1rem 2rem",
-                boxShadow: "var(--shadow)",
-            }}>
-            <div
-                style={{
-                    fontSize: "1.25rem",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                }}
-                onClick={() => nav("/")}>
+        <nav className="box-row top-menu">
+            <div className="top-menu-title" onClick={() => nav("/")}>
                 中华诗词大典
             </div>
             <div style={{ flex: "1" }}></div>

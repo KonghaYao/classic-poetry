@@ -1,0 +1,36 @@
+{
+    "name": "中华诗词大典",
+    "short_name": "中华诗词大典",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000",
+    "description": "最全的在线诗词阅读网站",
+    "orientation": "any",
+    "theme_color": "#000",
+    "icons": [
+        {
+            "src": "./icon/manifest-icon-192.maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./icon/manifest-icon-192.maskable.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./icon/manifest-icon-512.maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./icon/manifest-icon-512.maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
