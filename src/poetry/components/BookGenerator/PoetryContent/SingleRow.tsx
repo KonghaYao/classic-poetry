@@ -20,18 +20,21 @@ export const SingleRow: FC<{
         History.add(name);
     };
     return (
-        <div
-            className={`single-content box-row ${
-                direction ? "" : "long-list-item"
-            }`}
-            onPointerDown={RecordMe}
-            onPointerMove={debounce(() => {
-                RecordMe();
-            }, 500)}>
-            <div className="poetry-index">{index + 1}</div>
-            <div className="poetry-text" style={{ fontSize: "1em" }}>
-                {TextPreProcess(content)}
+        <>
+            <div
+                className={`single-content box-row ${
+                    direction ? "" : "long-list-item"
+                }`}
+                onPointerDown={RecordMe}
+                onPointerMove={debounce(() => {
+                    RecordMe();
+                }, 500)}>
+                <div className="poetry-index">{index + 1}</div>
+                <div className="poetry-text" style={{ fontSize: "1em" }}>
+                    {TextPreProcess(content)}
+                </div>
             </div>
-        </div>
+            <hr key={"divide-" + index} className={direction ? "ver" : "hor"} />
+        </>
     );
 };

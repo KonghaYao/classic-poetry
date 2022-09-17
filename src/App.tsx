@@ -14,15 +14,7 @@ import { Contribute } from "./Contribute";
 import { SearchPage } from "./Search/SearchPage";
 
 function App() {
-    const { setting } = useSetting();
-    const { slot: FontSlot } = useFontChange();
-
-    const fontSize = useMemo(() => {
-        return setting.text.fontSize + "px";
-    }, [setting]);
-    const letterSpacing = useMemo(() => {
-        return setting.text.letterSpacing + "em";
-    }, [setting]);
+    const { slot: FontSlot } = useFontChange(); // 添加字体加载 link，这样才能使用
 
     useMount(async () => {
         await registerHeaderPlugin();
@@ -37,10 +29,8 @@ function App() {
                 <TopMenu></TopMenu>
             </header>
             <main
-                className="box-row box"
+                className=" box-row box"
                 style={{
-                    fontSize,
-                    letterSpacing,
                     overflow: "hidden",
                     position: "relative",
                 }}>

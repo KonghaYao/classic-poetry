@@ -21,8 +21,14 @@ export type PageInfo = {
 
 export const ShowSinglePoetry: FC = () => {
     const { setting } = useSetting();
-    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
-    const fontWeight = useMemo(() => setting.text.fontWeight, [setting]);
+    const direction = useMemo(
+        () => setting.theme.cnList === "竖排",
+        [setting.theme.cnList]
+    );
+    const fontWeight = useMemo(
+        () => setting.text.fontWeight,
+        [setting.text.fontWeight]
+    );
     return (
         <BookContext.Consumer>
             {(info) => {
@@ -35,6 +41,8 @@ export const ShowSinglePoetry: FC = () => {
                         }`}
                         style={{
                             fontWeight,
+                            fontSize: setting.text.fontSize,
+                            letterSpacing: setting.text.letterSpacing + "em",
                         }}>
                         <PoetryHeader></PoetryHeader>
 
@@ -76,8 +84,6 @@ export const PoetryContent: FC<BookContextType> = (props) => {
         toPosition();
     });
 
-    const { setting } = useSetting();
-    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
     // 单独诗句排版
     return (
         <main
@@ -90,18 +96,11 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                 }}></nav>
             {matched.content.map((i, index) => {
                 return (
-                    <>
-                        <SingleRow
-                            name={matched.title}
-                            key={matched.title + "-" + index}
-                            index={index}
-                            content={i}></SingleRow>
-
-                        <hr
-                            key={"divide-" + index}
-                            className={direction ? "ver" : "hor"}
-                        />
-                    </>
+                    <SingleRow
+                        name={matched.title}
+                        key={matched.title + "-" + index}
+                        index={index}
+                        content={i}></SingleRow>
                 );
             })}
         </main>

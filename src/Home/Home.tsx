@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { FC, memo } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
-export const Home: FC = () => {
+export const Home: FC = memo(() => {
     const data = [
         {
             name: "论语",
@@ -54,4 +54,4 @@ export const Home: FC = () => {
             </header>
         </section>
     );
-};
+});

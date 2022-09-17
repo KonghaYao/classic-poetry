@@ -16,6 +16,7 @@ const AsyncLoadSetting = AsyncLoad(
 // import { SettingPage } from "./SettingPage";
 export const useSetting = () => {
     let page: JSX.Element;
+
     const [setting, setNewSetting] = useState(Setting);
     SettingServer.on("change", () => {
         setNewSetting({ ...Setting });

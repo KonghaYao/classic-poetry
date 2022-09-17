@@ -1,6 +1,6 @@
 import { useRequest } from "ahooks";
-import { FC, useEffect, useMemo } from "react";
-import { useSetting } from "../Setting";
+import { FC, useState } from "react";
+import { Setting, SettingServer } from "../Setting/Setting";
 const defaultFont = {
     path: "",
     name: "默认字体",
@@ -10,7 +10,6 @@ type FontMessage = { name: string; path: string; fontFamily: string };
 
 /** 这个组件必须要在主程序中执行 */
 export const useFontChange = () => {
-    const { setting } = useSetting();
     const { loading, data, error } = useRequest<FontMessage[], any>(
         async () => {
             return fetch(
@@ -24,14 +23,16 @@ export const useFontChange = () => {
             },
         }
     );
-    const usingFont = useMemo(() => setting.text.font, [setting]);
-    useEffect(() => {
-        // 触发全局样式改动
+    const [usingFont, setFont] = useState(Setting.text.font);
+
+    SettingServer.on("change", () => {
         document.body.style.setProperty(
             "--book-font-family",
-            `"${setting.text.font.fontFamily}", "Noto Serif SC"`
+            `"${Setting.text.font.fontFamily}", "Noto Serif SC"`
         );
-    }, [setting]); //
+        if (usingFont !== Setting.text.font) setFont(Setting.text.font);
+    });
+
     const pathToURL = (path: string) => {
         return `https://fastly.jsdelivr.net/gh/KonghaYao/chinese-free-web-font-storage/${path}/result.css`;
     };

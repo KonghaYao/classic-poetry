@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useState } from "react";
+import { createContext, FC, memo, ReactNode, useState } from "react";
 
 import mitt from "mitt";
 import { useUnmount } from "ahooks";
@@ -88,13 +88,12 @@ export function createServer<
     };
 }
 
-export function SlotMap<T extends FC>(props: {
-    list: SlotType[];
-    children?: (i: SlotType) => ReactNode;
-}) {
-    const mapper =
-        props.children ||
-        ((I: SlotType, index: number) => <I key={"name-" + index} />);
+export const SlotMap = memo(
+    (props: { list: SlotType[]; children?: (i: SlotType) => ReactNode }) => {
+        const mapper =
+            props.children ||
+            ((I: SlotType, index: number) => <I key={"name-" + index} />);
 
-    return <>{props.list?.map(mapper)}</>;
-}
+        return <>{props.list?.map(mapper)}</>;
+    }
+);
