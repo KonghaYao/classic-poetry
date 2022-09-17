@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 
 import { Switch, Space } from "@arco-design/web-react";
 import { IconSun, IconMoon } from "@arco-design/web-react/icon";
@@ -9,7 +9,7 @@ export const ThemeChange: FC<{}> = () => {
     const { setTheme, theme } = useAutoTheme();
     const { setting, server } = useSetting();
 
-    useEffect(() => {
+    useMemo(() => {
         switch (setting.theme.base) {
             case "light":
                 setTheme("light");
@@ -18,7 +18,7 @@ export const ThemeChange: FC<{}> = () => {
                 setTheme("dark");
                 break;
         }
-    }, [setting]);
+    }, [setting.theme.base]);
     return (
         <Space
             size="large"

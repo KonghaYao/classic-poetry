@@ -4,24 +4,22 @@ import { Setting } from "../Setting/Setting";
 export const registerHeaderPlugin = async () => {
     const all = [
         async () =>
-            import("../Server/plugins/author").then(
-                ({ applyAuthor }) => applyAuthor
-            ),
+            import("./plugins/author").then(({ applyAuthor }) => applyAuthor),
         async () =>
             Setting.poetry.history.enable &&
-            import("../Server/plugins/histroy-run").then(
+            import("./plugins/histroy-run").then(
                 ({ applyHistoryRun }) => applyHistoryRun
             ),
         async () =>
-            import("../Server/plugins/system-controller").then(
+            import("./plugins/system-controller").then(
                 ({ applySystemController }) => applySystemController
             ),
         async () =>
-            import("../Server/plugins/search").then(
+            import("./plugins/search").then(
                 ({ applySearchButton }) => applySearchButton
             ),
         async () =>
-            import("../Server/plugins/theme-change").then(
+            import("./plugins/theme-change").then(
                 ({ applyThemeChange }) => applyThemeChange
             ),
     ].map((i) => i());

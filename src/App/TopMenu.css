@@ -9,6 +9,7 @@
 }
 
 .top-menu-title {
+    flex: none;
     font-size: 1.25rem;
     font-weight: bold;
     cursor: pointer;

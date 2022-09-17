@@ -1,8 +1,9 @@
 import { Avatar } from "@arco-design/web-react";
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { useServer } from "..";
+import { TopMenuController } from "../TopMenu";
 
-const component = () => {
+const component: FC = () => {
     return (
         <NavLink to="/contribute">
             <Avatar size={32}>
@@ -12,9 +13,9 @@ const component = () => {
     );
 };
 export const applyAuthor = () => {
-    useServer().register({
-        id: "author-avatar",
-        position: "header-right",
+    TopMenuController.emit("register", {
+        slot: "Button",
         component,
+        list: true,
     });
 };

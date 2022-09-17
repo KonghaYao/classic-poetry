@@ -1,15 +1,15 @@
 import { IconSearch } from "@arco-design/web-react/icon";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useServer } from "..";
+import { useNavigate } from "react-router-dom";
+import { TopMenuController } from "../TopMenu";
 
 const component = () => {
     const nav = useNavigate();
     return <IconSearch onClick={() => nav("/search")}></IconSearch>;
 };
 export const applySearchButton = () => {
-    useServer().register({
-        id: "search",
-        position: "header-right",
+    TopMenuController.emit("register", {
+        slot: "Button",
         component,
+        list: true,
     });
 };

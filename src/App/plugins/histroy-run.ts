@@ -1,10 +1,10 @@
-import { useServer } from "..";
+import { TopMenuController } from "../TopMenu";
 import { HistoryController } from "../../History/Pannel";
 
 export const applyHistoryRun = () => {
-    useServer().register({
-        id: "history-run",
-        position: "header-right",
+    TopMenuController.emit("register", {
+        slot: "Button",
         component: HistoryController,
+        list: true,
     });
 };
