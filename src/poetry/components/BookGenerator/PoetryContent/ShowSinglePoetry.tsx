@@ -1,10 +1,8 @@
-import { Divider, Space } from "@arco-design/web-react";
 import { FC, useMemo } from "react";
 import { PoetryHeader } from "./PoetryHeader";
 import { useSetting } from "../../../../Setting";
 import "./ShowSinglePoetry.css";
 import { History } from "../../../../History";
-import { useSearchParams } from "react-router-dom";
 import { useMount } from "ahooks";
 import { RestTime } from "../../../utils/RestTime";
 import { BookContext, BookContextType } from "../BookContext";
@@ -12,6 +10,7 @@ import { NotsShower } from "./NotsShower";
 import { SingleRow } from "./SingleRow";
 import { PoetryFooter } from "./PoetryFooter";
 import { useFontChange } from "../../../../App/useFontChange";
+import { usePositionRecord } from "./usePositionRecord";
 export type PageInfo = {
     title: string;
     subTitle?: string;
@@ -60,25 +59,12 @@ export const ShowSinglePoetry: FC = () => {
         </BookContext.Consumer>
     );
 };
+
 export const PoetryContent: FC<BookContextType> = (props) => {
     const { matched } = props!;
     // 历史记录的操作
     History.add(matched.title);
-    const [searchParams] = useSearchParams();
-    const toPosition = () => {
-        const pos = searchParams.get("position");
-        if (typeof pos === "string") {
-            setTimeout(() => {
-                const els = document.getElementsByClassName("single-content")!;
-                const el = els[parseInt(pos)];
-                console.log("Logger 历史自动复原");
-                el.scrollIntoView({
-                    block: "start",
-                    inline: "start",
-                });
-            }, 1000);
-        }
-    };
+    const { toPosition, RecordMe } = usePositionRecord();
     useMount(async () => {
         await RestTime();
         toPosition();
@@ -97,6 +83,12 @@ export const PoetryContent: FC<BookContextType> = (props) => {
             {matched.content.map((i, index) => {
                 return (
                     <SingleRow
+                        onClick={() => {
+                            RecordMe(index, matched.title);
+                        }}
+                        onPointerMove={() => {
+                            RecordMe(index, matched.title);
+                        }}
                         name={matched.title}
                         key={matched.title + "-" + index}
                         index={index}
