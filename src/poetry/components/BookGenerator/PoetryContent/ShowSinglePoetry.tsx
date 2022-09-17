@@ -11,6 +11,7 @@ import { BookContext, BookContextType } from "../BookContext";
 import { NotsShower } from "./NotsShower";
 import { SingleRow } from "./SingleRow";
 import { PoetryFooter } from "./PoetryFooter";
+import { useFontChange } from "../../../../App/useFontChange";
 export type PageInfo = {
     title: string;
     subTitle?: string;
@@ -25,10 +26,7 @@ export const ShowSinglePoetry: FC = () => {
         () => setting.theme.cnList === "竖排",
         [setting.theme.cnList]
     );
-    const fontWeight = useMemo(
-        () => setting.text.fontWeight,
-        [setting.text.fontWeight]
-    );
+    const { slot: FontSlot } = useFontChange(); // 添加字体加载 link，这样才能使用
     return (
         <BookContext.Consumer>
             {(info) => {
@@ -40,7 +38,8 @@ export const ShowSinglePoetry: FC = () => {
                                 : "box-col content-max no-scroll"
                         }`}
                         style={{
-                            fontWeight,
+                            fontFamily: setting.text.font.fontFamily,
+                            fontWeight: setting.text.fontWeight,
                             fontSize: setting.text.fontSize,
                             letterSpacing: setting.text.letterSpacing + "em",
                         }}>
@@ -54,6 +53,7 @@ export const ShowSinglePoetry: FC = () => {
                             )} */}
                             <PoetryFooter></PoetryFooter>
                         </main>
+                        <FontSlot></FontSlot>
                     </div>
                 );
             }}

@@ -14,8 +14,6 @@ import { Contribute } from "./Contribute";
 import { SearchPage } from "./Search/SearchPage";
 
 function App() {
-    const { slot: FontSlot } = useFontChange(); // 添加字体加载 link，这样才能使用
-
     useMount(async () => {
         await registerHeaderPlugin();
     });
@@ -47,8 +45,6 @@ function App() {
                     <Route path="*" element={<NotFound />} />
                 </AnimatedRoutes>
             </main>
-            {/* <Layout.Footer>Footer</Layout.Footer> */}
-            <FontSlot></FontSlot>
         </section>
     );
 }
