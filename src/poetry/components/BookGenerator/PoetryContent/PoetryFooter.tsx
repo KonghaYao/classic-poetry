@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { BookContext } from "../BookContext";
 import { InnerObjectType } from "../CommonBook";
 import "./footer.css";
@@ -11,9 +11,12 @@ const SingleBar: FC<{
     root: string;
 }> = (props) => {
     if (props.data === false) return <></>;
+    const Nav = useNavigate();
     return (
-        <NavLink
-            to={props.root + `/${props.data.tag}`}
+        <div
+            onClick={() =>
+                Nav(props.root + `/${(props.data as InnerObjectType).tag}`)
+            }
             className="box-row router"
             style={{
                 flexDirection: props.reverse ? "row-reverse" : "row",
@@ -21,7 +24,7 @@ const SingleBar: FC<{
             <header className="box-row">{props.data.title}</header>
             <div style={{ flex: "1" }}> </div>
             <nav className="subtitle">{props.subTitle}</nav>
-        </NavLink>
+        </div>
     );
 };
 

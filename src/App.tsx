@@ -35,7 +35,8 @@ function App() {
                 {/* 噪声背景图 */}
                 <div className="noise-bg noise "></div>
                 {/* Animate Routes 插件导致页面加载失败 */}
-                <AnimatedRoutes appear>
+                {/* Animate Routes 插件导致页面多次加载 */}
+                <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/search" element={<SearchPage />}></Route>
                     {BookRouter()}
@@ -43,7 +44,7 @@ function App() {
                         path="/contribute"
                         element={<Contribute></Contribute>}></Route>
                     <Route path="*" element={<NotFound />} />
-                </AnimatedRoutes>
+                </Routes>
             </main>
         </section>
     );
