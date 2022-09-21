@@ -8,7 +8,7 @@ import { PoetryFooter } from "./PoetryFooter";
 import { useFontChange } from "../../../../App/useFontChange";
 import { PoetryContent } from "./PoetryContent";
 import { List, Trigger } from "@arco-design/web-react";
-import { createServer, SlotMap } from "../../../../Server/Template";
+import { ContextMenu } from "./ContextMenu";
 export type PageInfo = {
     title: string;
     subTitle?: string;
@@ -44,16 +44,8 @@ export const ShowSinglePoetry: FC = () => {
                         <PoetryHeader></PoetryHeader>
 
                         <main className={`poetry-content box-col`}>
-                            <Trigger
-                                trigger={["contextMenu"]}
-                                alignPoint
-                                position="bl"
-                                // onClickOutside={() => {
-                                //     setVisible(false);
-                                // }}
-                                popup={() => <ContextMenu></ContextMenu>}>
-                                <PoetryContent {...info!}></PoetryContent>
-                            </Trigger>
+                            <PoetryContent {...info!}></PoetryContent>
+
                             {/* TODO Notes 暂时不适配 */}
                             {/* {matched.notes && (
                                 <NotsShower notes={matched.notes}></NotsShower>
@@ -67,46 +59,3 @@ export const ShowSinglePoetry: FC = () => {
         </BookContext.Consumer>
     );
 };
-
-const { Template, controller } = createServer<
-    {},
-    "Header" | "Footer",
-    "Button"
->({
-    name: "poetry-content",
-});
-controller.emit("register", {
-    slot: "Button",
-    list: true,
-    component: () => {
-        return <div>确实是这样的</div>;
-    },
-});
-const ContextMenu: FC = Template(({ Slots, SlotList }) => {
-    return (
-        <main style={{ zIndex: 100 }}>
-            {Slots.Header && (
-                <nav>
-                    <Slots.Header></Slots.Header>
-                </nav>
-            )}
-            <nav>
-                <SlotMap list={SlotList.Button}>
-                    {(Comp, index) => {
-                        return (
-                            <div key={"poetry-context-menu-" + index}>
-                                <Comp></Comp>;
-                                <hr className="hov" />
-                            </div>
-                        );
-                    }}
-                </SlotMap>
-            </nav>
-            {Slots.Footer && (
-                <nav>
-                    <Slots.Footer></Slots.Footer>
-                </nav>
-            )}
-        </main>
-    );
-});

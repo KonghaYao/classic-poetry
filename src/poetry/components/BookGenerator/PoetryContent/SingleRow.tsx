@@ -22,7 +22,10 @@ export const SingleRow: FC<{
                 onClick={onClick}
                 onPointerMove={onPointerMove}>
                 <div className="poetry-index">{index + 1}</div>
-                <div className="poetry-text" style={{ fontSize: "1em" }}>
+                <div
+                    className="poetry-text"
+                    style={{ fontSize: "1em" }}
+                    data-row-index={index + 1}>
                     {TextPreProcess(content)}
                 </div>
             </div>

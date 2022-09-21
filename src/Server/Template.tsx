@@ -20,7 +20,7 @@ export function createServer<
             | { slot: SlotNames; list?: false }
             | { slot: SlotListNames; list: true }
         ) & { component: FC };
-        /** 修改 */
+        /** 修改 store 的状态 */
         update: DataType;
     }>();
 

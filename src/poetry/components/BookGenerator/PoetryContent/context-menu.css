@@ -1,0 +1,5 @@
+.context-menu {
+    z-index: 100;
+    background-color: var(--divide-green);
+    color: white;
+}

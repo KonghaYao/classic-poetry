@@ -3,7 +3,7 @@
 }
 
 .poetry-index {
-    /* user-select: none; */
+    user-select: none !important;
     margin: 1rem;
     text-decoration: underline;
     text-align: center;
@@ -65,4 +65,8 @@
 .poetry-header .subtitle {
     font-size: 1em;
     padding: 1em;
+}
+
+.poetry-tagging {
+    background-color: gray;
 }
