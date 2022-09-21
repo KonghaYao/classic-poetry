@@ -74,8 +74,7 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                 ref={(el) => (container = el!)}
                 style={{
                     flex: "1",
-                }}
-                onContextMenu={(e) => e.preventDefault()}>
+                }}>
                 <nav
                     style={{
                         margin: "1rem",
