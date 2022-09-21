@@ -20,20 +20,23 @@ export { controller as ContextMenuController };
 import "./context-menu.css";
 export const ContextMenu = Template(({ Slots, SlotList }) => {
     return (
-        <main className="context-menu">
+        <main className="context-menu box-col">
             {Slots.Header && (
                 <nav>
                     <Slots.Header></Slots.Header>
                 </nav>
             )}
-            <nav className="row box">
+            <hr className="hor" />
+            <nav className="box-row box button-group">
                 <SlotMap list={SlotList.Button}>
                     {(Comp, index) => {
                         return (
-                            <div key={"poetry-context-menu-" + index}>
-                                <Comp></Comp>;
+                            <nav
+                                className="box-row box-center"
+                                key={"poetry-context-menu-" + index}>
+                                <Comp></Comp>
                                 <hr className="ver" />
-                            </div>
+                            </nav>
                         );
                     }}
                 </SlotMap>

@@ -6,11 +6,14 @@ import { HighlighterOptions } from "web-highlighter/dist/types";
 import { ContextMenuController } from "../ContextMenu";
 import { BookNotes } from "./BookNote";
 import { Close } from "./HighController";
+import { SimpleNote } from "./SimpleNote";
 
-ContextMenuController.emit("register", {
-    slot: "Button",
-    list: true,
-    component: Close,
+[SimpleNote, Close].forEach((i) => {
+    ContextMenuController.emit("register", {
+        slot: "Button",
+        list: true,
+        component: i,
+    });
 });
 
 export const useHighlight = () => {

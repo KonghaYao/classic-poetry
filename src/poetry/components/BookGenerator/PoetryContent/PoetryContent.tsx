@@ -8,6 +8,8 @@ import { usePositionRecord } from "./usePositionRecord";
 import { Trigger } from "@arco-design/web-react";
 import { ContextMenu, ContextMenuController } from "./ContextMenu";
 import { useHighlight } from "./ContextPlugins/useHighLight";
+import { BookNotes } from "./ContextPlugins/BookNote";
+import { useLocation } from "react-router-dom";
 
 export const PoetryContent: FC<BookContextType> = (props) => {
     const { matched } = props!;
@@ -24,10 +26,12 @@ export const PoetryContent: FC<BookContextType> = (props) => {
     const { init } = useHighlight();
     const triggerRef = useRef<any>();
     const [lookingId, setLookingId] = useState("");
+    const location = useLocation();
     useMemo(() => {
         if (triggerRef.current && lookingId) {
             triggerRef.current.update();
             setPopupVisible(true);
+            BookNotes.openBook(location.pathname);
             ContextMenuController.emit("update", (data) => {
                 data.lookingId = lookingId;
                 return data;

@@ -8,6 +8,9 @@ export type BookNote = {
         color?: string;
         source: HighlightSource;
     };
+    note?: {
+        text: string;
+    };
 };
 
 type BookMark = {
@@ -34,6 +37,9 @@ class BookNoteManager {
             (i) => i.id !== id
         );
         return this.saveBook();
+    }
+    getNote(id: string) {
+        return this.watchingBook!.data.find((i) => i.id === id);
     }
     saveBook() {
         if (this.BookMark) {

@@ -1,5 +1,10 @@
 .context-menu {
     z-index: 100;
-    background-color: var(--divide-green);
-    color: white;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-bg-1);
+    align-items: center;
+}
+.context-menu .button-group {
+    align-items: center;
 }
