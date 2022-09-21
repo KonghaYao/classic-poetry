@@ -1,8 +1,14 @@
 import { Button, Input } from "@arco-design/web-react";
-import { IconBook, IconCheck, IconPen } from "@arco-design/web-react/icon";
+import {
+    IconBook,
+    IconCheck,
+    IconEdit,
+    IconPen,
+} from "@arco-design/web-react/icon";
 import { FC, useState } from "react";
 import { ContextMenuController, DataType } from "../ContextMenu";
 import { BookNotes } from "./BookNote";
+/** 内容模块 */
 const component: FC<DataType> = ({ lookingId }) => {
     const Note = BookNotes.getNote(lookingId);
     const [writingMode, setMode] = useState(false);
@@ -55,7 +61,7 @@ export const SimpleNote: FC<DataType> = () => {
                     component,
                 });
             }}>
-            <IconBook fontSize={20}></IconBook>
+            <IconEdit fontSize={20}></IconEdit>
         </Button>
     );
 };

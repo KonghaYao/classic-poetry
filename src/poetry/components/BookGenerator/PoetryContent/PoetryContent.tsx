@@ -48,6 +48,9 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                 className: "poetry-tagging",
             },
         }).then((highlighter) => {
+            highlighter.on("selection:click", ({ id }) => {
+                setLookingId(id);
+            });
             highlighter.on("selection:hover", ({ id }) => {
                 setLookingId(id);
             });
@@ -75,7 +78,6 @@ export const PoetryContent: FC<BookContextType> = (props) => {
         <Trigger
             ref={triggerRef}
             alignPoint
-            // unmountOnExit={false}
             position="bl"
             popupVisible={popupVisible}
             popup={() => <ContextMenu></ContextMenu>}>

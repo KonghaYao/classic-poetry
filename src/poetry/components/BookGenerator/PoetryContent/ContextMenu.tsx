@@ -23,11 +23,10 @@ export const ContextMenu = Template(({ Slots, SlotList }) => {
     return (
         <main className="context-menu box-col">
             {Slots.Header && (
-                <nav>
+                <header>
                     <Slots.Header></Slots.Header>
-                </nav>
+                </header>
             )}
-            <hr className="hor" />
             <nav className="box-row box button-group">
                 <SlotMap list={SlotList.Button}></SlotMap>
             </nav>

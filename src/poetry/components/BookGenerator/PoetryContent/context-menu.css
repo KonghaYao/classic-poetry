@@ -1,10 +1,13 @@
 .context-menu {
     z-index: 100;
-    padding: 0.3rem 0.5rem;
     border-radius: 0.25rem;
     background-color: var(--color-bg-1);
     align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 .context-menu .button-group {
     align-items: center;
+}
+.context-menu > header {
+    padding: 0.3rem 0.5rem;
 }

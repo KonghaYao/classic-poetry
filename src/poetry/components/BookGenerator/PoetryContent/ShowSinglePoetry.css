@@ -68,5 +68,7 @@
 }
 
 .poetry-tagging {
-    background-color: #fffd98;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    text-decoration-color: var(--divide-red);
 }
