@@ -1,6 +1,6 @@
 .context-menu {
     z-index: 100;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     background-color: var(--color-bg-1);
     align-items: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -10,4 +10,15 @@
 }
 .context-menu > header {
     padding: 0.3rem 0.5rem;
+}
+.context-menu .title {
+    font-size: 1.125rem;
+    color: var(--color-text-3);
+}
+.context-menu .control-bar {
+    padding: 0.25rem 0;
+    color: var(--text-green);
+}
+.context-menu .notes {
+    color: var(--color-text-2);
 }

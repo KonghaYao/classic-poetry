@@ -1,4 +1,4 @@
-import { Button, Input } from "@arco-design/web-react";
+import { Button, Input, Message } from "@arco-design/web-react";
 import {
     IconBook,
     IconCheck,
@@ -15,10 +15,19 @@ const component: FC<DataType> = ({ lookingId }) => {
     const [value, setValue] = useState(Note?.note?.text ?? "");
     return (
         <div>
-            <header className="box-row">
-                <div>你的笔记</div>
+            {writingMode ? (
+                <Input.TextArea
+                    value={value}
+                    onChange={(str) => {
+                        setValue(str);
+                    }}></Input.TextArea>
+            ) : (
+                <div className="notes">{Note?.note?.text || "空空如也"}</div>
+            )}
+            <header className="box-row control-bar">
                 {writingMode ? (
                     <IconCheck
+                        fontSize={20}
                         onClick={() => {
                             if (Note!.note) {
                                 Note!.note!.text = value!;
@@ -29,26 +38,18 @@ const component: FC<DataType> = ({ lookingId }) => {
                             }
                             BookNotes.saveBook();
                             setMode(false);
+                            Message.success("保存笔记成功");
                         }}></IconCheck>
                 ) : (
                     <IconPen
+                        fontSize={20}
                         onClick={() => {
                             setMode(true);
                             setValue(Note?.note?.text || "");
+                            Message.info("注意点击保存按钮");
                         }}></IconPen>
                 )}
             </header>
-            {writingMode ? (
-                <Input.TextArea
-                    value={value}
-                    onChange={(str) => {
-                        setValue(str);
-                    }}></Input.TextArea>
-            ) : Note?.note?.text ? (
-                <div>{Note?.note.text}</div>
-            ) : (
-                <div>空空如也</div>
-            )}
         </div>
     );
 };
@@ -56,6 +57,10 @@ export const SimpleNote: FC<DataType> = () => {
     return (
         <Button
             onClick={() => {
+                ContextMenuController.emit("update", (data) => {
+                    data.title = "你的笔记";
+                    return data;
+                });
                 ContextMenuController.emit("register", {
                     slot: "Header",
                     component,

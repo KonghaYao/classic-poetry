@@ -1,15 +1,13 @@
-import { Button } from "@arco-design/web-react";
-import { IconApps, IconDelete } from "@arco-design/web-react/icon";
-import { FC } from "react";
 import Highlighter from "web-highlighter";
 import { createServer, SlotMap } from "../../../../Server/Template";
 
 export type DataType = {
     highlighter: Highlighter;
     name: string;
+    title: string; // 组件的中文名称
     lookingId: string;
 };
-const { Template, controller } = createServer<
+const { Template, controller, DataContext } = createServer<
     DataType,
     "Header" | "Footer",
     "Button"
@@ -24,6 +22,12 @@ export const ContextMenu = Template(({ Slots, SlotList }) => {
         <main className="context-menu box-col">
             {Slots.Header && (
                 <header>
+                    <DataContext.Consumer>
+                        {({ title }) => {
+                            return <div className="title">{title}</div>;
+                        }}
+                    </DataContext.Consumer>
+
                     <Slots.Header></Slots.Header>
                 </header>
             )}
