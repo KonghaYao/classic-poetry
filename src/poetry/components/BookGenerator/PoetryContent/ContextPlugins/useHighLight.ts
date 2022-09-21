@@ -2,6 +2,13 @@ import { useUnmount } from "ahooks";
 import type Highlighter from "web-highlighter";
 import HighlightSource from "web-highlighter/dist/model/source";
 import { HighlighterOptions } from "web-highlighter/dist/types";
+import { ContextMenuController } from "../ContextMenu";
+import { Close } from "./HighController";
+ContextMenuController.emit("register", {
+    slot: "Button",
+    list: true,
+    component: Close,
+});
 export const useHighlight = () => {
     let highlight: Highlighter;
     useUnmount(() => {
@@ -24,8 +31,10 @@ export const useHighlight = () => {
             highlight.on("selection:hover", ({ id }) => {
                 lookingLatest.id = id;
             });
+
             return highlight;
         },
+
         getHighlighter() {
             return highlight;
         },

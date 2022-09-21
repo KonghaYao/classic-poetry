@@ -11,25 +11,27 @@ export function createServer<
     DataType extends {},
     SlotNames extends string,
     SlotListNames extends string
->(init?: DataType) {
-    let lastUpdate: DataType;
+>(init?: Partial<DataType>) {
+    let lastUpdate: Partial<DataType> = init!;
     const UISlotsList = {} as SlotListType<SlotListNames>;
     const UISlots = {} as SlotsType<SlotNames>;
     const UIChannel = mitt<{
         register: (
             | { slot: SlotNames; list?: false }
             | { slot: SlotListNames; list: true }
-        ) & { component: FC };
+        ) & { component: FC<DataType> };
         /** 修改 store 的状态 */
-        update: DataType;
+        update:
+            | Partial<DataType>
+            | ((lastData: Partial<DataType>) => Partial<DataType>);
     }>();
 
-    const DataContext = createContext<DataType>(init!);
+    const DataContext = createContext<Partial<DataType>>(init!);
     UIChannel.on("register", ({ slot, component: Comp, list }) => {
         // 外包一层，传递参数
         const wrapped = () => (
             <DataContext.Consumer>
-                {(data) => <Comp {...data}></Comp>}
+                {(data) => <Comp {...(data as any)}></Comp>}
             </DataContext.Consumer>
         );
         if (list) {
@@ -40,7 +42,11 @@ export function createServer<
         }
     });
     UIChannel.on("update", (data) => {
-        lastUpdate = data;
+        if (typeof data === "function") {
+            lastUpdate = data(lastUpdate);
+        } else {
+            lastUpdate = data;
+        }
     });
 
     /** 用于外包一个组件，使其内部可以写一个 Template 来渲染 Slot */
@@ -62,7 +68,7 @@ export function createServer<
                     : setSlots({ ...UISlots });
             };
             const updateData = (data: any) => setData(data);
-            const [data, setData] = useState<DataType>(lastUpdate);
+            const [data, setData] = useState<Partial<DataType>>(lastUpdate);
             UIChannel.on("register", updateSlots);
             UIChannel.on("update", updateData);
             // ! 记得 off

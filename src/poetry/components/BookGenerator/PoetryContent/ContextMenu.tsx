@@ -1,22 +1,24 @@
+import { IconApps, IconDelete } from "@arco-design/web-react/icon";
 import { FC } from "react";
+import Highlighter from "web-highlighter";
 import { createServer, SlotMap } from "../../../../Server/Template";
 
+export type DataType = {
+    highlighter: Highlighter;
+    name: string;
+    lookingId: string;
+};
 const { Template, controller } = createServer<
-    {},
+    DataType,
     "Header" | "Footer",
     "Button"
 >({
     name: "poetry-content",
 });
-controller.emit("register", {
-    slot: "Button",
-    list: true,
-    component: () => {
-        return <div>确实是这样的</div>;
-    },
-});
+export { controller as ContextMenuController };
+
 import "./context-menu.css";
-export const ContextMenu: FC = Template(({ Slots, SlotList }) => {
+export const ContextMenu = Template(({ Slots, SlotList }) => {
     return (
         <main className="context-menu">
             {Slots.Header && (
@@ -24,23 +26,18 @@ export const ContextMenu: FC = Template(({ Slots, SlotList }) => {
                     <Slots.Header></Slots.Header>
                 </nav>
             )}
-            <nav>
+            <nav className="row box">
                 <SlotMap list={SlotList.Button}>
                     {(Comp, index) => {
                         return (
                             <div key={"poetry-context-menu-" + index}>
                                 <Comp></Comp>;
-                                <hr className="hov" />
+                                <hr className="ver" />
                             </div>
                         );
                     }}
                 </SlotMap>
             </nav>
-            {Slots.Footer && (
-                <nav>
-                    <Slots.Footer></Slots.Footer>
-                </nav>
-            )}
         </main>
     );
 });
