@@ -31,12 +31,10 @@ export const PoetryContent: FC<BookContextType> = (props) => {
         if (triggerRef.current && lookingId) {
             triggerRef.current.update();
             setPopupVisible(true);
-            BookNotes.openBook(location.pathname);
             ContextMenuController.emit("update", (data) => {
                 data.lookingId = lookingId;
-                return data;
+                return { ...data };
             });
-            console.log("高亮");
         } else {
             setPopupVisible(false);
         }
@@ -60,6 +58,13 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                 data.highlighter = highlighter;
                 return data;
             });
+            BookNotes.openBook(location.pathname).then((res) => {
+                res.data.forEach((i) => {
+                    const s = i.highlight.source;
+                    console.log(s.id);
+                    highlighter.fromStore(s.startMeta, s.endMeta, s.text, s.id);
+                });
+            });
         });
     };
     useMount(() => {
@@ -70,7 +75,7 @@ export const PoetryContent: FC<BookContextType> = (props) => {
         <Trigger
             ref={triggerRef}
             alignPoint
-            unmountOnExit={false}
+            // unmountOnExit={false}
             position="bl"
             popupVisible={popupVisible}
             popup={() => <ContextMenu></ContextMenu>}>

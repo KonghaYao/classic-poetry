@@ -1,3 +1,4 @@
+import { Button } from "@arco-design/web-react";
 import { IconApps, IconDelete } from "@arco-design/web-react/icon";
 import { FC } from "react";
 import Highlighter from "web-highlighter";
@@ -28,18 +29,7 @@ export const ContextMenu = Template(({ Slots, SlotList }) => {
             )}
             <hr className="hor" />
             <nav className="box-row box button-group">
-                <SlotMap list={SlotList.Button}>
-                    {(Comp, index) => {
-                        return (
-                            <nav
-                                className="box-row box-center"
-                                key={"poetry-context-menu-" + index}>
-                                <Comp></Comp>
-                                <hr className="ver" />
-                            </nav>
-                        );
-                    }}
-                </SlotMap>
+                <SlotMap list={SlotList.Button}></SlotMap>
             </nav>
         </main>
     );

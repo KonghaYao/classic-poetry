@@ -27,12 +27,12 @@ class BookNoteManager {
     watchingBook?: BookMark;
 
     async addNote(Note: BookNote) {
-        await this.openBook(Note.link);
+        if (this.watchingBook!.data.some((i) => i.id === Note.id)) return;
         this.watchingBook!.data.push(Note);
+        console.log(Note.id);
         return this.saveBook();
     }
-    async removeNote(BookURL: string, id: string) {
-        await this.openBook(BookURL);
+    async removeNote(id: string) {
         this.watchingBook!.data = this.watchingBook!.data.filter(
             (i) => i.id !== id
         );
