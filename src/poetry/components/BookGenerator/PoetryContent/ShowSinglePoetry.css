@@ -15,6 +15,7 @@
 }
 
 .poetry-wrapper {
+    /* 文档在小屏幕时，下方有一定空间较好 */
     padding: 1rem !important;
     box-sizing: border-box;
     overflow: hidden;

@@ -13,6 +13,7 @@
     --divide-red: #a42a28;
     --divide-gold: #c9a276;
     --divide-green: #415b55;
+    --text-green:#5f9378;
 }
 body {
     --book-text-color:#333;
@@ -55,7 +56,7 @@ body[arco-theme="dark"] {
 }
 a {
     font-weight: 500;
-    color: #5f9378;
+    color: var(--text-green);
     text-decoration: inherit;
     transition: color 0.3s;
 }

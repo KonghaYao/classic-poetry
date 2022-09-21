@@ -3,6 +3,7 @@
     height: fit-content;
     border-top: 1px solid var(--color-border);
     margin-top: 2em;
+    color: var(--text-green);
 }
 .poetry-vertical .poetry-router {
     height: 100%;

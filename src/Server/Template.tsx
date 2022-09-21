@@ -89,7 +89,10 @@ export function createServer<
 }
 
 export const SlotMap = memo(
-    (props: { list: SlotType[]; children?: (i: SlotType) => ReactNode }) => {
+    (props: {
+        list: SlotType[];
+        children?: (i: SlotType, index: number) => ReactNode;
+    }) => {
         const mapper =
             props.children ||
             ((I: SlotType, index: number) => <I key={"name-" + index} />);
