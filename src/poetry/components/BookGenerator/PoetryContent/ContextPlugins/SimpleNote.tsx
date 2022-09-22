@@ -7,9 +7,9 @@ import {
 } from "@arco-design/web-react/icon";
 import { FC, useState } from "react";
 import { ContextMenuController, DataType } from "../ContextMenu";
-import { BookNotes } from "./BookNote";
+import { BookNotes } from "../../NoteBar/BookNote";
 /** 内容模块 */
-const component: FC<DataType> = ({ lookingId }) => {
+export const NoteWriter: FC<{ lookingId: string }> = ({ lookingId }) => {
     const Note = BookNotes.getNote(lookingId);
     const [writingMode, setMode] = useState(false);
     const [value, setValue] = useState(Note?.note?.text ?? "");
@@ -63,7 +63,7 @@ export const SimpleNote: FC<DataType> = () => {
                 });
                 ContextMenuController.emit("register", {
                     slot: "Header",
-                    component,
+                    component: NoteWriter,
                 });
             }}>
             <IconEdit fontSize={20}></IconEdit>

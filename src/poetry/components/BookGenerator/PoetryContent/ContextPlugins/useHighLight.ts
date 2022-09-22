@@ -1,10 +1,8 @@
-import { useUnmount } from "ahooks";
-import { useLocation } from "react-router-dom";
 import type Highlighter from "web-highlighter";
 import HighlightSource from "web-highlighter/dist/model/source";
 import { HighlighterOptions } from "web-highlighter/dist/types";
 import { ContextMenuController } from "../ContextMenu";
-import { BookNotes } from "./BookNote";
+import { BookNotes } from "../../NoteBar/BookNote";
 import { Close } from "./HighController";
 import { SimpleNote } from "./SimpleNote";
 
@@ -18,26 +16,21 @@ import { SimpleNote } from "./SimpleNote";
 
 export const useHighlight = () => {
     let highlight: Highlighter;
-    useUnmount(() => {
-        highlight && highlight.dispose();
-        console.log("高亮组件销毁");
-    });
-    const location = useLocation();
+
     let lookingLatest: {
         id?: string;
         sources?: HighlightSource[];
     } = {};
     return {
-        async init(config?: HighlighterOptions) {
+        async init(config: HighlighterOptions, link: string) {
             const { default: defaultC } = await import("web-highlighter");
             highlight = new defaultC(config);
             highlight.run();
             highlight.on("selection:create", ({ sources }) => {
                 lookingLatest.sources = sources;
-                console.log(sources);
                 BookNotes.addNote({
                     id: sources[0].id,
-                    link: location.pathname,
+                    link,
                     highlight: {
                         source: sources[0],
                     },
@@ -51,7 +44,10 @@ export const useHighlight = () => {
 
             return highlight;
         },
-
+        destroy() {
+            highlight && highlight.dispose();
+            console.log("高亮组件销毁");
+        },
         getHighlighter() {
             return highlight;
         },

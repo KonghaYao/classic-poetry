@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo, useRef, useState } from "react";
 import { History } from "../../../../History";
-import { useMount } from "ahooks";
+import { useMount, useUnmount } from "ahooks";
 import { RestTime } from "../../../utils/RestTime";
 import { BookContextType } from "../BookContext";
 import { SingleRow } from "./SingleRow";
@@ -8,7 +8,7 @@ import { usePositionRecord } from "./usePositionRecord";
 import { Trigger } from "@arco-design/web-react";
 import { ContextMenu, ContextMenuController } from "./ContextMenu";
 import { useHighlight } from "./ContextPlugins/useHighLight";
-import { BookNotes } from "./ContextPlugins/BookNote";
+import { BookNotes } from "../NoteBar/BookNote";
 import { useLocation } from "react-router-dom";
 
 export const PoetryContent: FC<BookContextType> = (props) => {
@@ -23,7 +23,6 @@ export const PoetryContent: FC<BookContextType> = (props) => {
     });
     const [popupVisible, setPopupVisible] = useState(false);
     let container: HTMLElement;
-    const { init } = useHighlight();
     const triggerRef = useRef<any>();
     const [lookingId, setLookingId] = useState("");
     const location = useLocation();
@@ -39,15 +38,19 @@ export const PoetryContent: FC<BookContextType> = (props) => {
             setPopupVisible(false);
         }
     }, [lookingId]);
+    const { init, destroy: destroyHighlight } = useHighlight();
     const initHighlight = () => {
-        init({
-            $root: container,
-            verbose: true,
-            exceptSelectors: [".poetry-index"],
-            style: {
-                className: "poetry-tagging",
+        init(
+            {
+                $root: container,
+                verbose: true,
+                exceptSelectors: [".poetry-index"],
+                style: {
+                    className: "poetry-tagging",
+                },
             },
-        }).then((highlighter) => {
+            location.pathname
+        ).then((highlighter) => {
             highlighter.on("selection:click", ({ id }) => {
                 setLookingId(id);
             });
@@ -70,9 +73,8 @@ export const PoetryContent: FC<BookContextType> = (props) => {
             });
         });
     };
-    useMount(() => {
-        initHighlight();
-    });
+    useMount(() => initHighlight());
+    useUnmount(() => destroyHighlight());
     // 单独诗句排版
     return (
         <Trigger
@@ -80,6 +82,7 @@ export const PoetryContent: FC<BookContextType> = (props) => {
             alignPoint
             position="bl"
             popupVisible={popupVisible}
+            //  不适合使用 异步加载，会导致问题
             popup={() => <ContextMenu></ContextMenu>}>
             <main
                 ref={(el) => (container = el!)}

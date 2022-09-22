@@ -1,9 +1,14 @@
 import { Button, Space } from "@arco-design/web-react";
-import { IconLeft, IconUnorderedList } from "@arco-design/web-react/icon";
+import {
+    IconBook,
+    IconLeft,
+    IconUnorderedList,
+} from "@arco-design/web-react/icon";
 import React, { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { sidebarServer } from "../SideBar/server";
 import { BookContext } from "../BookContext";
+import { NoteBarServer } from "../NoteBar";
 
 const PageHeader: FC<{
     title: string;
@@ -57,6 +62,12 @@ export const PoetryHeader: FC = () => {
                                     sidebarServer.emit("toggleVisible");
                                 }}>
                                 <IconUnorderedList />
+                            </div>
+                            <div
+                                onClick={() => {
+                                    NoteBarServer.emit("toggle");
+                                }}>
+                                <IconBook />
                             </div>
                         </Space>
                     </PageHeader>

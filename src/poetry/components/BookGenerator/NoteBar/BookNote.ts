@@ -1,5 +1,5 @@
 import localforage from "localforage";
-import HighlightSource from "web-highlighter/dist/model/source";
+import type HighlightSource from "web-highlighter/dist/model/source";
 
 export type BookNote = {
     id: string;
@@ -29,7 +29,6 @@ class BookNoteManager {
     async addNote(Note: BookNote) {
         if (this.watchingBook!.data.some((i) => i.id === Note.id)) return;
         this.watchingBook!.data.push(Note);
-        console.log(Note.id);
         return this.saveBook();
     }
     async removeNote(id: string) {

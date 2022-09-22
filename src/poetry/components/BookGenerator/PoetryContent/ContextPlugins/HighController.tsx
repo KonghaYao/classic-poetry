@@ -3,7 +3,7 @@ import { IconDelete } from "@arco-design/web-react/icon";
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
 import { DataType } from "../ContextMenu";
-import { BookNotes } from "./BookNote";
+import { BookNotes } from "../../NoteBar/BookNote";
 export const Close: FC<DataType> = ({ highlighter, lookingId }) => {
     let TwiceCheck = false;
     return (

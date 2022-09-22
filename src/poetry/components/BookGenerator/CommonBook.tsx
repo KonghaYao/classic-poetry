@@ -8,6 +8,7 @@ import { SideBarWrapper, SideBarProps } from "./SideBar/SideBarInner";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { Tagger, wrapAdapter } from "./Tagger";
 import { BookContext } from "./BookContext";
+import { NoteBar } from "./NoteBar";
 
 export type ObjectProvider = Omit<PageInfo, "footer">;
 export type InnerObjectType = ObjectProvider & { tag: string };
@@ -52,6 +53,15 @@ export function CommonBook<T>(
                             style={{
                                 overflow: "scroll",
                             }}>
+                            <Layout.Sider
+                                style={{
+                                    width: "fit-content",
+                                    height: "100%",
+                                    overflow: "auto",
+                                }}>
+                                {/* 侧边栏 */}
+                                <NoteBar></NoteBar>
+                            </Layout.Sider>
                             <Layout.Content className="box-center">
                                 {Content}
                             </Layout.Content>

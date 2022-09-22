@@ -1,7 +1,7 @@
 import { createContext, FC, memo, ReactNode, useState } from "react";
 
 import mitt from "mitt";
-import { useUnmount } from "ahooks";
+import { useMount, useUnmount } from "ahooks";
 
 type SlotType = FC;
 type SlotsType<Key extends string> = Record<Key, SlotType>;
@@ -69,8 +69,10 @@ export function createServer<
             };
             const updateData = (data: any) => setData(data);
             const [data, setData] = useState<Partial<DataType>>(lastUpdate);
-            UIChannel.on("register", updateSlots);
-            UIChannel.on("update", updateData);
+            useMount(() => {
+                UIChannel.on("register", updateSlots);
+                UIChannel.on("update", updateData);
+            });
             // ! 记得 off
             useUnmount(() => {
                 UIChannel.off("register", updateSlots);
