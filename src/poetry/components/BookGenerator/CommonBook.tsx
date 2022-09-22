@@ -40,7 +40,7 @@ export function CommonBook<T>(
                 const poetry = data[poetryIndex];
 
                 const Content = poetry ? (
-                    <ShowSinglePoetry></ShowSinglePoetry>
+                    <ShowSinglePoetry key={poetryId}></ShowSinglePoetry>
                 ) : (
                     <NotFound></NotFound>
                 );
@@ -69,6 +69,7 @@ export function CommonBook<T>(
                                 {Content}
                             </Layout.Content>
                             <Layout.Sider
+                                key={root + "-sidebar"}
                                 style={{
                                     width: "fit-content",
                                     height: "100%",

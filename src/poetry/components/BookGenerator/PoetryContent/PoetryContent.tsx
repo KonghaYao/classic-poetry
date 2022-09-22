@@ -68,7 +68,6 @@ export const PoetryContent: FC<BookContextType> = (props) => {
             BookNotes.openBook(location.pathname).then((res) => {
                 res.data.forEach((i) => {
                     const s = i.highlight.source;
-                    console.log(s.id);
                     highlighter.fromStore(s.startMeta, s.endMeta, s.text, s.id);
                 });
             });

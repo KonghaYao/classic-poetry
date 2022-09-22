@@ -34,14 +34,11 @@ export const useHighlight = () => {
                     highlight: {
                         source: sources[0],
                     },
-                }).then(() => {
-                    console.log("创建 Note 成功");
                 });
             });
             highlight.on("selection:hover", ({ id }) => {
                 lookingLatest.id = id;
             });
-            console.log(highlight);
             return highlight;
         },
         destroy() {
