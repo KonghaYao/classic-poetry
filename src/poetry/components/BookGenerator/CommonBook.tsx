@@ -9,6 +9,7 @@ import { BookConverter, BookFetch } from "./BookFetch";
 import { Tagger, wrapAdapter } from "./Tagger";
 import { BookContext } from "./BookContext";
 import { NoteBar } from "./NoteBar";
+import { useUnmount } from "ahooks";
 
 export type ObjectProvider = Omit<PageInfo, "footer">;
 export type InnerObjectType = ObjectProvider & { tag: string };
@@ -22,7 +23,9 @@ export function CommonBook<T>(
 ) {
     const { root, getData, adapter } = props;
     let { poetryId } = useParams()!;
-
+    useUnmount(() => {
+        console.log("书本销毁");
+    });
     return (
         <BookFetch
             getData={getData}

@@ -39,7 +39,8 @@ export const NoteBar: FC = () => {
                             name={i.highlight.source.id}>
                             <Button
                                 onClick={() => {
-                                    const dom = getHighlighter().getDoms(
+                                    const highlighter = getHighlighter();
+                                    const dom = highlighter.getDoms(
                                         i.highlight.source.id
                                     )[0];
                                     setVis(false);

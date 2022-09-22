@@ -64,6 +64,7 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                 data.highlighter = highlighter;
                 return data;
             });
+            // 注入全部的 Note
             BookNotes.openBook(location.pathname).then((res) => {
                 res.data.forEach((i) => {
                     const s = i.highlight.source;

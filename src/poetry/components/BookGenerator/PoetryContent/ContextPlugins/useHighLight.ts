@@ -14,13 +14,13 @@ import { SimpleNote } from "./SimpleNote";
     });
 });
 
-export const useHighlight = () => {
-    let highlight: Highlighter;
+let highlight: Highlighter;
 
-    let lookingLatest: {
-        id?: string;
-        sources?: HighlightSource[];
-    } = {};
+let lookingLatest: {
+    id?: string;
+    sources?: HighlightSource[];
+} = {};
+export const useHighlight = () => {
     return {
         async init(config: HighlighterOptions, link: string) {
             const { default: defaultC } = await import("web-highlighter");
@@ -41,14 +41,14 @@ export const useHighlight = () => {
             highlight.on("selection:hover", ({ id }) => {
                 lookingLatest.id = id;
             });
-
+            console.log(highlight);
             return highlight;
         },
         destroy() {
             highlight && highlight.dispose();
             console.log("高亮组件销毁");
         },
-        getHighlighter() {
+        getHighlighter: () => {
             return highlight;
         },
     };
