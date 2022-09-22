@@ -1,4 +1,4 @@
-import type Highlighter from "web-highlighter";
+import Highlighter from "web-highlighter";
 import HighlightSource from "web-highlighter/dist/model/source";
 import { HighlighterOptions } from "web-highlighter/dist/types";
 import { ContextMenuController } from "../ContextMenu";
@@ -13,7 +13,6 @@ import { SimpleNote } from "./SimpleNote";
         component: i,
     });
 });
-
 let highlight: Highlighter;
 
 let lookingLatest: {
@@ -22,9 +21,8 @@ let lookingLatest: {
 } = {};
 export const useHighlight = () => {
     return {
-        async init(config: HighlighterOptions, link: string) {
-            const { default: defaultC } = await import("web-highlighter");
-            highlight = new defaultC(config);
+        init(config: HighlighterOptions, link: string) {
+            highlight = new Highlighter(config);
             highlight.run();
             highlight.on("selection:create", ({ sources }) => {
                 lookingLatest.sources = sources;

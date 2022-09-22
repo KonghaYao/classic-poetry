@@ -3,12 +3,9 @@ import { PoetryHeader } from "./PoetryHeader";
 import { useSetting } from "../../../../Setting";
 import "./ShowSinglePoetry.css";
 import { BookContext } from "../BookContext";
-import { NotsShower } from "./NotsShower";
 import { PoetryFooter } from "./PoetryFooter";
 import { useFontChange } from "../../../../App/useFontChange";
 import { PoetryContent } from "./PoetryContent";
-import { List, Trigger } from "@arco-design/web-react";
-import { ContextMenu } from "./ContextMenu";
 export type PageInfo = {
     title: string;
     subTitle?: string;

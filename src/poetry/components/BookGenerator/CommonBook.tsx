@@ -10,6 +10,7 @@ import { Tagger, wrapAdapter } from "./Tagger";
 import { BookContext } from "./BookContext";
 import { NoteBar } from "./NoteBar";
 import { useUnmount } from "ahooks";
+import { AsyncLoad } from "../AsyncComponent";
 
 export type ObjectProvider = Omit<PageInfo, "footer">;
 export type InnerObjectType = ObjectProvider & { tag: string };
@@ -63,6 +64,7 @@ export function CommonBook<T>(
                                     overflow: "auto",
                                 }}>
                                 {/* 侧边栏 */}
+
                                 <NoteBar></NoteBar>
                             </Layout.Sider>
                             <Layout.Content className="box-center">
@@ -76,6 +78,7 @@ export function CommonBook<T>(
                                     overflow: "auto",
                                 }}>
                                 {/* 侧边栏 */}
+
                                 <SideBarWrapper {...props}></SideBarWrapper>
                             </Layout.Sider>
                         </Layout>

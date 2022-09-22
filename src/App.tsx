@@ -8,7 +8,6 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
 import { registerHeaderPlugin } from "./App/HeaderPlugin";
-import { useFontChange } from "./App/useFontChange";
 import { NotFound } from "./poetry/components/404";
 import { Contribute } from "./Contribute";
 import { SearchPage } from "./Search/SearchPage";

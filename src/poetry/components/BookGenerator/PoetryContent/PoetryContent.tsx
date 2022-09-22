@@ -40,7 +40,7 @@ export const PoetryContent: FC<BookContextType> = (props) => {
     }, [lookingId]);
     const { init, destroy: destroyHighlight } = useHighlight();
     const initHighlight = () => {
-        init(
+        const highlighter = init(
             {
                 $root: container,
                 verbose: true,
@@ -50,26 +50,25 @@ export const PoetryContent: FC<BookContextType> = (props) => {
                 },
             },
             location.pathname
-        ).then((highlighter) => {
-            highlighter.on("selection:click", ({ id }) => {
-                setLookingId(id);
-            });
-            highlighter.on("selection:hover", ({ id }) => {
-                setLookingId(id);
-            });
-            highlighter.on("selection:hover-out", () => {
-                setLookingId("");
-            });
-            ContextMenuController.emit("update", (data) => {
-                data.highlighter = highlighter;
-                return data;
-            });
-            // 注入全部的 Note
-            BookNotes.openBook(location.pathname).then((res) => {
-                res.data.forEach((i) => {
-                    const s = i.highlight.source;
-                    highlighter.fromStore(s.startMeta, s.endMeta, s.text, s.id);
-                });
+        );
+        highlighter.on("selection:click", ({ id }) => {
+            setLookingId(id);
+        });
+        highlighter.on("selection:hover", ({ id }) => {
+            setLookingId(id);
+        });
+        highlighter.on("selection:hover-out", () => {
+            setLookingId("");
+        });
+        ContextMenuController.emit("update", (data) => {
+            data.highlighter = highlighter;
+            return data;
+        });
+        // 注入全部的 Note
+        BookNotes.openBook(location.pathname).then((res) => {
+            res.data.forEach((i) => {
+                const s = i.highlight.source;
+                highlighter.fromStore(s.startMeta, s.endMeta, s.text, s.id);
             });
         });
     };
