@@ -1,7 +1,14 @@
-FROM python:3.7-alpine
+FROM node:18.14.2-alpine3.17
 
-COPY ./csv /csv
-COPY ./scripts /scripts
-WORKDIR /scripts
-RUN pip install -r requirements.txt
-CMD ["python","index.py"]
+
+COPY src /app/src
+COPY package.json /app/package.json
+WORKDIR /app
+RUN apk add git
+RUN npm install -g npm
+RUN npm install pnpm -g
+
+RUN pnpm i
+RUN pnpm build 
+RUN pnpm build:index
+RUN pnpm upload

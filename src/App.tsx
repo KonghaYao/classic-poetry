@@ -1,9 +1,6 @@
 import { TopMenu } from "./App/TopMenu";
 import "./App.css";
-import { useMemo } from "react";
-import { useSetting } from "./Setting";
 import { BookRouter } from "./BookRouter";
-import { AnimatedRoutes } from "react-animated-router";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { useMount } from "ahooks";
