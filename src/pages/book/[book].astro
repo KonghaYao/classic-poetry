@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import {SubRoutes} from '../../Home/subRoutes'
+export const prerender = true
+export async function getStaticPaths(){
+    return SubRoutes.map(i=>{
+        return {
+            params:{
+                book:i.to.slice(1),
+            }
+            ,props:{
+                name:i.name
+            }
+        }
+    })
+}
+const {name} = Astro.props
+const {book} = Astro.params
+---
+<Layout>
+{book}{name}
+</Layout>

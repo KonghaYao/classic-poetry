@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from '../components/Header.astro'
+import {Home} from '../Home/Home'
+export const prerender = true
+---
+
+<Layout title="Welcome to Astro.">
+    <header
+         class="z-10 flex w-full py-2 px-4"
+    >
+        <Header >
+			
+		</Header>
+    </header>
+    <main
+        class=" box-row box"
+        style={{
+            overflow: "hidden",
+            position: "relative",
+        }}>
+        {/* 噪声背景图 */}
+        <div class="noise-bg noise "></div>
+        <Home client:load></Home>
+    </main>
+</Layout>

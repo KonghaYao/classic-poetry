@@ -1,0 +1,17 @@
+---
+---
+
+    <div class="text-xl" onClick={() => nav("/")}>
+        中华诗词大典
+    </div>
+    <div style={{ flex: "1" }}></div>
+    <nav
+        class="box-row"
+        style={{
+            fontSize: "1.3rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "40vmin",
+        }}>
+        <slot></slot>
+    </nav>
