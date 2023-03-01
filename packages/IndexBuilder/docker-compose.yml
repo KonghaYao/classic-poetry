@@ -12,13 +12,11 @@ services:
         container_name: meilisearch
         expose:
             - "7700"
-    # injecter:
-    #     container_name: data_injecter
-    #     build: .
-    #     depends_on:
-    #         - meilisearch
-    #     volumes:
-    #         - ./json:/json
-    #         - ./scripts:/scripts
-    #     environment:
-    #         - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+    injecter:
+        restart: none
+        container_name: data_injecter
+        build: .
+        depends_on:
+            - meilisearch
+        environment:
+            - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}

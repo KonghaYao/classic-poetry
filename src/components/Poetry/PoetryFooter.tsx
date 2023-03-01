@@ -1,10 +1,11 @@
-import { FC } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { BookContext } from "../BookContext";
-import { InnerObjectType } from "../CommonBook";
+import type { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { BookContext } from "../../poetry/components/BookGenerator/BookContext";
+import type { InnerObjectType } from "../../poetry/components/BookGenerator/CommonBook";
 import "./footer.css";
+import type { PageInfo } from "./ShowSinglePoetry";
 const SingleBar: FC<{
-    data: InnerObjectType | false;
+    data: PageInfo | false;
     subTitle: string;
     icon?: JSX.Element;
     reverse?: boolean;
@@ -13,10 +14,8 @@ const SingleBar: FC<{
     if (props.data === false) return <></>;
     const Nav = useNavigate();
     return (
-        <div
-            onClick={() =>
-                Nav(props.root + `/${(props.data as InnerObjectType).tag}`)
-            }
+        <a
+            href={"/searchContent"}
             className="box-row router"
             style={{
                 flexDirection: props.reverse ? "row-reverse" : "row",
@@ -24,7 +23,7 @@ const SingleBar: FC<{
             <header className="box-row">{props.data.title}</header>
             <div style={{ flex: "1" }}> </div>
             <nav className="subtitle">{props.subTitle}</nav>
-        </div>
+        </a>
     );
 };
 

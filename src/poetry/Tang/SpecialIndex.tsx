@@ -1,7 +1,7 @@
 import { Grid } from "@arco-design/web-react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { IndexPage } from "../components/BookGenerator";
+import { IndexPage } from "../components/BookGenerator/IndexPage";
 import { NumberToCN } from "../utils/NumberToCN";
 
 export const AllIndex: FC = () => {

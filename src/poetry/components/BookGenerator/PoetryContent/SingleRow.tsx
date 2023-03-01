@@ -26,7 +26,7 @@ export const SingleRow: FC<{
                     className="poetry-text"
                     style={{ fontSize: "1em" }}
                     data-row-index={index + 1}>
-                    {TextPreProcess(content)}
+                    {content}
                 </div>
             </div>
             <hr key={"divide-" + index} className={direction ? "ver" : "hor"} />

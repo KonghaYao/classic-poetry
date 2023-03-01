@@ -1,16 +1,16 @@
 import { Layout } from "@arco-design/web-react";
-import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { PageInfo, ShowSinglePoetry } from "./PoetryContent/ShowSinglePoetry";
+import {
+    PageInfo,
+    ShowSinglePoetry,
+} from "../../../components/Poetry/ShowSinglePoetry";
 import { NotFound } from "../404";
-import { PoetryFooter } from "./PoetryContent/PoetryFooter";
 import { SideBarWrapper, SideBarProps } from "./SideBar/SideBarInner";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { Tagger, wrapAdapter } from "./Tagger";
 import { BookContext } from "./BookContext";
 import { NoteBar } from "./NoteBar";
 import { useUnmount } from "ahooks";
-import { AsyncLoad } from "../AsyncComponent";
 
 export type ObjectProvider = Omit<PageInfo, "footer">;
 export type InnerObjectType = ObjectProvider & { tag: string };

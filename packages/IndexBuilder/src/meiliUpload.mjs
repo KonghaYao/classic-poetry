@@ -2,14 +2,31 @@
 import { MeiliSearch } from "meilisearch";
 import fs from "fs-extra";
 
+console.log(process.env.MEILI_MASTER_KEY);
 const client = new MeiliSearch({
-    host: "https://meilisearch-konghayao.cloud.okteto.net",
-    apiKey: "KONGHAYAO_FOR_CHINESEPOETRY",
+    host: "http://meilisearch:7700",
+    apiKey: process.env.MEILI_MASTER_KEY,
 });
 const Index = client.index("poetry");
-
+Index.updateSettings({
+    filterableAttributes: ["belongToName", "author"],
+    rankingRules: [
+        "attribute",
+        "typo",
+        "exactness",
+        "words",
+        "proximity",
+        "sort",
+    ],
+    distinctAttribute: "id",
+    searchableAttributes: ["title", "author", "content", "id"],
+});
+console.time("计算耗时");
 for (let index = 0; index < 65; index++) {
     const files = await fs.readJSON(`./json/${index}.json`);
     await Index.addDocuments(files);
     console.log(index);
 }
+
+console.timeEnd("计算耗时");
+console.log("完成任务");

@@ -17,8 +17,8 @@ export const SubRoutes = [
     { name: "南唐二主词", to: "/nantang" },
     { name: "古文观止", to: "/guwenguanzhi" },
     { name: "唐诗三百首", to: "/tangshisanbaishou" },
-    { name: "全唐诗集", to: "/tang" },
-    { name: "全宋词集", to: "/song" },
+    { name: "全唐诗", to: "/tang" },
+    { name: "全宋词", to: "/song" },
     // TODO 元曲的个数太大了，所以暂时不采用
     // { name: "元曲", to: "/yuanqu" },
     { name: "曹操诗集", to: "/caocaoshiji" },

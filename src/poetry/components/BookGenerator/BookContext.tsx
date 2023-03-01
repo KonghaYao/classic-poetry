@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { InnerObjectType } from "./CommonBook";
+import type { InnerObjectType } from "./CommonBook";
 export type BookContextType = {
     books: InnerObjectType[];
     matched: InnerObjectType;

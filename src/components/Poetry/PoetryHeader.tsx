@@ -1,14 +1,11 @@
 import { Button, Space } from "@arco-design/web-react";
-import {
-    IconBook,
-    IconLeft,
-    IconUnorderedList,
-} from "@arco-design/web-react/icon";
-import React, { FC, useMemo } from "react";
+import { IconBook, IconUnorderedList } from "@arco-design/web-react/icon";
+import type React from "react";
+import type { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { sidebarServer } from "../SideBar/server";
-import { BookContext } from "../BookContext";
-import { NoteBarServer } from "../NoteBar";
+import { sidebarServer } from "../../poetry/components/BookGenerator/SideBar/server";
+import { BookContext } from "../../poetry/components/BookGenerator/BookContext";
+import { NoteBarServer } from "../../poetry/components/BookGenerator/NoteBar";
 
 const PageHeader: FC<{
     title: string;

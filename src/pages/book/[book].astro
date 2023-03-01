@@ -1,22 +1,29 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import {SubRoutes} from '../../Home/subRoutes'
-export const prerender = true
-export async function getStaticPaths(){
-    return SubRoutes.map(i=>{
+import Layout from "../../layouts/Layout.astro";
+import { SubRoutes } from "../../Home/subRoutes";
+import { IndexPage } from "../../poetry/components/BookGenerator/IndexPage";
+import "../../poetry/components/BookGenerator/IndexPage.css";
+import { CatalogueList } from "../../components/CatalogueList";
+export const prerender = true;
+export async function getStaticPaths() {
+    return SubRoutes.map((i) => {
         return {
-            params:{
-                book:i.to.slice(1),
-            }
-            ,props:{
-                name:i.name
-            }
-        }
-    })
+            params: {
+                book: i.to.slice(1),
+            },
+            props: {
+                name: i.name,
+            },
+        };
+    });
 }
-const {name} = Astro.props
-const {book} = Astro.params
+const { name } = Astro.props;
+const { book } = Astro.params;
 ---
-<Layout>
-{book}{name}
+
+<Layout title={name + " 中华诗词大典"}>
+    <IndexPage title={name}>
+        <!-- 首次渲染无数据 -->
+        <CatalogueList name={name} client:load />
+    </IndexPage>
 </Layout>

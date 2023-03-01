@@ -1,4 +1,4 @@
-import Highlighter from "web-highlighter";
+import type Highlighter from "web-highlighter";
 import { createServer, SlotMap } from "../../../../Server/Template";
 
 export type DataType = {

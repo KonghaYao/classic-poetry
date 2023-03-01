@@ -1,30 +1,9 @@
 import { Grid } from "@arco-design/web-react";
-import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { wrapAdapter } from "./Tagger";
 import "./IndexPage.css";
-export const IndexPage: FC<{
-    title: string;
-    children?: React.ReactNode;
-}> = ({ title, children }) => {
-    return (
-        <div className="box-col no-scroll index-page">
-            <div
-                className="box-col content-max"
-                style={{
-                    height: "100%",
-                    flex: "1",
-                }}>
-                <div>
-                    <div className="Index-Seal">{title}</div>
-                </div>
-                <div className="box-col no-scroll link-list">{children}</div>
-            </div>
-        </div>
-    );
-};
-
+import { IndexPage } from "./IndexPage";
 export function IndexPageOrigin<T>({
     getData,
     adapter,

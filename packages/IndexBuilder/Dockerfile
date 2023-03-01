@@ -1,14 +1,11 @@
 FROM node:18.14.2-alpine3.17
-
+RUN apk add git
 
 COPY src /app/src
-COPY package.json /app/package.json
+COPY scripts/init.sh /app/
+COPY package.json /app/
 WORKDIR /app
-RUN apk add git
 RUN npm install -g npm
 RUN npm install pnpm -g
-
-RUN pnpm i
-RUN pnpm build 
-RUN pnpm build:index
-RUN pnpm upload
+RUN pnpm i 
+CMD '/app/init.sh'
