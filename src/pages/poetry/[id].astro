@@ -7,8 +7,16 @@ import {
 import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
 import { getClient } from "../../meilisearch/getClient";
 const { id } = Astro.params;
-const { hits } = await getClient().index("poetry").search(id);
-const data = (hits[0] as PageInfo) || {};
+import mongoose from 'mongoose'
+const data = await mongoose
+        .connect(
+            "mongodb+srv://reader:JqdKie3Zz7bKAxPz@cluster1.xavvdnu.mongodb.net/poetry?retryWrites=true&w=majority"
+        )
+        .then(async (db) => {
+            const data = await db.models.Poetry.findOne({id}).lean()
+            mongoose.disconnect();
+            return data as PageInfo
+        });
 ---
 
 <Layout title={data?.title + " 中华诗词大典"}>

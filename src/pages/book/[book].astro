@@ -24,6 +24,6 @@ const { book } = Astro.params;
 <Layout title={name + " 中华诗词大典"}>
     <IndexPage title={name}>
         <!-- 首次渲染无数据 -->
-        <CatalogueList name={name} client:load />
+        <CatalogueList name={name} client:only />
     </IndexPage>
 </Layout>
