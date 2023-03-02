@@ -5,7 +5,10 @@ import {
     ShowSinglePoetry,
 } from "../../../components/Poetry/ShowSinglePoetry";
 import { NotFound } from "../404";
-import { SideBarWrapper, SideBarProps } from "./SideBar/SideBarInner";
+import {
+    SideBarWrapper,
+    SideBarProps,
+} from "../../../components/Poetry/SideBar/SideBarInner";
 import { BookConverter, BookFetch } from "./BookFetch";
 import { Tagger, wrapAdapter } from "./Tagger";
 import { BookContext } from "./BookContext";

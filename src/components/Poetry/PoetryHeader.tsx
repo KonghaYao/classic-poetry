@@ -1,11 +1,10 @@
-import { Button, Space } from "@arco-design/web-react";
 import { IconBook, IconUnorderedList } from "@arco-design/web-react/icon";
 import type React from "react";
 import type { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { sidebarServer } from "../../poetry/components/BookGenerator/SideBar/server";
-import { BookContext } from "../../poetry/components/BookGenerator/BookContext";
-import { NoteBarServer } from "../../poetry/components/BookGenerator/NoteBar";
+import { sidebarServer } from "./SideBar/server";
+// import { BookContext } from "../../poetry/components/BookGenerator/BookContext";
+// import { NoteBarServer } from "../../poetry/components/BookGenerator/NoteBar";
+import type { PageInfo } from "./ShowSinglePoetry";
 
 const PageHeader: FC<{
     title: string;
@@ -25,51 +24,44 @@ const PageHeader: FC<{
     );
 };
 
-export const PoetryHeader: FC = () => {
-    const nav = useNavigate();
+import { useStore } from "@nanostores/react";
+import { Books } from "./store/book";
+import { modelControl } from "./store/modelControl";
+export const PoetryHeader = () => {
+    const matched = useStore(Books);
+    const textCount = matched.content.split("\n").reduce((col, cur) => {
+        const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
+        return col + m.length;
+    }, 0);
     return (
-        <BookContext.Consumer>
-            {(info) => {
-                const matched = info!.matched;
-                const textCount = matched.content.reduce((col, cur) => {
-                    const m: string = cur.replace(
-                        /[^\u4e00-\u9fff\uf900-\ufaff]/g,
-                        ""
-                    );
-                    return col + m.length;
-                }, 0);
-                return (
-                    <PageHeader
-                        title={matched.title}
-                        subTitle={matched.subTitle}
-                        onBack={() => {
-                            nav(info!.root);
-                        }}>
-                        {/* // TODO 勘误功能 */}
-                        <Space>
-                            <div>
-                                全文
-                                <span style={{ fontSize: "1.125em" }}>
-                                    {textCount}
-                                </span>
-                                字
-                            </div>
-                            <div
-                                onClick={() => {
-                                    sidebarServer.emit("toggleVisible");
-                                }}>
-                                <IconUnorderedList />
-                            </div>
-                            <div
-                                onClick={() => {
-                                    NoteBarServer.emit("toggle");
-                                }}>
-                                <IconBook />
-                            </div>
-                        </Space>
-                    </PageHeader>
-                );
-            }}
-        </BookContext.Consumer>
+        <PageHeader
+            title={matched.title}
+            subTitle={matched.subTitle}
+            onBack={() => {
+                history.back();
+            }}>
+            {/* // TODO 勘误功能 */}
+            <div className="flex gap-2">
+                <div>
+                    全文
+                    <span style={{ fontSize: "1.125em" }}>{textCount}</span>字
+                </div>
+
+                <IconUnorderedList
+                    className="w-4 aspect-square cursor-pointer"
+                    onClick={() => {
+                        modelControl.setKey("showing", "index");
+                        console.log("记录陈工");
+                    }}
+                />
+
+                <IconBook
+                    className="w-4 aspect-square cursor-pointer"
+                    onClick={() => {
+                        // NoteBarServer.emit("toggle");
+                    }}
+                />
+            </div>
+        </PageHeader>
     );
 };

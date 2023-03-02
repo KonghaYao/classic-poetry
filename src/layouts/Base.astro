@@ -1,0 +1,20 @@
+---
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+const info = Astro.props;
+---
+
+<Layout {...info as any}>
+    <Header />
+    <main
+        class="box-row box"
+        style={{
+            overflow: "hidden",
+            position: "relative",
+        }}
+    >
+        {/* 噪声背景图 */}
+        <div class="noise-bg noise"></div>
+        <slot />
+    </main>
+</Layout>

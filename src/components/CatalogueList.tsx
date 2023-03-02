@@ -1,8 +1,7 @@
 import { usePagination, useRequest } from "ahooks";
 
-export const CatalogueList = (props: { name: string }) => {
-    console.log(props.name);
-    const { data, error, loading } = usePagination(({ current, pageSize }) => {
+export const useBookIndexMapper = (props: { name: string }) => {
+    return usePagination(({ current, pageSize }) => {
         const p = new URLSearchParams();
         p.set("name", props.name);
         p.set("pageSize", pageSize.toString());
@@ -16,6 +15,11 @@ export const CatalogueList = (props: { name: string }) => {
                 return { total: res.total, list: res.data };
             });
     });
+};
+
+export const CatalogueList = (props: { name: string }) => {
+    console.log(props.name);
+    const { data, error, loading } = useBookIndexMapper(props);
     return (
         <section className="flex flex-wrap" style={{ fontSize: "1.5rem" }}>
             {(data?.list ?? []).map((i, index) => {

@@ -1,13 +1,12 @@
 import { useMemo, useRef, useState } from "react";
-import { useMount, useUnmount } from "ahooks";
-import { RestTime } from "../../poetry/utils/RestTime";
 import { SingleRow } from "../../poetry/components/BookGenerator/PoetryContent/SingleRow";
 // import { usePositionRecord } from "../../poetry/components/BookGenerator/PoetryContent/usePositionRecord";
 import { Trigger } from "@arco-design/web-react";
-import { BookNotes } from "../../poetry/components/BookGenerator/NoteBar/BookNote";
-import type { PageInfo } from "./ShowSinglePoetry";
 
-export const PoetryContent = (props: PageInfo) => {
+import { useStore } from "@nanostores/react";
+import { Books } from "./store/book";
+export const PoetryContent = () => {
+    const poetry = useStore(Books);
     const [popupVisible, setPopupVisible] = useState(false);
     let container: HTMLElement;
     const triggerRef = useRef<any>();
@@ -78,7 +77,7 @@ export const PoetryContent = (props: PageInfo) => {
                     style={{
                         margin: "1rem",
                     }}></nav>
-                {props.content.split("\n").map((i, index) => {
+                {poetry.content.split("\n").map((i, index) => {
                     return (
                         <SingleRow
                             onClick={() => {
@@ -87,8 +86,8 @@ export const PoetryContent = (props: PageInfo) => {
                             onPointerMove={() => {
                                 // RecordMe(index, props.title);
                             }}
-                            name={props.title}
-                            key={props.title + "-" + index}
+                            name={poetry.title}
+                            key={poetry.title + "-" + index}
                             index={index}
                             content={i}></SingleRow>
                     );

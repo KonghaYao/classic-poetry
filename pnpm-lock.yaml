@@ -7,6 +7,7 @@ specifiers:
   '@astrojs/react': ^2.0.2
   '@astrojs/tailwind': ^3.0.1
   '@meilisearch/instant-meilisearch': ^0.8.2
+  '@nanostores/react': ^0.4.1
   '@types/lodash': ^4.14.184
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.6
@@ -26,6 +27,7 @@ specifiers:
   lodash: ^4.17.21
   meilisearch: ^0.31.1
   mitt: ^3.0.0
+  nanostores: ^0.7.4
   node-fetch: ^3.3.0
   pangu: ^4.0.7
   react: ^18.2.0
@@ -46,6 +48,7 @@ dependencies:
   '@astrojs/react': 2.0.2_3tcou6oaphrt7np6kmwkmfe57a
   '@astrojs/tailwind': 3.0.1_dcffs6vszochbmkyu5n7efg4ri
   '@meilisearch/instant-meilisearch': 0.8.2
+  '@nanostores/react': 0.4.1_nkfnbc2tpc77iht7asm3uqwau4
   ahooks: 3.7.1_react@18.2.0
   cnchar: 3.2.2
   cnchar-trad: 3.2.2
@@ -55,6 +58,7 @@ dependencies:
   localforage: 1.10.0
   lodash: 4.17.21
   mitt: 3.0.0
+  nanostores: 0.7.4
   pangu: 4.0.7
   react: 18.2.0
   react-animated-router: 1.2.4_biqbaboplfbrettd7655fr4n2y
@@ -775,6 +779,18 @@ packages:
       meilisearch: 0.27.0
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@nanostores/react/0.4.1_nkfnbc2tpc77iht7asm3uqwau4:
+    resolution: {integrity: sha512-lsv0CYrMxczbXtoV/mxFVEoL/uVjEjseoP89srO/5yNAOkJka+dSFS7LYyWEbuvCPO7EgbtkvRpO5V+OztKQOw==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    peerDependencies:
+      nanostores: ^0.7.0
+      react: '>=18.0.0'
+    dependencies:
+      nanostores: 0.7.4
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /@netlify/functions/1.4.0:
@@ -2895,6 +2911,11 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanostores/0.7.4:
+    resolution: {integrity: sha512-MBeUVt7NBcXqh7AGT+KSr3O0X/995CZsvcP2QEMP+PXFwb07qv3Vjyq+EX0yS8f12Vv3Tn2g/BvK/OZoMhJlOQ==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    dev: false
 
   /needle/3.2.0:
     resolution: {integrity: sha512-oUvzXnyLiVyVGoianLijF9O/RecZUf7TkBfimjGrLM4eQhXyeJwM6GeAWccwfQ9aa4gMCZKqhAOuLaMIcQxajQ==}

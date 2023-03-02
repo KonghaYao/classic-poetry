@@ -1,12 +1,17 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import {ShowSinglePoetry} from '../../components/Poetry/ShowSinglePoetry'
-import {getClient} from '../../meilisearch/getClient'
-const {id} = Astro.params
-const {hits} = await getClient().index("poetry").search(id)
-const data = hits[0]||{}
+import Layout from "../../layouts/Base.astro";
+import {
+    PageInfo,
+    ShowSinglePoetry,
+} from "../../components/Poetry/ShowSinglePoetry";
+import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
+import { getClient } from "../../meilisearch/getClient";
+const { id } = Astro.params;
+const { hits } = await getClient().index("poetry").search(id);
+const data = (hits[0] as PageInfo) || {};
 ---
 
-<Layout title={data?.title+' 中华诗词大典'}>
-    <ShowSinglePoetry poetry={data} ></ShowSinglePoetry>
+<Layout title={data?.title + " 中华诗词大典"}>
+    <ShowSinglePoetry poetry={data} client:load />
+    <ModelControl client:only />
 </Layout>

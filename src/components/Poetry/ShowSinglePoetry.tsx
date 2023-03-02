@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-// import { PoetryHeader } from "./PoetryHeader";
+import { PoetryHeader } from "./PoetryHeader";
 import { useSetting } from "../../Setting";
 import "./ShowSinglePoetry.css";
 // import { PoetryFooter } from "./PoetryFooter";
@@ -10,20 +10,19 @@ export type PageInfo = {
     author?: string;
     content: string;
     notes?: string[];
+    id: string;
+    belongToName: string;
 };
-
+import { useStore } from "@nanostores/react";
+import { Books, BookSetting } from "./store/book";
 export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
-    // const [visible, setVisible] = useState(true);
+    Books.set(info);
     const { setting } = useSetting();
-    const direction = useMemo(
-        () => setting.theme.cnList === "竖排",
-        [setting.theme.cnList]
-    );
-
+    const { direction } = useStore(BookSetting);
     return (
         <div
             className={`poetry-wrapper ${
-                direction
+                direction === "row"
                     ? "box-row poetry-vertical"
                     : "box-col content-max no-scroll"
             }`}
@@ -33,10 +32,20 @@ export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
                 fontSize: setting.text.fontSize,
                 letterSpacing: setting.text.letterSpacing + "em",
             }}>
-            {/* <PoetryHeader></PoetryHeader> */}
+            {/* <button
+                onClick={() => {
+                    BookSetting.setKey(
+                        "direction",
+                        direction === "row" ? "col" : "row"
+                    );
+                }}>
+                改变方向
+                {direction}
+            </button> */}
+            <PoetryHeader></PoetryHeader>
 
             <main className={`poetry-content box-col`}>
-                <PoetryContent {...info!}></PoetryContent>
+                <PoetryContent></PoetryContent>
 
                 {/* TODO Notes 暂时不适配 */}
                 {/* {matched.notes && (
