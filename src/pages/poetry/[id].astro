@@ -6,15 +6,11 @@ import {
 } from "../../components/Poetry/ShowSinglePoetry";
 import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
 import { getClient } from "../../meilisearch/getClient";
+import {connectToDatabase} from '../../backend/mongo'
 const { id } = Astro.params;
-import mongoose from 'mongoose'
-const data = await mongoose
-        .connect(
-            "mongodb+srv://reader:JqdKie3Zz7bKAxPz@cluster1.xavvdnu.mongodb.net/poetry?retryWrites=true&w=majority"
-        )
+const data = await connectToDatabase()
         .then(async (db) => {
             const data = await db.models.Poetry.findOne({id}).lean()
-            mongoose.disconnect();
             return data as PageInfo
         });
 ---
