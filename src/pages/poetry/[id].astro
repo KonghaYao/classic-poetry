@@ -13,7 +13,7 @@ const data = await connectToDatabase().then(async (db) => {
 });
 ---
 
-<Layout title={data?.title + " 中华诗词大典"}>
+<Layout title={data?.title + " 中华诗词大典"} class="items-center">
     <ShowSinglePoetry poetry={data} client:load />
     <ModelControl client:only />
 </Layout>

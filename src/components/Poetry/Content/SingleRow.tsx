@@ -1,6 +1,8 @@
-import { FC, useMemo } from "react";
+import type { FC, useMemo } from "react";
 import { TextPreProcess } from "../../../poetry/utils/TextPreProcess";
 import { useSetting } from "../../../Setting";
+import { useStore } from "@nanostores/react";
+import { BookSetting } from "../store/book";
 
 /** 每一行诗句的排版 */
 export const SingleRow: FC<{
@@ -11,24 +13,23 @@ export const SingleRow: FC<{
     onPointerMove: () => void;
 }> = ({ index, content, onClick, onPointerMove }) => {
     const { setting } = useSetting();
-    const direction = useMemo(() => setting.theme.cnList === "竖排", [setting]);
+    const { direction } = useStore(BookSetting);
 
     return (
         <>
-            <p
+            <div
                 className={`single-content box-row ${
-                    direction ? "" : "long-list-item"
+                    direction === "row" ? "" : "long-list-item"
                 }`}
                 onClick={onClick}
                 onPointerMove={onPointerMove}>
-                <div className="poetry-index">{index + 1}</div>
-                <div
-                    className="poetry-text"
-                    style={{ fontSize: "1em" }}
+                <aside className="poetry-index">{index + 1}</aside>
+                <p
+                    className="poetry-text text-base my-2"
                     data-row-index={index + 1}>
                     {content}
-                </div>
-            </p>
+                </p>
+            </div>
             <hr key={"divide-" + index} className={direction ? "ver" : "hor"} />
         </>
     );

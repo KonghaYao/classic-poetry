@@ -9,10 +9,6 @@ import { NotesShower } from "./Content/NotesShower";
 import type { PageInfo } from "./ShowSinglePoetry";
 export const PoetryContent = () => {
     const poetry = useStore(Books);
-    const [popupVisible, setPopupVisible] = useState(false);
-    let container: HTMLElement;
-    const triggerRef = useRef<any>();
-    const [lookingId, setLookingId] = useState("");
     // const location = useLocation();
     // useMemo(() => {
     //     if (triggerRef.current && lookingId) {
@@ -64,39 +60,26 @@ export const PoetryContent = () => {
     // useUnmount(() => destroyHighlight());
     // 单独诗句排版
     return (
-        <Trigger
-            ref={triggerRef}
-            alignPoint
-            position="bl"
-            popupVisible={popupVisible}
-            //  不适合使用 异步加载，会导致问题
-            popup={() => {
-                return <div></div>;
-                // return <ContextMenu></ContextMenu>;
-            }}>
-            <article
-                className="flex-1 flex flex-col"
-                ref={(el) => (container = el!)}>
-                {poetry.content.split("\n").map((i, index) => {
-                    return (
-                        <SingleRow
-                            onClick={() => {
-                                // RecordMe(index, props.title);
-                            }}
-                            onPointerMove={() => {
-                                // RecordMe(index, props.title);
-                            }}
-                            name={poetry.title}
-                            key={poetry.title + "-" + index}
-                            index={index}
-                            content={i}></SingleRow>
-                    );
-                })}
-                <aside className="flex-1"></aside>
-                {AuthorInk(poetry)}
-                <NotesShower></NotesShower>
-            </article>
-        </Trigger>
+        <article className="flex-1 flex flex-col w-full ">
+            {poetry.content.split("\n").map((i, index) => {
+                return (
+                    <SingleRow
+                        onClick={() => {
+                            // RecordMe(index, props.title);
+                        }}
+                        onPointerMove={() => {
+                            // RecordMe(index, props.title);
+                        }}
+                        name={poetry.title}
+                        key={poetry.title + "-" + index}
+                        index={index}
+                        content={i}></SingleRow>
+                );
+            })}
+            <aside className="flex-1"></aside>
+            {AuthorInk(poetry)}
+            <NotesShower></NotesShower>
+        </article>
     );
 };
 function AuthorInk(poetry: PageInfo) {

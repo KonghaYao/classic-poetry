@@ -1,32 +1,16 @@
-import { IconBook, IconUnorderedList } from "@arco-design/web-react/icon";
+import {
+    IconBook,
+    IconList,
+    IconQqCircleFill,
+    IconRefresh,
+    IconUnorderedList,
+} from "@arco-design/web-react/icon";
 import type React from "react";
-import type { FC } from "react";
-import { sidebarServer } from "./SideBar/server";
-// import { BookContext } from "../../poetry/components/BookGenerator/BookContext";
-// import { NoteBarServer } from "../../poetry/components/BookGenerator/NoteBar";
-import type { PageInfo } from "./ShowSinglePoetry";
-
-const PageHeader: FC<{
-    title: string;
-    subTitle?: string;
-    onBack: Function;
-    children: React.ReactNode;
-}> = (props) => {
-    return (
-        <div className={`poetry-header `}>
-            <div>
-                <span className="title">{props.title}</span>
-                <span className="subtitle">{props.subTitle}</span>
-            </div>
-            <div className="flex-1"></div>
-            <div>{props.children}</div>
-        </div>
-    );
-};
 
 import { useStore } from "@nanostores/react";
-import { Books } from "./store/book";
+import { BookSetting, Books } from "./store/book";
 import { modelControl } from "./store/modelControl";
+import { Popover } from "@arco-design/web-react";
 export const PoetryHeader = () => {
     const matched = useStore(Books);
     const textCount = matched.content.split("\n").reduce((col, cur) => {
@@ -34,34 +18,65 @@ export const PoetryHeader = () => {
         return col + m.length;
     }, 0);
     return (
-        <PageHeader
-            title={matched.title}
-            subTitle={matched.subTitle}
-            onBack={() => {
-                history.back();
-            }}>
-            {/* // TODO 勘误功能 */}
-            <div className="flex gap-2">
+        <header className={`poetry-header`}>
+            <main>
+                <span className="title">{matched.title}</span>
+                <span className="subtitle">{matched.subTitle}</span>
+            </main>
+            <div className="flex-1"></div>
+            <aside className="flex gap-2">
                 <div>
                     全文
                     <span style={{ fontSize: "1.125em" }}>{textCount}</span>字
                 </div>
 
-                <IconUnorderedList
-                    className="w-4 aspect-square cursor-pointer"
-                    onClick={() => {
-                        modelControl.setKey("showing", "index");
-                        console.log("记录陈工");
-                    }}
-                />
-
                 <IconBook
                     className="w-4 aspect-square cursor-pointer"
                     onClick={() => {
-                        // NoteBarServer.emit("toggle");
+                        modelControl.setKey("showing", "index");
                     }}
                 />
-            </div>
-        </PageHeader>
+                {MoreList()}
+            </aside>
+        </header>
     );
 };
+function MoreList() {
+    const Item = ({
+        name,
+        icon,
+        onClick,
+    }: {
+        name: string;
+        icon: JSX.Element;
+        onClick?: () => void;
+    }) => {
+        return (
+            <li onClick={onClick}>
+                {icon}
+                {name}
+            </li>
+        );
+    };
+    return (
+        <Popover
+            trigger="click"
+            content={
+                <ul>
+                    <Item
+                        icon={<IconRefresh className="pr-2" />}
+                        name="横竖切换"
+                        onClick={() => {
+                            BookSetting.setKey(
+                                "direction",
+                                BookSetting.get().direction === "row"
+                                    ? "col"
+                                    : "row"
+                            );
+                        }}></Item>
+                </ul>
+            }>
+            <IconList className="w-4 aspect-square cursor-pointer"></IconList>
+        </Popover>
+    );
+}

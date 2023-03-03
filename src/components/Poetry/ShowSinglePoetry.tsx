@@ -20,11 +20,11 @@ export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
     const { setting } = useSetting();
     const { direction } = useStore(BookSetting);
     return (
-        <div
+        <section
             className={`poetry-wrapper ${
                 direction === "row"
-                    ? "box-row poetry-vertical"
-                    : "box-col content-max no-scroll"
+                    ? "flex flex-row-reverse poetry-vertical"
+                    : "flex flex-col  content-max no-scroll"
             }`}
             style={{
                 fontFamily: setting.text.font.fontFamily,
@@ -54,6 +54,6 @@ export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
                 {/* <PoetryFooter></PoetryFooter> */}
             </main>
             {/* <FontSlot></FontSlot> */}
-        </div>
+        </section>
     );
 };

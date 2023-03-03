@@ -7,14 +7,14 @@ const info = Astro.props;
 <Layout {...info as any}>
     <Header />
     <main
-        class="box-row box"
+        class={"box-row box noise " + (info.class ?? "")}
         style={{
             overflow: "hidden",
             position: "relative",
         }}
     >
-        {/* 噪声背景图 */}
-        <div class="noise-bg noise"></div>
+        <!-- {/* 噪声背景图 */}
+        <aside class="noise-bg noise top-0 left-0"></aside> -->
         <slot />
     </main>
 </Layout>
