@@ -1,16 +1,20 @@
-import { Tabs } from "@arco-design/web-react";
-import TabPane from "@arco-design/web-react/es/Tabs/tab-pane";
 import { SideIndex } from "./SideIndex";
 import { useStore } from "@nanostores/react";
 import { modelControl } from "../store/modelControl";
+import { useState } from "react";
+import { useMount } from "ahooks";
+import { Books } from "../store/book";
 export const ModelControl = () => {
     const { showing } = useStore(modelControl);
+    const [render, setRender] = useState(false);
+    useMount(() => {
+        // 延迟进行加载，保证依赖已经挂载完成
+        setTimeout(() => {
+            setRender(true);
+        }, 100);
+    });
+
     return (
-        <Tabs activeTab={showing} renderTabHeader={() => <></>}>
-            <TabPane key="index" title="Tab 1">
-                <SideIndex></SideIndex>
-            </TabPane>
-            <TabPane key="void" title="Tab 1"></TabPane>
-        </Tabs>
+        <>{render && <SideIndex visible={showing === "index"}></SideIndex>}</>
     );
 };
