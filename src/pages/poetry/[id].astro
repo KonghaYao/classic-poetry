@@ -5,14 +5,12 @@ import {
     ShowSinglePoetry,
 } from "../../components/Poetry/ShowSinglePoetry";
 import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
-import { getClient } from "../../meilisearch/getClient";
-import {connectToDatabase} from '../../backend/mongo'
+import { connectToDatabase } from "../../backend/mongo";
 const { id } = Astro.params;
-const data = await connectToDatabase()
-        .then(async (db) => {
-            const data = await db.models.Poetry.findOne({id}).lean()
-            return data as PageInfo
-        });
+const data = await connectToDatabase().then(async (db) => {
+    const data = await db.models.Poetry.findOne({ id }).lean();
+    return data as PageInfo;
+});
 ---
 
 <Layout title={data?.title + " 中华诗词大典"}>

@@ -2,6 +2,10 @@
     color: var(--book-text-color);
 }
 
+.author-ink {
+    background-color: var(--divide-red);
+}
+
 .poetry-index {
     user-select: none !important;
     margin: 1rem;

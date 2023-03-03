@@ -27,16 +27,3 @@
     color: var(--color-text-2);
     font-size: 0.8em;
 }
-
-.author-name {
-    font-size: 1.5em;
-    text-align: right;
-    margin-top: 1em;
-    margin-right: 1em;
-}
-.author-name span {
-    margin: 1rem;
-    background-color: var(--divide-red);
-    color: white;
-    border-radius: 4px;
-}

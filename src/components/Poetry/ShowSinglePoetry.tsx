@@ -9,7 +9,7 @@ export type PageInfo = {
     subTitle?: string;
     author?: string;
     content: string;
-    notes?: string[];
+    notes?: string;
     id: string;
     belongToName: string;
 };

@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
-import { TextPreProcess } from "../../../utils/TextPreProcess";
-import { useSetting } from "../../../../Setting";
+import { TextPreProcess } from "../../../poetry/utils/TextPreProcess";
+import { useSetting } from "../../../Setting";
 
 /** 每一行诗句的排版 */
 export const SingleRow: FC<{
@@ -15,7 +15,7 @@ export const SingleRow: FC<{
 
     return (
         <>
-            <div
+            <p
                 className={`single-content box-row ${
                     direction ? "" : "long-list-item"
                 }`}
@@ -28,7 +28,7 @@ export const SingleRow: FC<{
                     data-row-index={index + 1}>
                     {content}
                 </div>
-            </div>
+            </p>
             <hr key={"divide-" + index} className={direction ? "ver" : "hor"} />
         </>
     );

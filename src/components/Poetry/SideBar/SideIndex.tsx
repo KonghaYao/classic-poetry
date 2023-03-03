@@ -1,33 +1,38 @@
 import { Menu } from "@arco-design/web-react";
 import { useStore } from "@nanostores/react";
 import { Books } from "../store/book";
-import { useBookIndexMapper } from "../../CatalogueList";
+import { InfiniteInfo, useCatalogueListLoad } from "../../CatalogueList";
+import { useRef } from "react";
 export const SideIndex = () => {
     const matched = useStore(Books);
-    const { data } = useBookIndexMapper({ name: matched.belongToName });
+    const ref = useRef<HTMLDivElement>(null);
+    const { data, loadingMore, noMore } = useCatalogueListLoad({
+        ref,
+        name: matched.belongToName,
+    });
     return (
-        <nav className="overflow-scroll h-[80vh] rounded-md">
-            <Menu
-                className="overflow-scroll w-40 m-0 flex-1 "
-                selectedKeys={[matched.id]}
-                ellipsis>
+        <nav className="overflow-scroll h-[80vh] rounded-md max-w-xs" ref={ref}>
+            <ul>
                 {/* <Menu.Item key="side-index">
         <NavLink to={'/'}>索引</NavLink>
     </Menu.Item> */}
-                {data?.list.map((i) => {
+                {data?.list.map((i, index) => {
                     return (
-                        <Menu.Item
-                            className="long-list-item"
-                            key={i.id}
-                            defaultValue={i.title}
-                            onClick={() => {
-                                location.href = `/poetry/${i.id}`;
-                            }}>
-                            {i.title}
-                        </Menu.Item>
+                        <a href={`/poetry/${i.id}`}>
+                            <li
+                                className=" cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden"
+                                key={i.id}
+                                title={i.title}>
+                                <span className="w-8 pr-2 text-center">
+                                    {index}
+                                </span>{" "}
+                                {i.title}
+                            </li>
+                        </a>
                     );
                 })}
-            </Menu>
+                <InfiniteInfo {...{ loadingMore, noMore }}></InfiniteInfo>
+            </ul>
         </nav>
     );
 };

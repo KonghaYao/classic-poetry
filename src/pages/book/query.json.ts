@@ -1,5 +1,4 @@
 import type { APIRoute } from "astro";
-import mongoose from "mongoose";
 import { connectToDatabase } from "../../backend/mongo";
 // import { _Poetry } from "../../model";
 export const get: APIRoute = async ({ request }) => {
@@ -11,8 +10,8 @@ export const get: APIRoute = async ({ request }) => {
             status: 404,
         });
     }
-    const page = params.pageSize ? parseInt(params.pageSize) : 1;
-    const limit = params.limit ? parseInt(params.limit) : 20;
+    const page = params.page ? parseInt(params.page) : 1;
+    const limit = params.limit ? parseInt(params.limit) : 30;
     // console.log(
     //     await import.meta.resolve(
     //         `../../../data/indexes/${params.name}.json`,
@@ -25,17 +24,17 @@ export const get: APIRoute = async ({ request }) => {
             { belongToName: params.name },
             { content: 0, notes: 0 }
         )
-            .skip(page)
+            .skip((page - 1) * limit)
             .limit(limit)
-            .lean(true)
+            .lean()
             .exec();
         return data;
     });
-
     return {
         body: JSON.stringify({
             data,
             total: data.length,
+            next: data.length === limit ? page + 1 : null,
         }),
     };
 };

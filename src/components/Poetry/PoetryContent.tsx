@@ -1,10 +1,12 @@
 import { useMemo, useRef, useState } from "react";
-import { SingleRow } from "../../poetry/components/BookGenerator/PoetryContent/SingleRow";
+import { SingleRow } from "./Content/SingleRow";
 // import { usePositionRecord } from "../../poetry/components/BookGenerator/PoetryContent/usePositionRecord";
 import { Trigger } from "@arco-design/web-react";
 
 import { useStore } from "@nanostores/react";
 import { Books } from "./store/book";
+import { NotesShower } from "./Content/NotesShower";
+import type { PageInfo } from "./ShowSinglePoetry";
 export const PoetryContent = () => {
     const poetry = useStore(Books);
     const [popupVisible, setPopupVisible] = useState(false);
@@ -72,11 +74,9 @@ export const PoetryContent = () => {
                 return <div></div>;
                 // return <ContextMenu></ContextMenu>;
             }}>
-            <article className="flex-1" ref={(el) => (container = el!)}>
-                <nav
-                    style={{
-                        margin: "1rem",
-                    }}></nav>
+            <article
+                className="flex-1 flex flex-col"
+                ref={(el) => (container = el!)}>
                 {poetry.content.split("\n").map((i, index) => {
                     return (
                         <SingleRow
@@ -92,7 +92,20 @@ export const PoetryContent = () => {
                             content={i}></SingleRow>
                     );
                 })}
+                <aside className="flex-1"></aside>
+                {AuthorInk(poetry)}
+                <NotesShower></NotesShower>
             </article>
         </Trigger>
     );
 };
+function AuthorInk(poetry: PageInfo) {
+    return (
+        <aside className="text-3xl text-right mt-4 mb-8">
+            {poetry.author}
+            <span className="author-ink  text-white rounded ml-4">
+                {poetry.author ? "文" : "终"}
+            </span>
+        </aside>
+    );
+}

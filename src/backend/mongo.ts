@@ -8,7 +8,7 @@ const uri =
 
 const close = debounce(() => {
     cachedPromise && (mongoose.disconnect(), (cachedPromise = null));
-    console.log("结束战斗");
+    console.log("关闭 MongoDB");
 }, 5000);
 export async function connectToDatabase() {
     if (!cachedPromise) {
@@ -18,7 +18,6 @@ export async function connectToDatabase() {
     close();
     // await on the promise. This resolves only once.
     const client = await cachedPromise;
-    console.log("申请使用");
     await import("../model/index");
     return client;
 }
