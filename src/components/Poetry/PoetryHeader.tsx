@@ -10,7 +10,7 @@ import type React from "react";
 import { useStore } from "@nanostores/react";
 import { BookSetting, Books } from "./store/book";
 import { modelControl } from "./store/modelControl";
-import { Popover } from "@arco-design/web-react";
+import { Button, Popover } from "@arco-design/web-react";
 export const PoetryHeader = () => {
     const matched = useStore(Books);
     const textCount = matched.content.split("\n").reduce((col, cur) => {
@@ -42,30 +42,13 @@ export const PoetryHeader = () => {
     );
 };
 function MoreList() {
-    const Item = ({
-        name,
-        icon,
-        onClick,
-    }: {
-        name: string;
-        icon: JSX.Element;
-        onClick?: () => void;
-    }) => {
-        return (
-            <li onClick={onClick}>
-                {icon}
-                {name}
-            </li>
-        );
-    };
     return (
         <Popover
             trigger="click"
             content={
                 <ul>
-                    <Item
-                        icon={<IconRefresh className="pr-2" />}
-                        name="横竖切换"
+                    <Button
+                        icon={<IconRefresh className="mr-2" />}
                         onClick={() => {
                             BookSetting.setKey(
                                 "direction",
@@ -73,7 +56,9 @@ function MoreList() {
                                     ? "col"
                                     : "row"
                             );
-                        }}></Item>
+                        }}>
+                        横竖切换
+                    </Button>
                 </ul>
             }>
             <IconList className="w-4 aspect-square cursor-pointer"></IconList>

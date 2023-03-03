@@ -2,7 +2,7 @@ import type { FC, useMemo } from "react";
 import { TextPreProcess } from "../../../poetry/utils/TextPreProcess";
 import { useSetting } from "../../../Setting";
 import { useStore } from "@nanostores/react";
-import { BookSetting } from "../store/book";
+import { BookSetting, isRow } from "../store/book";
 
 /** 每一行诗句的排版 */
 export const SingleRow: FC<{
@@ -19,18 +19,21 @@ export const SingleRow: FC<{
         <>
             <div
                 className={`single-content box-row ${
-                    direction === "row" ? "" : "long-list-item"
+                    isRow.get() ? "" : "long-list-item"
                 }`}
                 onClick={onClick}
                 onPointerMove={onPointerMove}>
                 <aside className="poetry-index">{index + 1}</aside>
                 <p
-                    className="poetry-text text-base my-2"
+                    className="poetry-text text-base m-2"
                     data-row-index={index + 1}>
                     {content}
                 </p>
             </div>
-            <hr key={"divide-" + index} className={direction ? "ver" : "hor"} />
+            <hr
+                key={"divide-" + index}
+                className={isRow.get() ? "ver" : "hor"}
+            />
         </>
     );
 };

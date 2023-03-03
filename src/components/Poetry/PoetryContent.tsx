@@ -4,7 +4,7 @@ import { SingleRow } from "./Content/SingleRow";
 import { Trigger } from "@arco-design/web-react";
 
 import { useStore } from "@nanostores/react";
-import { Books } from "./store/book";
+import { Books, isRow } from "./store/book";
 import { NotesShower } from "./Content/NotesShower";
 import type { PageInfo } from "./ShowSinglePoetry";
 export const PoetryContent = () => {
@@ -84,9 +84,17 @@ export const PoetryContent = () => {
 };
 function AuthorInk(poetry: PageInfo) {
     return (
-        <aside className="text-3xl text-right mt-4 mb-8">
+        <aside
+            className={
+                "text-3xl text-right " +
+                (isRow.get() ? "mt-4 mr-8" : "mt-4 mb-8")
+            }>
             {poetry.author}
-            <span className="author-ink  text-white rounded ml-4">
+            <span
+                className={
+                    "author-ink text-white rounded select-none " +
+                    (isRow.get() ? "mb-4" : "ml-4")
+                }>
                 {poetry.author ? "文" : "终"}
             </span>
         </aside>
