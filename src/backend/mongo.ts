@@ -12,10 +12,14 @@ const close = debounce(() => {
 }, 5000);
 export async function connectToDatabase() {
     if (!cachedPromise) {
-        cachedPromise = mongoose.connect(uri);
+        console.time("mongo");
+        cachedPromise = mongoose.connect(uri).then((res) => {
+            console.timeEnd("mongo");
+            return res;
+        });
     }
 
-    close();
+    // close();
     // await on the promise. This resolves only once.
     const client = await cachedPromise;
     await import("../model/index");

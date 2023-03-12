@@ -3,8 +3,8 @@ import { useMount, useUnmount } from "ahooks";
 import mitt from "mitt";
 import { FC, useState } from "react";
 import { NoteWriter } from "../PoetryContent/ContextPlugins/SimpleNote";
-import { useHighlight } from "../PoetryContent/ContextPlugins/useHighLight";
-import { BookNotes } from "./BookNote";
+import { useHighlight } from "../../../../components/Poetry/HighLight/useHighLight";
+import { BookNotes } from "../../../../components/Poetry/HighLight/BookNote";
 
 export const NoteBarServer = mitt<{
     toggle?: boolean;

@@ -7,7 +7,7 @@ import {
 } from "@arco-design/web-react/icon";
 import { FC, useState } from "react";
 import { ContextMenuController, DataType } from "../ContextMenu";
-import { BookNotes } from "../../NoteBar/BookNote";
+import { BookNotes } from "../../../../../components/Poetry/HighLight/BookNote";
 /** 内容模块 */
 export const NoteWriter: FC<{ lookingId: string }> = ({ lookingId }) => {
     const Note = BookNotes.getNote(lookingId);

@@ -11,7 +11,7 @@ export const ModelControl = () => {
         // 延迟进行加载，保证依赖已经挂载完成
         setTimeout(() => {
             setRender(true);
-        }, 100);
+        }, 300);
     });
 
     return (

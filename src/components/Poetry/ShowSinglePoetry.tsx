@@ -15,6 +15,7 @@ export type PageInfo = {
 };
 import { useStore } from "@nanostores/react";
 import { Books, BookSetting } from "./store/book";
+import { HighLightFloat } from "./HighLight";
 export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
     Books.set(info);
     const { setting } = useSetting();
@@ -32,27 +33,15 @@ export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
                 fontSize: setting.text.fontSize,
                 letterSpacing: setting.text.letterSpacing + "em",
             }}>
-            {/* <button
-                onClick={() => {
-                    BookSetting.setKey(
-                        "direction",
-                        direction === "row" ? "col" : "row"
-                    );
-                }}>
-                改变方向
-                {direction}
-            </button> */}
             <PoetryHeader></PoetryHeader>
 
-            <main className={`poetry-content box-col`}>
-                <PoetryContent></PoetryContent>
+            <HighLightFloat>
+                <main className={`poetry-content box-col`}>
+                    <PoetryContent></PoetryContent>
 
-                {/* TODO Notes 暂时不适配 */}
-                {/* {matched.notes && (
-                                <NotsShower notes={matched.notes}></NotsShower>
-                            )} */}
-                {/* <PoetryFooter></PoetryFooter> */}
-            </main>
+                    {/* <PoetryFooter></PoetryFooter> */}
+                </main>
+            </HighLightFloat>
             {/* <FontSlot></FontSlot> */}
         </section>
     );
