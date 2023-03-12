@@ -1,6 +1,6 @@
 # deno-server
 
-It's a very easy plugin to create a
+It's a very easy plugin to create a server in Deno
 
 ```ts
 import { ConnInfo, serve } from "https://deno.land/std@0.177.0/http/server.ts";

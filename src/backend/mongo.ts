@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 let cachedPromise: any = null;
 const uri =
-    "mongodb+srv://reader:JqdKie3Zz7bKAxPz@cluster1.xavvdnu.mongodb.net/poetry?retryWrites=true&w=majority";
+    "mongodb+srv://reader:VYKhEztiMdpWQX2A@cluster1.xavvdnu.mongodb.net/poetry?retryWrites=true&w=majority";
 
 const close = debounce(() => {
     cachedPromise && (mongoose.disconnect(), (cachedPromise = null));
@@ -13,8 +13,9 @@ const close = debounce(() => {
 export async function connectToDatabase() {
     if (!cachedPromise) {
         console.time("mongo");
-        cachedPromise = mongoose.connect(uri).then((res) => {
+        cachedPromise = mongoose.connect(uri).then(async (res) => {
             console.timeEnd("mongo");
+            await import("../model/index");
             return res;
         });
     }
@@ -22,6 +23,5 @@ export async function connectToDatabase() {
     // close();
     // await on the promise. This resolves only once.
     const client = await cachedPromise;
-    await import("../model/index");
     return client;
 }

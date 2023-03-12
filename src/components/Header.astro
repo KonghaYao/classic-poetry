@@ -1,11 +1,10 @@
 ---
 ---
-<header
-         class="z-10 flex w-full py-2 px-4"
-    >
-    <div class="text-xl" onClick={() => nav("/")}>
-        中华诗词大典
-    </div>
+
+<header class="z-10 flex w-full py-2 px-4">
+    <a href="/">
+        <div class="text-xl">中华诗词大典</div>
+    </a>
     <div style={{ flex: "1" }}></div>
     <nav
         class="box-row"
@@ -14,7 +13,8 @@
             alignItems: "center",
             justifyContent: "space-between",
             width: "40vmin",
-        }}>
-        <slot></slot>
+        }}
+    >
+        <slot />
     </nav>
 </header>

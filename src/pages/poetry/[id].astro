@@ -8,7 +8,9 @@ import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
 import { connectToDatabase } from "../../backend/mongo";
 const { id } = Astro.params;
 const data = await connectToDatabase().then(async (db) => {
+    console.time("getPage");
     const data = await db.models.Poetry.findOne({ id }).lean();
+    console.timeEnd("getPage");
     return data as PageInfo;
 });
 ---

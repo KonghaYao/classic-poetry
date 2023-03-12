@@ -1,4 +1,3 @@
-import { FC, useMemo } from "react";
 import { PoetryHeader } from "./PoetryHeader";
 import { useSetting } from "../../Setting";
 import "./ShowSinglePoetry.css";

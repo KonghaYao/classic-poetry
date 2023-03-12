@@ -4,7 +4,7 @@ import { useHighlight } from "./useHighLight";
 import { useStore } from "@nanostores/react";
 import { HighlightStore } from "./HighlightStore";
 import type HighlightSource from "web-highlighter/dist/model/source";
-import { Button, Trigger } from "@arco-design/web-react";
+import { Button } from "@arco-design/web-react";
 import { Children, FC, useRef } from "react";
 import type React from "react";
 export const useHighlightInject = ({
@@ -64,7 +64,13 @@ export const useHighlightInject = ({
     // 单独诗句排版
     return {};
 };
-
+import Trigger from "rc-trigger";
+import "rc-trigger/assets/index.css";
+const builtinPlacements = {
+    topLeft: {
+        points: ["tl", "tl"],
+    },
+};
 export const HighLightFloat: FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
@@ -83,21 +89,22 @@ export const HighLightFloat: FC<{ children: React.ReactNode }> = ({
     });
     return (
         <Trigger
-            ref={ref}
+            popupPlacement="topLeft"
+            action={["hover"]}
             popupVisible={store.show}
-            popup={() => {
-                return <Button>测试</Button>;
-            }}
-            trigger={[]}
             popupAlign={{
-                bottom: 8,
-                left: 8,
+                overflow: {
+                    adjustX: 1,
+                    adjustY: 1,
+                },
             }}
-            alignPoint={true}
-            onClickOutside={() => {
-                HighlightStore.get().contextMenu.setKey("show", false);
-            }}>
-            {children}
-        </Trigger>
+            mouseEnterDelay={300}
+            popupClassName="point-popup"
+            builtinPlacements={builtinPlacements}
+            popup={() => {
+                return <section id="info">绝地反击地方</section>;
+            }}
+            alignPoint
+            children={children as any}></Trigger>
     );
 };
