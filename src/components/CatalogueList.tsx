@@ -1,5 +1,6 @@
 import { useInfiniteScroll } from "ahooks";
 import React, { useRef } from "react";
+import { getIndex } from "../backend/getClient";
 export const useCatalogueListLoad = ({
     ref,
     name,
@@ -8,24 +9,19 @@ export const useCatalogueListLoad = ({
     name: string;
 }) => {
     return useInfiniteScroll(
-        (a) => {
-            const p = new URLSearchParams();
-            p.set("name", name);
-            p.set("limit", "100");
-            p.set("page", a?.next || 1);
-            return fetch(`/book/query.json?` + p.toString())
-                .then<{
-                    total: number;
-                    data: { id: string; title: string }[];
-                    next: number;
-                }>((res) => res.json())
-                .then((res) => {
-                    return {
-                        list: res.data,
-                        next: res.next,
-                        total: res.total,
-                    };
-                });
+        async (a) => {
+            const ThisCount = a?.next || 0;
+            const res = await getIndex().search("", {
+                filter: `belongToName = '${name}'`,
+                limit: 30,
+                offset: ThisCount * 30,
+                attributesToRetrieve: ["author", "belongToName", "id", "title"],
+            });
+            console.log(res);
+            return {
+                list: res.hits || [],
+                next: res.hits?.length === 0 ? null : ThisCount + 1,
+            };
         },
         {
             threshold: 30,
@@ -36,17 +32,13 @@ export const useCatalogueListLoad = ({
 };
 
 export const CatalogueList = (props: { name: string }) => {
-    console.log(props.name);
     const ref = useRef<HTMLDivElement>(null);
-
     const query = useCatalogueListLoad({ ref, name: props.name });
     // const { data, error, loading } = useBookIndexMapper(props);
     return (
         <section className="box-col no-scroll link-list" ref={ref}>
-            <ul
-                className="flex flex-wrap justify-between text-2xl"
-                style={{ fontSize: "1.5rem" }}>
-                {(query.data?.list ?? []).map((i, index) => {
+            <ul className="flex flex-wrap justify-between text-2xl">
+                {(query.data?.list ?? []).map((i) => {
                     return (
                         <a
                             href={`/poetry/${i.id}`}

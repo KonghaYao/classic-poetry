@@ -19,6 +19,14 @@ const { title } = Astro.props;
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@arco-design/web-react@2.45.1/dist/css/arco.min.css"
         />
+        <link rel="dns-prefetch" href={import.meta.env.PUBLIC_SUPABASE_URL} />
+        <link rel="stylesheet" href="
+        https://901557678.r.cdn36.com/chinesefonts1/packages/jxzk/dist/%E6%B1%9F%E8%A5%BF%E6%8B%99%E6%A5%B7/result.css">
+        <link
+            href={import.meta.env.PUBLIC_SUPABASE_URL}
+            rel="preconnect"
+            crossorigin
+        />
     </head>
     <body class="h-screen w-screen overflow-hidden flex flex-col">
         <slot />

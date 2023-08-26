@@ -1,18 +1,15 @@
 ---
 import Layout from "../../layouts/Base.astro";
-import {
-    PageInfo,
-    ShowSinglePoetry,
-} from "../../components/Poetry/ShowSinglePoetry";
+import { ShowSinglePoetry } from "../../components/Poetry/ShowSinglePoetry";
 import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
-import { connectToDatabase } from "../../backend/mongo";
+import { getIndex } from "../../backend/getClient";
 const { id } = Astro.params;
-const data = await connectToDatabase().then(async (db) => {
-    console.time("getPage");
-    const data = await db.models.Poetry.findOne({ id }).lean();
-    console.timeEnd("getPage");
-    return data as PageInfo;
-});
+if(id===undefined) Astro.redirect('/')
+const idNum = parseInt(id as string)
+if(isNaN(idNum)) Astro.redirect('/')
+console.time("加载单个");   
+const data = await getIndex().getDocument(idNum)
+console.timeEnd("加载单个");
 ---
 
 <Layout title={data?.title + " 中华诗词大典"} class="items-center">

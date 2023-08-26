@@ -18,7 +18,6 @@
         "fs-extra": "^10.1.0"
     },
     "dependencies": {
-        "chinese-poetry": "github:chinese-poetry/chinese-poetry",
         "meilisearch": "^0.31.1",
         "mongoose": "^7.0.0",
         "uuid": "^9.0.0",

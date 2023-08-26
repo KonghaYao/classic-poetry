@@ -1,5 +1,5 @@
 /** 复制头部 */
-const copyHeaders = (headers: Headers) => {
+const cloneHeaders = (headers: Headers) => {
     const newHeader = new Headers();
     for (let i of headers.entries()) {
         newHeader.append(...i);
@@ -8,15 +8,16 @@ const copyHeaders = (headers: Headers) => {
 };
 /** 重写请求头部信息 */
 const ReqHeadersRewrite = (req: Request, Url: URL) => {
-    const newH = copyHeaders(req.headers);
+    const newH = cloneHeaders(req.headers);
     newH.delete("X-deno-transparent");
     // 重写 referer 和 origin 保证能够获取到数据
     newH.set("referer", Url.toString());
     newH.set("origin", Url.toString());
     return newH;
 };
+/** 重写结果头部 */
 const ResHeadersReWrite = (res: Response, domain: string) => {
-    const newHeader = copyHeaders(res.headers);
+    const newHeader = cloneHeaders(res.headers);
     newHeader.set("access-control-allow-origin", "*");
     const cookie = newHeader.get("set-cookie");
     cookie &&
@@ -27,7 +28,13 @@ const ResHeadersReWrite = (res: Response, domain: string) => {
     newHeader.delete("X-Frame-Options"); // 防止不准 iframe 嵌套
     return newHeader;
 };
-/** 代理整个路径后面的请求，包括所有请求模式 */
+/** 代理整个路径后面的请求，包括所有请求模式
+ * @example 
+import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+import { createServer,proxy } from "https://esm.sh/deno-server@1.0.0";
+
+serve((req: Request) => proxy('google.com',req));
+ */
 export const proxy = (host: string, req: Request) => {
     // const Url = getTransparentURL(req);
     const Url = new URL(req.url);
@@ -50,8 +57,9 @@ export const proxy = (host: string, req: Request) => {
             headers: newHeader,
         };
         console.log(res.status, res.url);
-        if (res.status >= 300 && res.status < 400) {
-            console.log("重定向至", req.url);
+        // 维持重定向,304 Not Modify 不需要重定向
+        if (res.status >= 300 && res.status < 400 && res.status !== 304) {
+            console.log(res.status, "重定向至", req.url);
             return Response.redirect(req.url, res.status);
         }
         return new Response(res.body, config);
