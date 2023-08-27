@@ -22,9 +22,9 @@ export const NoteWriter: FC<{ lookingId: string }> = ({ lookingId }) => {
                         setValue(str);
                     }}></Input.TextArea>
             ) : (
-                <div className="notes">{Note?.note?.text || "空空如也"}</div>
+                <div class="notes">{Note?.note?.text || "空空如也"}</div>
             )}
-            <header className="box-row control-bar">
+            <header class="box-row control-bar">
                 {writingMode ? (
                     <IconCheck
                         fontSize={20}

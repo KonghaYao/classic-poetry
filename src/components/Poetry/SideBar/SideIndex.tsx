@@ -14,15 +14,13 @@ export const SideIndex = ({ visible }: { visible: boolean }) => {
     return (
         <Drawer
             width={332}
-            title={<span className="cursor-auto">{matched.belongToName}</span>}
+            title={<span class="cursor-auto">{matched.belongToName}</span>}
             visible={visible}
             onCancel={() => {
                 modelControl.setKey("showing", "void");
             }}
             footer={null}>
-            <nav
-                className="overflow-scroll h-[80vh] rounded-md max-w-xs"
-                ref={ref}>
+            <nav class="overflow-scroll h-[80vh] rounded-md max-w-xs" ref={ref}>
                 <ul>
                     {/* <Menu.Item key="side-index">
         <NavLink to={'/'}>索引</NavLink>
@@ -31,10 +29,10 @@ export const SideIndex = ({ visible }: { visible: boolean }) => {
                         return (
                             <a href={`/poetry/${i.id}`} key={"side-" + i.id}>
                                 <li
-                                    className=" cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden"
+                                    class=" cursor-pointer whitespace-nowrap text-ellipsis overflow-hidden"
                                     key={i.id}
                                     title={i.title}>
-                                    <span className="w-8 pr-2 text-center">
+                                    <span class="w-8 pr-2 text-center">
                                         {index}
                                     </span>{" "}
                                     {i.title}

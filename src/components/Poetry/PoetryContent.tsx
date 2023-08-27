@@ -18,7 +18,7 @@ export const PoetryContent = () => {
         },
     });
     return (
-        <article className="flex-1 flex flex-col w-full " ref={ref!}>
+        <article class="flex-1 flex flex-col w-full " ref={ref!}>
             {poetry.content.split("\n").map((i, index) => {
                 return (
                     <SingleRow
@@ -34,7 +34,7 @@ export const PoetryContent = () => {
                         content={i}></SingleRow>
                 );
             })}
-            <aside className="flex-1"></aside>
+            <aside class="flex-1"></aside>
             {AuthorInk(poetry)}
             <NotesShower></NotesShower>
         </article>
@@ -43,13 +43,13 @@ export const PoetryContent = () => {
 function AuthorInk(poetry: PageInfo) {
     return (
         <aside
-            className={
+            class={
                 "text-3xl text-right " +
                 (isRow.get() ? "mt-4 mr-8" : "mt-4 mb-8")
             }>
             {poetry.author}
             <span
-                className={
+                class={
                     "author-ink text-white rounded select-none " +
                     (isRow.get() ? "mb-4" : "ml-4")
                 }>

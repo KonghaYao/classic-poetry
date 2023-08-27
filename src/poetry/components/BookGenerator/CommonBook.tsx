@@ -56,7 +56,7 @@ export function CommonBook<T>(
                             root,
                         }}>
                         <Layout
-                            className="box"
+                            class="box"
                             style={{
                                 overflow: "scroll",
                             }}>
@@ -70,7 +70,7 @@ export function CommonBook<T>(
 
                                 <NoteBar></NoteBar>
                             </Layout.Sider>
-                            <Layout.Content className="box-center">
+                            <Layout.Content class="box-center">
                                 {Content}
                             </Layout.Content>
                             <Layout.Sider

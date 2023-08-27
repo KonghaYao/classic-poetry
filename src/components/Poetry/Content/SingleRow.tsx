@@ -18,22 +18,17 @@ export const SingleRow: FC<{
     return (
         <>
             <div
-                className={`single-content box-row ${
+                class={`single-content box-row ${
                     isRow.get() ? "" : "long-list-item"
                 }`}
                 onClick={onClick}
                 onPointerMove={onPointerMove}>
-                <aside className="poetry-index">{index + 1}</aside>
-                <p
-                    className="poetry-text text-base m-2"
-                    data-row-index={index + 1}>
+                <aside class="poetry-index">{index + 1}</aside>
+                <p class="poetry-text text-base m-2" data-row-index={index + 1}>
                     {content}
                 </p>
             </div>
-            <hr
-                key={"divide-" + index}
-                className={isRow.get() ? "ver" : "hor"}
-            />
+            <hr key={"divide-" + index} class={isRow.get() ? "ver" : "hor"} />
         </>
     );
 };

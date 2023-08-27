@@ -1,4 +1,4 @@
-import { DeepPartial } from "@arco-design/web-react/es/Form/store";
+import type { DeepPartial } from "@arco-design/web-react/es/Form/store";
 import merge from "lodash/merge";
 import mitt from "mitt";
 export type SettingEvent = {

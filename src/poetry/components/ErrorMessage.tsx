@@ -7,7 +7,7 @@ export const ErrorMessage: FC<{ message?: string }> = (props) => {
     const nav = useNavigate();
     return (
         <Empty
-            className="box-col"
+            class="box-col"
             style={{ height: "100%", justifyContent: "center" }}
             icon={
                 <IconClose color="var(--divide-red)" fontSize={30}></IconClose>

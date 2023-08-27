@@ -15,13 +15,13 @@ export { controller as TopMenuController };
 export const TopMenu = Template<{}>(({ SlotList }) => {
     const nav = useNavigate();
     return (
-        <nav className="box-row top-menu">
-            <div className="top-menu-title" onClick={() => nav("/")}>
+        <nav class="box-row top-menu">
+            <div class="top-menu-title" onClick={() => nav("/")}>
                 中华诗词大典
             </div>
             <div style={{ flex: "1" }}></div>
             <nav
-                className="box-row"
+                class="box-row"
                 style={{
                     fontSize: "1.3rem",
                     alignItems: "center",

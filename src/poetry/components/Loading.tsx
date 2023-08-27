@@ -6,7 +6,7 @@ export const Loading = () => {
     const nav = useNavigate();
     return (
         <Empty
-            className="box-col"
+            class="box-col"
             style={{ height: "100%", justifyContent: "center" }}
             icon={
                 <IconLoading

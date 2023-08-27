@@ -5,7 +5,7 @@ export const NotesShower = () => {
     const data = useStore(Books);
     return (
         <>
-            <nav className="whitespace-pre-wrap">{data.notes}</nav>
+            <nav class="whitespace-pre-wrap">{data.notes}</nav>
         </>
     );
 };

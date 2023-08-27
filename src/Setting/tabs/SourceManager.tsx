@@ -10,10 +10,10 @@ export const SourceManager: FC<{}> = () => {
         setKeys(keys);
     });
     return (
-        <div className="box-col">
+        <div class="box-col">
             {keys.map((item, index) => (
                 <nav
-                    className="box-row"
+                    class="box-row"
                     style={{
                         alignItems: "center",
                     }}
@@ -34,10 +34,10 @@ export const SourceManager: FC<{}> = () => {
                         </AsyncButton>
                     </div>
                     <IconBook></IconBook>
-                    <span className="one-row" style={{ maxWidth: "50%" }}>
+                    <span class="one-row" style={{ maxWidth: "50%" }}>
                         {item}
                     </span>
-                    {/* <div className="flex-1"></div> */}
+                    {/* <div class="flex-1"></div> */}
                 </nav>
             ))}
         </div>

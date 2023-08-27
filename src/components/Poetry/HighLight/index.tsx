@@ -27,7 +27,7 @@ export const useHighlightInject = ({
                 verbose: true,
                 exceptSelectors: [".poetry-index"],
                 style: {
-                    className: "poetry-tagging",
+                    class: "poetry-tagging",
                 },
             },
             location.pathname

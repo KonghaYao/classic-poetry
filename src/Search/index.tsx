@@ -34,7 +34,7 @@ const _SearchBox: FC = () => {
     return (
         <>
             <InstantSearch indexName="poetry" searchClient={searchClient}>
-                <main className=" search-content box box-col content-max">
+                <main class=" search-content box box-col content-max">
                     <SearchBoxInner
                         defaultValue={searchParams.get("q") || ""}
                         queryHook={debounce((text, search) => {
@@ -46,12 +46,12 @@ const _SearchBox: FC = () => {
                     <Stats></Stats>
                     <Space
                         align="center"
-                        className="box-row"
+                        class="box-row"
                         style={{ margin: "0.125rem 0" }}>
                         <Trigger
                             unmountOnExit={false}
                             popup={() => (
-                                <div className="refine-panel">
+                                <div class="refine-panel">
                                     <RefinementList
                                         attribute="belongToName"
                                         searchable={false}
@@ -65,7 +65,7 @@ const _SearchBox: FC = () => {
                             </Button>
                         </Trigger>
                         <CurrentRefinements
-                            classNames={{
+                            classs={{
                                 label: "none",
                             }}
                             includedAttributes={[
@@ -74,12 +74,12 @@ const _SearchBox: FC = () => {
                     </Space>
 
                     <div
-                        className="flex-1"
+                        class="flex-1"
                         style={{ overflow: "scroll", borderRadius: "8px" }}>
                         <PPanel></PPanel>
                     </div>
                     <Pagination
-                        className="Pagination"
+                        class="Pagination"
                         style={{ margin: "1rem 0 0 0" }}
                     />
                 </main>
@@ -101,17 +101,17 @@ const PPanel = () => {
             hitComponent={({ hit }) => (
                 <div
                     key={hit.id as string}
-                    className="box box-col one-row"
+                    class="box box-col one-row"
                     onClick={() => jumpTo(hit as any)}>
                     <header
-                        className="box-row"
+                        class="box-row"
                         style={{
                             justifyContent: "space-between",
                             whiteSpace: "nowrap",
                         }}>
                         <Highlight
                             attribute="title"
-                            className="one-row"
+                            class="one-row"
                             style={{ maxWidth: "20rem" }}
                             hit={hit}
                         />

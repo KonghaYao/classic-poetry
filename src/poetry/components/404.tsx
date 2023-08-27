@@ -5,7 +5,7 @@ export const NotFound = () => {
     const nav = useNavigate();
     return (
         <Empty
-            className="box-col"
+            class="box-col"
             style={{ height: "100%", justifyContent: "center" }}
             description={
                 <Space direction="vertical">

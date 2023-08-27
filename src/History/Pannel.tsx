@@ -19,7 +19,7 @@ export const HistoryController = () => {
 export const HistoryPanel = () => {
     return (
         <section
-            className="panel"
+            class="panel"
             style={{
                 margin: "1rem",
                 padding: "1rem",

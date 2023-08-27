@@ -6,11 +6,11 @@ import "./Setting.css";
 import { SettingServer } from "./Setting";
 export const SettingPage: FC<{}> = () => {
     return (
-        <div className="setting-screen">
-            <div className="content-max setting-card box-col">
+        <div class="setting-screen">
+            <div class="content-max setting-card box-col">
                 <Tabs
                     type="capsule"
-                    className="setting-content box-col"
+                    class="setting-content box-col"
                     lazyload
                     style={{
                         height: "100%",
@@ -28,7 +28,7 @@ export const SettingPage: FC<{}> = () => {
                     {SettingComponents.map((i) => {
                         return (
                             <Tabs.TabPane
-                                className="box-col setting-content"
+                                class="box-col setting-content"
                                 key={i.title}
                                 title={i.title}>
                                 <i.comp></i.comp>

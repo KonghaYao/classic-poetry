@@ -19,19 +19,19 @@ export { controller as ContextMenuController };
 import "./context-menu.css";
 export const ContextMenu = Template(({ Slots, SlotList }) => {
     return (
-        <main className="context-menu box-col">
+        <main class="context-menu box-col">
             {Slots.Header && (
                 <header>
                     <DataContext.Consumer>
                         {({ title }) => {
-                            return <div className="title">{title}</div>;
+                            return <div class="title">{title}</div>;
                         }}
                     </DataContext.Consumer>
 
                     <Slots.Header></Slots.Header>
                 </header>
             )}
-            <nav className="box-row box button-group">
+            <nav class="box-row box button-group">
                 <SlotMap list={SlotList.Button}></SlotMap>
             </nav>
         </main>

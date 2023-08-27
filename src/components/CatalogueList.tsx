@@ -36,16 +36,16 @@ export const CatalogueList = (props: { name: string }) => {
     const query = useCatalogueListLoad({ ref, name: props.name });
     // const { data, error, loading } = useBookIndexMapper(props);
     return (
-        <section className="box-col no-scroll link-list" ref={ref}>
-            <ul className="flex flex-wrap justify-between text-2xl">
+        <section class="box-col no-scroll link-list" ref={ref}>
+            <ul class="flex flex-wrap justify-between text-2xl">
                 {(query.data?.list ?? []).map((i) => {
                     return (
                         <a
                             href={`/poetry/${i.id}`}
                             key={"to-" + i.id}
-                            className="text-lg">
+                            class="text-lg">
                             <li
-                                className="long-list-item px-2 py-1 hover:brightness-110 "
+                                class="long-list-item px-2 py-1 hover:brightness-110 "
                                 style={{
                                     textAlign: "center",
                                 }}>
@@ -64,7 +64,7 @@ export const InfiniteInfo = ({
     loadingMore,
 }: Pick<ReturnType<typeof useInfiniteScroll>, "noMore" | "loadingMore">) => {
     return (
-        <div className="w-full flex justify-center items-center text-sm">
+        <div class="w-full flex justify-center items-center text-sm">
             {noMore && "没有更多啦"}
             {loadingMore && "加载中"}
         </div>

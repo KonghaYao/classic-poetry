@@ -18,20 +18,20 @@ export const PoetryHeader = () => {
         return col + m.length;
     }, 0);
     return (
-        <header className={`poetry-header`}>
+        <header class={`poetry-header`}>
             <main>
-                <span className="title">{matched.title}</span>
-                <span className="subtitle">{matched.subTitle}</span>
+                <span class="title">{matched.title}</span>
+                <span class="subtitle">{matched.subTitle}</span>
             </main>
-            <div className="flex-1"></div>
-            <aside className="flex gap-2">
+            <div class="flex-1"></div>
+            <aside class="flex gap-2">
                 <div>
                     全文
                     <span style={{ fontSize: "1.125em" }}>{textCount}</span>字
                 </div>
 
                 <IconBook
-                    className="w-4 aspect-square cursor-pointer"
+                    class="w-4 aspect-square cursor-pointer"
                     onClick={() => {
                         modelControl.setKey("showing", "index");
                     }}
@@ -48,7 +48,7 @@ function MoreList() {
             content={
                 <ul>
                     <Button
-                        icon={<IconRefresh className="mr-2" />}
+                        icon={<IconRefresh class="mr-2" />}
                         onClick={() => {
                             BookSetting.setKey(
                                 "direction",
@@ -61,7 +61,7 @@ function MoreList() {
                     </Button>
                 </ul>
             }>
-            <IconList className="w-4 aspect-square cursor-pointer"></IconList>
+            <IconList class="w-4 aspect-square cursor-pointer"></IconList>
         </Popover>
     );
 }

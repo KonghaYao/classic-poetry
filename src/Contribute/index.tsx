@@ -66,23 +66,23 @@ const data = [
 import "./index.css";
 export const Contribute: FC = () => {
     return (
-        <div className="box box-row">
+        <div class="box box-row">
             {data.map((i, index) => {
                 return (
                     <div
-                        className="contribute-one box-col"
+                        class="contribute-one box-col"
                         key={"contribute" + index}>
-                        <nav className="absolute-bg box-center">
+                        <nav class="absolute-bg box-center">
                             <img src={i.bg} alt="" />
                         </nav>
-                        <main className="content box box-col">
+                        <main class="content box box-col">
                             <header>
                                 <Avatar shape="square">
                                     <img src={i.avatar} alt="" />
                                 </Avatar>
                             </header>
-                            <div className="name">{i.name}</div>
-                            <div className="description box-col ">
+                            <div class="name">{i.name}</div>
+                            <div class="description box-col ">
                                 {i.description.map((words, index) => {
                                     return (
                                         <div key={"words-" + index}>
@@ -91,7 +91,7 @@ export const Contribute: FC = () => {
                                     );
                                 })}
                             </div>
-                            <a className="link" target="_blank" href={i.link}>
+                            <a class="link" target="_blank" href={i.link}>
                                 链接
                             </a>
                         </main>

@@ -21,7 +21,7 @@ export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
     const { direction } = useStore(BookSetting);
     return (
         <section
-            className={`poetry-wrapper ${
+            class={`poetry-wrapper ${
                 direction === "row"
                     ? "flex flex-row-reverse poetry-vertical"
                     : "flex flex-col  content-max no-scroll"
@@ -35,7 +35,7 @@ export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
             <PoetryHeader></PoetryHeader>
 
             <HighLightFloat>
-                <main className={`poetry-content box-col`}>
+                <main class={`poetry-content box-col`}>
                     <PoetryContent></PoetryContent>
 
                     {/* <PoetryFooter></PoetryFooter> */}

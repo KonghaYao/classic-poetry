@@ -24,7 +24,7 @@ export const ThemeChange: FC<{}> = () => {
             size="large"
             align="center"
             direction="vertical"
-            className="theme-switch">
+            class="theme-switch">
             <Switch
                 checkedIcon={<IconSun />}
                 uncheckedIcon={<IconMoon />}

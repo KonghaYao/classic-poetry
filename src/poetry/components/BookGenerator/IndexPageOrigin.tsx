@@ -30,7 +30,7 @@ export function IndexPageOrigin<T>({
                                     <Grid.Col
                                         span={12}
                                         key={"to-" + i.tag}
-                                        className="long-list-item"
+                                        class="long-list-item"
                                         style={{
                                             textAlign: "center",
                                         }}>

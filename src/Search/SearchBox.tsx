@@ -8,9 +8,9 @@ import {
     SearchBoxTranslations,
 } from "react-instantsearch-hooks-web/dist/es/ui/SearchBox";
 export function cx(
-    ...classNames: Array<string | number | boolean | undefined | null>
+    ...classs: Array<string | number | boolean | undefined | null>
 ) {
-    return classNames.filter(Boolean).join(" ");
+    return classs.filter(Boolean).join(" ");
 }
 
 export type SearchBoxProps = Omit<
@@ -29,14 +29,14 @@ export type SearchBoxProps = Omit<
         resetIconComponent?: React.JSXElementConstructor<IconProps>;
         submitIconComponent?: React.JSXElementConstructor<IconProps>;
         loadingIconComponent?: React.JSXElementConstructor<IconProps>;
-        classNames?: Partial<SearchBoxClassNames>;
+        classs?: Partial<SearchBoxClassNames>;
         translations: SearchBoxTranslations;
     };
 
-function DefaultSubmitIcon({ classNames }: IconProps) {
+function DefaultSubmitIcon({ classs }: IconProps) {
     return (
         <svg
-            className={cx("ais-SearchBox-submitIcon", classNames.submitIcon)}
+            class={cx("ais-SearchBox-submitIcon", classs.submitIcon)}
             width="10"
             height="10"
             viewBox="0 0 40 40">
@@ -55,7 +55,7 @@ export function SearchBoxUI({
     value,
     autoFocus,
     submitIconComponent: SubmitIcon = DefaultSubmitIcon,
-    classNames = {},
+    classs = {},
     translations,
     ...props
 }: SearchBoxProps) {
@@ -84,18 +84,16 @@ export function SearchBoxUI({
     }
 
     return (
-        <div
-            {...props}
-            className={cx("ais-SearchBox", classNames.root, props.className)}>
+        <div {...props} class={cx("ais-SearchBox", classs.root, props.class)}>
             <form
                 action=""
-                className={cx("ais-SearchBox-form", classNames.form)}
+                class={cx("ais-SearchBox-form", classs.form)}
                 noValidate
                 onSubmit={handleSubmit}
                 onReset={handleReset}>
                 <input
                     ref={inputRef}
-                    className={cx("ais-SearchBox-input", classNames.input)}
+                    class={cx("ais-SearchBox-input", classs.input)}
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="off"
@@ -108,22 +106,22 @@ export function SearchBoxUI({
                     autoFocus={autoFocus}
                 />
                 <button
-                    className={cx("ais-SearchBox-submit", classNames.submit)}
+                    class={cx("ais-SearchBox-submit", classs.submit)}
                     type="submit"
                     title={translations.submitTitle}>
-                    <SubmitIcon classNames={classNames} />
+                    <SubmitIcon classs={classs} />
                 </button>
                 <button
-                    className={cx("ais-SearchBox-reset", classNames.reset)}
+                    class={cx("ais-SearchBox-reset", classs.reset)}
                     type="reset"
                     title={translations.resetTitle}
                     hidden={value.length === 0 || isSearchStalled}>
                     <IconClose></IconClose>
                 </button>
                 <span
-                    className={cx(
+                    class={cx(
                         "ais-SearchBox-loadingIndicator",
-                        classNames.loadingIndicator
+                        classs.loadingIndicator
                     )}
                     hidden={!isSearchStalled}>
                     <IconLoading spin></IconLoading>
