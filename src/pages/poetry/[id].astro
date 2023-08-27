@@ -13,6 +13,9 @@ console.timeEnd("加载单个");
 ---
 
 <Layout title={data?.title + " 中华诗词大典"} class="items-center">
-    <ShowSinglePoetry poetry={data} client:load />
-    <ModelControl client:only="react" />
+    <ShowSinglePoetry poetry={data as any} client:load >
+        
+    </ShowSinglePoetry>
+    <!-- <ModelControl client:only="solid" /> -->
+    <link rel='stylesheet' href='https://192960944.r.cdn36.com/chinesefonts1/packages/hwmct/dist/汇文明朝体/result.css' /> 
 </Layout>

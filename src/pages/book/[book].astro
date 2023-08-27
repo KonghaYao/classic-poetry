@@ -1,7 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../layouts/Base.astro";
 import { SubRoutes } from "../../Home/subRoutes";
-import { IndexPage } from "../../poetry/components/BookGenerator/IndexPage";
 import "../../poetry/components/BookGenerator/IndexPage.css";
 import { CatalogueList } from "../../components/CatalogueList";
 export const prerender = true;
@@ -21,8 +20,13 @@ const { name } = Astro.props;
 ---
 
 <Layout title={name + " 中华诗词大典"}>
-    <IndexPage title={name}>
-        <!-- 首次渲染无数据 -->
-        <CatalogueList name={name} client:only />
-    </IndexPage>
+    <div class="box-col no-scroll index-page">
+        <div class="box-col content-max w-full flex-1 h-full">
+            <div>
+                <div class="Index-Seal leading-[1em]">{name}</div>
+            </div>
+            <!-- 首次渲染无数据 -->
+            <CatalogueList name={name} client:only />
+        </div>
+    </div>
 </Layout>

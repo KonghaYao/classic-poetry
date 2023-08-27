@@ -1,18 +1,14 @@
-import type { FC } from "react";
 import "./Home.css";
 import { SubRoutes } from "./subRoutes";
-export const Home: FC = () => {
-    const data = SubRoutes.reverse();
-
+export const Home = () => {
     return (
         <section class="home-page  noise no-scroll">
             <main class="book-list box-col ">
                 <div class="book-item-wrapper box-row">
-                    {data.map((i) => {
+                    {SubRoutes.reverse().map((i) => {
                         return (
                             <div
                                 class="book-item box-row p-1"
-                                key={i.to}
                                 // onclick 能够防止点击之后立即跳转的情况
                                 onClick={() => {
                                     console.log(i.to);

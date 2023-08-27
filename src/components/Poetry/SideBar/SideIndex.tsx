@@ -1,5 +1,5 @@
 import { Drawer, Menu } from "@arco-design/web-react";
-import { useStore } from "@nanostores/react";
+import { useStore } from "@nanostores/solid";
 import { Books } from "../store/book";
 import { InfiniteInfo, useCatalogueListLoad } from "../../CatalogueList";
 import { useRef } from "react";

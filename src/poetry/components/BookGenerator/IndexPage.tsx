@@ -1,9 +1,8 @@
-import type React from "react";
-import type { FC } from "react";
+import type { Component, JSX } from "solid-js";
 
-export const IndexPage: FC<{
+export const IndexPage: Component<{
     title: string;
-    children?: React.ReactNode;
+    children?: JSX.Element;
 }> = ({ title, children }) => {
     return (
         <div class="box-col no-scroll index-page">

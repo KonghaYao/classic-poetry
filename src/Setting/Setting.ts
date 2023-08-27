@@ -43,8 +43,3 @@ export const Setting = {
         },
     },
 };
-// 持久化的数据
-const cache = localStorage.getItem("system-setting");
-if (cache) {
-    merge(Setting, JSON.parse(cache));
-}

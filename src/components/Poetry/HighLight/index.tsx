@@ -1,7 +1,7 @@
 import { useMemoizedFn, useMount, useUnmount } from "ahooks";
 import { BookNotes } from "./BookNote";
 import { useHighlight } from "./useHighLight";
-import { useStore } from "@nanostores/react";
+import { useStore } from "@nanostores/solid";
 import { HighlightStore } from "./HighlightStore";
 import type HighlightSource from "web-highlighter/dist/model/source";
 import { Button } from "@arco-design/web-react";

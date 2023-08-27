@@ -1,7 +1,7 @@
 import { PoetryHeader } from "./PoetryHeader";
-import { useSetting } from "../../Setting";
+import { defaultSetting } from "../../Setting";
 import "./ShowSinglePoetry.css";
-// import { PoetryFooter } from "./PoetryFooter";
+import type { JSX } from "solid-js";
 import { PoetryContent } from "./PoetryContent";
 export type PageInfo = {
     title: string;
@@ -12,36 +12,37 @@ export type PageInfo = {
     id: string;
     belongToName: string;
 };
-import { useStore } from "@nanostores/react";
+import { useStore } from "@nanostores/solid";
 import { Books, BookSetting } from "./store/book";
-import { HighLightFloat } from "./HighLight";
-export const ShowSinglePoetry = ({ poetry: info }: { poetry: PageInfo }) => {
+export const ShowSinglePoetry = ({
+    poetry: info,
+    children,
+}: {
+    poetry: PageInfo;
+    children: JSX.Element;
+}) => {
     Books.set(info);
-    const { setting } = useSetting();
-    const { direction } = useStore(BookSetting);
+    const setting = useStore(defaultSetting);
+    const store = useStore(BookSetting);
     return (
         <section
             class={`poetry-wrapper ${
-                direction === "row"
+                store().direction === "row"
                     ? "flex flex-row-reverse poetry-vertical"
                     : "flex flex-col  content-max no-scroll"
             }`}
             style={{
-                fontFamily: setting.text.font.fontFamily,
-                fontWeight: setting.text.fontWeight,
-                fontSize: setting.text.fontSize,
-                letterSpacing: setting.text.letterSpacing + "em",
+                "font-family": setting().text.font.fontFamily,
+                "font-weight": setting().text.fontWeight,
+                "font-size": setting().text.fontSize + "px",
+                "letter-spacing": setting().text.letterSpacing + "em",
             }}>
             <PoetryHeader></PoetryHeader>
 
-            <HighLightFloat>
-                <main class={`poetry-content box-col`}>
-                    <PoetryContent></PoetryContent>
-
-                    {/* <PoetryFooter></PoetryFooter> */}
-                </main>
-            </HighLightFloat>
-            {/* <FontSlot></FontSlot> */}
+            <main class={`poetry-content box-col`}>
+                <PoetryContent></PoetryContent>
+                {children}
+            </main>
         </section>
     );
 };

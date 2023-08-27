@@ -1,5 +1,5 @@
 import { SideIndex } from "./SideIndex";
-import { useStore } from "@nanostores/react";
+import { useStore } from "@nanostores/solid";
 import { modelControl } from "../store/modelControl";
 import { useState } from "react";
 import { useMount } from "ahooks";

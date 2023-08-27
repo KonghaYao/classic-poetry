@@ -1,22 +1,20 @@
-import { useMemo, useRef, useState } from "react";
 import { SingleRow } from "./Content/SingleRow";
-// import { usePositionRecord } from "../../poetry/components/BookGenerator/PoetryContent/usePositionRecord";
-import { Trigger } from "@arco-design/web-react";
 
-import { useStore } from "@nanostores/react";
+import { useStore } from "@nanostores/solid";
 import { Books, isRow } from "./store/book";
 import { NotesShower } from "./Content/NotesShower";
 import type { PageInfo } from "./ShowSinglePoetry";
-import { useHighlightInject } from "./HighLight";
+// import { useHighlightInject } from "./HighLight/index";
+import { atom } from "@cn-ui/reactive";
 export const PoetryContent = () => {
-    const poetry = useStore(Books);
-    const ref = useRef<HTMLDivElement>(null);
+    const poetry = useStore(Books)();
+    const ref = atom<HTMLDivElement | null>(null);
     // const location = useLocation();
-    const {} = useHighlightInject({
-        getRoot() {
-            return ref.current! as HTMLElement;
-        },
-    });
+    // const {} = useHighlightInject({
+    //     getRoot() {
+    //         return ref() as HTMLDivElement;
+    //     },
+    // });
     return (
         <article class="flex-1 flex flex-col w-full " ref={ref!}>
             {poetry.content.split("\n").map((i, index) => {
@@ -29,7 +27,6 @@ export const PoetryContent = () => {
                             // RecordMe(index, props.title);
                         }}
                         name={poetry.title}
-                        key={poetry.title + "-" + index}
                         index={index}
                         content={i}></SingleRow>
                 );

@@ -19,6 +19,7 @@
         "@cn-ui/reactive": "^2.2.1",
         "@meilisearch/instant-meilisearch": "^0.8.2",
         "@nanostores/react": "^0.4.1",
+        "@nanostores/solid": "^0.4.2",
         "ahooks": "^3.7.1",
         "cnchar": "^3.2.2",
         "cnchar-trad": "^3.2.2",

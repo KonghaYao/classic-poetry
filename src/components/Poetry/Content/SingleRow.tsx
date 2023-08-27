@@ -1,20 +1,14 @@
-import type { FC, useMemo } from "react";
-import { TextPreProcess } from "../../../poetry/utils/TextPreProcess";
-import { useSetting } from "../../../Setting";
-import { useStore } from "@nanostores/react";
-import { BookSetting, isRow } from "../store/book";
+import { isRow } from "../store/book";
+import type { Component } from "solid-js";
 
 /** 每一行诗句的排版 */
-export const SingleRow: FC<{
+export const SingleRow: Component<{
     index: number;
     content: string;
     name: string;
     onClick: () => void;
     onPointerMove: () => void;
 }> = ({ index, content, onClick, onPointerMove }) => {
-    const { setting } = useSetting();
-    const { direction } = useStore(BookSetting);
-
     return (
         <>
             <div
@@ -28,7 +22,7 @@ export const SingleRow: FC<{
                     {content}
                 </p>
             </div>
-            <hr key={"divide-" + index} class={isRow.get() ? "ver" : "hor"} />
+            <hr class={isRow.get() ? "ver" : "hor"} />
         </>
     );
 };
