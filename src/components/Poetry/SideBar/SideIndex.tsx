@@ -1,16 +1,13 @@
 import { Drawer, Menu } from "@arco-design/web-react";
 import { useStore } from "@nanostores/solid";
 import { Books } from "../store/book";
-import { InfiniteInfo, useCatalogueListLoad } from "../../CatalogueList";
-import { useRef } from "react";
+import { useCatalogueListLoad } from "../../CatalogueList";
 import { modelControl } from "../store/modelControl";
+import { atom } from "@cn-ui/reactive";
 export const SideIndex = ({ visible }: { visible: boolean }) => {
     const matched = useStore(Books);
-    const ref = useRef<HTMLDivElement>(null);
-    const { data, loadingMore, noMore } = useCatalogueListLoad({
-        ref,
-        name: matched.belongToName,
-    });
+    const ref = atom<HTMLDivElement | null>(null);
+    const { dataSlices } = useCatalogueListLoad(matched().belongToName);
     return (
         <Drawer
             width={332}

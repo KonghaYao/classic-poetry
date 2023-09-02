@@ -1,15 +1,12 @@
 ---
 import Layout from "../../layouts/Base.astro";
 import { ShowSinglePoetry } from "../../components/Poetry/ShowSinglePoetry";
-import { ModelControl } from "../../components/Poetry/SideBar/ModelControl";
 import { getIndex } from "../../backend/getClient";
 const { id } = Astro.params;
 if(id===undefined) Astro.redirect('/')
 const idNum = parseInt(id as string)
 if(isNaN(idNum)) Astro.redirect('/')
-console.time("加载单个");   
 const data = await getIndex().getDocument(idNum)
-console.timeEnd("加载单个");
 ---
 
 <Layout title={data?.title + " 中华诗词大典"} class="items-center">

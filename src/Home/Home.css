@@ -1,10 +1,10 @@
-body {
+html {
     --book-bg: #183766;
     --book-border: black;
     --book-card: white;
     --book-title: black;
 }
-body[arco-theme="dark"] {
+html.dark {
     --book-bg: #630700;
     --book-border: #3b8c75;
     --book-card: #f1f1f1;

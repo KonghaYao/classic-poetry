@@ -1,5 +1,6 @@
 ---
 import "../styles/index.css";
+import {MainRegister} from  '../main'
 export interface Props {
     title: string;
 }
@@ -19,18 +20,8 @@ const { title } = Astro.props;
         https://901557678.r.cdn36.com/chinesefonts1/packages/jxzk/dist/%E6%B1%9F%E8%A5%BF%E6%8B%99%E6%A5%B7/result.css">
     </head>
     <body class="h-screen w-screen overflow-hidden flex flex-col">
+        <MainRegister client:only></MainRegister>
         <slot />
-        <script>
-            const darkThemeMq = window.matchMedia(
-                "(prefers-color-scheme: dark)"
-            );
-            darkThemeMq
-                ? (document.body.setAttribute("arco-theme", "dark"),
-                  document.documentElement.style.setProperty(
-                      "color-scheme",
-                      "dark"
-                  ))
-                : document.body.removeAttribute("arco-theme");
-        </script>
+       
     </body>
 </html>

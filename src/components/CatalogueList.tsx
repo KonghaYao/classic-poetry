@@ -1,27 +1,20 @@
 import { getIndex } from "../backend/getClient";
 import { Atom, atom, usePaginationStack } from "@cn-ui/reactive";
-
+export const useCatalogueListLoad = (name: string) =>
+    usePaginationStack(async (pageNumber: number, maxPage: Atom<number>) => {
+        return getIndex()
+            .search("", {
+                filter: `belongToName = '${name}'`,
+                limit: 30,
+                offset: pageNumber * 30,
+                attributesToRetrieve: ["author", "belongToName", "id", "title"],
+            })
+            .then((res) => res.hits)
+            .finally(() => maxPage((i) => i++));
+    }, {});
 export const CatalogueList = (props: { name: string }) => {
     const ref = atom<HTMLDivElement | null>(null);
-    const { dataSlices, currentData, refetch } = usePaginationStack(
-        async (pageNumber: number, maxPage: Atom<number>) => {
-            return getIndex()
-                .search("", {
-                    filter: `belongToName = '${props.name}'`,
-                    limit: 30,
-                    offset: pageNumber * 30,
-                    attributesToRetrieve: [
-                        "author",
-                        "belongToName",
-                        "id",
-                        "title",
-                    ],
-                })
-                .then((res) => res.hits)
-                .finally(() => maxPage((i) => i++));
-        },
-        {}
-    );
+    const { dataSlices, currentData } = useCatalogueListLoad(props.name);
     // const { data, error, loading } = useBookIndexMapper(props);
     return (
         <section class="box-col no-scroll link-list" ref={ref}>

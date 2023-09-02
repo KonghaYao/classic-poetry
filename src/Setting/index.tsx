@@ -1,11 +1,13 @@
-import { map } from "nanostores";
+import { deepMap, map } from "nanostores";
+import { createStore, reconcile, unwrap } from "solid-js/store";
 export const BookSetting = map({
     direction: "col" as "col" | "row",
 });
 
-export const defaultSetting = map({
+export const [defaultSetting, setDefaultSetting] = createStore({
     theme: {
-        base: "auto",
+        /** 日夜模式 */
+        base: "light",
         cnCase: "默认", // 中英文简繁体
         cnList: "横排",
     },

@@ -74,6 +74,9 @@ dependencies:
   redis:
     specifier: ^4.6.8
     version: registry.npmmirror.com/redis@4.6.8
+  solid-icons:
+    specifier: ^1.0.11
+    version: registry.npmmirror.com/solid-icons@1.0.11(solid-js@1.7.11)
   solid-js:
     specifier: ^1.7.11
     version: registry.npmmirror.com/solid-js@1.7.11
@@ -5317,6 +5320,18 @@ packages:
     dependencies:
       ip: registry.npmmirror.com/ip@2.0.0
       smart-buffer: registry.npmmirror.com/smart-buffer@4.2.0
+    dev: false
+
+  registry.npmmirror.com/solid-icons@1.0.11(solid-js@1.7.11):
+    resolution: {integrity: sha512-shEL5Otrl73LPZukpanJKi6ISnQhpIvhqqAb8haKyCGrixHOYC6yGfNkSE7jpkKSikZ0rGtSMRiFETRrec2Uzw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/solid-icons/-/solid-icons-1.0.11.tgz}
+    id: registry.npmmirror.com/solid-icons/1.0.11
+    name: solid-icons
+    version: 1.0.11
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: registry.npmmirror.com/solid-js@1.7.11
     dev: false
 
   registry.npmmirror.com/solid-js@1.7.11:

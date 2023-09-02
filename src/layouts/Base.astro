@@ -1,11 +1,11 @@
 ---
 import Layout from "./Layout.astro";
-import Header from "../components/Header.astro";
+import {GlobalHeader} from "../components/Header";
 const info = Astro.props;
 ---
 
 <Layout {...info as any}>
-    <Header />
+    <GlobalHeader client:load />
     <main
         class={"box-row box noise " + (info.class ?? "")}
         style={{

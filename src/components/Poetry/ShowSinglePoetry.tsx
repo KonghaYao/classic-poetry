@@ -22,7 +22,7 @@ export const ShowSinglePoetry = ({
     children: JSX.Element;
 }) => {
     Books.set(info);
-    const setting = useStore(defaultSetting);
+    const setting = defaultSetting;
     const store = useStore(BookSetting);
     return (
         <section
@@ -32,10 +32,10 @@ export const ShowSinglePoetry = ({
                     : "flex flex-col  content-max no-scroll"
             }`}
             style={{
-                "font-family": setting().text.font.fontFamily,
-                "font-weight": setting().text.fontWeight,
-                "font-size": setting().text.fontSize + "px",
-                "letter-spacing": setting().text.letterSpacing + "em",
+                "font-family": setting.text.font.fontFamily,
+                "font-weight": setting.text.fontWeight,
+                "font-size": setting.text.fontSize + "px",
+                "letter-spacing": setting.text.letterSpacing + "em",
             }}>
             <PoetryHeader></PoetryHeader>
 
