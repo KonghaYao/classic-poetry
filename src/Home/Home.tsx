@@ -5,7 +5,7 @@ export const Home = () => {
         <section class="home-page  noise no-scroll">
             <main class="book-list box-col ">
                 <div class="book-item-wrapper box-row">
-                    {SubRoutes.reverse().map((i) => {
+                    {SubRoutes.map((i) => {
                         return (
                             <div
                                 class="book-item box-row p-1"

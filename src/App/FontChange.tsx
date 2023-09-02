@@ -1,6 +1,6 @@
-import { Select, Space } from "@arco-design/web-react";
-import { FunctionComponent } from "react";
-import { useSetting } from "../Setting";
+// import { Select, Space } from "@arco-design/web-react";
+// import { FunctionComponent } from "react";
+// import { useSetting } from "../Setting";
 
 import { useFontChange } from "./useFontChange";
 

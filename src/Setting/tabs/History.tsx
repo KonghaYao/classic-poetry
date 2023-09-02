@@ -1,6 +1,6 @@
-import { Button, Form, Switch } from "@arco-design/web-react";
-import { FC, useState } from "react";
-import { useSetting } from "..";
+// import { Button, Form, Switch } from "@arco-design/web-react";
+// import { FC, useState } from "react";
+// import { useSetting } from "..";
 import { History } from "../../History";
 import { Hint } from "./Hint";
 

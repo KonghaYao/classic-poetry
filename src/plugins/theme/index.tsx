@@ -1,5 +1,4 @@
 import { SystemPlugin } from "../system";
-import { useStore } from "@nanostores/solid";
 import { RiWeatherSunFill, RiWeatherMoonClearFill } from "solid-icons/ri";
 import { defaultSetting, setDefaultSetting } from "../../Setting";
 import { reflect } from "@cn-ui/reactive";

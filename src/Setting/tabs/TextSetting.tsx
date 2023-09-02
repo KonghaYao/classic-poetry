@@ -1,9 +1,9 @@
-import { Form, InputNumber, Radio, Select } from "@arco-design/web-react";
-import { FC } from "react";
-import { useSetting } from "..";
-import { Setting } from "../Setting";
-import { FontChange } from "../../App/FontChange";
-import { CnCaseSupport } from "../../poetry/utils/CnCaseSupport";
+// import { Form, InputNumber, Radio, Select } from "@arco-design/web-react";
+// import { FC } from "react";
+// import { useSetting } from "..";
+// import { Setting } from "../Setting";
+// import { FontChange } from "../../App/FontChange";
+// import { CnCaseSupport } from "../../poetry/utils/CnCaseSupport";
 import { Hint } from "./Hint";
 
 export const TextSetting: FC<{}> = () => {

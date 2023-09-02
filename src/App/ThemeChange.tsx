@@ -1,8 +1,8 @@
-import { FC, useEffect, useMemo } from "react";
+// import { FC, useEffect, useMemo } from "react";
 
-import { Switch, Space } from "@arco-design/web-react";
-import { IconSun, IconMoon } from "@arco-design/web-react/icon";
-import { useSetting } from "../Setting";
+// import { Switch, Space } from "@arco-design/web-react";
+// import { IconSun, IconMoon } from "@arco-design/web-react/icon";
+// import { useSetting } from "../Setting";
 import { useAutoTheme } from "./useAutoTheme";
 
 export const ThemeChange: FC<{}> = () => {
