@@ -18,17 +18,19 @@ export const CatalogueList = (props: { name: string }) => {
     // const { data, error, loading } = useBookIndexMapper(props);
     return (
         <section class="box-col no-scroll link-list" ref={ref}>
-            <ul class="flex flex-wrap justify-between text-2xl">
+            <ul class="flex flex-wrap justify-between text-2xl gap-2">
                 {(dataSlices() ?? []).flat().map((i) => {
                     return (
-                        <a href={`/poetry/${i.id}`} class="text-lg">
-                            <li class="long-list-item px-2 py-1 hover:brightness-110 ">
+                        <a
+                            href={`/poetry/${i.id}`}
+                            class="text-lg bg-gray-100 dark:bg-gray-700 rounded-lg border-1 border-white p-2 text-[#496884] dark:text-[#a3b9cc]">
+                            <li class="long-list-item  hover:brightness-110">
                                 {i.title}
                             </li>
                         </a>
                     );
                 })}
-                <div class="w-full flex justify-center items-center text-sm">
+                <div class="w-full flex justify-center items-center text-sm ">
                     {currentData() &&
                         currentData().length === 0 &&
                         "没有更多啦"}
