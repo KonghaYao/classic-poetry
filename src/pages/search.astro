@@ -1,0 +1,8 @@
+---
+import { SearchPage } from "./search/SearchPage";
+import Layout from "../layouts/Base.astro";
+---
+
+<Layout title={" 中华诗词大典"}>
+    <SearchPage client:only></SearchPage>
+</Layout>
