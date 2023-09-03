@@ -1,5 +1,5 @@
 import { SystemPlugin } from "../system";
-import { ImSearch } from "solid-icons/im";
+import { RiSystemSearchLine } from "solid-icons/ri";
 export class SearchPlugin extends SystemPlugin {
     config = {
         position: "header" as const,
@@ -7,14 +7,14 @@ export class SearchPlugin extends SystemPlugin {
     render() {
         return (
             <a class="cursor-pointer" href="/search">
-                <ImSearch />
+                <RiSystemSearchLine />
             </a>
         );
     }
 }
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import instantsearch from "instantsearch.js";
-import "instantsearch.css/themes/satellite.css";
+import "../../styles/instantSearch.css";
 
 import {
     searchBox,
@@ -50,6 +50,7 @@ export const SearchPage = () => {
                 queryHook: debounce(function (query, search) {
                     search(query);
                 }, 1000),
+                placeholder: "试试你想搜索的古诗词",
             }),
             clearRefinements({
                 container: "#clear-refinements",
@@ -93,7 +94,8 @@ export const SearchPage = () => {
                                     })}
                                 </a>
                             </div>
-                            <div class="hit-description line-clamp-2">
+                            <div
+                                class="hit-description line-clamp-2  text-gray-400">
                                 ${components.Snippet({
                                     hit,
                                     attribute: "content",
@@ -113,7 +115,7 @@ export const SearchPage = () => {
     onCleanup(() => search.dispose());
     return (
         <div class="flex flex-row max-w-3xl m-auto w-full  pt-8 pb-4 h-full gap-8">
-            <div class="left-panel">
+            <div class="left-panel hidden md:block">
                 <div id="clear-refinements"></div>
 
                 <h2>诗集</h2>
@@ -123,7 +125,7 @@ export const SearchPage = () => {
             <div class="right-panel flex flex-col">
                 <div id="searchbox" class="ais-SearchBox"></div>
                 <div id="hits" class="flex-1 overflow-scroll"></div>
-                <div id="pagination"></div>
+                <div id="pagination" class="flex justify-center"></div>
             </div>
         </div>
     );
