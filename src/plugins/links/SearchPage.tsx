@@ -1,3 +1,17 @@
+import { SystemPlugin } from "../system";
+import { ImSearch } from "solid-icons/im";
+export class SearchPlugin extends SystemPlugin {
+    config = {
+        position: "header" as const,
+    };
+    render() {
+        return (
+            <a class="cursor-pointer" href="/search">
+                <ImSearch />
+            </a>
+        );
+    }
+}
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import instantsearch from "instantsearch.js";
 import "instantsearch.css/themes/satellite.css";
@@ -11,7 +25,7 @@ import {
     pagination,
 } from "instantsearch.js/es/widgets";
 import { onCleanup, onMount } from "solid-js";
-
+import { debounce } from "instantsearch.js/es/lib/utils";
 const searchClient = instantMeiliSearch(
     "https://ms-7d12842fe386-5010.sgp.meilisearch.io", // Host
     "cda948750d1d469e892b40b5aaeeedbe70a18b0a0252477949bafaa8284ebf4c", // API key
@@ -27,11 +41,15 @@ export const SearchPage = () => {
         indexName: "poetries",
         routing: true,
         searchClient,
+        stalledSearchDelay: 1000,
     });
     onMount(() => {
         search.addWidgets([
             searchBox({
                 container: "#searchbox",
+                queryHook: debounce(function (query, search) {
+                    search(query);
+                }, 1000),
             }),
             clearRefinements({
                 container: "#clear-refinements",

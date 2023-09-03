@@ -1,6 +1,5 @@
 import { ThemePlugin } from "./plugins/theme/index";
-import { isServer } from "solid-js/web";
-import { SearchPlugin } from "./plugins/links/search";
+import { SearchPlugin } from "./plugins/links/SearchPage";
 export const MainRegister = () => {
     new ThemePlugin().register();
     new SearchPlugin().register();
