@@ -1,11 +1,7 @@
-import { Avatar } from "@arco-design/web-react";
-import { FC } from "react";
-import { NavLink } from "react-router-dom";
-
 const data = [
     {
         name: "字体支持",
-        avatar: "/avatar.png",
+        avatar: "https://chinese-font.netlify.app/favicon.ico",
         description: [
             "字体支持是由江夏尧的中文 Web Font 项目进行支持的",
             "《中华诗词大典》中的默认字体采用江西拙楷、思源宋体和汇源明朝体",
@@ -64,37 +60,28 @@ const data = [
 ];
 
 import "./index.css";
-export const Contribute: FC = () => {
+export const Contribute = () => {
     return (
-        <div class="box box-row">
+        <div class="box box-row ">
             {data.map((i, index) => {
                 return (
                     <div
-                        class="contribute-one box-col"
-                        key={"contribute" + index}>
-                        <nav class="absolute-bg box-center">
-                            <img src={i.bg} alt="" />
-                        </nav>
-                        <main class="content box box-col">
-                            <header>
-                                <Avatar shape="square">
-                                    <img src={i.avatar} alt="" />
-                                </Avatar>
-                            </header>
-                            <div class="name">{i.name}</div>
-                            <div class="description box-col ">
-                                {i.description.map((words, index) => {
-                                    return (
-                                        <div key={"words-" + index}>
-                                            {words}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <a class="link" target="_blank" href={i.link}>
-                                链接
-                            </a>
-                        </main>
+                        class="contribute-one h-full grid grid-row-8 items-center justify-items-center bg-no-repeat bg-cover bg-center select-none"
+                        style={{
+                            "background-image": `url(${i.bg})`,
+                        }}>
+                        <a class="link" target="_blank" href={i.link}>
+                            链接
+                        </a>
+                        <div class="overflow-hidden aspect-square bg-white  rounded-full w-24">
+                            <img src={i.avatar} alt="" />
+                        </div>
+                        <div class="name text-4xl">{i.name}</div>
+                        <div class="description grid-rows-3 box-col ">
+                            {i.description.map((words, index) => {
+                                return <div>{words}</div>;
+                            })}
+                        </div>
                     </div>
                 );
             })}

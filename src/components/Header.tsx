@@ -6,7 +6,7 @@ export const GlobalHeader = () => {
                 <div class="text-xl">中华诗词大典</div>
             </a>
             <div class="flex-1"></div>
-            <nav class=" text-sm flex flex-row gap-4 justify-between items-center ">
+            <nav class=" text-lg flex flex-row gap-4 justify-between items-center ">
                 <PluginRender position="header"></PluginRender>
             </nav>
         </header>
