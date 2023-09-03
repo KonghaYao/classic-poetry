@@ -9,7 +9,7 @@ const client = new MeiliSearch({
 await client.deleteIndex("poetries");
 client.index("poetries");
 const index_ = client.index("poetries");
-index_.updateSearchableAttributes(["content", "author"]);
+index_.updateSearchableAttributes(["content", "author", "title"]);
 index_.updateFilterableAttributes(["belongToName", "author"]);
 let count = 0;
 let index = 0;

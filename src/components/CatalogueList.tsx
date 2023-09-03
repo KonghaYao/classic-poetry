@@ -1,28 +1,25 @@
 import { getIndex } from "../backend/getClient";
-import { Atom, atom, DebounceAtom, usePaginationStack } from "@cn-ui/reactive";
+import {
+    Atom,
+    atom,
+    DebounceAtom,
+    useEffectWithoutFirst,
+    usePaginationStack,
+} from "@cn-ui/reactive";
 import { Show } from "solid-js";
+import { ImSearch } from "solid-icons/im";
 export const useCatalogueListLoad = (name: string, searchText = atom("")) =>
-    usePaginationStack(
-        async (pageNumber: number, maxPage: Atom<number>) => {
-            return getIndex()
-                .search(searchText(), {
-                    filter: `belongToName = '${name}'`,
-                    limit: 30,
-                    offset: pageNumber * 30,
-                    attributesToRetrieve: [
-                        "author",
-                        "belongToName",
-                        "id",
-                        "title",
-                    ],
-                })
-                .then((res) => res.hits)
-                .finally(() => maxPage((i) => i++));
-        },
-        {
-            deps: [DebounceAtom(searchText, 1000)],
-        }
-    );
+    usePaginationStack(async (pageNumber: number, maxPage: Atom<number>) => {
+        return getIndex()
+            .search(searchText(), {
+                filter: `belongToName = '${name}'`,
+                limit: 40,
+                offset: pageNumber * 40,
+                attributesToRetrieve: ["author", "belongToName", "id", "title"],
+            })
+            .then((res) => res.hits)
+            .finally(() => maxPage((i) => i++));
+    }, {});
 
 /** 特别为 input 组件使用的事件绑定 */
 function AtomToModel<T>(a: Atom<T>) {
@@ -34,13 +31,13 @@ function AtomToModel<T>(a: Atom<T>) {
 export const CatalogueList = (props: { name: string }) => {
     const ref = atom<HTMLDivElement | null>(null);
     const searchText = atom("");
-    const { dataSlices, currentData, next } = useCatalogueListLoad(
+    const { dataSlices, currentData, next, resetStack } = useCatalogueListLoad(
         props.name,
         searchText
     );
+    useEffectWithoutFirst(() => resetStack(), [DebounceAtom(searchText, 1000)]);
     return (
         <>
-            <input type="text" {...AtomToModel(searchText)} />
             <section class="flex flex-col no-scroll link-list" ref={ref}>
                 <ul class="flex flex-wrap justify-between text-2xl gap-2">
                     {(dataSlices() ?? []).flat().map((i) => {
@@ -57,19 +54,27 @@ export const CatalogueList = (props: { name: string }) => {
                     <Show
                         when={currentData()?.length}
                         fallback={
-                            <span class="text-lg bg-gray-100 dark:bg-gray-700 rounded-lg border-1 border-white p-2 text-yellow-500 flex-1 cursor-pointer text-center">
+                            <span class="text-lg bg-gray-100 dark:bg-gray-700 rounded-lg border-1 border-white p-2 text-yellow-500 w-full cursor-pointer text-center flex-none">
                                 {currentData()?.length === 0 && "没有更多啦"}
                                 {currentData.loading() && "加载中"}
                             </span>
                         }>
                         <span
-                            class="text-lg bg-gray-100 dark:bg-gray-700 rounded-lg border-1 border-white p-2 text-yellow-500 flex-1 cursor-pointer text-center"
+                            class="text-lg bg-gray-100 dark:bg-gray-700 rounded-lg border-1 border-white p-2 text-yellow-500 w-full cursor-pointer text-center flex-none"
                             onclick={next}>
                             加载更多
                         </span>
                     </Show>
                 </ul>
             </section>
+            <div class="flex gap-4 flex-row rounded-lg bg-gray-100 dark:bg-gray-700 p-2 items-center mb-4">
+                <ImSearch />
+                <input
+                    type="text"
+                    class="outline-none flex-1 bg-transparent"
+                    {...AtomToModel(searchText)}
+                />
+            </div>
         </>
     );
 };

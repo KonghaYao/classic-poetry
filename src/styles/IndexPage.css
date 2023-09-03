@@ -13,9 +13,3 @@
     display: block;
     overflow: auto;
 }
-@media screen and (max-width: 1000px) {
-    .index-page .link-list {
-        margin: 2rem 0;
-        padding: 2rem 0;
-    }
-}
