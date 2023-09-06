@@ -1,12 +1,13 @@
 ---
 import Layout from "../../layouts/Base.astro";
 import { ShowSinglePoetry } from "../../components/Poetry/ShowSinglePoetry";
-import { getIndex } from "../../backend/getClient";
+import { client } from "../../backend/client";
+
 const { id } = Astro.params;
 if(id===undefined) Astro.redirect('/')
 const idNum = parseInt(id as string)
 if(isNaN(idNum)) Astro.redirect('/')
-const data = await getIndex().getDocument(idNum)
+const data = await client.getSinglePoetry.query({ id:idNum.toString()})
 ---
 
 <Layout title={data?.title + " 中华诗词大典"} class="items-center">

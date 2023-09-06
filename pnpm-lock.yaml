@@ -29,6 +29,12 @@ dependencies:
   '@nanostores/solid':
     specifier: ^0.4.2
     version: registry.npmmirror.com/@nanostores/solid@0.4.2(nanostores@0.9.3)(solid-js@1.7.11)
+  '@trpc/client':
+    specifier: ^10.38.1
+    version: registry.npmmirror.com/@trpc/client@10.38.1(@trpc/server@10.38.1)
+  '@trpc/server':
+    specifier: ^10.38.1
+    version: registry.npmmirror.com/@trpc/server@10.38.1
   ahooks:
     specifier: ^3.7.8
     version: registry.npmmirror.com/ahooks@3.7.8(react@18.2.0)
@@ -95,6 +101,9 @@ dependencies:
   xlsx:
     specifier: ^0.18.5
     version: registry.npmmirror.com/xlsx@0.18.5
+  zod:
+    specifier: ^3.22.2
+    version: registry.npmmirror.com/zod@3.22.2
 
 devDependencies:
   '@arco-plugins/vite-react':
@@ -121,6 +130,9 @@ devDependencies:
   typescript:
     specifier: ^4.9.5
     version: registry.npmmirror.com/typescript@4.9.5
+  vite:
+    specifier: ^4.4.9
+    version: registry.npmmirror.com/vite@4.4.9
 
 packages:
 
@@ -1510,6 +1522,23 @@ packages:
     name: '@remix-run/router'
     version: 1.8.0
     engines: {node: '>=14.0.0'}
+    dev: false
+
+  registry.npmmirror.com/@trpc/client@10.38.1(@trpc/server@10.38.1):
+    resolution: {integrity: sha512-kY7ZV7Eco5SeFIGJX6OBg7AAKkiMt5+1N+GC7N1lTZszrw95ZiNgtkZ5TI6+Un4O+RqrOcqqast6MeExCoyZhQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@trpc/client/-/client-10.38.1.tgz}
+    id: registry.npmmirror.com/@trpc/client/10.38.1
+    name: '@trpc/client'
+    version: 10.38.1
+    peerDependencies:
+      '@trpc/server': 10.38.1
+    dependencies:
+      '@trpc/server': registry.npmmirror.com/@trpc/server@10.38.1
+    dev: false
+
+  registry.npmmirror.com/@trpc/server@10.38.1:
+    resolution: {integrity: sha512-59mM0Jk3cnWBExSv4Z4cw/776MPwa+rcVNywnV5gyHyK/p5qHtis1b1JPYdTEQZ0zhR+6zeto14rTR51hg+Nuw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@trpc/server/-/server-10.38.1.tgz}
+    name: '@trpc/server'
+    version: 10.38.1
     dev: false
 
   registry.npmmirror.com/@types/babel__core@7.20.1:
@@ -5932,6 +5961,12 @@ packages:
     resolution: {integrity: sha512-+dTu2m6gmCbO9Ahm4ZBDapx2O6ZY9QSPXst2WXjcznPMwf2YNpn3RevLx4KkZp1OPW/ouFcoBtBzFz/LeY69oA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/zod/-/zod-3.21.1.tgz}
     name: zod
     version: 3.21.1
+
+  registry.npmmirror.com/zod@3.22.2:
+    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/zod/-/zod-3.22.2.tgz}
+    name: zod
+    version: 3.22.2
+    dev: false
 
   registry.npmmirror.com/zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/zwitch/-/zwitch-2.0.4.tgz}
