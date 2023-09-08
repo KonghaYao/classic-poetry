@@ -26,7 +26,7 @@ const { name } = Astro.props;
                 <div class="Index-Seal leading-[1em]">{name}</div>
             </div>
             <!-- 首次渲染无数据 -->
-            <CatalogueList name={name} client:load />
+            <CatalogueList name={name} client:only />
         </div>
     </div>
 </Layout>
