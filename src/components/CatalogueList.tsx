@@ -8,14 +8,14 @@ import {
 } from "@cn-ui/reactive";
 import { Show } from "solid-js";
 import { ImSearch } from "solid-icons/im";
+import { client } from "../backend/client";
 export const useCatalogueListLoad = (name: string, searchText = atom("")) =>
     usePaginationStack(async (pageNumber: number, maxPage: Atom<number>) => {
-        return getIndex()
-            .search(searchText(), {
-                filter: `belongToName = '${name}'`,
-                limit: 40,
-                offset: pageNumber * 40,
-                attributesToRetrieve: ["author", "belongToName", "id", "title"],
+        return client.searchPoetryNameInSection
+            .query({
+                page: pageNumber,
+                belongToName: name,
+                search: searchText(),
             })
             .then((res) => res.hits)
             .finally(() => maxPage((i) => i++));
