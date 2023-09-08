@@ -9,12 +9,12 @@ const router = t.router;
 const searchIndex = getClient()
 
 /** 简单的异步数据缓存函数 */
-const cacheStore = <T extends (data: any) => Promise<any>>(fn: T, condition: (...input: Parameters<T>) => boolean = () => true) => {
+const cacheStore = <T extends (data: any) => Promise<any>>(fn: T, condition: (input: Parameters<T>[0]) => boolean = () => true) => {
     const store = new Map<string, unknown>()
     return (async (ctx) => {
         const key = JSON.stringify(ctx.input)
         if (store.has(key) && condition(ctx)) {
-            console.log('命中缓存', key)
+            // console.log('命中缓存', key)
             return store.get(key)
         }
         return fn(ctx).then(res => {
