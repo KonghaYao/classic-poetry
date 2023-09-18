@@ -2,8 +2,8 @@ import { MeiliSearch } from "meilisearch";
 import fs from "fs-extra";
 // 上传记录到 MeiliSearch
 const client = new MeiliSearch({
-    host: "https://meilisearch-konghayao.cloud.okteto.net",
-    apiKey: "1234567890",
+    host: "https://ms-2783e6038de5-5330.sgp.meilisearch.io",
+    apiKey: "081fc12aa65e890410a049bfd13149ea8106bd30",
 });
 
 await client.deleteIndex("poetries");
