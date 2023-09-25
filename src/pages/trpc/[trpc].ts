@@ -10,5 +10,5 @@ export const ALL: APIRoute = (opts) => {
         createContext: () => ({}),
     });
 };
-export const GET = ALL
-export const POST = ALL
+export const all = ALL
+export default ALL

@@ -8,5 +8,7 @@ import solidJs from "@astrojs/solid-js";
 export default defineConfig({
     integrations: [tailwind(), solidJs()],
     output: "server",
-    adapter: netlify(),
+    adapter: netlify({
+        edgeMiddleware: true,
+    }),
 });
