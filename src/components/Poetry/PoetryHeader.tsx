@@ -1,14 +1,15 @@
 import { useStore } from "@nanostores/solid";
 import { BookSetting, Books } from "./store/book";
-import { modelControl } from "./store/modelControl";
 export const PoetryHeader = () => {
+    const store = useStore(BookSetting);
+
     const matched = useStore(Books)();
     const textCount = matched.content.split("\n").reduce((col, cur) => {
         const m: string = cur.replace(/[^\u4e00-\u9fff\uf900-\ufaff]/g, "");
         return col + m.length;
     }, 0);
     return (
-        <header class={`poetry-header`}>
+        <header class={`poetry-header mx-2`}>
             <main>
                 <span class="title">{matched.title}</span>
                 <span class="subtitle">{matched.subTitle}</span>
@@ -21,12 +22,14 @@ export const PoetryHeader = () => {
                     字
                 </div>
 
-                {/* <IconBook
+                <button
                     class="w-4 aspect-square cursor-pointer"
                     onClick={() => {
-                        modelControl.setKey("showing", "index");
-                    }}
-                /> */}
+                        const dir = store().direction === "row" ? "col" : "row";
+                        BookSetting.setKey("direction", dir);
+                    }}>
+                    🅰️
+                </button>
                 {/* {MoreList()} */}
             </aside>
         </header>

@@ -9,12 +9,6 @@ import { atom } from "@cn-ui/reactive";
 export const PoetryContent = () => {
     const poetry = useStore(Books)();
     const ref = atom<HTMLDivElement | null>(null);
-    // const location = useLocation();
-    // const {} = useHighlightInject({
-    //     getRoot() {
-    //         return ref() as HTMLDivElement;
-    //     },
-    // });
     return (
         <article class="flex-1 flex flex-col w-full " ref={ref!}>
             {poetry.content.split("\n").map((i, index) => {

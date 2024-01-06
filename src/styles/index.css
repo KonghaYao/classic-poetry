@@ -11,18 +11,12 @@
     --divide-red: #a42a28;
     --divide-gold: #c9a276;
     --divide-green: #415b55;
-    --text-green:#5f9378;
+    --text-green: #5f9378;
 }
-body {
-    --book-text-color:#333;
+html {
+    --book-text-color: #333;
     --shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-body[arco-theme="dark"] {
-    --color-text-1: #c9a276;
-    --book-text-color:var(--color-text-1)
-    --shadow: 0 0 20px rgba(201, 162, 118, 0.25);
-}
-
 
 .noise::before {
     content: "";
@@ -36,12 +30,14 @@ body[arco-theme="dark"] {
     pointer-events: none;
     touch-action: none;
 }
-@media (prefers-color-scheme: dark) {
-    body {
-        color: var(--color-text-1);
-    }
+html.dark {
+    color: var(--color-text-1);
+    --book-text-color: #eee;
+    --color-text-1: #c9a276;
+    --shadow: 0 0 20px rgba(201, 162, 118, 0.25);
 }
-.box{
+
+.box {
     height: 100%;
     width: 100%;
 }
@@ -86,7 +82,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.box-center{
+.box-center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,11 +97,11 @@ body {
     width: 10px;
     height: 10px;
 }
-::-webkit-scrollbar-corner{
+::-webkit-scrollbar-corner {
     background-color: transparent;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background-color: var(--color-text-1);
     pointer-events: all;
     z-index: 100;
@@ -139,38 +135,36 @@ body {
 /* 最大的内容长度 */
 .content-max {
     max-width: 700px;
-    margin:auto;
+    margin: auto;
 }
-.long-list-item{
+.long-list-item {
     content-visibility: auto;
 }
 
-.one-row{
+.one-row {
     overflow: hidden;
-    white-space: nowrap; 
-    text-overflow:ellipsis;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-
 
 /* 一个背景色随 theme 变化的盒子 */
-.panel{
-
+.panel {
     background-color: var(--color-bg-1);
 }
-.flex-1{
-    flex:1
+.flex-1 {
+    flex: 1;
 }
-.none{
+.none {
     display: none;
 }
-hr{
-  
-    border:0
+hr {
+    border: 0;
 }
 
-hr.ver{  height: 100%;
+hr.ver {
+    height: 100%;
     border-left: 1px solid var(--color-neutral-3);
 }
-hr.hor{
+hr.hor {
     border-bottom: 1px solid var(--color-neutral-3);
 }

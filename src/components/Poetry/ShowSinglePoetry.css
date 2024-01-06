@@ -40,6 +40,7 @@
 
 .poetry-vertical .poetry-content {
     writing-mode: vertical-rl;
+    max-width: 1200px;
 }
 .poetry-vertical.box-row {
     flex-direction: row-reverse;
@@ -48,13 +49,13 @@
     display: flex;
     align-items: baseline;
     border-bottom: 2px solid var(--divide-red);
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 1rem 0;
     padding: 0.5em;
 }
 .poetry-vertical .poetry-header {
     writing-mode: vertical-rl;
 
-    margin: 0 1rem 0 0;
+    margin: 0 1rem 0 1rem;
     border-left: 2px solid var(--divide-red);
     border-bottom: 0;
 }

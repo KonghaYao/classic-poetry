@@ -26,10 +26,10 @@ export const ShowSinglePoetry = ({
     const store = useStore(BookSetting);
     return (
         <section
-            class={`poetry-wrapper ${
+            class={`poetry-wrapper justify-center m-auto ${
                 store().direction === "row"
                     ? "flex flex-row-reverse poetry-vertical"
-                    : "flex flex-col  content-max no-scroll"
+                    : "flex flex-col w-3/4 md:w-3/4 lg:w-1/2 no-scroll"
             }`}
             style={{
                 "font-family": setting.text.font.fontFamily,
