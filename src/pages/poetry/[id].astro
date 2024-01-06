@@ -4,16 +4,15 @@ import { ShowSinglePoetry } from "../../components/Poetry/ShowSinglePoetry";
 import { client } from "../../backend/client";
 
 const { id } = Astro.params;
-if(id===undefined) Astro.redirect('/')
-const idNum = parseInt(id as string)
-if(isNaN(idNum)) Astro.redirect('/')
-const data = await client.getSinglePoetry.query({ id:idNum.toString()})
+if (id === undefined) Astro.redirect("/");
+const data = await client.getSinglePoetry.query({ id: id as string });
 ---
 
 <Layout title={data?.title + " 中华诗词大典"} class="items-center">
-    <ShowSinglePoetry poetry={data as any} client:load >
-        
-    </ShowSinglePoetry>
+    <ShowSinglePoetry poetry={data as any} client:load />
     <!-- <ModelControl client:only="solid" /> -->
-    <link rel='stylesheet' href='https://192960944.r.cdn36.com/chinesefonts1/packages/hwmct/dist/汇文明朝体/result.css' /> 
+    <link
+        rel="stylesheet"
+        href="https://192960944.r.cdn36.com/chinesefonts1/packages/hwmct/dist/汇文明朝体/result.css"
+    />
 </Layout>

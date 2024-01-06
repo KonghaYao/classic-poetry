@@ -1,4 +1,3 @@
-import { getIndex } from "../backend/getClient";
 import {
     Atom,
     atom,
